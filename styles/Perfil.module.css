@@ -1,0 +1,99 @@
+.perfil-container {
+    background-color: rgb(255, 255, 255);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-header {
+    font-size: 50px;
+    padding-top: 100px;
+    padding-bottom: 30px;
+    font-weight: 700;
+    color: #464444;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid #F6F3F1;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+    height: 100%;
+    width: 800px;
+}
+
+.tela-box {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+}
+
+.box-option {
+    width: 350px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.description a {
+    display: flex;
+    color: #F2C9A4;
+    font-size: 25px;
+}
+
+.description {
+    font-size: 18px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.description:hover {
+    color: #F2C9A4;
+}
+
+.seta {
+    margin-left: auto;
+}
+
+.container-description {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.tela {
+    background-color: #F6F3F1;
+    width: 85%;
+    height: 85%;
+    border-radius: 20px;
+}

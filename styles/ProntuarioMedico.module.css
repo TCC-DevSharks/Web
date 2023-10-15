@@ -1,0 +1,73 @@
+.prontuario-m-container {
+    margin-left: 120px;
+    width: auto;
+    height: 100vh;
+}
+.prontuario-input-date{
+    border-radius: 10px;
+    border: 2px solid  #F3D24B;
+    background: rgba(243, 243, 243, 0.00);
+    height: 50px;
+    width: 20vw;
+    padding: 12px;
+    color: #666161;
+    font-size: 1.2rem;
+}
+.prontuario-input-especiality{
+    border-radius: 10px;
+    border: 2px solid  #F3D24B;
+    height: 50px;
+    background: rgba(243, 243, 243, 0.00);
+    width: 20vw;
+    padding: 12px;
+    color: #666161;
+    font-size: 1.2rem;
+}
+.prontuario-input-description{
+    border-radius: 10px;
+    border: 2px solid  #F3D24B;
+    height: 200px;
+    background: rgba(243, 243, 243, 0.00);
+    padding: 12px;
+    color: #666161;
+    font-size: 1.2rem;
+}
+.prontuario-medico{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    gap: 32px;
+}
+.prontuario-medico-m{
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    justify-content: center;
+    gap: 30px;
+}
+.date{
+    display: flex;
+    flex-direction: column;
+}
+.inputs-prontuario{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2rem;
+    color:  #666161;
+}
+.button-prontuario{
+    width: 39px;
+height: 38px;
+border: none;
+background-color: #F3D24B;
+border-radius: 10px;
+}
+.nome-paciente{
+    font-size: 1.4rem;
+    color:  #666161;
+    font-weight: 500;
+}

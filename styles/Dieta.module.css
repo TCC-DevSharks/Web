@@ -1,0 +1,86 @@
+.dieta-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+}
+
+.container-geral {
+    display: flex;
+    margin-left: 120px;
+    height: 75%;
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+}
+
+.container-pacientes {
+    width: 600px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container-pacientes div input {
+    border-radius: 10px;
+    border: none;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #F6F3F1;
+}
+
+.container-pacientes div input::placeholder {
+    color: #999;
+    font-size: 17px;
+}
+
+.container-pacientes div span {
+    font-size: 20px;
+}
+
+.container-pacientes .box-pacientes {
+    width: 100%;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: auto;
+}
+
+.paciente {
+    background-color: #F6F3F1;
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    border-radius: 10px;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.imagem {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.imagem img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.container-dieta {
+    background-color: #F6F3F1;
+    width: 55%;
+    border-radius: 10px;
+    height: 100%;
+}

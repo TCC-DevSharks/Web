@@ -1,0 +1,101 @@
+.prontuario-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.prontuarios {
+    height: auto;
+    gap: 50px;
+    width: 90%;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 20px;
+    margin-top: 50px;
+    padding-right: 20px;
+}
+
+.input-area input {
+    width: 700px;
+    height: 45px;
+    border-radius: 10px;
+    background: #f6f3f1;
+    border: none;
+    padding: 20px 20px;
+    font-size: 18px;
+}
+
+.pacientes {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    align-content: flex-start;
+    width: 100%;
+    justify-content: center;
+    min-height: 800px;
+    max-height: 850px;
+    width: 100%;
+    overflow-y: auto; 
+}
+
+.box-paciente {
+    width: 310px;
+    height: 140px;
+    background-color: aliceblue;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #f6f3f1;
+    display: flex;
+    padding: 0 15px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.box-paciente:hover {
+    background-color: bisque;
+}
+
+.box-paciente .nome {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.img-box-div {
+    background-color: bisque;
+    padding: 3px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border-radius: 50px;
+}
+
+.img-box-div img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.title-pacientes {
+    width: 100%;
+    font-size: 30px;
+    font-weight: 600;
+    color: #464444;
+    padding-left: 15px;
+}
+

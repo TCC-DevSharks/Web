@@ -1,0 +1,100 @@
+.chat-container {
+    margin-left: 120px;
+    width: auto;
+    padding: 50px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-pacientes {
+    width: 600px;
+    display: flex;
+    height: 700px;
+    justify-content: center;
+}
+
+.pacientes-container{
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pacientes-container h1 {
+    font-size: 60px;
+    color: #464444;
+    margin-bottom: 20px;
+}
+
+
+.container-pacientes input {
+    width: 95%;
+    height: 45px;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: #f6f3f1;
+    border: none;
+    padding: 12px;
+}
+
+.pacientes {
+    width:100%;
+    height: auto;
+    display: grid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    gap: 10px;
+    overflow: auto;
+}
+
+.paciente {
+    width: 95%;
+    height: 70px;
+    background-color: #ffead8;
+    border-radius: 12px;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    color: #464444;
+}
+
+.paciente .imagem-div {
+    width: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.paciente .imagem-div img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.descricao-paciente-chat {
+    width: 90%;
+}
+
+.descricao-paciente-chat .nome-paciente {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.descricao-paciente-chat .previa-mensagem {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.container-conversa {
+    width: 70%;
+    background-color: #f6f3f1;
+    border-radius: 20px;
+    height: 90%;
+    margin-left: 30px;
+    background-color: #f6f3f1;
+}

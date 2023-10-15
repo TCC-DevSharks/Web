@@ -1,0 +1,35 @@
+.alimento-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buscar-alimento input{
+    width: 25vw;
+height: 45px;
+border-radius: 10px;
+padding-left: 12px;
+border: none;
+background: #F6F3F1;
+}
+.buscar-alimento{
+   padding-left: 162px;
+    padding-top: 34px;
+}
+.alimentos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+
+    width: 100%;
+}
+.alimento-nome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alimento-nome img{
+    height: 80px;
+}
