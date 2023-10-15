@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/login": "pages/login.js",
-  "/RegisterClinic": "pages/RegisterClinic.js",
+  "/ClinicLogin": "pages/ClinicLogin.js",
   "/ProfessionalLogin": "pages/ProfessionalLogin.js",
-  "/PregnantLogin": "pages/PregnantLogin.js"
+  "/RegisterClinic": "pages/RegisterClinic.js"
 }

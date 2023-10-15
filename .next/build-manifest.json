@@ -12,20 +12,15 @@
   ],
   "rootMainFiles": [],
   "pages": {
-    "/PregnantLogin": [
+    "/ClinicLogin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/PregnantLogin.js"
+      "static/chunks/pages/ClinicLogin.js"
     ],
     "/ProfessionalLogin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/ProfessionalLogin.js"
-    ],
-    "/RegisterClinic": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/RegisterClinic.js"
     ],
     "/_app": [
       "static/chunks/webpack.js",
@@ -36,11 +31,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
-    ],
-    "/login": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/login.js"
     ]
   },
   "ampFirstPages": []

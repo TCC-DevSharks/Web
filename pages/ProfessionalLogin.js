@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Header from '../components/Header'
+import stylesClinic from '../styles/ClinicLogin.module.css';
 import stylesLogin from '../styles/Login.module.css';
 import styles from '../styles/ProfessionalLogin.module.css';
 
@@ -14,26 +15,26 @@ function ClinicLogin() {
     <div>
       <Header />
       <div className={styles.login_pro}>
-        <div className="login_form">
-          <p className="login_title">Entre na sua conta:</p>
-          <form>
-            <div className="input_container_p">
+        <div className={stylesClinic.login_form}>
+          <p className={stylesClinic.login_title}>Entre na sua conta:</p>
+          <form className={stylesLogin.form}>
+            <div className={stylesClinic.input_container}>
               <label>E-mail:</label>
-              <input type="text" placeholder='Digite seu e-mail' />
+              <input className={stylesClinic.input} type="text" placeholder='Digite seu e-mail' />
             </div>
-            <div className="input_container">
-              <div className="pass_forgot">
+            <div className={stylesClinic.input_container}>
+              <div className={stylesClinic.pass_forgot}>
                 <label>Senha:</label>
-                <a href='/forgot' className='forgot_p'>Esqueceu?</a>
+                <a href='/forgot' className={styles.forgot_p}>Esqueceu?</a>
               </div>
-              <div className="password-input">
-                <input type={showPassword ? 'text' : 'password'} placeholder="Digite sua senha" />
-                <p onClick={handleShowPassword} className="eye-icon">
+              <div className={stylesClinic.password_input}>
+                <input className={stylesClinic.input} type={showPassword ? 'text' : 'password'} placeholder="Digite sua senha" />
+                <p onClick={handleShowPassword} className={stylesClinic.eye_icon}>
                   {showPassword ? <FiEyeOff /> : <FiEye />}
                 </p>
               </div>
             </div>
-            <div className="button_login_pro">
+            <div className={styles.button_login_pro}>
               <button>
                 Entrar
               </button>
