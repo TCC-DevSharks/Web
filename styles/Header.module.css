@@ -21,15 +21,17 @@
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
+
 }
 
-.header .logo {
+.logo {
     font-size: 36px;
     font-weight: 500;
     color: var(--primary-color);
     font-family: 'Baloo Da 2', cursive;
     text-decoration: none;
-    color: var(--primary-color);
+    display: flex;
+    align-items: center;
 }
 
 .logo__img {
@@ -41,10 +43,6 @@
     font-size: 20px;
     color: var(--primary-color);
     text-decoration: none;
-    
-}
-
-.navbar{
     padding: 0.3rem 2.5rem;
     border: 2px solid var(--primary-color);
     border-radius: 50px;

@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/login": "pages/login.js",
+  "/PregnantLogin": "pages/PregnantLogin.js",
   "/ClinicLogin": "pages/ClinicLogin.js",
-  "/ProfessionalLogin": "pages/ProfessionalLogin.js",
-  "/RegisterClinic": "pages/RegisterClinic.js"
+  "/": "pages/index.js"
 }

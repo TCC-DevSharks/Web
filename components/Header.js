@@ -11,7 +11,7 @@ function Header() {
             </div>
 
             <nav className={styles.navbar}>
-                <a id='login__btn' href="/login">Login</a>
+                <a id={styles.login__btn} href="/login">Login</a>
             </nav>
         </header>
     );
