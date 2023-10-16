@@ -1,6 +1,6 @@
 .sidebar {
     background-color: #F6F3F1;
-    width: 120px;
+    width: 5%;
     position: fixed;
     top: 0;
     left: 0;
@@ -22,13 +22,14 @@
 }
 
 .ul li a {
-    color: #D1D1D6;
+    color: #4c4c4c;
     text-decoration: none;
 }
 
 .ul li a:hover {
-    color: bisque;
+    color: #B6B6F6;
     text-decoration: none;
+    transition: 0.3s;
 }
 
 .lista {
@@ -39,15 +40,13 @@
 }
 
 .ul li img {
-    background: bisque;
+    background: #B6B6F6;
     border-radius: 50%;
     padding: 3px;
     object-fit: cover;
 }
 
-.ul li img:hover {
-    padding: 0px;
-}
+
 
 .img_img {
     width: 90px;
