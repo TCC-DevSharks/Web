@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    
 }
 
 .prontuarios {
@@ -37,6 +37,7 @@
     flex-direction: column;
     gap: 20px;
     height: auto;
+    padding-left: 10%;
 }
 
 .container {
@@ -44,7 +45,6 @@
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    justify-content: center;
     width: 100%;
     min-height: 800px;
     max-height: 850px;
@@ -64,7 +64,29 @@
 }
 
 .box-paciente:hover {
-    background-color: bisque;
+    background-color: #b6b6f6;
+    color: #FFF;
+    transition: 0.3s;
+    
+    
+}
+
+.box-paciente:hover .semanas_paciente   {
+    transition: 0.3s;
+    color: #FFF;
+}
+.box-paciente:hover .descricao_paciente   {
+    transition: 0.3s;
+    color: #FFF;
+}
+.box-paciente:hover .iconDate   {
+    transition: 0.3s;
+    fill: #FFF;
+}
+
+.iconDate{
+    font-size: 1rem;
+    fill: #b6b6f6;
 }
 
 .box-paciente .nome {
@@ -95,7 +117,6 @@
     font-size: 30px;
     font-weight: 600;
     color: #464444;
-    padding-left: 9%;
 }
 
 .paciente_data{
@@ -106,11 +127,20 @@
     padding: 50px;
 }
 
+.nome_paciente{
+    font-size: 2rem;
+}
+
 .semanas_paciente{
+    font-weight: 400;
     color: #464444;
 }
 
 .descricao_paciente{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
     color: #464444;
 }
 
