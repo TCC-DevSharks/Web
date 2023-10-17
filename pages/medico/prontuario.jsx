@@ -1,37 +1,40 @@
-"use client"
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/Prontuario.module.css';
 import TituloSecao from '/components/TituloSecao';
 import PacienteProntuario from '/components/PacienteProntuario';
 import Sidebar from '/components/Sidebar';
 import axios from 'axios';
-import { useState } from 'react';
 import { useEffect } from 'react';
-import Image from 'next/image';
-
-
-
+import { AiFillCloseCircle } from 'react-icons/ai';
+import { Modal } from './modal';
 
 const Prontuario = () => {
-    const [listpacientes, setPacientes] = useState()
+    const [listpacientes, setPacientes] = useState();
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedPaciente, setSelectedPaciente] = useState(null);
 
-   
+    const handlePacienteClick = (pacienteInfo) => {
+        setSelectedPaciente(pacienteInfo);
+        setIsModalOpen(true);
+    };
 
-    useEffect(()=>{
-         const url = 'http://localhost:3000/profissional/gestante/16'
+    useEffect(() => {
+        const url = 'http://localhost:3000/profissional/gestante/16';
 
         function getPacientes() {
             axios.get(url)
                 .then(response => {
-                    const data = response.data
-                    setPacientes(data)
-
+                    const data = response.data;
+                    setPacientes(data);
                 })
-                .catch(console.error())
+                .catch(error => {
+                    console.error(error);
+                });
         }
 
-        getPacientes()
-    }, [])
+        getPacientes();
+    }, []);
+
     return (
         <>
             <Sidebar />
@@ -45,21 +48,28 @@ const Prontuario = () => {
                     <div className={styles['pacientes']}>
                         <span className={styles['title-pacientes']}>Todos os pacientes:</span>
                         <div className={styles['container']}>
-                        {
-                          
-                                listpacientes?.pacientes.map(paciente => (
-                                    
-                                    <div>
-                                        <PacienteProntuario foto={paciente.foto} nome={paciente.nome} semanas={paciente.semana_gestacao} dataConsulta={paciente.dia} horaConsulta={paciente.hora} />
-                                    </div>
-                                    )
-                                )
-                            }
+                            {listpacientes?.pacientes.map(paciente => (
+                                <div key={paciente.id}>
+                                    <PacienteProntuario
+                                        foto={paciente.foto}
+                                        nome={paciente.nome}
+                                        semanas={paciente.semana_gestacao}
+                                        dataConsulta={paciente.dia}
+                                        horaConsulta={paciente.hora}
+                                        onPacienteClick={handlePacienteClick}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
+                {isModalOpen && (
+                    <Modal
+                        pacienteInfo={selectedPaciente}
+                        closeModal={() => setIsModalOpen(false)}
+                    />
+                )}
             </div>
-
         </>
     );
 };
