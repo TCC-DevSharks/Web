@@ -68,7 +68,9 @@ const Prontuario = () => {
                 {isModalOpen && (
                     <Modal
                         pacienteInfo={selectedPaciente}
-                        closeModal={() => setIsModalOpen(false)}
+                        closeModal={() => {
+                            setIsModalOpen(false)}
+                        }
                     />
                 )}
             </div>

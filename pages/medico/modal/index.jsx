@@ -1,5 +1,7 @@
 import styles from '../modal/style.module.css';
 import { AiFillCloseCircle, AiOutlineArrowRight } from 'react-icons/ai';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -15,6 +17,17 @@ export function Modal({ pacienteInfo, closeModal }) {
 
         const url = 'http://localhost:3000/prontuario';
 
+        const notify = () => toast.success('Prontuario atualizado com sucesso!!', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+
         function postProntuario() {
             axios.post(url,{
               descricao: `${valor}`,
@@ -24,7 +37,11 @@ export function Modal({ pacienteInfo, closeModal }) {
                 .then(response => {
                     const data = response.data;
                     
-                    closeModal()
+                    notify()
+                    setTimeout(()=>{
+                      closeModal()
+                    }, 2500)
+                    
                 })
                 .catch(error => {
                     console.error(error);
@@ -35,6 +52,18 @@ export function Modal({ pacienteInfo, closeModal }) {
 
   return (
     <div className={styles['modalContainer']}>
+      <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="black"/>
+                  
       <div className={styles['modalBox']}>
         <div className={styles['modalContent']}>
           <div className={styles['closeButtonModal']} onClick={closeModal}>
@@ -65,6 +94,7 @@ export function Modal({ pacienteInfo, closeModal }) {
           </div>
           <button onClick={postProntuario} className={styles['buttonEnvModal']}>
                   atualizar prontuário <AiOutlineArrowRight style={{fontSize:'1.4rem',fontWeight:'800'}}/>
+                  
           </button>
         </div>
       </div>
