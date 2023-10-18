@@ -51,11 +51,13 @@ const Prontuario = () => {
                             {listpacientes?.pacientes.map(paciente => (
                                 <div key={paciente.id}>
                                     <PacienteProntuario
+                                        idConsulta={paciente.idConsulta}
                                         foto={paciente.foto}
                                         nome={paciente.nome}
                                         semanas={paciente.semana_gestacao}
                                         dataConsulta={paciente.dia}
                                         horaConsulta={paciente.hora}
+                                        especialidade={paciente.especialidade}
                                         onPacienteClick={handlePacienteClick}
                                     />
                                 </div>

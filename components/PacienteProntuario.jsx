@@ -1,20 +1,20 @@
 import styles from './../styles/Prontuario.module.css';
-import Link from 'next/link';
 import { BsFillCalendarDateFill, BsClockFill } from 'react-icons/bs';
-import { split } from 'lodash';
+
 
 const PacienteProntuario = ({
+  idConsulta,
   foto,
   nome,
   semanas,
   dataConsulta,
   horaConsulta,
+  especialidade,
   onPacienteClick
 }) => {
   const [hora, minutos] = horaConsulta.split(':');
-
   return (
-    <div onClick={() => onPacienteClick({ nome, foto, semanas, dataConsulta, horaConsulta })}>
+    <div onClick={() => onPacienteClick({ nome, foto, semanas, dataConsulta, horaConsulta, especialidade, idConsulta })}>
       <div className={styles['box-paciente']}>
         <div className={styles['img-box-div']}>
           <div className={styles['image-box']}>
