@@ -5,7 +5,6 @@ import PacienteProntuario from '../../components/medico/prontuario/PacientePront
 import Sidebar from '/components/Sidebar';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import { Modal } from './prontuario/modal';
 
 const Prontuario = () => {
