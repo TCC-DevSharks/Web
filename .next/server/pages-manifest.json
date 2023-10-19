@@ -2,6 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/medico/prontuario": "pages/medico/prontuario.js",
-  "/medico/agenda": "pages/medico/agenda.js"
+  "/": "pages/index.js"
 }

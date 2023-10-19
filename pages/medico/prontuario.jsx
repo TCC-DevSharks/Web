@@ -19,7 +19,7 @@ const Prontuario = () => {
     };
 
     useEffect(() => {
-        const url = 'http://localhost:3000/profissional/gestante/16';
+        const url = 'http://localhost:3005/profissional/gestante/9';
 
         function getPacientes() {
             axios.get(url)
