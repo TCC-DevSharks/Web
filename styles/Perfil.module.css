@@ -64,7 +64,7 @@
 
 .description a {
     display: flex;
-    color: #F2C9A4;
+    color: var(--medium-purple);
     font-size: 25px;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .description:hover {
-    color: #F2C9A4;
+    color: var(--medium-purple);
 }
 
 .seta {
