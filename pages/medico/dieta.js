@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '../../styles/Dieta.module.css';
-import TituloSecao from '@/components/TituloSecao';
-import PacienteDieta from '@/components/PacienteDieta';
-import Sidebar from '@/components/Sidebar';
+import TituloSecao from '../../components/TituloSecao';
+import PacienteDieta from '../../components/PacienteDieta';
+import Sidebar from '../../components/Sidebar';
 
 const Dieta = () => {
     return (

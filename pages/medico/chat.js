@@ -1,8 +1,8 @@
 // Chat.js
 import React from 'react';
 import styles from '../../styles/Chat.module.css'; // Importe os estilos do arquivo CSS da página
-import ConversaPaciente from '@/components/ConversaPaciente';
-import Sidebar from '@/components/Sidebar';
+import ConversaPaciente from '../../components/ConversaPaciente';
+import Sidebar from '../../components/Sidebar';
 
 const Chat = () => {
     return (
