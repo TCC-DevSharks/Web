@@ -22,31 +22,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/medico": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico.js"
-    ],
-    "/medico/agenda": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico/agenda.js"
-    ],
-    "/medico/chat": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico/chat.js"
-    ],
-    "/medico/dieta": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico/dieta.js"
-    ],
-    "/medico/perfil": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico/perfil.js"
-    ],
     "/medico/prontuario": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

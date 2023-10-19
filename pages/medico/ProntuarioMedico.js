@@ -1,5 +1,5 @@
 import styles from './../styles/ProntuarioMedico.module.css';
-import Prontuario from '../../components/Prontuario'
+import Prontuario from '../../components/medico/prontuario/Prontuario'
 import TituloSecao from '../../components/TituloSecao';
 import { useRouter } from 'next/router';
 
