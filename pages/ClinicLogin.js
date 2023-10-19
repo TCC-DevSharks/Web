@@ -52,21 +52,20 @@ function ClinicLogin() {
         }
     };
 
-// teste
     return (
         <div>
             <Header />
             <div className={stylesClinic.login_clinic}>
                 <div className={stylesClinic.login_form}>
                     <p className={stylesClinic.login_title}>Entre na conta da sua Clínica:</p>
-                    <form className={stylesLogin.form} onSubmit={handleLogin}> {/* Adicione o onSubmit ao formulário */}
+                    <form className={stylesLogin.form} onSubmit={handleLogin}>
                         <div className={stylesClinic.input_container}>
                             <label>E-mail:</label>
                             <input
                                 type="text"
                                 placeholder='Digite seu e-mail'
-                                value={email} // Associe o valor do input ao estado email
-                                onChange={handleEmailChange} // Adicione o evento onChange
+                                value={email}
+                                onChange={handleEmailChange}
                                 className={stylesClinic.input}
                             />
                         </div>
@@ -79,8 +78,8 @@ function ClinicLogin() {
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Digite sua senha"
-                                    value={password} // Associe o valor do input ao estado password
-                                    onChange={handlePasswordChange} // Adicione o evento onChange
+                                    value={password}
+                                    onChange={handlePasswordChange}
                                     className={stylesClinic.input}
                                 />
                                 <p onClick={handleShowPassword} className={stylesClinic.eye_icon}>
