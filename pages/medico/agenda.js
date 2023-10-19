@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../../styles/Agenda.module.css';
-import TituloSecao from '@/components/TituloSecao';
+import TituloSecao from '../../components/TituloSecao';
 
 export default function Agenda() {
     return (

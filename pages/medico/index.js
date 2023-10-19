@@ -1,7 +1,7 @@
 // import Sidebar from "@/components/Sidebar";
 // import Sidebar from '@/components/Sidebar';
 
-import Sidebar from "@/components/Sidebar.jsx";
+import Sidebar from "../../components/Sidebar.jsx";
 // import styles from '../../styles/Sidebar.module.css';
 
 // import '../styles/globals.css'; 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styles from '../../styles/Prontuario.module.css';
 import TituloSecao from '/components/TituloSecao';
-import PacienteProntuario from '/components/PacienteProntuario';
+import PacienteProntuario from '../../components/medico/prontuario/PacienteProntuario';
 import Sidebar from '/components/Sidebar';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { Modal } from './modal';
+import { Modal } from './prontuario/modal';
 
 const Prontuario = () => {
     const [listpacientes, setPacientes] = useState();
@@ -68,7 +68,9 @@ const Prontuario = () => {
                 {isModalOpen && (
                     <Modal
                         pacienteInfo={selectedPaciente}
-                        closeModal={() => setIsModalOpen(false)}
+                        closeModal={() => {
+                            setIsModalOpen(false)}
+                        }
                     />
                 )}
             </div>

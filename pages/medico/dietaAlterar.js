@@ -1,6 +1,6 @@
 import styles from '../styles/Alimentos.module.css'
-import TituloSecao from '@/components/TituloSecao';
-import AlimentosDieta from '@/components/AlimentosDieta';
+import TituloSecao from '../../components/TituloSecao';
+import AlimentosDieta from '../../components/AlimentosDieta';
 
 export default function Home() {
   return (

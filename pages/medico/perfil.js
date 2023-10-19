@@ -5,9 +5,9 @@ import { HiOutlineMail } from 'react-icons/hi';
 import { MdOutlinePrivacyTip } from 'react-icons/md';
 import { IoIosArrowForward } from 'react-icons/io';
 import styles from '../../styles/Perfil.module.css';
-import TituloSecao from '@/components/TituloSecao';
-import ToggleButton from '@/components/ToggleButton';
-import Sidebar from '@/components/Sidebar';
+import TituloSecao from '../../components/TituloSecao';
+import ToggleButton from '../../components/ToggleButton';
+import Sidebar from '../../components/Sidebar';
 
 const Perfil = () => {
     return (
