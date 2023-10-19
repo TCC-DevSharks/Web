@@ -6,72 +6,81 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export function Modal({ pacienteInfo, closeModal }) {
-  const [dia,mes] = pacienteInfo.dataConsulta.split('/')
+  const [dia, mes] = pacienteInfo.dataConsulta.split('/')
   const [prontuario, selectedPronturario] = useState()
   const [valor, setValor] = useState('')
 
 
-      const handleChange = (event) => {
-        setValor(event.target.value);     
-      };
+  const handleChange = (event) => {
+    setValor(event.target.value);
+  };
 
-        const url = 'http://localhost:3000/prontuario';
+  const url = 'http://localhost:3000/prontuario';
 
-        const notify = () => toast.success('Prontuario atualizado com sucesso!!', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+  function postProntuario() {
+
+    axios.post(url, {
+      descricao: `${valor}`,
+      id_consulta: pacienteInfo.idConsulta
+    })
+      .then(response => {
+        const data = response.data;
+        if (response.data.result.status == 404) {
+          toast.error(data.result.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
           });
 
-        function postProntuario() {
-            axios.post(url,{
-              descricao: `${valor}`,
-              id_consulta: pacienteInfo.idConsulta
-            })
-
-                .then(response => {
-                    const data = response.data;
-                    
-                    notify()
-                    setTimeout(()=>{
-                      closeModal()
-                    }, 2500)
-                    
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+          notify()
+        } else {
+          const notify = () => toast.success(data.result.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          notify()
         }
+      })
+      .catch(error => {
+        error
+      });
+  }
 
-        
+
 
   return (
     <div className={styles['modalContainer']}>
       <ToastContainer
-                    position="top-center"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="black"/>
-                  
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="black" />
+
       <div className={styles['modalBox']}>
         <div className={styles['modalContent']}>
           <div className={styles['closeButtonModal']} onClick={closeModal}>
             <AiFillCloseCircle style={{ fill: '#fa0000' }} />
           </div>
-          <h2 style={{ color: '#464444', fontSize:'2.4rem' }}>
-              Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo.nome}</span>
-            </h2>
+          <h2 style={{ color: '#464444', fontSize: '2.4rem' }}>
+            Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo.nome}</span>
+          </h2>
           <div className={styles['especialidadesBox']}>
             <h4>Especialidade:</h4>
             <div className={styles['boxButtonEspecialidade']}>
@@ -86,15 +95,15 @@ export function Modal({ pacienteInfo, closeModal }) {
           </div>
           <div className={styles['descricaoBox']}>
             <h4>Descrição:</h4>
-            <textarea 
-              value={valor} 
-              onChange={handleChange}  
-              className={styles['inputDescricao']} 
-              type="text"/>
+            <textarea
+              value={valor}
+              onChange={handleChange}
+              className={styles['inputDescricao']}
+              type="text" />
           </div>
           <button onClick={postProntuario} className={styles['buttonEnvModal']}>
-                  atualizar prontuário <AiOutlineArrowRight style={{fontSize:'1.4rem',fontWeight:'800'}}/>
-                  
+            atualizar prontuário <AiOutlineArrowRight style={{ fontSize: '1.4rem', fontWeight: '800' }} />
+
           </button>
         </div>
       </div>
