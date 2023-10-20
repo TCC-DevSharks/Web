@@ -22,10 +22,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/medico": [
+    "/clinica": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/medico.js"
+      "static/chunks/pages/clinica.js"
     ],
     "/medico/perfil": [
       "static/chunks/webpack.js",
