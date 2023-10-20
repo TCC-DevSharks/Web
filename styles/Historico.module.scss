@@ -1,0 +1,197 @@
+.container_geral {
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container_dados {
+        width: 80%;
+        height: 80%;
+        background-color: #fff;
+        border: 0.5px solid rgb(231, 230, 230);
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2) !important;
+        margin-left: 120px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        margin-left: 120px;
+        justify-content: center;
+
+        .container_marcadas {
+            height: 50%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .title {
+                font-size: 25px;
+                font-weight: 500
+            }
+
+            .box_marcadas {
+                justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
+                padding-top: 30px;
+                width: 100%;
+                overflow: auto;
+                gap: 30px;
+
+                .medico {
+                    background: #F9F6F4;
+                    width: 360px;
+                    height: 150px;
+                    border-radius: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+
+                    .cima {
+                        display: flex;
+                        justify-content: flex-start;
+                        width: 95%;
+                        gap: 25px;
+
+                        .foto_medico {
+                            width: 80px;
+                            height: 80px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .nome_medico {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        }
+                    }
+
+                    .baixo {
+                        display: flex;
+                        gap: 30px;
+                        justify-content: space-between;
+                        width: fit-content;
+
+                        div {
+                            height: 40px;
+                            background-color: #B6B6F6;
+                            border-radius: 10px;
+                            display: flex;
+                            align-items: center;
+                            min-width: 50px;
+                            padding: 0 5px;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+        }
+
+        .container_realizadas {
+            height: 50%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .title {
+                font-size: 25px;
+                font-weight: 500
+            }
+
+            .box_realizadas {
+                justify-content: center;
+                display: flex;
+                flex-wrap: wrap;
+                padding-top: 30px;
+                width: 100%;
+                overflow: auto;
+                gap: 30px;
+
+
+                .medico {
+                    background: #F9F6F4;
+                    width: 360px;
+                    height: 150px;
+                    border-radius: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+
+                    .cima {
+                        display: flex;
+                        justify-content: start;
+                        width: 95%;
+                        gap: 25px;
+
+                        .foto_medico {
+                            width: 80px;
+                            height: 80px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 50%;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                border-radius: 50%;
+                            }
+                        }
+
+                        .nome_medico {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                        }
+                    }
+
+                    .baixo {
+                        display: flex;
+                        gap: 30px;
+                        justify-content: space-between;
+                        width: fit-content;
+
+                        div {
+                            height: 40px;
+                            background-color: #B6B6F6;
+                            border-radius: 10px;
+                            display: flex;
+                            align-items: center;
+                            min-width: 50px;
+                            padding: 0 5px;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+@media(max-width: 768px) {
+    .container_dados {
+        border: none !important;
+        box-shadow: none !important;
+        margin-left: 0px !important;
+        margin-top: 100px !important;
+        width: 90% !important;
+    }
+}
