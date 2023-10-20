@@ -31,13 +31,13 @@ Esse projeto é ...
 
 - HTML5
 - CSS3
-- FRAMEWORK
+
 
 <div>
 <img src="./public/images/logo.png" align="left" width="40" align="center"/>
 <h1>FERRAMENTAS</h1> 
        <a href="https://skillicons.dev">
-      <img src="https://skillicons.dev/icons?i=vscode,github,git,figma,html,css&theme=dark" />
+      <img src="https://skillicons.dev/icons?i=vscode,github,git,figma,css,react,scss,javascript&theme=dark" />
     </a>
 </div>
 
