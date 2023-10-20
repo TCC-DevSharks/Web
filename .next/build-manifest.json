@@ -26,12 +26,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/clinica.js"
-    ]
-  },
-  "ampFirstPages": []
-}    "static/chunks/webpack.js",
+    ],
+    "/clinica/medicos": [
+      "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/clinica/perfil.js"
+      "static/chunks/pages/clinica/medicos.js"
     ]
   },
   "ampFirstPages": []
