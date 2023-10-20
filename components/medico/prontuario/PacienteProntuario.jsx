@@ -13,6 +13,7 @@ const PacienteProntuario = ({
   onPacienteClick
 }) => {
   const [hora, minutos] = horaConsulta.split(':');
+  const [dia, mes ] =  dataConsulta.split('/')
   return (
     <div onClick={() => onPacienteClick({ nome, foto, semanas, dataConsulta, horaConsulta, especialidade, idConsulta })}>
       <div className={styles['box-paciente']}>
@@ -30,7 +31,7 @@ const PacienteProntuario = ({
           </h4>
           <div className={styles['descricao_paciente']}>
             <p style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <BsFillCalendarDateFill className={styles['iconDate']} /> Data: {dataConsulta}
+              <BsFillCalendarDateFill className={styles['iconDate']} /> Data: {dia}/{mes}
             </p>
             <p>
               <BsClockFill className={styles['iconDate']} /> Horário: {hora}:{minutos}

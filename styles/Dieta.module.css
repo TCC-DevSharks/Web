@@ -40,7 +40,7 @@
     font-size: 17px;
 }
 
-.container-pacientes div span {
+.container-pacientes div {
     font-size: 20px;
 }
 
@@ -64,6 +64,24 @@
     align-items: center;
 }
 
+.pacientesControllerBox:hover{
+    background-color: #b6b6f6;
+    background-color: #b6b6f6;
+    color: #FFF;
+    transition: 0.3s;
+    border-radius: 10px;
+}
+.pacientesControllerBox:hover .nomePacientePrincipal{
+    color: #FFF;
+    transition: 0.3s;
+    
+}
+
+.nomePacientePrincipal{
+    font-size: 2rem;
+    color:#000;
+}
+
 .pacientesControllerBox{
     display: flex;
     width: 100%;
@@ -71,7 +89,7 @@
 }
 
 .imagem {
-    width: 30%;
+    width: 20%;
     height: 100%;
     display: flex;
 }
@@ -79,6 +97,9 @@
 .imagem img {
     width: 100%;
     border-radius: 10px 0px 0px 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .nomeBox{
@@ -91,9 +112,6 @@
     padding: 50px;
 }
 
-.nomePaciente{
-    font-size: 1.5rem;
-}
 
 .semanasGestante{
     font-weight: 400;
@@ -105,4 +123,27 @@
     width: 55%;
     border-radius: 10px;
     height: 100%;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.171);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.322);
+    box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.23);
+}
+
+.box-dieta{
+    height: 100%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+
+.box-controler-breakfast{
+    display: flex;
+    width: 100%;
+    height:25%;
+    
+}
+
+.boxContent{
+    display: flex;
+    width: 100%;
+    gap: 60%;
+    align-items:flex-start;
 }
