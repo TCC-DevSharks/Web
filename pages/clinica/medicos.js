@@ -10,7 +10,7 @@ export default function Medicos() {
 
     const handleClick = () => {
         // redirecionar para outra página
-        router.push('/cadastro_medico');
+        router.push('/clinica/cadastro_medico');
     };
 
     useEffect(() => {
