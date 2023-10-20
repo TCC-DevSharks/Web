@@ -3,6 +3,7 @@ import  GraficoPizza from "../../components/GraficoPizza"
 import styles from '../../styles/Dash.module.scss';
 
 
+
 export default function Home({ Component, pageProps }) {
   return (
     <div>
@@ -39,7 +40,7 @@ export default function Home({ Component, pageProps }) {
             <div>
               <h2>Composição dos Funcionários</h2>
             </div>
-          < Sidebar/>
+          < GraficoPizza/>
            
           </div >
 
