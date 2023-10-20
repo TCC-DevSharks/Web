@@ -1,9 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/clinica/medicos": "pages/clinica/medicos.js",
-  "/clinica": "pages/clinica.js",
-  "/clinica/perfil": "pages/clinica/perfil.js",
-  "/clinica/historico": "pages/clinica/historico.js"
-}
+{}
