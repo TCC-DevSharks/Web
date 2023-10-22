@@ -2,5 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/medico/prontuario": "pages/medico/prontuario.js",
+  "/medico/dieta": "pages/medico/dieta.js",
   "/medico/chat": "pages/medico/chat.js"
 }

@@ -2,11 +2,11 @@ import styles from "../../../styles/Chat.module.css";
 import ChatInput from "./ChatInput";
 export default function ChatContainer({ currentChat, socket }) {
 
-    // const handleSendMsg = async (msg) => {
-    //     const data = await JSON.parse(
-    //       localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-    //     );
-    // }
+    const handleSendMsg = async (msg) => {
+        const data = await JSON.parse(
+          localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+        );
+    }
     
     if (currentChat) {
         return (
@@ -22,9 +22,9 @@ export default function ChatContainer({ currentChat, socket }) {
                 </div>
               </div>
               <div className={styles["chat-messages"]}></div>
-              {/* <ChatInput
+              <ChatInput
                 handleSendMsg={handleSendMsg}
-              /> */}
+              />
             </div>
           );
     }else{

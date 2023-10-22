@@ -26,6 +26,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/medico/chat.js"
+    ],
+    "/medico/prontuario": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/medico/prontuario.js"
     ]
   },
   "ampFirstPages": []

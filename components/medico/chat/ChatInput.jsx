@@ -27,8 +27,8 @@ export default function ChatInput({ handleSendMsg }) {
 
   return (
     <div className={styles['container_input']}>
-      <div className="button-container"></div>
-      <form className="input-container" onSubmit={(event) => sendChat(event)}>
+      <div className={styles['button-container']}></div>
+      <form className={styles['input-container']} onSubmit={(event) => sendChat(event)}>
         <input
           type="text"
           placeholder="type your message here"
