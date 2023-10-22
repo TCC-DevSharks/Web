@@ -1,100 +1,274 @@
 .chat-container {
-    margin-left: 120px;
-    width: auto;
-    padding: 50px;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin-left: 120px;
+  width: auto;
+  padding: 50px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container-pacientes {
-    width: 600px;
-    display: flex;
-    height: 700px;
-    justify-content: center;
+  width: 600px;
+  display: flex;
+  height: 700px;
+  justify-content: center;
 }
 
-.pacientes-container{
-    width: 100%;
-    height: 100%;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
+.pacientes-container {
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .pacientes-container h1 {
-    font-size: 60px;
-    color: #464444;
-    margin-bottom: 20px;
+  font-size: 60px;
+  color: #464444;
+  margin-bottom: 20px;
 }
 
-
 .container-pacientes input {
-    width: 95%;
-    height: 45px;
-    margin-top: 10px;
-    border-radius: 10px;
-    background: #f6f3f1;
-    border: none;
-    padding: 12px;
+  width: 95%;
+  height: 45px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #f6f3f1;
+  border: none;
+  padding: 12px;
 }
 
 .pacientes {
-    width:100%;
-    height: auto;
-    display: grid;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    gap: 10px;
-    overflow: auto;
+  width: 100%;
+  height: auto;
+  display: grid;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  gap: 10px;
+  overflow: auto;
 }
 
 .paciente {
-    width: 95%;
-    height: 70px;
-    background-color: #ffead8;
-    border-radius: 12px;
-    align-items: center;
-    display: flex;
-    padding: 10px;
-    gap: 10px;
-    color: #464444;
+  width: 95%;
+  height: 70px;
+  background-color: #ffead8;
+  border-radius: 12px;
+  align-items: center;
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  color: #464444;
 }
 
 .paciente .imagem-div {
-    width: 60px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .paciente .imagem-div img {
-    width: 100%;
-    border-radius: 50%;
+  width: 100%;
+  border-radius: 50%;
 }
 
 .descricao-paciente-chat {
-    width: 90%;
+  width: 90%;
 }
 
 .descricao-paciente-chat .nome-paciente {
-    font-weight: 600;
-    font-size: 16px;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .descricao-paciente-chat .previa-mensagem {
-    font-weight: 400;
-    font-size: 14px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .container-conversa {
-    width: 70%;
-    background-color: #f6f3f1;
-    border-radius: 20px;
-    height: 90%;
-    margin-left: 30px;
-    background-color: #f6f3f1;
+  width: 70%;
+  background-color: #000;
+  border-radius: 20px;
+  height: 90%;
+  margin-left: 30px;
+  background-color: #000;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.avatar img {
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.username h3 {
+  color: #ffffff;
+}
+
+.user-details {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.chat-messages {
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: auto;
+}
+
+.chat-messages -webkit-scrollbar {
+  width: 0.2rem;
+}
+
+.chat-messages -webkit-scrollbar-thumb {
+  background-color: #ffffff39;
+  width: 0.1rem;
+  border-radius: 1rem;
+}
+.message {
+  display: flex;
+  align-items: center;
+
+  max-width: 40%;
+  overflow-wrap: break-word;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  color: #d1d1d1;
+}
+.sended {
+  justify-content: flex-end;
+  background-color: #4f04ff21;
+}
+.recieved {
+  justify-content: flex-start;
+
+  background-color: #9900ff20;
+}
+
+.container_input {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 5% 95%;
+  background-color: #080420;
+  padding: 0 2rem;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  color: white;
+  gap: 1rem;
+}
+
+.emoji-picker-react {
+  position: absolute;
+  top: -350px;
+  background-color: #080420;
+  box-shadow: 0 5px 10px #9a86f3;
+  border-color: #9a86f3;
+}
+
+.emoji-scroll-wrapper::-webkit-scrollbar {
+  background-color: #080420;
+  width: 5px;
+}
+
+.emoji-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: #9a86f3;
+}
+
+.emoji-categories button {
+  filter: contrast(0);
+}
+
+.emoji-search {
+  background-color: transparent;
+  border-color: #9a86f3;
+}
+
+.emoji-group:before {
+  background-color: #080420;
+}
+
+.emoji {
+  position: relative;
+}
+
+.emoji svg {
+  font-size: 1.5rem;
+  color: #ffff00c8;
+  cursor: pointer;
+}
+.input-container {
+  width: 100%;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background-color: #ffffff34;
+}
+
+.input-container button {
+  padding: 0.3rem 2rem;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #9a86f3;
+  border: none;
+}
+
+.input-container button svg {
+  font-size: 2rem;
+  color: white;
+}
+
+.input-container input {
+  width: 90%;
+  height: 60%;
+  background-color: transparent;
+  color: white;
+  border: none;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.input-container input::selection {
+  background-color: #9a86f3;
+}
+.input-container input:focus {
+  outline: none;
+}
+
+@media screen and (min-width: 720px) and (max-width: 1080px) {
+  .input-container button {
+    padding: 0.3rem 1rem;
+  }
+
+  .input-container button svg {
+    font-size: 1rem;
+  }
+}
+.container_input {
+  padding: 0 1rem;
+  gap: 1rem;
 }
