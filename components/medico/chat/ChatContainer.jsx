@@ -1,10 +1,11 @@
+import axios from "axios";
 import styles from "../../../styles/Chat.module.css";
 import ChatInput from "./ChatInput";
 export default function ChatContainer({ currentChat, socket }) {
 
     const handleSendMsg = async (msg) => {
         const data = await JSON.parse(
-          localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+          await axios.post
         );
     }
     

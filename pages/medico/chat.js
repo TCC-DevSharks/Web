@@ -8,36 +8,37 @@ import { useEffect } from "react";
 import ChatContainer from "../../components/medico/chat/ChatContainer";
 
 const Chat = () => {
-  const [listpacientes, setPacientes] = useState();
-  const [currentChat, setCurrentChat] = useState(undefined);
-  const handlePacienteClick = (pacienteInfo) => {
-    setCurrentChat(pacienteInfo);
-    console.log(pacienteInfo);
-  };
+    const [listpacientes, setPacientes] = useState();
+    const [currentChat, setCurrentChat] = useState(undefined);
+    const handlePacienteClick = (pacienteInfo) => {
+        setCurrentChat(pacienteInfo);
+        console.log(pacienteInfo);
+    };
 
-  useEffect(() => {
-    const url = "http://localhost:3000/profissional/gestante/18";
+    useEffect(() => {
+        const url = "http://localhost:3000/profissional/gestante/16";
 
-    function getPacientes() {
-      axios
-        .get(url)
-        .then((response) => {
-          const data = response.data;
-          setPacientes(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
+        function getPacientes() {
+            axios
+                .get(url)
+                .then((response) => {
+                    const data = response.data;
+                    setPacientes(data);
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        }
 
-    getPacientes();
-  }, []);
+        getPacientes();
+    }, []);
 
-  return (
-    <>
+    return (
+      <>
       <Sidebar />
       <div className={styles["chat-container"]}>
-        <div className={styles["container-pacientes"]}>
+        <div className={styles["container-pacientes"]}> 
           <div className={styles["pacientes-container"]}>
             <h1>Pacientes</h1>
             <input type="text" placeholder="Pesquisar um paciente" />
@@ -48,6 +49,8 @@ const Chat = () => {
                     idGestante={paciente.idGestante}
                     nome={paciente.nome}
                     foto={paciente.foto}
+                    email={paciente.emailGestante}
+                    usuario = {"Gestante"}
                     onPacienteClick={handlePacienteClick}
                   />
                 </div>
@@ -59,7 +62,7 @@ const Chat = () => {
         <ChatContainer currentChat={currentChat} />
       </div>
     </>
-  );
+    );
 };
 
 export default Chat;
