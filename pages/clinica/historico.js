@@ -1,6 +1,6 @@
 import styles from '../../styles/Historico.module.scss';
-import Sidebar from "../../components/SidebarClinica";
-import HistoricoConsulta from '../../components/HistoricoConsulta.jsx';
+import Sidebar from "../../components/clinica/sideBar/SidebarClinica";
+import HistoricoConsulta from '../../components/clinica/historicoConsulta/HistoricoConsulta';
 
 export default function Historico() {
   return (

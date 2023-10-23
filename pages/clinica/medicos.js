@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../styles/Medico.module.scss';
-import Medico from '../../components/Medico.jsx';
-import Sidebar from "../../components/SidebarClinica";
+import Medico from '../../components/clinica/medicosClinica/Medico';
+import Sidebar from "../../components/clinica/sideBar/SidebarClinica";
 import { useRouter } from 'next/router';
 
 export default function Medicos() {

@@ -1,5 +1,5 @@
 import styles from '../../styles/PerfilClinica.module.scss';
-import Sidebar from "../../components/SidebarClinica";
+import Sidebar from "../../components/clinica/sideBar/SidebarClinica";
 import React from 'react';
 import { divide } from 'lodash';
 

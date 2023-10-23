@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from '../../styles/Prontuario.module.css';
-import TituloSecao from '/components/TituloSecao';
+import TituloSecao from '../../components/tituloSection/TituloSecao';
 import PacienteProntuario from '../../components/medico/prontuario/PacienteProntuario';
-import Sidebar from '/components/Sidebar';
+import Sidebar from '../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';

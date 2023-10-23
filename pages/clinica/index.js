@@ -1,5 +1,5 @@
-import Sidebar from "../../components/SidebarClinica";
-import  GraficoPizza from "../../components/GraficoPizza"
+import Sidebar from "../../components/clinica/sideBar/SidebarClinica";
+import  GraficoPizza from "../../components/clinica/dash/GraficoPizza"
 import styles from '../../styles/Dash.module.scss';
 
 
