@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/Article.module.css'
+import styles from '../home/Article.module.scss'
 
 
 function Articles() {
@@ -11,7 +11,7 @@ function Articles() {
 
             <div className={styles.author_new}>
                 <div className={styles.author}>
-                    <i className="fa-solid fa-calendar"></i> 2 Maio, 2023
+                    <i className="fa-solid fa-calendar"></i> 3 Maio, 2023
                 </div>
 
                 <div className={styles.author}>

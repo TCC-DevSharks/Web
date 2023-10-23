@@ -24,7 +24,7 @@ const Sidebar = () => {
 
                     <li> <Link href="/clinica/medicos"> <FaHospitalUser /> </Link> </li>
 
-                    <li> <Link href="/clinica"> <MdOutlineDashboard /> </Link> </li>
+                    <li> <Link href="/clinica/home"> <MdOutlineDashboard /> </Link> </li>
                 </div>
             </ul>
         </nav>

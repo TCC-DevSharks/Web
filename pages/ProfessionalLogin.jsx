@@ -3,7 +3,7 @@ import { FiEye, FiEyeOff } from 'react-icons/fi';
 import Header from '../components/home/header/Header'
 import stylesClinic from '../styles/ClinicLogin.module.css';
 import stylesLogin from '../styles/Login.module.css';
-import styles from '../styles/ProfessionalLogin.module.css';
+import styles from './ProfessionalLogin.module.scss';
 
 function ClinicLogin() {
   const [showPassword, setShowPassword] = useState(false);

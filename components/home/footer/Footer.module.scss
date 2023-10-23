@@ -1,0 +1,87 @@
+// Define your SCSS variables here
+$medium-purple: var(--medium-purple);
+
+// Define your SCSS styles
+$footer-padding-top: 10px;
+$footer-padding-bottom: 20px;
+$footer-gap: 30px;
+$footer-background-color: rgba(187, 187, 249, 0.18);
+
+.title_link {
+  padding-bottom: 20px;
+  padding-top: 30px;
+  color: rgb(61, 61, 61);
+}
+
+.image_footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+  padding-top: 20px;
+
+  .logo_footer {
+    width: 100%;
+  }
+}
+
+.footer {
+  background-color: $footer-background-color;
+  min-width: 100%;
+  min-height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: $footer-padding-bottom;
+  padding-top: $footer-padding-top;
+  gap: $footer-gap;
+  display: flex;
+  flex-direction: column;
+
+  .link {
+    gap: 20px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  height: auto;
+  min-width: 8%;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: start;
+    width: 100%;
+  }
+}
+
+.links_columns {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  row-gap: 30px;
+  column-gap: 100px;
+  flex-wrap: wrap;
+
+  a {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    align-items: center;
+
+    p:hover {
+      color: $medium-purple;
+    }
+
+    p {
+      color: #777;
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 300;
+    }
+  }
+}

@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/login": "pages/login.js",
-  "/medico/dieta": "pages/medico/dieta.js",
-  "/": "pages/index.js",
-  "/medico": "pages/medico.js"
+  "/medico/chat": "pages/medico/chat.js",
+  "/clinica/home": "pages/clinica/home.js",
+  "/clinica/historico": "pages/clinica/historico.js"
 }

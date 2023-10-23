@@ -1,0 +1,17 @@
+
+.alimentos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+
+    width: 100%;
+}
+.alimento-nome{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alimento-nome img{
+    height: 80px;
+}

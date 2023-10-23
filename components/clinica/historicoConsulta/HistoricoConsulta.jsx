@@ -1,4 +1,4 @@
-import styles from '../../../styles/Historico.module.scss';
+import styles from './Historico.module.scss';
 import { BiEditAlt } from 'react-icons/bi';
 
 

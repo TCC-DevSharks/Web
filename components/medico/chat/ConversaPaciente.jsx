@@ -1,4 +1,4 @@
-import styles from '../../../styles/Chat.module.css'; // Importe os estilos do arquivo CSS da página
+import styles from '../../../pages/medico/chat/Chat.module.css'; // Importe os estilos do arquivo CSS da página
 
 const ConversaPaciente = () => {
     return (

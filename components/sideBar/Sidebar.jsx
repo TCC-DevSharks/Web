@@ -14,7 +14,7 @@ export default function Sidebar() {
                     <li> <Link href="/medico/dieta"> <FaUtensils /> </Link> </li>
                     <li> <Link href="/medico/prontuario"> <FaClipboardList /> </Link> </li>
                 </div>
-                <li> <Link href="/medico">Home</Link> </li>
+                <li> <Link href="/medico/home">Home</Link> </li>
             </ul>
         </nav>
     );

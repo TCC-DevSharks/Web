@@ -22,20 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/login": [
+    "/clinica/historico": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/login.js"
+      "static/chunks/pages/clinica/historico.js"
     ],
-    "/medico": [
+    "/clinica/home": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/medico.js"
-    ],
-    "/medico/dieta": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico/dieta.js"
+      "static/chunks/pages/clinica/home.js"
     ]
   },
   "ampFirstPages": []

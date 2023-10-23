@@ -1,9 +1,6 @@
 import React from 'react';
-
 import Header from '../components/home/header/Header'
-
-// import '../styles/Login.module.css';
-import styles from '../styles/PregnantLogin.module.css';
+import styles from './PregnantLogin.module.scss';
 
 function PregnantLogin() {
     return (

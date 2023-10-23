@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/RegisterClinic.module.css';
+import styles from './RegisterClinic.module.scss';
 import stylesLogin from '../styles/ClinicLogin.module.css';
 import InputMask from 'react-input-mask';
 import Header from '../components/home/header/Header'

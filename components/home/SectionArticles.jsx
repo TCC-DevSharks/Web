@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/SectionArticles.module.css'
+import styles from './SectionArticles.module.scss'
 import Article from './Article'
 
 function SectionArticles(){

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from '../../styles/SectionHome.module.css';
+import styles from './SectionHome.module.scss';
 
 function SectionHome() {
     return (
