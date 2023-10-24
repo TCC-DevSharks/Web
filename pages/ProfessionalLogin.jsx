@@ -11,6 +11,7 @@ function ClinicLogin() {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  
   return (
     <div>
       <Header />

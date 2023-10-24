@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../styles/Medico.module.scss';
-import Medico from '../../../components/clinica/medicosClinica/Medico';
-import Sidebar from "../../../components/clinica/sideBar/SidebarClinica";
+import styles from '../../../styles/Medico.module.scss';
+import Medico from '../../.././components/clinica/medicosClinica/Medico';
+import Sidebar from "../../.././components/clinica/sideBar/SidebarClinica";
 import { useRouter } from 'next/router';
 
 export default function Medicos() {
     const router = useRouter();
-    const [medicos, setMedicos] = useState([]); // Armazena os dados dos médicos
+    const [medicos, getMedicos] = useState([]); // Armazena os dados dos médicos
 
     const handleClick = () => {
         // redirecionar para outra página
@@ -15,10 +15,14 @@ export default function Medicos() {
 
     useEffect(() => {
         //solicitação GET à API 
-        fetch('http://localhost:3005/profissional/')
+        fetch('http://localhost:3005/clinica/profissional/5')
             .then((response) => response.json())
-            .then((data) => setMedicos(data.profissional)); // Atualiza o estado com os dados da API
+            .then((data) => {
+                console.log(data); // Adicione esta linha para ver a resposta da API
+                getMedicos(data.clinicas);
+            });
     }, []);
+    
 
     return (
         <div>

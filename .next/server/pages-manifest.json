@@ -2,7 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/medico/home": "pages/medico/home.js",
-  "/medico/prontuario": "pages/medico/prontuario.js"
+  "/clinica/medico": "pages/clinica/medico.js",
+  "/clinica/cadastroMedico": "pages/clinica/cadastroMedico.js",
+  "/clinica/home": "pages/clinica/home.js"
 }
