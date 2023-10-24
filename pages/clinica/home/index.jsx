@@ -1,12 +1,15 @@
 import Sidebar from "../../../components/clinica/sideBar/SidebarClinica"
 import  GraficoPizza from "../../../components/clinica/dash/GraficoPizza"
 import styles from '../../../styles/Dash.module.scss';
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
 export default function Home({ Component, pageProps }) {
+ 
   return (
-    <div>
+    <>
       <Sidebar />
       <div className={styles.container_geral}>
       <div className={styles.container}>
@@ -108,6 +111,6 @@ export default function Home({ Component, pageProps }) {
 
       </div>
     </div>
-    </div>
+    </>
   );
 }
