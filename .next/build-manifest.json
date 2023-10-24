@@ -17,6 +17,11 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+    "/ClinicLogin": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/ClinicLogin.js"
+    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -27,10 +32,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/medico/home": [
+    "/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/medico/home.js"
+      "static/chunks/pages/login.js"
     ],
     "/medico/prontuario": [
       "static/chunks/webpack.js",
