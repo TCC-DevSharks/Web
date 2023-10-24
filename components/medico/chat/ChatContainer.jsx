@@ -1,12 +1,13 @@
 import axios from "axios";
 import styles from "../../../styles/Chat.module.css";
 import ChatInput from "./ChatInput";
-export default function ChatContainer({ currentChat, socket }) {
+export default function ChatContainer({ currentChat, currentUser, socket }) {
 
     const handleSendMsg = async (msg) => {
-        const data = await JSON.parse(
-          await axios.post
-        );
+      //   const data = await JSON.parse(
+      // console.log(msg)
+      //   );
+      console.log(msg);
     }
     
     if (currentChat) {

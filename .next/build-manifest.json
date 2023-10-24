@@ -26,11 +26,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/medico/chat.js"
-    ],
-    "/medico/dieta": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/medico/dieta.js"
     ]
   },
   "ampFirstPages": []
