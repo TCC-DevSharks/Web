@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/clinica/cadastroMedico": "pages/clinica/cadastroMedico.js",
-  "/clinica/medico": "pages/clinica/medico.js"
+  "/clinica/medico": "pages/clinica/medico.js",
+  "/ClinicLogin": "pages/ClinicLogin.js",
+  "/clinica/home": "pages/clinica/home.js"
 }

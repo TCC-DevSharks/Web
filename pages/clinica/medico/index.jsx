@@ -15,7 +15,7 @@ export default function Medicos() {
 
     useEffect(() => {
         //solicitação GET à API 
-        fetch('http://localhost:3005/clinica/profissional/5')
+        fetch('http://localhost:3000/clinica/profissional/5')
             .then((response) => response.json())
             .then((data) => {
                 console.log(data); // Adicione esta linha para ver a resposta da API
