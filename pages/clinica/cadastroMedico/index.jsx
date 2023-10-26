@@ -137,12 +137,15 @@ function Medicos() {
       .post('http://localhost:3000/profissional', data)
       .then((response) => {
         // Lidar com a resposta do servidor
+        alert('Sucesso:', response.data);
         console.log('Sucesso:', response.data);
       })
       .catch((error) => {
         // Lidar com erros
         console.error('Erro ao enviar o cadastro:', error);
+        alert('Erro ao enviar o cadastro: veja no console');
         console.error('Response do servidor:', error.response);
+        alert('Erro ao enviar o cadastro: veja no console a resposta do servidor');
       });
   };
 

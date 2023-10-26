@@ -1,22 +1,41 @@
+import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
+
 import React, { useState, useEffect } from 'react';
 import styles from './RegisterClinic.module.scss';
 import stylesLogin from '../styles/ClinicLogin.module.css';
 import InputMask from 'react-input-mask';
 import Header from '../components/home/header/Header'
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBW9WRNtFRcQ5twb_K18Fe0tGpxEZTsbsM",
+  authDomain: "bebe-vindo.firebaseapp.com",
+  projectId: "bebe-vindo",
+  storageBucket: "bebe-vindo.appspot.com",
+  messagingSenderId: "474360940540",
+  appId: "1:474360940540:web:9f2e8703dcda35aa061479"
+};
+
+const initFirebase = () => {
+  const app = initializeApp(firebaseConfig);
+  return app;
+};
+
 function RegisterClinic() {
+  const app = initFirebase();
+
   const [formData, setFormData] = useState({
     razao_social: '',
-    cnpj: '123456789',
+    cnpj: '',
     telefone: '',
     cep: '',
-    complemento: 'NAO MUDOU',
+    complemento: '',
     email: '',
     senha: '',
-    foto: 'NAO MUDOU',
+    foto: '',
     tipo_telefone: 1,
-    numero: '1234567890',
-    descricao: 'NAO MUDOU',
+    numero: '',
+    descricao: '',
     endereco: '',
     neighborhood: '',
     cidade: '',
@@ -50,6 +69,38 @@ function RegisterClinic() {
     fetchAddressInfo();
   }, [formData.cep]);
 
+  const handleImageUpload = async (e) => {
+    const imageFile = e.target.files[0];
+    const storage = getStorage(app);
+
+    // Defina o nome do arquivo para upload (pode ser um nome único)
+    const filename = `${Date.now()}_${imageFile.name}`;
+
+    // Crie uma referência para o arquivo
+    const storageRef = ref(storage, 'cadastro-clinica-imagens/' + filename);
+
+    // Use FileReader para ler o arquivo como uma string de dados
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+      const dataURL = event.target.result;
+
+      // Realize o upload da imagem
+      try {
+        await uploadString(storageRef, dataURL, 'data_url');
+        const downloadURL = await getDownloadURL(storageRef);
+
+        setFormData({
+          ...formData,
+          foto: downloadURL, // armazene a URL da imagem no estado
+        });
+      } catch (error) {
+        console.error('Erro no upload da imagem:', error);
+      }
+    };
+
+    reader.readAsDataURL(imageFile);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -64,12 +115,15 @@ function RegisterClinic() {
 
       if (response.ok) {
         console.log('Dados enviados com sucesso!');
+        alert('Dados enviados com sucesso!');
       } else {
         const responseData = await response.json();
         console.error('Erro ao enviar os dados:', responseData);
+        alert('Erro ao enviar os dados:', responseData);
       }
     } catch (error) {
       console.error('Erro ao enviar os dados:', error);
+      alert('Erro ao enviar os dados:', error);
     }
   };
 
@@ -89,7 +143,7 @@ function RegisterClinic() {
       <div className={styles.container_geral_register}>
         <h1>Cadastre sua Clínica</h1>
 
-        <form  className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.box}>
             <div className={styles.container_inicial}>
               <span className={styles.title_section}>
@@ -99,12 +153,16 @@ function RegisterClinic() {
               <div>
                 <p>Foto: *</p>
                 <input
-                  type="text"
+                  type="file"
                   name="foto"
                   id="fileInput"
                   placeholder='Anexe uma foto'
                   required
-                  onChange={handleChange}
+                  onChange={(e) => {
+                    const imageFile = e.target.files[0];
+                    handleChange(e); // Chama a função handleChange para atualizar o estado
+                    handleImageUpload(e); // Chama a função handleImageUpload para fazer o upload da imagem
+                  }}
                 ></input>
               </div>
 
@@ -179,7 +237,7 @@ function RegisterClinic() {
                   type="text"
                   name="numero"
                   placeholder='Nº'
-                  readOnly />
+                />
               </div>
 
               <div>
