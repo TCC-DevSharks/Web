@@ -150,7 +150,7 @@ function RegisterClinic() {
                 Informações Iniciais
               </span>
 
-              <div>
+              <div className='div_img'>
                 <input
                   type="file"
                   name="foto"
