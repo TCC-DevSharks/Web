@@ -1,13 +1,27 @@
 import axios from "axios";
 import styles from "../../../styles/Chat.module.css";
+import React, { useState } from "react";
 import ChatInput from "./ChatInput";
 export default function ChatContainer({ currentChat, currentUser, socket }) {
 
+  const [messages, setMessages] = useState([]);
+
+
+ 
     const handleSendMsg = async (msg) => {
-      //   const data = await JSON.parse(
-      // console.log(msg)
-      //   );
+      console.log(currentChat);
+
+      axios.post("http://localhost:3000/chat",{
+
+          from: currentUser._id,
+          to: currentChat._id,
+          sender: currentUser._id,
+          text: msg
+      
+      })
+
       console.log(msg);
+    
     }
     
     if (currentChat) {
@@ -23,7 +37,11 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
                   </div>
                 </div>
               </div>
-              <div className={styles["chat-messages"]}></div>
+              <div className={styles["chat-messages"]}>
+              <div className="content ">
+                  <p>{message.message}</p>
+                </div>
+              </div>
               <ChatInput
                 handleSendMsg={handleSendMsg}
               />
