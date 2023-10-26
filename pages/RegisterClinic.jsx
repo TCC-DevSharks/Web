@@ -151,12 +151,10 @@ function RegisterClinic() {
               </span>
 
               <div>
-                <p>Foto: *</p>
                 <input
                   type="file"
                   name="foto"
                   id="fileInput"
-                  placeholder='Anexe uma foto'
                   required
                   onChange={(e) => {
                     const imageFile = e.target.files[0];
