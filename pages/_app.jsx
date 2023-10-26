@@ -2,6 +2,8 @@
 import Head from 'next/head';
 import '../styles/globals.css';
 import 'chart.js/auto'; 
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 export default function App({ Component, pageProps }) {
   return (
