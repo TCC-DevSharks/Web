@@ -2,9 +2,7 @@
   "polyfillFiles": [
     "static/chunks/polyfills.js"
   ],
-  "devFiles": [
-    "static/chunks/react-refresh.js"
-  ],
+  "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
     "static/development/_buildManifest.js",
@@ -12,6 +10,7 @@
   ],
   "rootMainFiles": [],
   "pages": {
+<<<<<<< HEAD
     "/RegisterClinic": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -27,6 +26,9 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ]
+=======
+    "/_app": []
+>>>>>>> 8d81d4aa45ae79d4e4f5c7f18a4cd8c57f6ab8a7
   },
   "ampFirstPages": []
 }
