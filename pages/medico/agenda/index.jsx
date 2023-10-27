@@ -17,6 +17,7 @@ export default function Agenda() {
 
     return (
         <div>
+            <span>teste</span>
             <div className={styles['agenda-container']}>
                 <TituloSecao title="Agenda" />
                 <div className={styles["calendario-container"]}>
@@ -51,10 +52,10 @@ export default function Agenda() {
                             ]}
                         />
                     </div>
-                    <div className={styles['compromissos']}>         
+
+                  <div className={styles['compromissos']}>
                     <div className={styles['compromisso']}>
-                    <div className={styles['dia']}>
-                        27
+                        <div className={styles['dia']}>
                         </div>
                         <div className={styles['consulta']}>
                           <div className={styles['hora-paciente']}>
@@ -70,18 +71,18 @@ export default function Agenda() {
                         </div>
                     </div>
                     <div className={styles['compromisso']}>
-                    <div className={styles['dia']}>
+                        <div className={styles['dia']}>
                         </div>
                         <div className={styles['consulta']}>
                           <div className={styles['hora-paciente']}>
-                            <p className={styles['hora']}>08h30 - </p>
-                            <p className={styles['paciente']}>Maria</p>
+                            <p className={styles['hora']}>17h30 - </p>
+                            <p className={styles['paciente']}>Claudia</p>
                           </div>
                             <input
                                 className={styles['checkbox']}
                                 type="checkbox"
-                                checked={checkboxStates[0]}
-                                onChange={() => handleCheckboxChange(0)}
+                                checked={checkboxStates[1]}
+                                onChange={() => handleCheckboxChange(1)}
                             />
                         </div>
                     </div>
@@ -90,4 +91,5 @@ export default function Agenda() {
             </div>
         </div>
     );
-}
+};
+
