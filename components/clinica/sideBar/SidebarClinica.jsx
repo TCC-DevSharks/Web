@@ -62,7 +62,7 @@ const Sidebar = () => {
                         <li> <Link href="/clinica/home"> <MdOutlineDashboard /> </Link> </li>
                     </div>
                 </div>
-                <li> <Link style={{ fontSize: '1.2rem' }} href="/medico/home">Home</Link> </li>
+                <li> <Link style={{ fontSize: '1.2rem' }} href="/clinica/home">Home</Link> </li>
             </ul>
         </nav>
     );

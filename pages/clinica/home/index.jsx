@@ -3,6 +3,7 @@ import GraficoPizza from "../../../components/clinica/dash/GraficoPizza"
 import styles from '../../../styles/Dash.module.scss';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ModalMedicoDash from "../../../components/clinica/dash/modalMedico";
 
 
 
@@ -46,6 +47,7 @@ export default function Home({ Component, pageProps }) {
 
   return (
     <>
+      <ModalMedicoDash></ModalMedicoDash>
       <Sidebar />
       <div className={styles.container_geral}>
         <div className={styles.container}>
