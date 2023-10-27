@@ -30,7 +30,7 @@ export default function Agenda() {
                                 center: "title",
                                 end: "dayGridMonth,timeGridWeek,timeGridDay",
                             }}
-                            height={"70vh"}
+                            height={"50vh"}
                             events={[
                                 {
                                     id: 'a',
@@ -51,10 +51,10 @@ export default function Agenda() {
                             ]}
                         />
                     </div>
-                  
-                  <div className={styles['compromissos']}>
+                    <div className={styles['compromissos']}>         
                     <div className={styles['compromisso']}>
-                        <div className={styles['dia']}>
+                    <div className={styles['dia']}>
+                        27
                         </div>
                         <div className={styles['consulta']}>
                           <div className={styles['hora-paciente']}>
@@ -70,18 +70,18 @@ export default function Agenda() {
                         </div>
                     </div>
                     <div className={styles['compromisso']}>
-                        <div className={styles['dia']}>
+                    <div className={styles['dia']}>
                         </div>
                         <div className={styles['consulta']}>
                           <div className={styles['hora-paciente']}>
-                            <p className={styles['hora']}>17h30 - </p>
-                            <p className={styles['paciente']}>Claudia</p>
+                            <p className={styles['hora']}>08h30 - </p>
+                            <p className={styles['paciente']}>Maria</p>
                           </div>
                             <input
                                 className={styles['checkbox']}
                                 type="checkbox"
-                                checked={checkboxStates[1]}
-                                onChange={() => handleCheckboxChange(1)}
+                                checked={checkboxStates[0]}
+                                onChange={() => handleCheckboxChange(0)}
                             />
                         </div>
                     </div>

@@ -1,11 +1,72 @@
 .agenda-container {
     margin-left: 120px;
-    background-color: aqua;
     width: auto;
     height: 100vh;
-    
+
     .agenda-header {
         font-size: 24px;
         color: #333;
+    }
+}
+
+.calendario-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10vw;
+    padding-bottom: 120px;
+    padding-right: 120px;
+    height: 100%;
+    .calendario {
+        width: 35vw;
+    }
+}
+
+.compromissos {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+
+    .compromisso {
+        display: flex;
+        gap: 10px;
+
+        .dia {
+            width: 50px;
+            height: 50px;
+            background: #B6B6F6;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            font-size: 1.2rem;
+           justify-content: center;
+        }
+
+        .consulta {
+            width: 321px;
+            height: 50px;
+            border-radius: 10px;
+            border: 1px solid #263238;
+            display: flex;
+            padding: 15px;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            color: #666161;
+
+            .hora-paciente {
+                display: flex;
+            }
+
+            .checkbox {
+                display: flex;
+            }
+        }
+    }
+}
+@media(max-width: 1600px) {
+    .calendario-container {
+        flex-direction: column;
+        height: fit-content;
     }
 }
