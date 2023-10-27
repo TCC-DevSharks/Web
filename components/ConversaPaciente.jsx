@@ -14,21 +14,15 @@ const ConversaPaciente = (
     }
 ) => {
     const [id, setId] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
     var _id
     
     function getPaciente() {
-        setIsLoading(true);
+
         axios.get(`http://localhost:3000/user/one?email=${email}&usuario=${usuario}`)
             .then(response => {
                 const data = response.data;
-                if (data._id !== undefined) {
                     setId(data._id);
-                    setIsLoading(false);
-                } else {
-                    setId("");
-                    setIsLoading(false);
-                }
+            
             })
             .catch(error => {
                 console.error(error);
@@ -44,10 +38,10 @@ const ConversaPaciente = (
     ;
     return (
   <div onClick={() => (getPaciente(),
-    _id = localStorage.getItem('_id'),
-    console.log(_id),
+    _id = id,
+    console.log(id),
     onPacienteClick(
-        {_id: isLoading ? "Carregando..." : id, nome, foto, email, usuario}
+        {_id, nome, foto, email, usuario}
     )
         )}>
                 <div className={styles['paciente']}>
