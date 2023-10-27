@@ -9,7 +9,7 @@ export default function Perfil() {
 
   const [listClinicas, setClinicas] = useState();
   const [listEnderecoClinica, setEnderecoClinica] = useState();
-  const IdClinica = localStorage.getItem('id');
+  const IdClinica = typeof window !== 'undefined' ? localStorage.getItem('id') : null;
   const [cep, setCep] = useState();
   const [editMode, setEditMode] = useState(false);
 
@@ -151,8 +151,8 @@ export default function Perfil() {
                       </>
                     ) : (
                       <>
-                        <input value={clinica.telefone} />
-                        <input value={clinica.email} />
+                        <input style={{color:'#aaa3aa'}} value={clinica.telefone} />
+                        <input style={{color:'#aaa3aa'}} value={clinica.email} />
                       </>
                     )}
                   </div>
@@ -164,7 +164,7 @@ export default function Perfil() {
                   {editMode ? (
                     <textarea placeholder={editDescricao} onChange={(e) => setEditDescricao(e.target.value)} className="input_descricao" />
                   ) : (
-                    <textarea value={clinica.descricao} className="input_descricao" />
+                    <textarea style={{color:'#aaa3aa'}} value={clinica.descricao} className="input_descricao" />
                   )}
                 </div>
                 <div className={styles.inputs_row2}>
@@ -179,11 +179,11 @@ export default function Perfil() {
                     </>
                   ) : (
                     <>
-                      <input placeholder={clinica.cep} value={clinica.cep} className={styles.input_cep} />
-                      <input value={listEnderecoClinica?.logradouro} className={styles.input_rua} />
-                      <input value={clinica.numero} className={styles.input_n} />
-                      <input value={listEnderecoClinica?.bairro} className={styles.input_bairro} />
-                      <input value={listEnderecoClinica?.localidade} className={styles.input_cidade} />
+                      <input style={{color:'#aaa3aa'}} placeholder={clinica.cep} value={clinica.cep} className={styles.input_cep} />
+                      <input style={{color:'#aaa3aa'}} value={listEnderecoClinica?.logradouro} className={styles.input_rua} />
+                      <input style={{color:'#aaa3aa'}} value={clinica.numero} className={styles.input_n} />
+                      <input style={{color:'#aaa3aa'}} value={listEnderecoClinica?.bairro} className={styles.input_bairro} />
+                      <input style={{color:'#aaa3aa'}} value={listEnderecoClinica?.localidade} className={styles.input_cidade} />
                     </>
                   )}
                 </div>
