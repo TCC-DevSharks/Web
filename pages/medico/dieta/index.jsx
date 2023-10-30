@@ -69,7 +69,7 @@ const Dieta = () => {
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
                                     <span style={{display:'flex', alignItems:'center', fontSize:'1.4rem'}}>
-                                        Café da manhã <MdFreeBreakfast/>
+                                        Café da manhã {/* <MdFreeBreakfast/> */}
                                     </span>
                                     <span style={{display:'flex', alignItems:'center', gap:'10px', color:'#b6b6f6',cursor:'pointer'}}>
                                             adicionar meta calorica <AiOutlineArrowRight/>
@@ -79,7 +79,7 @@ const Dieta = () => {
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
                                     <span style={{display:'flex', alignItems:'center', fontSize:'1.4rem'}}>
-                                        Almoço <PiBowlFoodFill/>
+                                        Almoço {/* <PiBowlFoodFill/> */}
                                     </span>
                                     <span style={{display:'flex', alignItems:'center', gap:'10px', color:'#b6b6f6',cursor:'pointer'}}>
                                             adicionar meta calorica <AiOutlineArrowRight/>
@@ -89,7 +89,7 @@ const Dieta = () => {
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
                                     <span style={{display:'flex', alignItems:'center', fontSize:'1.4rem'}}>
-                                        Lanche da Tarde <MdFreeBreakfast/>
+                                        Lanche da Tarde {/* <MdFreeBreakfast/> */}
                                     </span>
                                     <span style={{display:'flex', alignItems:'center', gap:'10px', color:'#b6b6f6',cursor:'pointer'}}>
                                             adicionar meta calorica <AiOutlineArrowRight/>
@@ -99,7 +99,7 @@ const Dieta = () => {
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
                                     <span style={{display:'flex', alignItems:'center', fontSize:'1.4rem'}}>
-                                        Janta <MdFreeBreakfast/>
+                                        Janta {/* <MdFreeBreakfast/> */}
                                     </span>
                                     <span style={{display:'flex', alignItems:'center', gap:'10px', color:'#b6b6f6',cursor:'pointer'}}>
                                             adicionar meta calorica <AiOutlineArrowRight/>
