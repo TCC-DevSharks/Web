@@ -14,7 +14,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       axios.get(`http://localhost:3000/chat/mensagem?from=${from}&to=${to}`)
         .then((response) => {
           const data = response.data;
-          setMessages(data);
+          setMessages(data.conversa);
           
         })
         .catch((error) => {
@@ -44,7 +44,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
   useEffect(() => {
     if (socket.current) {
-      socket.current.on("msg-recieve", (msg) => {
+      socket.current.on("send-msg", (msg) => {
         setArrivalMessage({ fromSelf: false, message: msg });
       });
     }
