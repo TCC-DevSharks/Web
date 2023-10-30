@@ -18,12 +18,7 @@ export default function Historico() {
             <HistoricoConsulta />
             <HistoricoConsulta />
             <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
+   
           </div>
         </div>
 
@@ -37,12 +32,7 @@ export default function Historico() {
             <HistoricoConsulta />
             <HistoricoConsulta />
             <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
-            <HistoricoConsulta />
+
           </div>
         </div>
       </div>

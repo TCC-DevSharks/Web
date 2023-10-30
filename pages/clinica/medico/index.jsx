@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 
 export default function Medicos() {
     const router = useRouter();
+  const IdClinica = typeof window !== 'undefined' ? localStorage.getItem('id') : null;
     const [medicos, getMedicos] = useState([]); // Armazena os dados dos médicos
 
     const handleClick = () => {
@@ -15,7 +16,7 @@ export default function Medicos() {
 
     useEffect(() => {
         //solicitação GET à API 
-        fetch('http://localhost:3000/clinica/profissional/5')
+        fetch(`http://localhost:3000/clinica/profissional/${IdClinica}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data); // Adicione esta linha para ver a resposta da API

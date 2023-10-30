@@ -42,6 +42,22 @@ export default function Agenda() {
                                     demanding: true
                                 },
                                 {
+                                    id: 'a',
+                                    title: 'Maria',
+                                    start: '2023-10-26T08:30:00',
+                                    end: '2023-10-26T09:00:00',
+                                    backgroundColor: '#B6B6F6',
+                                    demanding: true
+                                },
+                                {
+                                    id: 'a',
+                                    title: 'Maria',
+                                    start: '2023-10-26T08:30:00',
+                                    end: '2023-10-26T09:00:00',
+                                    backgroundColor: '#B6B6F6',
+                                    demanding: true
+                                },
+                                {
                                     id: 'c',
                                     title: 'Claudia',
                                     start: '2023-10-26T17:30:00',

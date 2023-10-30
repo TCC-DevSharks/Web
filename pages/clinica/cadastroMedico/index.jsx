@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import styles from './CadastroMedico.module.scss';
 import Sidebar from '../../../components/clinica/sideBar/SidebarClinica';
+const IdClinica = typeof window !== 'undefined' ? localStorage.getItem('id') : null;
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBW9WRNtFRcQ5twb_K18Fe0tGpxEZTsbsM",
@@ -39,7 +41,7 @@ function Medicos() {
     inicio_atendimento: '',
     fim_atendimento: '',
     id_sexo: '',
-    id_clinica: '5',
+    id_clinica: `${IdClinica}`,
     telefone: '',
     tipo_telefone: '1',
 
