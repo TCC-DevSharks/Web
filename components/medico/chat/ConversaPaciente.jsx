@@ -1,17 +1,60 @@
+import axios from 'axios';
 import styles from '../../../pages/medico/chat/Chat.module.css'; // Importe os estilos do arquivo CSS da página
+import { useEffect } from 'react';
+import React, { useState } from 'react';
 
-const ConversaPaciente = () => {
+
+const ConversaPaciente = (
+    {   
+        foto,
+        nome,
+        email,
+        usuario,
+        onPacienteClick
+    }
+) => {
+    const [id, setId] = useState("");
+    var _id
+    
+    function getPaciente() {
+
+        axios.get(`http://localhost:3000/user/one?email=${email}&usuario=${usuario}`)
+            .then(response => {
+                const data = response.data;
+                    setId(data._id);
+            
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+ 
+    useEffect(() => {
+        if (id === "") {
+            getPaciente();
+        }
+    }, [id]);
+    
+    ;
     return (
-            <div className={styles['paciente']}>
-                <div className={styles['imagem-div']}>
-                    <img className={styles['img']} src="https://yt3.googleusercontent.com/IG7W37b4wX-x-X_7zl8wXPISZqeIvhRptwTCHNthN1B896jpKcbgQzdS_hITrPL7JvYdE-jC820=s900-c-k-c0x00ffffff-no-rj" alt="" />
-                </div>
-                <div className={styles['descricao-paciente-chat']}>
-                    <div className={styles['nome-paciente']}> Ingryd Shirlley </div>
+  <div onClick={() => (getPaciente(),
+    _id = id,
+    console.log(id),
+    onPacienteClick(
+        {_id, nome, foto, email, usuario}
+    )
+        )}>
+                <div className={styles['paciente']}>
+                    <div className={styles['imagem-div']}>
+                        <img className={styles['img']} src={foto} alt="" />
+                    </div>
+                    <div className={styles['descricao-paciente-chat']}>
+                        <div className={styles['nome-paciente']}> {nome}</div>
 
-                    <div className={styles['previa-mensagem']}>oiiii wrb hewh HWvnweiovnioW</div>
+                        <div className={styles['previa-mensagem']}>oiiii wrb hewh HWvnweiovnioW</div>
+                    </div>
                 </div>
-            </div>
+        </div>
     );
 };
 
