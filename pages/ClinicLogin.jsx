@@ -6,67 +6,67 @@ import { useRouter } from 'next/navigation';
 import stylesClinic from '../styles/ClinicLogin.module.css';
 
 function ClinicLogin() {
-    const [showPassword, setShowPassword] = useState(false);
-    const [login, setLogin] = useState(false)
+        const [showPassword, setShowPassword] = useState(false);
+        const [login, setLogin] = useState(false)
 
-    const router = useRouter()
+        const router = useRouter()
 
-    const handleShowPassword = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const entrarPerfilClinica = (id) => {
-        setLogin(!login)
-        router.push( `/clinica/home/`)
-        localStorage.setItem('id', id)
-        console.log(id);
-    }
-
-    const handleLogin = async (e) => {
-        e.preventDefault();
-
-        const loginData = {
-            email: email,
-            senha: password,
+        const handleShowPassword = () => {
+            setShowPassword(!showPassword);
         };
 
-        try {
-            const response = await fetch('http://localhost:3000/login/clinica', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(loginData),
-            });
-        
-            const status = response.status;
-        
-            if (status === 201) {
-                const data = await response.json(); 
-                const id = data.id[0].id; 
+        const [email, setEmail] = useState('');
+        const [password, setPassword] = useState('');
 
-                entrarPerfilClinica(id);
+        const handleEmailChange = (e) => {
+            setEmail(e.target.value);
+        };
 
+        const handlePasswordChange = (e) => {
+            setPassword(e.target.value);
+        };
 
-            } else {
-                console.log("Login deu errado.");
-            }
-        } catch (error) {
-            console.error('Erro ao fazer login:', error);
+        const entrarPerfilClinica = (id) => {
+            setLogin(!login)
+            router.push( `/clinica/home/`)
+            localStorage.setItem('id', id)
+            console.log(id);
         }
-        
-    };
+
+        const handleLogin = async (e) => {
+            e.preventDefault();
+
+            const loginData = {
+                email: email,
+                senha: password,
+            };
+
+            try {
+                const response = await fetch('http://localhost:3000/login/clinica', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(loginData),
+                });
+            
+                const status = response.status;
+            
+                if (status === 201) {
+                    const data = await response.json(); 
+                    const id = data.id[0].id; 
+
+                    entrarPerfilClinica(id);
+
+
+                } else {
+                    console.log("Login deu errado.");
+                }
+            } catch (error) {
+                console.error('Erro ao fazer login:', error);
+            }
+            
+        };
 
     return (
         <div>
