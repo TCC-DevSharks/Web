@@ -89,7 +89,6 @@ function ClinicLogin() {
             <div className={stylesClinic.input_container}>
               <div className={stylesClinic.pass_forgot}>
                 <label>Senha:</label>
-                <a href='/forgot' className={styles.forgot_p}>Esqueceu?</a>
               </div>
               <div className={stylesClinic.password_input}>
                 <input
