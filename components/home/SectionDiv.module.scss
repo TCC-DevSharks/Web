@@ -1,0 +1,18 @@
+.divLine {
+    background-color: var(--medium-purple);
+    padding-left: 500px;
+    padding-right: 500px;
+    height: 160px;
+    margin-top: 10px;
+    margin-bottom: 60px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+
+
+    .container__text{
+        h3 {
+            color: white;
+        }
+    }
+}
