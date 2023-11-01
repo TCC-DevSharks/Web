@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react';
 import Header from '../../components/home/header/Header'
-import styles from './PregnantLogin.module.scss';
+import styles from '../pregnant/PregnantLogin.module.scss';
 
 function PregnantLogin() {
     return (
