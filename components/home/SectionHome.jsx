@@ -6,8 +6,8 @@ function SectionHome() {
         <section className={styles.home}>
             <div className={styles.container__text_home}>
                 <div>
-                    <h1>Acompanhe e cuide da sua
-                        <h1>gravidez.</h1>
+                    <h1>Acompanhe e cuide da sua <br/>
+                        <span>gravidez.</span>
                     </h1>
                 </div>
                 <p>Lorem ipsum dolor sit amet consectetur

@@ -13,10 +13,6 @@ function Articles() {
                 <div className={styles.author}>
                     <i className="fa-solid fa-calendar"></i> 3 Maio, 2023
                 </div>
-
-                <div className={styles.author}>
-                    <i className="fa-solid fa-user"></i> By Admin
-                </div>
             </div>
 
             <div className={styles.title}>

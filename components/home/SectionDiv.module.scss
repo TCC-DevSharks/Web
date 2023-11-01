@@ -1,18 +1,68 @@
 .divLine {
     background-color: var(--medium-purple);
-    padding-left: 500px;
-    padding-right: 500px;
-    height: 160px;
+    height: 200px;
     margin-top: 10px;
     margin-bottom: 60px;
     display: flex;
     justify-content:center;
     align-items: center;
-
+    gap: 100px;
 
     .container__text{
-        h3 {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+
+        h1 {
             color: white;
+            font-size: 33px;
+            font-weight: 600;
+        }
+    }
+
+    .container__funcionalidades{
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        align-items: center;
+        gap: 60px;
+
+        .funcionalidade {
+            width: 140px;
+            background-color: white;
+            height: 140px;
+            border-radius: 10px;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .descricao {    
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                font-size: 30px;
+                color: var(--medium-purple);
+                align-items: center;
+                padding: 10px;
+
+                .text {
+                    color: var(--gray);
+                    font-size: 15px;
+                    text-align: center;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .funcionalidade:hover {
+            width: 140px;
+            background-color: #f9f9ffea;
+            transition: 0.3s ease-in;
+            transform: scale(1.08);
         }
     }
 }
