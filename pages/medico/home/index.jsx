@@ -45,31 +45,42 @@ export default function Home({ Component, pageProps }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Nome do funcionário</th>
+                      <th>Nome da Paciente</th>
                       <th>Semana Gestacional</th>
                     </tr>
                   </thead>
-
                   <tbody>
-                    {
-                      /* dataMedico?.clinicas.map(medico => {
-                        return ( */
-                      <tr>
-                        <td>
-                          <div /*key={ medico.id }*/>
-                            <img className={styles.round_image} src={/* medico.foto */"https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1"} />
-                            {/* medico.nome */}
-                          </div>
-                        </td>
-                        <td>{/* medico.especialidade */}</td>
-                        <td>{/* medico.idade */}</td>
-                      </tr>
-                      /* )
-                    }) */
-                    }
+                    <tr>
+                      <td>
+                        <div>
+                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
+                          Nome do Paciente 1
+                        </div>
+                      </td>
+                      <td>30 semanas</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>
+                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
+                          Nome do Paciente 2
+                        </div>
+                      </td>
+                      <td>28 semanas</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>
+                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
+                          Nome do Paciente 3
+                        </div>
+                      </td>
+                      <td>32 semanas</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
+
             </div>
 
             <div className={styles.card_funcionario}>
@@ -83,32 +94,33 @@ export default function Home({ Component, pageProps }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Nome do funcionário</th>
+                      <th>Nome da Paciente</th>
                       <th>Semana Gestacional</th>
                     </tr>
                   </thead>
-
                   <tbody>
-                    {
-                      /* dataMedico?.clinicas.map(medico => {
-                        return ( */
-                      <tr>
-                        <td>
-                          <div /*key={ medico.id }*/>
-                            <img className={styles.round_image} src={/* medico.foto */"https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1"} />
-                            {/* medico.nome */}
-                          </div>
-                        </td>
-                        <td>{/* medico.especialidade */}</td>
-                        <td>{/* medico.idade */}</td>
-                      </tr>
-                      /* )
-                    }) */
-                    }
-
+                    <tr>
+                      <td>
+                        <div>
+                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
+                          Nome do Paciente 1
+                        </div>
+                      </td>
+                      <td>30 semanas</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div>
+                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
+                          Nome do Paciente 2
+                        </div>
+                      </td>
+                      <td>28 semanas</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
+
             </div>
           </div>
 
