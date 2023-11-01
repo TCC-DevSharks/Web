@@ -101,10 +101,6 @@ export default function Home() {
                 <div className={styles.status}>
                   Status do Funcionário
                 </div>
-
-                <div className={styles.filtro}>
-                  <button>filter</button>
-                </div>
               </div>
 
               <div className={styles.table}>

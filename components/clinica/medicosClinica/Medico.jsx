@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../../styles/Medico.module.scss';
+import styles from './style.module.scss';
 
 const Medico = ({ medico }) => {
     return (
