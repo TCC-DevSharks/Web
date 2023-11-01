@@ -14,6 +14,7 @@ const Prontuario = () => {
     const [selectedPaciente, setSelectedPaciente] = useState(null);
 
     const handlePacienteClick = (pacienteInfo) => {
+        console.log(pacienteInfo);
         setSelectedPaciente(pacienteInfo);
         setIsModalOpen(true);
     };

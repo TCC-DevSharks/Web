@@ -7,10 +7,20 @@ import ModalMedicoDash from "../../../components/clinica/dash/modalMedico";
 
 
 
-export default function Home({ Component, pageProps }) {
+export default function Home() {
   const IdClinica = typeof window !== 'undefined' ? localStorage.getItem('id') : null;
   const [dataClinica, setDataClinica] = useState();
   const [dataMedico, setDataMedico] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMedico, setSelectedMedico] = useState(null);
+
+
+
+
+  const handleMedicoClick = (medicoInfo) => {
+    setSelectedMedico(medicoInfo);
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     function getClinica() {
@@ -28,7 +38,9 @@ export default function Home({ Component, pageProps }) {
     getClinica();
   }, [IdClinica]);
 
+
   useEffect(() => {
+
     function getMedicosClinica() {
       const url = `http://localhost:3000/clinica/profissional/${IdClinica}`;
       axios.get(url)
@@ -42,12 +54,11 @@ export default function Home({ Component, pageProps }) {
     }
 
     getMedicosClinica();
-  },[IdClinica])
+  }, [IdClinica])
 
 
   return (
     <>
-      <ModalMedicoDash></ModalMedicoDash>
       <Sidebar />
       <div className={styles.container_geral}>
         <div className={styles.container}>
@@ -106,23 +117,25 @@ export default function Home({ Component, pageProps }) {
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody >
                     {
                       dataMedico?.clinicas.map(medico => {
-                        return(
-                        <tr>
-                          <td>
-                            <div key={medico.id}>
-                              <img className={styles.round_image} src={medico.foto} />
-                              {medico.nome}
-                            </div>
-                          </td>
-                          <td>{medico.especialidade}</td>
-                          <td>{medico.idade}</td>
-                        </tr>
-                      )})
+                        return (
+                          <>
+                            <tr onClick={() => handleMedicoClick(medico)}>
+                              <td>
+                                <div key={medico.id}>
+                                  <img className={styles.round_image} src={medico.foto} />
+                                  {medico.nome}
+                                </div>
+                              </td>
+                              <td>{medico.especialidade}</td>
+                              <td>{medico.idade}</td>
+                            </tr>
+                          </>
+                        )
+                      })
                     }
-
                   </tbody>
                 </table>
               </div>
@@ -131,6 +144,15 @@ export default function Home({ Component, pageProps }) {
           </div>
 
         </div>
+        {isModalOpen && (
+          <ModalMedicoDash
+            medicoInfo={selectedMedico}
+            closeModal={() => {
+              setIsModalOpen(false)
+            }
+            }
+          />
+        )}
       </div>
     </>
   );

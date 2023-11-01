@@ -1,5 +1,5 @@
 .modalContainer{
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     background-color: #1c1c1c7c;
@@ -33,5 +33,67 @@
     width: 100%;
     font-size: 1.7rem;
     cursor: pointer;
+}
+
+.nameMedico{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 2rem;
+    gap: 1%;
+}
+.fotoPerfilMedico{
+    margin-right: 10px;
+    width: 10%;
+    border-radius: 100px;
+}
+
+.InfoMedicos{
+    display: flex;
+    align-items: center;
+    gap: 1%;
+    width: 100%;
+}
+.crmMedico{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 2%;
+    width: 100%;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.23);
+    background-color: #b6b6f6;
+    color: #FFF;
+    font-weight: 700;
+}
+.crmMedicoHoras{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 2%;
+    width: 100%;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.23);
+    background-color: #b6b6f6;
+    color: #FFF;
+    font-weight: 700;
+    gap: 2%;
+}
+
+.descricaoBox{
+    width: 100%;
+    height: 40%;
+    border: 1px solid #b6b6f6;
+    padding: 2%;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.058);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.058);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.03);
+    resize: none;
+    cursor: not-allowed;
 }
 
