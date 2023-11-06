@@ -1,23 +1,117 @@
-import Link from 'next/link';
-import styles from '../../styles/Sidebar.module.css';
-import { BsCalendarCheck, BsFillChatDotsFill } from 'react-icons/bs';
-import { FaUtensils, FaClipboardList } from 'react-icons/fa';
+import Link from "next/link";
+import styles from "../../styles/SidebarClinic.module.scss";
+import { BsCalendarCheck, BsFillChatDotsFill } from "react-icons/bs";
+import { FaClipboardList, FaHospitalUser, FaUtensils } from "react-icons/fa";
+import { MdOutlineDashboard, MdExitToApp } from "react-icons/md";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-export default function Sidebar() {
-    return (
-        <nav className={styles.sidebar}>
-            <ul className={styles.ul}>
-                <li> <Link href="/medico/perfil"> <img className={styles.img_img} src="https://i2.wp.com/ocapacitor.com/wp-content/uploads/2020/09/2362.jpg?fit=720%2C720&ssl=1" alt="" /> </Link> </li>
-                <div className={styles.lista}>
-                    <li> <Link href="/medico/agenda"> <BsCalendarCheck /> </Link> </li>
-                    <li> <Link href="/medico/chat"> <BsFillChatDotsFill /> </Link> </li>
-                    <li> <Link href="/medico/dieta"> <FaUtensils /> </Link> </li>
-                    <li> <Link href="/medico/prontuario"> <FaClipboardList /> </Link> </li>
-                </div>
-                <li> <Link href="/medico/home">Home</Link> </li>
-            </ul>
-        </nav>
-    );
+const Sidebar = () => {
+  const [listClinicas, setClinicas] = useState();
+  let IdMedico = null;
+  console.log(listClinicas);
+
+  if (typeof window !== "undefined") {
+    // Verificar se estamos no lado do cliente (navegador)
+    IdMedico = localStorage.getItem("id");
+  }
+
+  useEffect(() => {
+    if (IdMedico) {
+      const url = `http://localhost:3000/medico/${IdMedico}`;
+
+      function getClinica() {
+        axios
+          .get(url)
+          .then((response) => {
+            const data = response.data;
+            console.log(data);
+            setClinicas(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+
+      getClinica();
+    }
+  }, []);
+
+  return (
+    <aside className={styles["sidebar"]}>
+      <div className={styles["content"]}>
+        <div className={styles["image-box"]}>
+          <li>
+            <Link href="/medico/perfil">
+              {listClinicas?.clinica.map((clinica) => (
+                <>
+                  <img
+                    className={styles["image-clinica"]}
+                    src={clinica.foto}
+                    alt="foto de perfil da clinica"
+                  />
+
+                  <h1>{clinica.razao_social}</h1>
+                </>
+              ))}
+            </Link>
+          </li>
+          <div className={styles["divisor"]}></div>
+        </div>
+
+        <ul>
+          <li>
+            <i>
+              <Link href="/medico/agenda">
+                <BsCalendarCheck />
+                Agenda
+              </Link>
+            </i>
+          </li>
+          <li>
+            <i>
+              <Link href="/medico/chat">
+                <BsFillChatDotsFill />
+                Chat
+              </Link>
+            </i>
+          </li>
+          <li>
+            <i>
+              <Link href="/medico/dieta">
+                <FaUtensils />
+                Dieta
+              </Link>
+            </i>
+          </li>
+          <li>
+            <i>
+              <Link href="/medico/prontuario">
+                <FaClipboardList />
+                Prontuário
+              </Link>
+            </i>
+          </li>
+          <li>
+            <i>
+              <Link href="/medico/home">
+                <MdOutlineDashboard /> Home
+              </Link>
+            </i>
+          </li>
+        </ul>
+      </div>
+      <div className={styles["footer"]}>
+        <ul>
+          <li>
+            <a href="/">
+              Sair <MdExitToApp />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  );
 };
 
-
+export default Sidebar;
