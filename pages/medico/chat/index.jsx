@@ -18,7 +18,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    const url = "http://localhost:3000/profissional/gestante/16";
+    const url = "http://localhost:3000/profissional/gestante/2";
 
     function getPacientes() {
       axios
@@ -36,7 +36,7 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    const url = `http://localhost:3000/profissional/16`;
+    const url = `http://localhost:3000/profissional/2`;
 
     function getProfessional() {
       axios
