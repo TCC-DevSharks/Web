@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Sidebar = () => {
-  const [listClinicas, setClinicas] = useState();
+  const [listMedicos, setMedicos] = useState();
   let IdMedico = null;
-  console.log(listClinicas);
+  console.log(listMedicos);
 
   if (typeof window !== "undefined") {
     // Verificar se estamos no lado do cliente (navegador)
@@ -20,20 +20,20 @@ const Sidebar = () => {
     if (IdMedico) {
       const url = `http://localhost:3000/medico/${IdMedico}`;
 
-      function getClinica() {
+      function getMedico() {
         axios
           .get(url)
           .then((response) => {
             const data = response.data;
             console.log(data);
-            setClinicas(data);
+            setMedicos(data);
           })
           .catch((error) => {
             console.error(error);
           });
       }
 
-      getClinica();
+      getMedico();
     }
   }, []);
 
@@ -43,15 +43,15 @@ const Sidebar = () => {
         <div className={styles["image-box"]}>
           <li>
             <Link href="/medico/perfil">
-              {listClinicas?.clinica.map((clinica) => (
+              {listMedicos?.medico.map((medico) => (
                 <>
                   <img
                     className={styles["image-clinica"]}
-                    src={clinica.foto}
+                    src={medico.foto}
                     alt="foto de perfil da clinica"
                   />
 
-                  <h1>{clinica.razao_social}</h1>
+                  <h1>{medico.nome}</h1>
                 </>
               ))}
             </Link>
