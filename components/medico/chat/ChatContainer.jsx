@@ -47,6 +47,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     if (socket.current) {
       socket.current.on("msg-receive", (msg) => {
         console.log(msg);
+        console.log(currentChat);
         setMessages((messages) => [...messages, {sender: currentChat._id,_id: currentChat._id, text: msg }]);
       });
 
@@ -70,8 +71,6 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" }); 
     }
   };
-
-  console.table(messages)
 
   if (currentChat) {
     return (

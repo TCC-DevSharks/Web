@@ -10,7 +10,7 @@ import { io } from "socket.io-client";
 const Chat = () => {
   const socket = useRef();
   const [listpacientes, setPacientes] = useState();
-  const [currentChat, setCurrentChat] = useState(undefined);
+  const [currentChat, setCurrentChat] = useState(null);
   const [currentUser, setCurrentUser] = useState(undefined);
   const handlePacienteClick = (pacienteInfo) => {
     setCurrentChat(pacienteInfo);
@@ -52,6 +52,8 @@ const Chat = () => {
 
     getProfessional();
   }, []);
+
+  console.log(currentChat);
 
   useEffect(() => {
     const url = `http://localhost:3000/user/one?email=${localStorage.getItem(
