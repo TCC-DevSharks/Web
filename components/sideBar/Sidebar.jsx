@@ -12,7 +12,6 @@ const Sidebar = () => {
   console.log(listMedicos);
 
   if (typeof window !== "undefined") {
-    // Verificar se estamos no lado do cliente (navegador)
     IdMedico = localStorage.getItem("id");
   }
 
