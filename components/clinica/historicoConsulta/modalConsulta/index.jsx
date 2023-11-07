@@ -3,14 +3,15 @@ import { AiFillCloseCircle, AiOutlineArrowRight } from "react-icons/ai";
 import { useState } from "react";
 import axios from "axios";
 import { ModalConfirmation } from "./modalConfirmacao";
+import { on } from "events";
 
-export function ModalHistorico({ pacienteInfo, closeModal }) {
+export function ModalHistorico({ pacienteInfo, closeModal, onClick }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hora, min] = pacienteInfo.hora.split(":");
   const [prontuario, selectedPronturario] = useState();
   const [valor, setValor] = useState("");
 
-  const handleConfirmacaoClick = function (){
+  const handleConfirmacaoClick = function () {
     setIsModalOpen(true)
   }
 
@@ -77,10 +78,11 @@ export function ModalHistorico({ pacienteInfo, closeModal }) {
             </div>
           </div>
           <div className={styles["datasBox"]}>
-           
+
           </div>
           <div className={styles["boxButtons"]}>
             <button onClick={closeModal} className={styles["buttonEnvModal"]}>voltar</button>
+
             <button onClick={handleConfirmacaoClick} className={styles["buttonCancelarConsulta"]}>
               cancelar consulta
             </button>
@@ -88,13 +90,14 @@ export function ModalHistorico({ pacienteInfo, closeModal }) {
         </div>
       </div>
       {isModalOpen && (
-          <ModalConfirmation
-            pacienteInfo={pacienteInfo}
-            closeModal={() => {
-              setIsModalOpen(false);
-            }}
-          />
-        )}
+        <ModalConfirmation
+          pacienteInfo={pacienteInfo}
+          closeModal={() => {
+            setIsModalOpen(false)
+          }}
+          onClick={onClick}
+        />
+      )}
     </div>
   );
 }

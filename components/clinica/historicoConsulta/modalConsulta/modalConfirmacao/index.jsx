@@ -5,45 +5,46 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const ModalConfirmation = ({ pacienteInfo, closeModal }) => {
+export const ModalConfirmation = ({ pacienteInfo, closeModal, onClick }) => {
   const idConsulta = pacienteInfo.idConsulta;
-  const url = `http://localhost:3000/consulta/${idConsulta}`;
+  // const url = `http://localhost:3000/consulta/${idConsulta}`;
 
-  function deleteConsulta() {
-    axios
-      .delete(url)
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        if (data.status === 404)  {
-          toast.error(data.message, {
-            position: "top-center",
-            autoClose: 6000, 
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          setTimeout(closeModal, 5000); 
-        } else {
+  // function deleteConsulta() {
+  //   axios
+  //     .delete(url)
+  //     .then((response) => {
+  //       const data = response.data;
+  //       console.log(data);
+  //       if (data.status === 404)  {
+  //         toast.error(data.message, {
+  //           position: "top-center",
+  //           autoClose: 6000, 
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "light",
+  //         });
+  //         setTimeout(closeModal, 5000); 
+  //       } else {
             
-          toast.success(data.message, {
-            position: "top-center",
-            autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-          setTimeout(closeModal, 5000); // Fecha o modal após 5 segundos
-        }
-      })
-      .catch((err) => console.log( console.log("oi")));
-  }
+  //         toast.success(data.message, {
+  //           position: "top-center",
+  //           autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "light",
+  //         });
+
+  //         setTimeout(closeModal, 5000); // Fecha o modal após 5 segundos
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   return (
     <div className={styles["modalContainer"]}>
@@ -72,7 +73,10 @@ export const ModalConfirmation = ({ pacienteInfo, closeModal }) => {
                 voltar
               </button>
               <button
-                onClick={deleteConsulta}
+                onClick={()=>{
+                  onClick(idConsulta)
+                  closeModal
+                }}
                 className={styles["buttonCancelarConsulta"]}
               >
                 cancelar consulta

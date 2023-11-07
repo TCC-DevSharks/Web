@@ -14,8 +14,9 @@
     padding-right: 05%;
 
     gap: 20px;
+
     .container_cima {
-        
+
       height: 10%;
       width: 80%;
       display: flex;
@@ -65,21 +66,43 @@
             font-weight: 600;
             font-size: 1.3rem;
             cursor: pointer;
+            
           }
+
+          
+
           .button-filter:hover {
             background-color: #fff;
             color: #4c4c4c;
             border: 2px solid #b6b6f6;
             transition: 0.3s;
           }
+
+          .button-filter-clicked{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #4c4c4c;
+            border: 2px solid #b6b6f6;
+            transition: 0.3s;
+            width: 20%;
+            height: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.3rem;  
+            font-weight: 600;
+          }
+          
         }
+
         .box-consultas {
           display: flex;
           flex-direction: column;
           gap: 20px;
           width: 100%;
           height: 100%;
-          
+
 
           h2 {
             font-size: 1.8rem;
@@ -92,13 +115,13 @@
             height: 100%;
             gap: 4%;
             overflow-x: auto;
-            
+
 
             .item-consulta {
               display: flex;
               flex-direction: column;
               gap: 15%;
-              height: 40%;
+              height: 45%;
               width: 48%;
               padding: 2%;
               border-radius: 10px;
@@ -114,16 +137,18 @@
 
                 .fotoPaciente {
                   grid-area: foto;
-                  width: 90px;
-                  height: 90px;
+                  width: 100%;
+                  height: 150px; 
                   background-color: #b6b6f6;
-                border-radius: 30px;
+                  border-radius: 10px;
+
                   img {
                     width: 100%;
                     height: 100%;
-                    border-radius: 30px;
+                    border-radius: 5%;
                   }
                 }
+
                 .informacoesPaciente {
                   display: flex;
                   align-items: center;
@@ -154,6 +179,7 @@
                   }
                 }
               }
+
               .infoTwo {
                 display: flex;
                 align-items: center;
@@ -182,6 +208,7 @@
                     font-size: 1rem;
                   }
                 }
+
                 .item-edit {
                   display: flex;
                   justify-content: center;
@@ -202,15 +229,16 @@
                     gap: 3%;
                     font-size: 1rem;
                   }
-                  
+
                 }
-                .item-edit:hover{
-                    background-color: #fff;
-                    color: #4c4c4c;
-                    border: 2px solid #b6b6f6;
-                    font-size: 1.4rem;
-                    cursor: pointer;
-                    transition: 0.3s;
+
+                .item-edit:hover {
+                  background-color: #fff;
+                  color: #4c4c4c;
+                  border: 2px solid #b6b6f6;
+                  font-size: 1.4rem;
+                  cursor: pointer;
+                  transition: 0.3s;
                 }
               }
             }

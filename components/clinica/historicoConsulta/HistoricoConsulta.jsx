@@ -4,6 +4,8 @@ import { AiFillCalendar, AiFillClockCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
 import { ModalHistorico } from "./modalConsulta";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Historico = () => {
   let IdClinica = null;
@@ -14,13 +16,47 @@ const Historico = () => {
   const [listConsultasMarcadas, setConsultasMarcadas] = useState([]);
   const [listConsultasPassadas, setConsultasPassadas] = useState([]);
   const [listConsultasAtuais, setConsultasAtuais] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState('consultasHoje');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPaciente, setSelectedPaciente] = useState(null);
 
+  const closeModalConfirmacao = () => {
+    
+    setTimeout(()=> {
+      setIsModalOpen(false)
+      
+    },1500)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  } 
+
+  const handleFilterClick = (filter) => {
+    setSelectedFilter(filter);
+    switch (filter) {
+      case 'consultasHoje':
+        setConsultas(listConsultasAtuais);
+        break;
+      case 'consultasFuturas':
+        setConsultas(listConsultasMarcadas);
+        break;
+      case 'consultasPassadas':
+        setConsultas(listConsultasPassadas);
+        break;
+      default:
+        break;
+    }
+  };
+
   const handleEditClick = (event, data) => {
-    event.stopPropagation(); // Impede a propagação do evento para o elemento pai (item-consulta)
-    setSelectedPaciente(data);
-    setIsModalOpen(true);
+    if (event) {
+      event.stopPropagation(); // Impede a propagação do evento para o elemento pai (item-consulta)
+      setSelectedPaciente(data);
+      setIsModalOpen(true);
+    } else {
+      setIsModalOpen(false);
+    }
   };
 
   const validarData = (dataAPI) => {
@@ -41,44 +77,55 @@ const Historico = () => {
     return status;
   };
 
+  const url = `http://localhost:3000/clinica/consulta/${IdClinica}`;
+
+  const getConsultas = () => {
+    axios
+      .get(url)
+      .then((response) => {
+        const consultasData = response.data.consultas;
+        console.log(consultasData);
+        setConsultas(consultasData);
+
+        const consultasPassadas = consultasData.filter(
+          (data) => validarData(data.dia) === "anterior"
+        );
+        const consultasFuturas = consultasData.filter(
+          (data) => validarData(data.dia) === "futura"
+        );
+        const consultasAtuais = consultasData.filter(
+          (data) => validarData(data.dia) === "atual"
+        );
+
+        setConsultasPassadas(consultasPassadas);
+        setConsultasMarcadas(consultasFuturas);
+        setConsultasAtuais(consultasAtuais);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
     if (IdClinica) {
-      const url = `http://localhost:3000/clinica/consulta/${IdClinica}`;
-
-      const getConsultas = () => {
-        axios
-          .get(url)
-          .then((response) => {
-            const consultasData = response.data.clinicas;
-            console.log(consultasData);
-            setConsultas(consultasData);
-
-            const consultasPassadas = consultasData.filter(
-              (data) => validarData(data.dia) === "anterior"
-            );
-            const consultasFuturas = consultasData.filter(
-              (data) => validarData(data.dia) === "futura"
-            );
-            const consultasAtuais = consultasData.filter(
-              (data) => validarData(data.dia) === "atual"
-            );
-
-            setConsultasPassadas(consultasPassadas);
-            setConsultasMarcadas(consultasFuturas);
-            setConsultasAtuais(consultasAtuais);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      };
-
       getConsultas();
     }
-  }, [IdClinica]);
+  }, [IdClinica, url]);
 
   return (
     <>
       <div className={styles.container_geral}>
+      <ToastContainer
+        position="top-center"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="black" />
         <div className={styles.container}>
           <div className={styles.container_cima}>
             <h1 className={styles.container_title}>
@@ -89,26 +136,22 @@ const Historico = () => {
             <div className={styles["container-box"]}>
               <div className={styles["filter-consultas"]}>
                 <button
-                  onClick={() => {
-                    setConsultas(listConsultasAtuais);
-                  }}
-                  className={styles["button-filter"]}
+                  onClick={() => handleFilterClick('consultasHoje')}
+                  className={selectedFilter === 'consultasHoje' ? styles["button-filter-clicked"] : styles["button-filter"]}
                 >
                   Consultas de hoje
                 </button>
                 <button
-                  onClick={() => {
-                    setConsultas(listConsultasMarcadas);
-                  }}
-                  className={styles["button-filter"]}
+                  onClick={() => handleFilterClick('consultasFuturas')}
+                  className={selectedFilter === 'consultasFuturas' ? styles["button-filter-clicked"] : styles["button-filter"]}
+
                 >
                   Consultas futuras
                 </button>
                 <button
-                  onClick={() => {
-                    setConsultas(listConsultasPassadas);
-                  }}
-                  className={styles["button-filter"]}
+                  onClick={() => handleFilterClick('consultasPassadas')}
+                  className={selectedFilter === 'consultasPassadas' ? styles["button-filter-clicked"] : styles["button-filter"]}
+
                 >
                   Consultas realizadas
                 </button>
@@ -123,7 +166,7 @@ const Historico = () => {
                       <div className={styles["item-consulta"]}>
                         <div className={styles["item"]}>
                           <div className={styles["fotoPaciente"]}>
-                            <img src={data.foto} alt="" />
+                            <img src={data.foto} alt="imagem de perfil" />
                           </div>
                           <div className={styles["informacoesPaciente"]}>
                             <div className={styles["info-box"]}>
@@ -155,7 +198,7 @@ const Historico = () => {
                             </span>
                           </div>
                           <div
-                            onClick={(event) => handleEditClick(event, data)}
+                            onClick={(event) => handleEditClick(event, data, true)}
                             className={styles["item-edit"]}
                           >
                             <span>
@@ -174,8 +217,44 @@ const Historico = () => {
         {isModalOpen && (
           <ModalHistorico
             pacienteInfo={selectedPaciente}
-            closeModal={() => {
-              setIsModalOpen(false);
+            closeModal={closeModal}
+            onClick={(idConsulta) => {
+              closeModalConfirmacao()
+              let url = `http://localhost:3000/consulta/${idConsulta}`;
+              axios
+                .delete(url)
+                .then((response) => {
+                  const data = response.data;
+                  
+                  if (data.status === 404) {
+                    toast.error(data.message, {
+                      position: "top-center",
+                      autoClose: 6000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+                    setTimeout(closeModal, 5000);
+                  } else {
+                    getConsultas()
+                    toast.success(data.message, {
+                      position: "top-center",
+                      autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+
+                    closeModalConfirmacao // Fecha o modal após 5 segundos
+                  }
+                })
+                .catch((err) => console.log(err));
             }}
           />
         )}
