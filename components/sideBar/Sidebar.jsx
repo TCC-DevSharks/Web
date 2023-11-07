@@ -9,8 +9,6 @@ import axios from "axios";
 const Sidebar = () => {
   const [listMedicos, setMedicos] = useState();
   let IdMedico = null;
-  console.log(listMedicos);
-
 
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const Sidebar = () => {
           .get(url)
           .then((response) => {
             const data = response.data;
-            console.log(data);
             setMedicos(data);
           })
           .catch((error) => {
@@ -63,6 +60,7 @@ const Sidebar = () => {
         </div>
 
         <ul>
+          
           <li>
             <i>
               <Link href="/medico/agenda">
@@ -71,6 +69,7 @@ const Sidebar = () => {
               </Link>
             </i>
           </li>
+
           <li>
             <i>
               <Link href="/medico/chat">
@@ -79,6 +78,7 @@ const Sidebar = () => {
               </Link>
             </i>
           </li>
+
           <li>
             <i>
               <Link href="/medico/dieta">
@@ -87,6 +87,7 @@ const Sidebar = () => {
               </Link>
             </i>
           </li>
+
           <li>
             <i>
               <Link href="/medico/prontuario">
@@ -95,6 +96,7 @@ const Sidebar = () => {
               </Link>
             </i>
           </li>
+
           <li>
             <i>
               <Link href="/medico/home">
@@ -102,8 +104,10 @@ const Sidebar = () => {
               </Link>
             </i>
           </li>
+
         </ul>
       </div>
+
       <div className={styles["footer"]}>
         <ul>
           <li>
