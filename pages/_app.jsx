@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import 'chart.js/auto'; 
 import firebase from 'firebase/app';
 import 'firebase/storage';
+import '@radix-ui/themes/styles.css';
 
 export default function App({ Component, pageProps }) {
   return (

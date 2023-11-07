@@ -10,7 +10,6 @@ const Sidebar = () => {
   const [listMedicos, setMedicos] = useState();
   let IdMedico = null;
 
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Verificar se estamos no lado do cliente (navegador)
@@ -25,6 +24,7 @@ const Sidebar = () => {
           .get(url)
           .then((response) => {
             const data = response.data;
+
             setMedicos(data);
           })
           .catch((error) => {
@@ -60,7 +60,7 @@ const Sidebar = () => {
         </div>
 
         <ul>
-          
+
           <li>
             <i>
               <Link href="/medico/agenda">
