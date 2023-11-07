@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Agenda.module.scss';
 import TituloSecao from '../../../components/tituloSection/TituloSecao';
 import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import axios from 'axios';
+import { format, parse } from 'date-fns';
+
 
 export default function Agenda() {
     const [checkboxStates, setCheckboxStates] = useState([false, false]);
@@ -15,59 +18,43 @@ export default function Agenda() {
         setCheckboxStates(newCheckboxStates);
     };
 
+    const [events, setEvents] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3000/profissional/gestante/1')
+            .then(response => {
+                const eventos = response.data.pacientes.map(paciente => ({
+                    id: paciente.idConsulta,
+                    title: paciente.nome,
+                    start: format(parse(paciente.dia + 'T' + paciente.hora, 'dd/MM/yyyy\'T\'HH:mm:ss.SSS', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS'),
+                    end: format(parse(paciente.dia + 'T' + paciente.hora, 'dd/MM/yyyy\'T\'HH:mm:ss.SSS', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS'),
+                }));
+                setEvents(eventos);
+            })
+            .catch(error => {
+                console.error('Erro ao obter os eventos: ', error);
+            });
+    }, []);
     return (
         <div>
             <span>teste</span>
             <div className={styles['agenda-container']}>
                 <TituloSecao title="Agenda" />
                 <div className={styles["calendario-container"]}>
-                    <div className={styles['calendario']}>
-                        <Fullcalendar
-                            locale={'pt-br'}
-                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                            initialView={"dayGridMonth"}
-                            headerToolbar={{
-                                start: "today prev,next",
-                                center: "title",
-                                end: "dayGridMonth,timeGridWeek,timeGridDay",
-                            }}
-                            height={"50vh"}
-                            events={[
-                                {
-                                    id: 'a',
-                                    title: 'Maria',
-                                    start: '2023-11-06T08:30:00',
-                                    end: '2023-10-26T09:00:00',
-                                    backgroundColor: '#B6B6F6',
-                                    demanding: true
-                                },
-                                {
-                                    id: 'a',
-                                    title: 'Maria',
-                                    start: '2023-11-06T08:30:00',
-                                    end: '2023-10-26T09:00:00',
-                                    backgroundColor: '#B6B6F6',
-                                    demanding: true
-                                },
-                                {
-                                    id: 'a',
-                                    title: 'Maria',
-                                    start: '2023-11-06T08:30:00',
-                                    end: '2023-10-26T09:00:00',
-                                    backgroundColor: '#B6B6F6',
-                                    demanding: true
-                                },
-                                {
-                                    id: 'c',
-                                    title: 'Claudia',
-                                    start: '2023-11-06T17:30:00',
-                                    end: '2023-10-26T18:00:00',
-                                    backgroundColor: '#B6B6F6',
-                                    demanding: true
-                                },
-                            ]}
-                        />
-                    </div>
+                <div className={styles["calendario"]}>
+                <Fullcalendar
+                    locale={'pt-br'}
+                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                    initialView={"dayGridMonth"}
+                    headerToolbar={{
+                        start: "today prev,next",
+                        center: "title",
+                        end: "dayGridMonth,timeGridWeek,timeGridDay",
+                    }}
+                    height={"50vh"}
+                    events={events} // Use o array de eventos obtido da API
+                />
+            </div>
 
                   <div className={styles['compromissos']}>
                     <div className={styles['compromisso']}>

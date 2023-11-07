@@ -11,7 +11,13 @@ const Sidebar = () => {
   let IdMedico = null;
   console.log(listMedicos);
 
+<<<<<<< HEAD
 
+=======
+  if (typeof window !== "undefined") {
+    IdMedico = localStorage.getItem("id");
+  }
+>>>>>>> 0f0799af213432a165c17ce564986a5ffc3e0f4a
 
   useEffect(() => {
     if (typeof window !== "undefined") {
