@@ -43,12 +43,17 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
   };
 
   useEffect(() => {
+
     if (socket.current) {
-      socket.current.on("send-msg", (msg) => {
-        setArrivalMessage({ fromSelf: false, message: msg });
+      socket.current.on("msg-receive", (msg) => {
+        console.log(msg);
+        setMessages((messages) => [...messages, {sender: currentChat._id,_id: currentChat._id, text: msg }]);
       });
+
     }
-  }, []);
+  }, [socket.current]);
+
+
 
   useEffect(() => {
     arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
@@ -62,10 +67,11 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
   // Função para rolar para o fundo do elemento de mensagens
   const scrollToBottom = () => {
     if (scrollRef.current) {
-      console.log("sdzfc");
       scrollRef.current.scrollIntoView({ behavior: "smooth" }); 
     }
   };
+
+  console.table(messages)
 
   if (currentChat) {
     return (
@@ -85,6 +91,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
             return (
               <div className={styles["message"]}>
                 <div
+                    
                   className={styles[
                     message.sender == `${currentChat._id}`
                       ? "pai__sended"

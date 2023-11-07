@@ -18,7 +18,7 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    const url = "http://localhost:3000/profissional/gestante/16";
+    const url = "http://localhost:3000/profissional/gestante/1";
 
     function getPacientes() {
       axios
@@ -36,7 +36,7 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    const url = `http://localhost:3000/profissional/16`;
+    const url = `http://localhost:3000/profissional/1`;
 
     function getProfessional() {
       axios
@@ -78,6 +78,7 @@ const Chat = () => {
     if (currentUser) {
       socket.current = io("ws://localhost:3000");
       socket.current.emit("add-user", currentUser._id);
+      console.log(currentUser._id);
     }
   }, [currentUser]);
 
