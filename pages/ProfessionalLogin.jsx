@@ -102,11 +102,10 @@ function ClinicLogin() {
                 </p>
               </div>
             </div>
-            <div className={styles.button_login_pro}>
-              <button>
+          
+              <button className={styles.button_login_pro}>
                 Entrar
               </button>
-            </div>
           </form>
         </div>
       </div>

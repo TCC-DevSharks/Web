@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RiNotification2Line } from 'react-icons/ri';
 import { BsPerson } from 'react-icons/bs';
 import { HiOutlineMail } from 'react-icons/hi';
@@ -10,6 +10,15 @@ import ToggleButton from '../../../components/medico/perfil/ToggleButton';
 import Sidebar from '../../../components/sideBar/Sidebar';
 
 const Perfil = () => {
+
+    const [dadosPessoaisClicados, setDadosPessoaisClicados] = useState(false);
+    const [mensagem, setMensagem] = useState('');
+
+    const handleClickDadosPessoais = () => {
+        setDadosPessoaisClicados(true);
+        setMensagem('Oi');
+    };
+
     return (
         <>
             <Sidebar />
@@ -32,7 +41,7 @@ const Perfil = () => {
                             <div className={styles['title']}>
                                 Conta
                             </div>
-                            <div className={styles['description']}>
+                            <div className={styles['description']} onClick={handleClickDadosPessoais}>
                                 <a> <BsPerson /> </a>Dados Pessoais <div className={styles['seta']}><IoIosArrowForward /></div>
                             </div>
                         </div>
@@ -56,7 +65,7 @@ const Perfil = () => {
 
                     <div className={styles['tela-box']}>
                         <div className={styles['tela']}>
-
+                            {dadosPessoaisClicados && <p>{mensagem}</p>}
                         </div>
                     </div>
                 </div>
