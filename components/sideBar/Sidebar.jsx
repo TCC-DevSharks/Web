@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (IdMedico) {
-      const url = `http://localhost:3000/medico/${IdMedico}`;
+      const url = `http://localhost:3000/profissional/${IdMedico}`;
 
       function getMedico() {
         axios
@@ -37,21 +37,22 @@ const Sidebar = () => {
     }
   }, []);
 
+
   return (
     <aside className={styles["sidebar"]}>
       <div className={styles["content"]}>
         <div className={styles["image-box"]}>
           <li>
             <Link href="/medico/perfil">
-              {listMedicos?.medico.map((medico) => (
+              {listMedicos?.profissionais?.map((profissionais) => (
                 <>
                   <img
                     className={styles["image-clinica"]}
-                    src={medico.foto}
+                    src={profissionais.foto}
                     alt="foto de perfil da clinica"
                   />
 
-                  <h1>{medico.nome}</h1>
+                  <h1>{profissionais.nome}</h1>
                 </>
               ))}
             </Link>

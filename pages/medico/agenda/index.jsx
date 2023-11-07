@@ -36,7 +36,7 @@ export default function Agenda() {
                                 {
                                     id: 'a',
                                     title: 'Maria',
-                                    start: '2023-10-26T08:30:00',
+                                    start: '2023-11-06T08:30:00',
                                     end: '2023-10-26T09:00:00',
                                     backgroundColor: '#B6B6F6',
                                     demanding: true
@@ -44,7 +44,7 @@ export default function Agenda() {
                                 {
                                     id: 'a',
                                     title: 'Maria',
-                                    start: '2023-10-26T08:30:00',
+                                    start: '2023-11-06T08:30:00',
                                     end: '2023-10-26T09:00:00',
                                     backgroundColor: '#B6B6F6',
                                     demanding: true
@@ -52,7 +52,7 @@ export default function Agenda() {
                                 {
                                     id: 'a',
                                     title: 'Maria',
-                                    start: '2023-10-26T08:30:00',
+                                    start: '2023-11-06T08:30:00',
                                     end: '2023-10-26T09:00:00',
                                     backgroundColor: '#B6B6F6',
                                     demanding: true
@@ -60,7 +60,7 @@ export default function Agenda() {
                                 {
                                     id: 'c',
                                     title: 'Claudia',
-                                    start: '2023-10-26T17:30:00',
+                                    start: '2023-11-06T17:30:00',
                                     end: '2023-10-26T18:00:00',
                                     backgroundColor: '#B6B6F6',
                                     demanding: true
