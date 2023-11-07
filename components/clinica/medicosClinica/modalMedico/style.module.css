@@ -1,0 +1,142 @@
+.modalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1c1c1c7c;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.modalBox {
+  background-color: #fff;
+  border-radius: 20px;
+  height: 95%;
+  width: 95%;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2%;
+  padding: 5%;
+  height: 100%;
+  width: 100%;
+}
+
+.closeButtonModal {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.nameImage {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.medicoImage {
+  border-radius: 100%;
+  width: 80px;
+}
+.item {
+  display: grid;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-areas: "um dois tres";
+  width: 100%;
+  gap: 10px;
+  height: 100%;
+  padding-top: 20px;
+}
+
+.columnOne {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2%;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f3f1;
+  padding: 5%;
+  border-radius: 10px;
+  border: 1px solid #b6b6f6;
+  grid-area: "um";
+}
+
+.columnTwo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2%;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  background-color: #f5f3f1;
+  padding: 5%;
+  border-radius: 10px;
+  border: 1px solid #b6b6f6;
+  grid-area: "dois";
+}
+
+.medicoInfoPessoal {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 5px;
+  padding-bottom: 10px;
+}
+
+.informartion {
+  background-color: #fff;
+  border: 1px solid #1c1c1c7c;
+  width: 100%;
+  padding: 2%;
+  border-radius: 5px;
+  color: #b6b6f6;
+  font-weight: 600;
+  font-size: 1.2rem;
+  cursor: not-allowed;
+}
+
+.buttonExcluir {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1%;
+  padding: 5%;
+  background-color: #f6f3f1;
+  border: 1px solid #b6b6f6;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.048);
+  -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.072);
+  box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.075);
+  font-weight: 700;
+}
+
+.button:hover{
+    color: #FFF;
+    background-color: #f90100;
+    border: 1px solid #FFF;
+    transition: 0.3s;
+}

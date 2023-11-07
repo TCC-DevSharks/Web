@@ -1,0 +1,147 @@
+.modalContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c1c1c7c;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.modalBox{
+    background-color: #FFF;
+    border-radius: 20px;
+    height: 50%;
+    width: 50%;
+}
+
+.modalContent{
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+    padding: 5% 5% 5% 5%;
+    height: 100%;
+    width: 100%;
+}
+
+.closeButtonModal{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+
+.especialidadesBox{
+    display: flex;
+    gap: 20px;
+}
+
+.boxButtonEspecialidade{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 5px;
+}
+
+.buttonEspecialidade{
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 1px solid #3a3a4700;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.23);
+    background-color: #b6b6f6;
+    width: 100%;
+    padding:10px;
+    color: #FFF;
+}
+
+
+.datasBox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.buttonData{
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 1px solid #3a3a4700;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.458);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.23);
+    background-color: #b6b6f6;
+    width: 100%;
+    padding:10px;
+    color: #FFF;
+}
+
+
+.boxButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+    height: 100%;
+}
+.buttonEnvModal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    padding: 1%;
+    background-color: #f6f3f1;
+    border: 1px solid #b6b6f6;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.048);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.072);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.075);
+    font-weight: 700;
+}
+.buttonCancelarConsulta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1%;
+    padding: 1%;
+    color: #f90100;
+    background-color: #f6f3f1;
+    border: 1px solid #b6b6f6;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.048);
+    -moz-box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.072);
+    box-shadow: 0px 4px 0px -1px rgba(0, 0, 0, 0.075);
+    font-weight: 700;
+}
+
+.buttonCancelarConsulta:hover{
+    color: #FFF;
+    background-color: #f90100;
+    transition: 0.3s;
+    border: 1px solid #fff;
+}
+
+.buttonEnvModal:hover{
+    background-color: #b6b6f6;
+    color: #FFF;
+    transition: 0.3s;
+}

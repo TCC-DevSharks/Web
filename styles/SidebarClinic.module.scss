@@ -1,96 +1,132 @@
+// Sidebar
 .sidebar {
-    background-color: #F6F3F1;
-    width: 6%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
+  background-color: #F6F3F1; // Cor de fundo
+  color: #fff; // Cor do texto
+  width: 15%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    .ul {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        width: 100%;
+  // Estilos para o conteúdo do sidebar
+  .content {
+    padding: 1rem;
+    padding-left: 10%;
+
+    .image-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 35%;
+      flex-direction: column;
+
+      li {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
-        height: 100%;
-        padding-top:200px;
-        gap: 20%;
-        
-
-        li {
-            a {
-                color: #4c4c4c;
-                text-decoration: none;
-                font-size: 30px;
-                transition: 0.2s ease;
-
-                &:hover {
-                    color: #B6B6F6;
-                    text-decoration: none;
-                }
-            }
-
-            .img_img {
-                background: #B6B6F6;
-                border-radius: 50%;
-                padding: 4px;
-                display: flex;
-                object-fit: cover;
-                width: 100px;
-                height: 100px;
-                transition: padding 0.5s ease;
-
-                &:hover {
-                    padding: 0;
-                }
-
-                img {
-                    border-radius: 50%;
-                }
-            }
-        }
-
-        .lista {
-            display: flex;
-            flex-direction: column;
-            font-size: 30px;
-            gap: 70px;
-            justify-content: center;
-        }
-    }
-}
-
-
-@media (max-width: 768px) {
-    .sidebar {
+        justify-content: center;
         width: 100%;
-        height: 150px;
+        height: 100%;
+        margin-top: 30%;
+        
+        a{
+          display: flex;
+          align-items: flex-start;
+          width: 100%;
+          height: 100%;
+          gap: 10px;
 
-        .ul {
-            gap: 15px;
+          .image-clinica{
+            width:70px;
+            height:70px;
+            border-radius: 100%;
+            background: #B6B6F6;
+          }
+          .image-clinica:hover{
+            transition: padding 0.5s ease;
+            border: 1px solid #b6b6f6;
+          }
 
-            li {
-                padding-top: 10px;
-
-                a {
-                    font-size: 25px;
-                }
-
-                .img_img {
-                    padding: 3px;
-                    width: 80px;
-                    height: 80px;
-                }
-            }
-
-            .lista {
-                flex-direction: row;
-            }
+          h1{
+            display: flex;
+            align-items: center;
+            height: 100%;
+            color: #4c4c4c;
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 50%;
+          }
+          h1:hover{
+            color: #b6b6f6;
+            
+          }
         }
+      }
     }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 100px;
+
+      li {
+        margin-bottom: 1rem;
+
+        a {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          text-decoration: none;
+          color: #4c4c4c;
+          font-size: 1.3rem;
+          font-weight: 600;
+          text-decoration: none;
+        }
+        a:hover {
+          color: #b6b6f6;
+          transition: 0.2s;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  // Estilos para o rodapé do sidebar
+  .footer {
+    padding: 1rem;
+    border-top: 1px solid #4c4c4c;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 1rem;
+
+        a {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          text-decoration: none;
+          color: #4c4c4c;
+          font-size: 1.3rem;
+          font-weight: 600;
+        }
+        a:hover {
+          color: #b6b6f6;
+          transition: 0.2s;
+          font-weight: 700;
+        }
+      }
+    }
+  }
 }
