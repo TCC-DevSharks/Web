@@ -28,10 +28,15 @@ function ClinicLogin() {
   };
 
   const entrarPerfilProfissinal = (id) => {
-    setLogin(!login)
-    router.push(`/medico/home/`)
-    localStorage.setItem('id', id)
-    console.log(id);
+    if (id) {
+      localStorage.setItem('id', id); // Defina o ID no localStorage
+      setLogin(!login);
+      router.push(`/medico/home/`); // Redirecione para a página de home
+      console.log(id);
+    } else {
+      console.log('ID is undefined.');
+      // Adicione aqui o tratamento apropriado para lidar com o ID undefined, como uma mensagem de erro.
+    }
   }
 
   const handleLogin = async (e) => {
@@ -102,10 +107,10 @@ function ClinicLogin() {
                 </p>
               </div>
             </div>
-          
-              <button className={styles.button_login_pro}>
-                Entrar
-              </button>
+
+            <button className={styles.button_login_pro}>
+              Entrar
+            </button>
           </form>
         </div>
       </div>
