@@ -114,7 +114,7 @@ function RegisterClinic() {
       });
 
       if (response.ok) {
-        console.log('Dados enviados com sucesso!');
+        
         alert('Dados enviados com sucesso!');
       } else {
         const responseData = await response.json();

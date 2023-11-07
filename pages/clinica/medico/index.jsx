@@ -1,37 +1,71 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Medico.module.scss";
-import Medico from "../../.././components/clinica/medicosClinica/Medico";
 import Sidebar from "../../.././components/clinica/sideBar/SidebarClinica";
 import { useRouter } from "next/router";
-import {
-  AiFillCalendar,
-  AiFillClockCircle,
-  AiOutlineUserAdd,
-} from "react-icons/ai";
-import { BiEditAlt, BiRightArrowCircle } from "react-icons/bi";
-import axios, { Axios } from "axios";
+import { AiOutlineUserAdd } from "react-icons/ai";
+import { BiEditAlt } from "react-icons/bi";
+import axios from "axios";
 import { ModalMedico } from "../../../components/clinica/medicosClinica/modalMedico";
+import { BsClockFill } from "react-icons/bs";
 
 export default function Medicos() {
-  const [listMedicos, setListMedicos] = useState();
+  const [listMedicos, setListMedicos] = useState([]);
+  const [listMedicos2, setListMedicos2] = useState([]);
   const [medicoSelected, setSelectMedico] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-console.log(medicoSelected);
-
+  const [filtroNome, setFiltroNome] = useState('');
+  const [filtroEspecialidade, setFiltroEspecialidade] = useState('');
+  const [listaOriginal, setListaOriginal] = useState([]);
   const router = useRouter();
-  const IdClinica =
-    typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const IdClinica = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+
+
 
   const handleClick = () => {
     router.push("/clinica/cadastroMedico");
   };
 
   const handleEditClick = (event, data) => {
-    event.stopPropagation(); 
+    event.stopPropagation();
     setSelectMedico(data);
     setIsModalOpen(true);
   };
 
+
+
+  const removerAcentos = (str) => {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  };
+  
+  const filtrar = () => {
+    // Filtra a lista original de médicos com o filtro de nome
+    const medicosFiltradosPorNome = filtrarMedicosNome(listaOriginal, filtroNome);
+    
+    // Filtra a lista resultante do filtro por nome com o filtro de especialidade
+    filtrarMedicosEspecialidade(medicosFiltradosPorNome, filtroEspecialidade);
+  };
+  
+  const filtrarMedicosNome = (lista, filtro) => {
+    const filtroSemAcentos = removerAcentos(filtro).toLowerCase();
+    return lista.filter(medico =>
+      removerAcentos(medico.nome).toLowerCase().includes(filtroSemAcentos)
+    );
+  };
+  
+  const filtrarMedicosEspecialidade = (lista, filtro) => {
+    const filtroSemAcentos = removerAcentos(filtro).toLowerCase();
+    const medicosFiltradosEspecialidade = lista.filter(medico =>
+      removerAcentos(medico.especialidade).toLowerCase().includes(filtroSemAcentos)
+    );
+  
+    setListMedicos(medicosFiltradosEspecialidade);
+  };
+  
+  const limparFiltro = () => {
+    setFiltroNome('');
+    setFiltroEspecialidade('');
+    setListMedicos(listaOriginal);
+  };
   useEffect(() => {
     const url = `http://localhost:3000/clinica/profissional/${IdClinica}`;
     const getMedicos = () => {
@@ -40,6 +74,7 @@ console.log(medicoSelected);
         .then((response) => {
           const medicos = response;
           setListMedicos(medicos.data.clinicas);
+          setListaOriginal(medicos.data.clinicas)
         })
         .catch((error) => {
           console.error(error);
@@ -72,7 +107,9 @@ console.log(medicoSelected);
                   id="filterMedico"
                   cols="30"
                   rows="10"
+                  value={filtroNome}
                   placeholder="Pesquise pelo nome do médico:"
+                  onChange={(e) => setFiltroNome(e.target.value)}
                 />
                 <input
                   className={styles["pesquisarMedico"]}
@@ -80,60 +117,69 @@ console.log(medicoSelected);
                   id="filterMedico"
                   cols="30"
                   rows="10"
+                  value={filtroEspecialidade}
                   placeholder="Pesquise pela especilidade do médico:"
+                  onChange={(e) => setFiltroEspecialidade(e.target.value)}
                 />
-                <button className={styles["button-filter"]}>filtrar</button>
+                <button 
+                  onClick={filtrar} 
+                  className={styles["button-filter"]}>
+                    filtrar
+                </button>
+                <button 
+                  onClick={limparFiltro} 
+                  className={styles["button-filter"]}>
+                    limpar filtro
+                </button>
               </div>
               <div className={styles["box-medicos"]}>
-                <h2>Profissionais:</h2>
                 <div className={styles["medicos"]}>
-                  {listMedicos?.map((medico) => {
-                    return (
-                      <>
-                        <div className={styles["item-consulta"]}>
-                          <div className={styles["item"]}>
-                            <div className={styles["fotoPaciente"]}>
-                              <img
-                                src={medico.foto}
-                                alt="foto de perfil do medico"
-                              />
-                            </div>
-                            <div className={styles["informacoesPaciente"]}>
-                              <div className={styles["info-box"]}>
-                                <h3>Dr. {medico.nome}</h3>
-                                <h4>
-                                  Especialidade:{" "}
-                                  <span style={{ color: "#b6b6f6" }}>
-                                    Nutricionista
-                                  </span>
-                                </h4>
-                                <p>Clique no botão abaixo com uma seta para vizualizar mais sobre este médico:</p>
-                              </div>
-                            </div>
-                          </div>
-                          <div className={styles["infoTwo"]}>
-                            <div className={styles["item-info"]}>
-                              <span>Inicio: 11:00{/* {data.dia} */}</span>
-                            </div>
-                            <div className={styles["item-info"]}>
-                              <span>
-                                Fim: 18:00
-                                {/* {hora}:{min} */}
-                              </span>
-                            </div>
-                            <div
-                              onClick={(event) => handleEditClick(event, medico)}
-                              className={styles["item-edit"]}
-                            >
-                              <span>
-                                <BiRightArrowCircle style={{ fontSize: "1.3rem", fontWeight:"bold" }} />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </>
-                    );
-                  })}
+                  <div className={styles["item-consulta"]}>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Nome do funcionário</th>
+                          <th>Especialidade</th>
+                          <th>Inicio atendimento <BsClockFill /></th>
+                          <th>Fim atendimento <BsClockFill /></th>
+                          <th>Vizualizar profissional</th>
+                        </tr>
+                      </thead>
+
+                      {listMedicos?.map((medico) => {
+                        const nomeMedico = medico.nome;
+                        const nomeCapitalizado = nomeMedico.charAt(0).toUpperCase() + nomeMedico.slice(1);
+                        const [horaInicio, minInicio] = medico.inicio_atendimento.split(':')
+                        const [horaFim, minFim] = medico.fim_atendimento.split(':')
+                        return (
+                          <>
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <div >
+                                    <img
+                                      className={styles.round_image}
+                                      src={medico.foto}
+                                    />
+                                    {nomeCapitalizado}
+                                  </div>
+                                </td>
+                                <td>{medico.especialidade}</td>
+                                <td style={{ paddingLeft: '3%' }}>{horaInicio}:{minInicio}</td>
+                                <td style={{ paddingLeft: '3%' }}>{horaFim}:{minFim}</td>
+                                <td>
+                                  <div
+                                    onClick={(event) => handleEditClick(event, medico)}
+                                    className={styles["item-edit"]}> Editar médico <BiEditAlt />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </>
+                        );
+                      })}
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -148,34 +194,7 @@ console.log(medicoSelected);
           />
         )}
       </div>
-
-      {/* < Sidebar />
-            <div className={styles.container_geral}>
-            <div className={styles.container_dados}>
-                <div className={styles.container_cima}>
-                    <div className={styles.title}>Gerenciar Médicos</div>
-
-                    <div className={styles.inputs}>
-                        <button className={styles.button} onClick={handleClick}>
-                            +
-                        </button>
-                        <input className={styles.search}></input>
-                        <input className={styles.filter}></input>
-                    </div>
-                </div>
-
-                <div className={styles.box_medicos}>
-                    {Array.isArray(medicos) ? (
-                        medicos.map((medico) => (
-                            <Medico key={medico.id} medico={medico} />
-                        ))
-                    ) : (
-                        <p>Nenhum médico disponível</p>
-                    )}
-                </div>
-
-            </div>
-        </div> */}
     </>
   );
 }
+

@@ -5,7 +5,7 @@ import axios from "axios";
 import { ModalConfirmation } from "./modalConfirmacao";
 
 export function ModalMedico({ medicoInfo, closeModal }) {
-  console.log(medicoInfo);
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hora, min] = medicoInfo.inicio_atendimento.split(":");
 

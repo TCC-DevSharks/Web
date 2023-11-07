@@ -11,11 +11,13 @@ import Footer from '../components/home/footer/Footer';
 function Main() {
   return (
     <div>
-      <Header />
-      <Home />  
-      <SectionDiv/>
-      <SectionArticles />
-      <Footer />
+
+        <Header />
+        <Home />
+        <SectionDiv />
+        <SectionArticles />
+        <Footer />
+       
     </div>
   );
 };

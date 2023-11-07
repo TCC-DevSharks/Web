@@ -46,7 +46,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
     if (socket.current) {
       socket.current.on("msg-receive", (msg) => {
-        console.log(msg);
+       
         setMessages((messages) => [...messages, {sender: currentChat._id,_id: currentChat._id, text: msg }]);
       });
 

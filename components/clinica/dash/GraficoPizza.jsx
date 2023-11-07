@@ -15,7 +15,7 @@ export default function GraficoPizza() {
           axios.get(url)
             .then(response => {
               const data = response.data;
-              console.log(data);
+              
               setDataClinica(data);
             })
             .catch(error => {
