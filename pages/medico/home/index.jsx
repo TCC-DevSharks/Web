@@ -25,13 +25,12 @@ export default function Home({ Component, pageProps }) {
         // Faça a contagem das consultas do mês com base no mês atual
         const mesAtual = new Date().getMonth() + 1; // Obtém o número do mês atual (1 a 12)
         const consultasMes = response.data.pacientes.filter(paciente => {
-          const dataConsulta = new Date(paciente.dia);
+          const dataConsulta = new Date(paciente.diaDesformatado);
           const mesConsulta = dataConsulta.getMonth() + 1; // Obtém o mês da consulta
           return mesConsulta === mesAtual;
         });
         const numConsultasMes = consultasMes.length;
         setConsultasDoMes(numConsultasMes);
-        console.log(numConsultasMes)
       })
       .catch(error => {
         console.error('Erro ao buscar dados do endpoint:', error);

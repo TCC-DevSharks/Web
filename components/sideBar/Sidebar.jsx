@@ -11,12 +11,14 @@ const Sidebar = () => {
   let IdMedico = null;
   console.log(listMedicos);
 
-  if (typeof window !== "undefined") {
-    // Verificar se estamos no lado do cliente (navegador)
-    IdMedico = localStorage.getItem("id");
-  }
+
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Verificar se estamos no lado do cliente (navegador)
+      IdMedico = localStorage.getItem("id");
+    }
+
     if (IdMedico) {
       const url = `http://localhost:3000/profissional/${IdMedico}`;
 
