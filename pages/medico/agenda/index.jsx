@@ -26,17 +26,16 @@ export default function Agenda() {
                 console.log('Resposta da API:', response.data); // Verifique se os dados da API estão corretos
 
                 const eventos = response.data.pacientes.map(paciente => {
-                    const dataFormatada = parse(paciente.dia, 'dd/MM/yyyy', new Date());
-                    const dataHoraFormatada = format(dataFormatada, 'yyyy-MM-dd\'T\'HH:mm:ss');
-                    console.log(dataHoraFormatada);
+                    const diaDesformatado = paciente.diaDesformatado;
+                    console.log('dia desformatado:', diaDesformatado);
                     return {
                         id: paciente.idConsulta,
                         title: paciente.nome,
-                        start: dataHoraFormatada,
-                        end: dataHoraFormatada,
+                        start: paciente.diaDesformatado,
+                        end: paciente.diaDesformatado,
                     };
-                    
-                });                
+                });  
+              
                 setEvents(eventos);
                
             })
@@ -61,7 +60,15 @@ export default function Agenda() {
                         end: "dayGridMonth,timeGridWeek,timeGridDay",
                     }}
                     height={"50vh"}
-                    events={events} // Use o array de eventos obtido da API
+                    events={[
+                        {
+                            id: 'teste',
+                            title: 'Evento de Teste',
+                            start: '2023-11-08T08:30:00',
+                            end: '2023-11-08T09:00:00',
+                        },
+                        ...events
+                    ]} // Use o array de eventos obtido da API
                 />
             </div>
 
