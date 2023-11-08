@@ -23,13 +23,21 @@ export default function Agenda() {
     useEffect(() => {
         axios.get('http://localhost:3000/profissional/gestante/1')
             .then(response => {
-                const eventos = response.data.pacientes.map(paciente => ({
-                    id: paciente.idConsulta,
-                    title: paciente.nome,
-                    start: format(parse(paciente.dia + 'T' + paciente.hora, 'dd/MM/yyyy\'T\'HH:mm:ss.SSS', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS'),
-                    end: format(parse(paciente.dia + 'T' + paciente.hora, 'dd/MM/yyyy\'T\'HH:mm:ss.SSS', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS'),
-                }));
+                console.log('Resposta da API:', response.data); // Verifique se os dados da API estão corretos
+
+                const eventos = response.data.pacientes.map(paciente => {
+                    const diaDesformatado = paciente.diaDesformatado;
+                    console.log('dia desformatado:', diaDesformatado);
+                    return {
+                        id: paciente.idConsulta,
+                        title: paciente.nome,
+                        start: paciente.diaDesformatado,
+                        end: paciente.diaDesformatado,
+                    };
+                });  
+              
                 setEvents(eventos);
+               
             })
             .catch(error => {
                 console.error('Erro ao obter os eventos: ', error);
@@ -52,7 +60,15 @@ export default function Agenda() {
                         end: "dayGridMonth,timeGridWeek,timeGridDay",
                     }}
                     height={"50vh"}
-                    events={events} // Use o array de eventos obtido da API
+                    events={[
+                        {
+                            id: 'teste',
+                            title: 'Evento de Teste',
+                            start: '2023-11-08T08:30:00',
+                            end: '2023-11-08T09:00:00',
+                        },
+                        ...events
+                    ]} // Use o array de eventos obtido da API
                 />
             </div>
 
