@@ -23,14 +23,11 @@ export default function Agenda() {
     useEffect(() => {
         axios.get('http://localhost:3000/profissional/gestante/1')
             .then(response => {
+                console.log('Resposta da API:', response.data); // Verifique se os dados da API estão corretos
+
                 const eventos = response.data.pacientes.map(paciente => {
                     const dataFormatada = parse(paciente.dia, 'dd/MM/yyyy', new Date());
-                    const horaFormatada = parse(paciente.hora, 'HH:mm:ss', new Date());
-                    
-                    // Use format para formatar a hora corretamente
-                    const horaISO8601 = format(horaFormatada, 'HH:mm:ss');
-                
-                    const dataHoraFormatada = format(dataFormatada, 'yyyy-MM-dd\'T\'') + horaISO8601;
+                    const dataHoraFormatada = format(dataFormatada, 'yyyy-MM-dd\'T\'HH:mm:ss');
                     console.log(dataHoraFormatada);
                     return {
                         id: paciente.idConsulta,
@@ -38,8 +35,8 @@ export default function Agenda() {
                         start: dataHoraFormatada,
                         end: dataHoraFormatada,
                     };
-                });
-                      
+                    
+                });                
                 setEvents(eventos);
                
             })
