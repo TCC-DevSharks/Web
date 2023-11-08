@@ -27,7 +27,7 @@ function ClinicLogin() {
     setPassword(e.target.value);
   };
 
-  const entrarPerfilProfissinal = (id) => {
+  const entrarPerfilProfissional = (id) => {
     if (id) {
       localStorage.setItem('id', id); // Defina o ID no localStorage
       setLogin(!login);
@@ -61,7 +61,7 @@ function ClinicLogin() {
         const data = await response.json();
         const id = data.doctor[0].id;
 
-        entrarPerfilProfissinal(id);
+        entrarPerfilProfissional(id);
 
 
       } else {
