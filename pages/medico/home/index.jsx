@@ -9,32 +9,38 @@ export default function Home({ Component, pageProps }) {
   const [consultasDoMes, setConsultasDoMes] = useState(0);
 
   useEffect(() => {
-    // Faça a solicitação para o endpoint de pacientes atendidos
-    axios.get('http://localhost:3000/profissional/gestante/35')
-      .then(response => {
-        // Extraia o valor do número de pacientes do resultado
-        const numPacientes = response.data.pacientes.length;
-        setPacientesAtendidos(numPacientes);
+    // Recupere o ID do médico do Local Storage
+    const IdMedico = localStorage.getItem("id");
 
-        // Faça a contagem das consultas do dia com base na data "dia"
-        const dataAtual = new Date().toLocaleDateString(); // Obtém a data atual no formato "MM/DD/YYYY"
-        const consultasDia = response.data.pacientes.filter(paciente => paciente.dia === dataAtual);
-        const numConsultasDia = consultasDia.length;
-        setConsultasDoDia(numConsultasDia);
+    // Certifique-se de que o ID foi recuperado corretamente
+    if (IdMedico) {
+      // Faça a solicitação para o endpoint de pacientes atendidos com o ID do médico
+      axios.get(`http://localhost:3000/profissional/gestante/${IdMedico}`)
+        .then(response => {
+          // Extraia o valor do número de pacientes do resultado
+          const numPacientes = response.data.pacientes.length;
+          setPacientesAtendidos(numPacientes);
 
-        // Faça a contagem das consultas do mês com base no mês atual
-        const mesAtual = new Date().getMonth() + 1; // Obtém o número do mês atual (1 a 12)
-        const consultasMes = response.data.pacientes.filter(paciente => {
-          const dataConsulta = new Date(paciente.diaDesformatado);
-          const mesConsulta = dataConsulta.getMonth() + 1; // Obtém o mês da consulta
-          return mesConsulta === mesAtual;
+          // Faça a contagem das consultas do dia com base na data "dia"
+          const dataAtual = new Date().toLocaleDateString(); // Obtém a data atual no formato "MM/DD/YYYY"
+          const consultasDia = response.data.pacientes.filter(paciente => paciente.dia === dataAtual);
+          const numConsultasDia = consultasDia.length;
+          setConsultasDoDia(numConsultasDia);
+
+          // Faça a contagem das consultas do mês com base no mês atual
+          const mesAtual = new Date().getMonth() + 1; // Obtém o número do mês atual (1 a 12)
+          const consultasMes = response.data.pacientes.filter(paciente => {
+            const dataConsulta = new Date(paciente.diaDesformatado);
+            const mesConsulta = dataConsulta.getMonth() + 1; // Obtém o mês da consulta
+            return mesConsulta === mesAtual;
+          });
+          const numConsultasMes = consultasMes.length;
+          setConsultasDoMes(numConsultasMes);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar dados do endpoint:', error);
         });
-        const numConsultasMes = consultasMes.length;
-        setConsultasDoMes(numConsultasMes);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar dados do endpoint:', error);
-      });
+    }
   }, []);
 
   return (

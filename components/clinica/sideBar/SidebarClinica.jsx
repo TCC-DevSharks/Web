@@ -9,7 +9,7 @@ import axios from "axios";
 const Sidebar = () => {
   const [listClinicas, setClinicas] = useState();
   let IdClinica = null;
-  console.log(listClinicas);
+  
 
   if (typeof window !== "undefined") {
     // Verificar se estamos no lado do cliente (navegador)
@@ -25,7 +25,7 @@ const Sidebar = () => {
           .get(url)
           .then((response) => {
             const data = response.data;
-            console.log(data);
+           
             setClinicas(data);
           })
           .catch((error) => {

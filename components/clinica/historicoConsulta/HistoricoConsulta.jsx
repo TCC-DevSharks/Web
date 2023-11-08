@@ -84,7 +84,7 @@ const Historico = () => {
       .get(url)
       .then((response) => {
         const consultasData = response.data.consultas;
-        console.log(consultasData);
+        
         setConsultas(consultasData);
 
         const consultasPassadas = consultasData.filter(

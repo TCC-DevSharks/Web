@@ -32,7 +32,6 @@ function ClinicLogin() {
       localStorage.setItem('id', id); // Defina o ID no localStorage
       setLogin(!login);
       router.push(`/medico/home/`); // Redirecione para a página de home
-      console.log(id);
     } else {
       console.log('ID is undefined.');
       // Adicione aqui o tratamento apropriado para lidar com o ID undefined, como uma mensagem de erro.
@@ -60,7 +59,6 @@ function ClinicLogin() {
 
       if (status === 201) {
         const data = await response.json();
-        console.log(data);
         const id = data.doctor[0].id;
 
         entrarPerfilProfissional(id);

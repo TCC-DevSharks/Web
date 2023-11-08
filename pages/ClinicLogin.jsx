@@ -30,7 +30,7 @@ function ClinicLogin() {
             setLogin(!login)
             router.push( `/clinica/home/`)
             localStorage.setItem('id', id)
-            console.log(id);
+          
         }
 
         const handleLogin = async (e) => {
