@@ -23,13 +23,25 @@ export default function Agenda() {
     useEffect(() => {
         axios.get('http://localhost:3000/profissional/gestante/1')
             .then(response => {
-                const eventos = response.data.pacientes.map(paciente => ({
-                    id: paciente.idConsulta,
-                    title: paciente.nome,
-                    start: format(parse(paciente.dia + 'T' + paciente.hora, 'dd/MM/yyyy\'T\'HH:mm:ss.SSS', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS'),
-                    end: format(parse(paciente.dia + 'T' + paciente.hora, 'dd/MM/yyyy\'T\'HH:mm:ss.SSS', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS'),
-                }));
+                const eventos = response.data.pacientes.map(paciente => {
+                    const dataFormatada = parse(paciente.dia, 'dd/MM/yyyy', new Date());
+                    const horaFormatada = parse(paciente.hora, 'HH:mm:ss', new Date());
+                    
+                    // Use format para formatar a hora corretamente
+                    const horaISO8601 = format(horaFormatada, 'HH:mm:ss');
+                
+                    const dataHoraFormatada = format(dataFormatada, 'yyyy-MM-dd\'T\'') + horaISO8601;
+                    console.log(dataHoraFormatada);
+                    return {
+                        id: paciente.idConsulta,
+                        title: paciente.nome,
+                        start: dataHoraFormatada,
+                        end: dataHoraFormatada,
+                    };
+                });
+                      
                 setEvents(eventos);
+               
             })
             .catch(error => {
                 console.error('Erro ao obter os eventos: ', error);
