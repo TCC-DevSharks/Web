@@ -123,7 +123,6 @@ export default function Home({ Component, pageProps }) {
 
             </div>
           </div>
-
         </div>
       </div>
     </div>
