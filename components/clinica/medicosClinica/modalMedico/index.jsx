@@ -4,36 +4,16 @@ import { useState } from "react";
 import axios from "axios";
 import { ModalConfirmation } from "./modalConfirmacao";
 
-export function ModalMedico({ medicoInfo, closeModal }) {
+export function ModalMedico({ medicoInfo, closeModal, onClick }) {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hora, min] = medicoInfo.inicio_atendimento.split(":");
-
-  const [valor, setValor] = useState("");
-
+  
   const handleConfirmacaoClick = function () {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
   };
 
-  const infoPessoalMedico = {
-    list: [
-      {
-        nome: medicoInfo.nome,
-      },
-      {
-        data_nascimento: medicoInfo.data_nascimento,
-      },
-      {
-        cpf: medicoInfo.cpf,
-      },
-      {
-        email: medicoInfo.email,
-      },
-      {
-        telefone: medicoInfo.telefone,
-      },
-    ],
-  };
+  
 
   return (
     <div className={styles["modalContainer"]}>
@@ -106,7 +86,7 @@ export function ModalMedico({ medicoInfo, closeModal }) {
                 <div className={styles["informartion"]}>
                   {medicoInfo.numero}
                 </div>
-              </div>  
+              </div>
               <div className={styles["medicoInfoPessoal"]}>
                 <h3>CEP:</h3>
                 <div className={styles["informartion"]}>{medicoInfo.cep}</div>
@@ -145,19 +125,20 @@ export function ModalMedico({ medicoInfo, closeModal }) {
               </div>
             </div>
             <div className={styles['buttonExcluir']}>
-                <div onClick={handleConfirmacaoClick} className={styles['button']}>
-                  excluir médico
-                </div>
+              <div onClick={handleConfirmacaoClick} className={styles['button']}>
+                excluir médico
+              </div>
             </div>
           </div>
         </div>
       </div>
       {isModalOpen && (
         <ModalConfirmation
-          pacienteInfo={medicoInfo}
+          medicoInfo={medicoInfo}
           closeModal={() => {
             setIsModalOpen(false);
           }}
+          onClick={onClick}
         />
       )}
     </div>

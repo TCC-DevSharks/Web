@@ -4,8 +4,9 @@ import { AiFillCalendar, AiFillClockCircle } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import axios, { Axios } from "axios";
 import { ModalHistorico } from "./modalConsulta";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BsClockFill } from "react-icons/bs";
 
 const Historico = () => {
   let IdClinica = null;
@@ -13,28 +14,30 @@ const Historico = () => {
     IdClinica = localStorage.getItem("id");
   }
   const [listConsultas, setConsultas] = useState(null);
+  const [listConsultasTodas, setConsultasTodas] = useState(null);
   const [listConsultasMarcadas, setConsultasMarcadas] = useState([]);
   const [listConsultasPassadas, setConsultasPassadas] = useState([]);
   const [listConsultasAtuais, setConsultasAtuais] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState('consultasHoje');
+  const [selectedFilter, setSelectedFilter] = useState('todas');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPaciente, setSelectedPaciente] = useState(null);
 
   const closeModalConfirmacao = () => {
-    
-    setTimeout(()=> {
+    setTimeout(() => {
       setIsModalOpen(false)
-      
-    },1500)
+    }, 1500)
   }
 
   const closeModal = () => {
     setIsModalOpen(false)
-  } 
+  }
 
   const handleFilterClick = (filter) => {
     setSelectedFilter(filter);
     switch (filter) {
+      case 'todas':
+        setConsultas(listConsultasTodas)
+        break;
       case 'consultasHoje':
         setConsultas(listConsultasAtuais);
         break;
@@ -60,14 +63,13 @@ const Historico = () => {
   };
 
   const validarData = (dataAPI) => {
-    const partesData = dataAPI.split("/"); // Supondo que a data esteja no formato dia/mês/ano
+    const partesData = dataAPI.split("/");
     const dia = parseInt(partesData[0], 10);
     const mes = parseInt(partesData[1], 10);
     const ano = parseInt(partesData[2], 10);
+    const dataAPIFormatada = new Date(ano, mes - 1, dia);
 
-    const dataAPIFormatada = new Date(ano, mes - 1, dia); // Meses iniciam em 0 (janeiro)
-
-    const dataAtual = new Date(); // Data atual
+    const dataAtual = new Date();
     let status = "futura";
     if (dataAPIFormatada < dataAtual) {
       status = "anterior";
@@ -84,7 +86,7 @@ const Historico = () => {
       .get(url)
       .then((response) => {
         const consultasData = response.data.consultas;
-        
+
         setConsultas(consultasData);
 
         const consultasPassadas = consultasData.filter(
@@ -100,6 +102,7 @@ const Historico = () => {
         setConsultasPassadas(consultasPassadas);
         setConsultasMarcadas(consultasFuturas);
         setConsultasAtuais(consultasAtuais);
+        setConsultasTodas(consultasData)
       })
       .catch((error) => {
         console.error(error);
@@ -115,17 +118,17 @@ const Historico = () => {
   return (
     <>
       <div className={styles.container_geral}>
-      <ToastContainer
-        position="top-center"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="black" />
+        <ToastContainer
+          position="top-center"
+          autoClose={6000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="black" />
         <div className={styles.container}>
           <div className={styles.container_cima}>
             <h1 className={styles.container_title}>
@@ -135,6 +138,12 @@ const Historico = () => {
           <div className={styles["container-consultas"]}>
             <div className={styles["container-box"]}>
               <div className={styles["filter-consultas"]}>
+                <button
+                  onClick={() => handleFilterClick('todasConsultas')}
+                  className={selectedFilter === 'todasConsultas' ? styles["button-filter-clicked"] : styles["button-filter"]}
+                >
+                  Todas
+                </button>
                 <button
                   onClick={() => handleFilterClick('consultasHoje')}
                   className={selectedFilter === 'consultasHoje' ? styles["button-filter-clicked"] : styles["button-filter"]}
@@ -157,58 +166,59 @@ const Historico = () => {
                 </button>
               </div>
               <div className={styles["box-consultas"]}>
-                <h2>Consultas Marcadas:</h2>
-                <div className={styles["consultas"]}>
-                  {listConsultas?.map((data) => {
-                    const [hora, min] = data.hora.split(":");
 
-                    return (
-                      <div className={styles["item-consulta"]}>
-                        <div className={styles["item"]}>
-                          <div className={styles["fotoPaciente"]}>
-                            <img src={data.foto} alt="imagem de perfil" />
-                          </div>
-                          <div className={styles["informacoesPaciente"]}>
-                            <div className={styles["info-box"]}>
-                              <h3>
-                                Paciente:{" "}
-                                <span style={{ color: "#b6b6f6" }}>
-                                  {data.gestante}
-                                </span>
-                              </h3>
-                              <h4>Dr.{data.profissional}</h4>
-                              <p>
-                                Paciente grávida de {data.semana_gestacao}{" "}
-                                semanas
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <div className={styles["infoTwo"]}>
-                          <div className={styles["item-info"]}>
-                            <span>
-                              <AiFillCalendar />
-                              {data.dia}
-                            </span>
-                          </div>
-                          <div className={styles["item-info"]}>
-                            <span>
-                              <AiFillClockCircle />
-                              {hora}:{min}
-                            </span>
-                          </div>
-                          <div
-                            onClick={(event) => handleEditClick(event, data, true)}
-                            className={styles["item-edit"]}
-                          >
-                            <span>
-                              <BiEditAlt style={{ fontSize: "1.3rem" }} />
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                <div className={styles["consultas"]}>
+                  <div className={styles["item-consulta"]}>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Nome do Paciente:</th>
+                          <th>Especialidade da consulta:</th>
+                          <th style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>Inicio<BsClockFill /></th>
+                          <th>Data da consulta<AiFillCalendar /></th>
+                          <th>Profissional:</th>
+                          <th>Ver detalhes da consulta:</th>
+                        </tr>
+                      </thead>
+
+                      {listConsultas?.map((data) => {
+                        console.log(data);
+                        const [hora, min] = data.hora.split(":");
+                        const nomePaciente = data.gestante;
+                        const nomeCapitalizado = nomePaciente.charAt(0).toUpperCase() + nomePaciente.slice(1);
+                        const [horaInicio, minInicio] = data.dia.split(':')
+                        const [horaFim, minFim] = data.hora.split(':')
+
+                        return (
+
+                          <tbody>
+                            <tr>
+                              <td>
+                                <div >
+                                  <img
+                                    className={styles.round_image}
+                                    src={data.foto}
+                                  />
+                                  {nomeCapitalizado}
+                                </div>
+                              </td>
+                              <td>{data.especialidade}</td>
+                              <td >{horaFim}:{minFim}</td>
+                              <td>{horaInicio}:{minInicio}</td>
+                              <td style={{ paddingLeft: '20px' }}>{data.profissional}</td>
+                              <td>
+                                <div
+                                  onClick={(event) => handleEditClick(event, data)}
+                                  className={styles["item-edit"]}> Ver mais <BiEditAlt />
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+
+                        );
+                      })}
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
@@ -225,7 +235,7 @@ const Historico = () => {
                 .delete(url)
                 .then((response) => {
                   const data = response.data;
-                  
+
                   if (data.status === 404) {
                     toast.error(data.message, {
                       position: "top-center",
@@ -240,6 +250,7 @@ const Historico = () => {
                     setTimeout(closeModal, 5000);
                   } else {
                     getConsultas()
+                    console.log(data.message);
                     toast.success(data.message, {
                       position: "top-center",
                       autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
@@ -251,8 +262,9 @@ const Historico = () => {
                       theme: "light",
                     });
 
-                    closeModalConfirmacao // Fecha o modal após 5 segundos
+                    closeModalConfirmacao() // Fecha o modal após 5 segundos
                   }
+
                 })
                 .catch((err) => console.log(err));
             }}

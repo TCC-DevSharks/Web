@@ -7,58 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 export const ModalConfirmation = ({ pacienteInfo, closeModal, onClick }) => {
   const idConsulta = pacienteInfo.idConsulta;
-  // const url = `http://localhost:3000/consulta/${idConsulta}`;
-
-  // function deleteConsulta() {
-  //   axios
-  //     .delete(url)
-  //     .then((response) => {
-  //       const data = response.data;
-  //       console.log(data);
-  //       if (data.status === 404)  {
-  //         toast.error(data.message, {
-  //           position: "top-center",
-  //           autoClose: 6000, 
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //           theme: "light",
-  //         });
-  //         setTimeout(closeModal, 5000); 
-  //       } else {
-            
-  //         toast.success(data.message, {
-  //           position: "top-center",
-  //           autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
-  //           hideProgressBar: false,
-  //           closeOnClick: true,
-  //           pauseOnHover: true,
-  //           draggable: true,
-  //           progress: undefined,
-  //           theme: "light",
-  //         });
-
-  //         setTimeout(closeModal, 5000); // Fecha o modal após 5 segundos
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
   return (
     <div className={styles["modalContainer"]}>
-        <ToastContainer
-        position="top-center"
-        autoClose={6000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="black" />
       <div className={styles["modalBox"]}>
         <div className={styles["modalContent"]}>
           <div className={styles["closeButtonModal"]} onClick={closeModal}>

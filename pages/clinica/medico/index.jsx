@@ -7,6 +7,7 @@ import { BiEditAlt } from "react-icons/bi";
 import axios from "axios";
 import { ModalMedico } from "../../../components/clinica/medicosClinica/modalMedico";
 import { BsClockFill } from "react-icons/bs";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Medicos() {
   const [listMedicos, setListMedicos] = useState([]);
@@ -19,7 +20,15 @@ export default function Medicos() {
   const router = useRouter();
   const IdClinica = typeof window !== "undefined" ? localStorage.getItem("id") : null;
 
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
 
+  const closeModalConfirmacao = () => {
+    setTimeout(() => {
+      setIsModalOpen(false)
+    }, 1500)
+  }
 
   const handleClick = () => {
     router.push("/clinica/cadastroMedico");
@@ -31,61 +40,70 @@ export default function Medicos() {
     setIsModalOpen(true);
   };
 
-
-
   const removerAcentos = (str) => {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   };
-  
+
   const filtrar = () => {
-    // Filtra a lista original de médicos com o filtro de nome
     const medicosFiltradosPorNome = filtrarMedicosNome(listaOriginal, filtroNome);
-    
-    // Filtra a lista resultante do filtro por nome com o filtro de especialidade
     filtrarMedicosEspecialidade(medicosFiltradosPorNome, filtroEspecialidade);
   };
-  
+
   const filtrarMedicosNome = (lista, filtro) => {
     const filtroSemAcentos = removerAcentos(filtro).toLowerCase();
     return lista.filter(medico =>
       removerAcentos(medico.nome).toLowerCase().includes(filtroSemAcentos)
     );
   };
-  
+
   const filtrarMedicosEspecialidade = (lista, filtro) => {
     const filtroSemAcentos = removerAcentos(filtro).toLowerCase();
     const medicosFiltradosEspecialidade = lista.filter(medico =>
       removerAcentos(medico.especialidade).toLowerCase().includes(filtroSemAcentos)
     );
-  
+
     setListMedicos(medicosFiltradosEspecialidade);
   };
-  
+
   const limparFiltro = () => {
     setFiltroNome('');
     setFiltroEspecialidade('');
     setListMedicos(listaOriginal);
   };
-  useEffect(() => {
+
+  const getMedicos = () => {
     const url = `http://localhost:3000/clinica/profissional/${IdClinica}`;
-    const getMedicos = () => {
-      axios
-        .get(url)
-        .then((response) => {
-          const medicos = response;
-          setListMedicos(medicos.data.clinicas);
-          setListaOriginal(medicos.data.clinicas)
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
-    getMedicos();
+    axios
+      .get(url)
+      .then((response) => {
+        const medicos = response;
+        setListMedicos(medicos.data.clinicas);
+        setListaOriginal(medicos.data.clinicas)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
+    
+    getMedicos()
   }, []);
 
   return (
     <>
       <Sidebar />
+      <ToastContainer
+        position="top-center"
+        autoClose={6000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="black" />
       <div className={styles.container_geral}>
         <div className={styles.container}>
           <div className={styles.container_cima}>
@@ -121,15 +139,15 @@ export default function Medicos() {
                   placeholder="Pesquise pela especilidade do médico:"
                   onChange={(e) => setFiltroEspecialidade(e.target.value)}
                 />
-                <button 
-                  onClick={filtrar} 
+                <button
+                  onClick={filtrar}
                   className={styles["button-filter"]}>
-                    filtrar
+                  filtrar
                 </button>
-                <button 
-                  onClick={limparFiltro} 
+                <button
+                  onClick={limparFiltro}
                   className={styles["button-filter"]}>
-                    limpar filtro
+                  limpar filtro
                 </button>
               </div>
               <div className={styles["box-medicos"]}>
@@ -188,8 +206,46 @@ export default function Medicos() {
         {isModalOpen && (
           <ModalMedico
             medicoInfo={medicoSelected}
-            closeModal={() => {
-              setIsModalOpen(false);
+            closeModal={ closeModal }
+            onClick={(IdMedico) => {
+              closeModalConfirmacao()
+              let url = `http://localhost:3000/profissional/${IdMedico}`
+              axios
+                .delete(url)
+                .then((response) => {
+                  const data = response.data;
+
+                  if (data.status === 404) {
+                    toast.error(data.message, {
+                      position: "top-center",
+                      autoClose: 6000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+                    setTimeout(closeModal, 5000);
+                  } else {
+                    getMedicos()
+                    console.log(data.message);
+                    toast.success(data.message, {
+                      position: "top-center",
+                      autoClose: 6000, 
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "light",
+                    });
+
+                    closeModalConfirmacao() 
+                  }
+
+                })
+                .catch((err) => console.log(err));
             }}
           />
         )}

@@ -118,128 +118,72 @@
 
 
             .item-consulta {
-              display: flex;
-              flex-direction: column;
-              gap: 15%;
-              height: 45%;
-              width: 48%;
-              padding: 2%;
-              border-radius: 10px;
-              border: 1px solid #b6b6f6;
-              box-shadow: 3px 3px 5px #b6b6f600;
-
-              .item {
-                display: grid;
-                justify-self: center;
-                grid-template-areas: "foto informacoes";
-                grid-template-columns: 20% 60%;
-                gap: 5%;
-
-                .fotoPaciente {
-                  grid-area: foto;
-                  width: 100%;
-                  height: 150px; 
-                  background-color: #b6b6f6;
-                  border-radius: 10px;
-
-                  img {
-                    width: 100%;
-                    height: 100%;
-                    border-radius: 5%;
-                  }
-                }
-
-                .informacoesPaciente {
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  grid-area: informacoes;
-                  width: 100%;
-                  height: 70%;
-
-                  .info-box {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    width: 100%;
-                    height: 100%;
-                    gap: 3%;
-
-                    h3 {
-                      display: flex;
-                      gap: 2%;
-                      font-size: 1.3rem;
-                      font-weight: 600;
-                    }
-
-                    h4 {
-                      font-size: 1rem;
-                      font-weight: 500;
-                    }
-                  }
-                }
-              }
-
-              .infoTwo {
-                display: flex;
-                align-items: center;
+              width: 100%;
+              display: inline-block;
+              box-sizing: border-box;
+              height: 200px;
+            
+              table {
                 width: 100%;
-                gap: 2%;
+                border-collapse: collapse;
 
-                .item-info {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  background-color: #b6b6f6;
-                  width: 100%;
-                  padding: 2%;
-                  color: #fff;
-                  font-weight: 700;
-                  padding: 10px;
-                  border-radius: 10px;
-                  border: 2px solid #b6b6f6;
-                  cursor: not-allowed;
-
-                  span {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 3%;
-                    font-size: 1rem;
-                  }
-                }
-
-                .item-edit {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  background-color: #b6b6f6;
-                  width: 100%;
-                  padding: 2%;
-                  color: #fff;
-                  font-weight: 700;
-                  padding: 10px;
-                  border-radius: 10px;
-                  border: 2px solid #b6b6f6;
-
-                  span {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 3%;
-                    font-size: 1rem;
-                  }
-
-                }
-
-                .item-edit:hover {
-                  background-color: #fff;
-                  color: #4c4c4c;
-                  border: 2px solid #b6b6f6;
-                  font-size: 1.4rem;
+               
+                tr:hover {
+                  background-color: #b6b6f648;
+                  transition: 0.2s;
                   cursor: pointer;
-                  transition: 0.3s;
+                  
                 }
+
+                th,
+                td {
+                  
+                  text-align: left;
+                  padding: 10px;
+                
+                }
+
+                td {
+                  text-align: left;
+                  font-size: 1.2rem;
+                  padding: 10px;
+                  text-align: left;
+
+                  div {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+
+                    .round_image {
+                      border-radius: 50%;
+                      width: 50px;
+                      height: 50px;
+                      object-fit: cover;
+                    }
+                  }
+                  .item-edit{
+                    display: flex;
+                    align-items: center;
+                    padding-left: 5%;
+                    text-align: center;
+                    font-size: 1rem;
+                  }
+                  .item-edit:hover {
+                    color: #000000;
+                    font-weight: 700;
+                    cursor: pointer;
+                    transition: 0.3s;
+                  }
+
+                }
+
+                th {
+                  color: grey;
+                  padding-bottom: 3px;
+                  font-weight: 400;
+                  border-bottom: 1px solid #dddddd;
+                }
+
               }
             }
           }
@@ -249,200 +193,3 @@
   }
 }
 
-// .container_geral {
-//     width: 100% ;
-//     height: 100vh;
-//     padding-right: 5%;
-//     display: flex;
-//     align-items: center;
-//     justify-content: flex-end;
-
-//     .container_dados {
-//         width: 80%;
-//         height: 80%;
-//         background-color: #fff;
-//         border: 0.5px solid rgb(231, 230, 230);
-//         box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-//         margin-left: 120px;
-//         border-radius: 20px;
-//         display: flex;
-//         flex-direction: column;
-//         padding: 20px;
-//         margin-left: 120px;
-//         justify-content: center;
-
-//         .container_marcadas {
-//             height: 50%;
-//             padding: 10px;
-//             display: flex;
-//             flex-direction: column;
-
-//             .title {
-//                 font-size: 25px;
-//                 font-weight: 500
-//             }
-
-//             .box_marcadas {
-//                 justify-content: center;
-//                 display: flex;
-//                 flex-wrap: wrap;
-//                 padding-top: 30px;
-//                 width: 100%;
-//                 overflow: auto;
-//                 gap: 30px;
-
-//                 .medico {
-//                     background: #F9F6F4;
-//                     width: 360px;
-//                     height: 150px;
-//                     border-radius: 10px;
-//                     display: flex;
-//                     flex-direction: column;
-//                     justify-content: center;
-//                     align-items: center;
-//                     gap: 10px;
-
-//                     .cima {
-//                         display: flex;
-//                         justify-content: flex-start;
-//                         width: 95%;
-//                         gap: 25px;
-
-//                         .foto_medico {
-//                             width: 80px;
-//                             height: 80px;
-//                             display: flex;
-//                             align-items: center;
-//                             justify-content: center;
-//                             border-radius: 50%;
-
-//                             img {
-//                                 width: 100%;
-//                                 height: 100%;
-//                                 object-fit: cover;
-//                                 border-radius: 50%;
-//                             }
-//                         }
-
-//                         .nome_medico {
-//                             display: flex;
-//                             flex-direction: column;
-//                             justify-content: center;
-//                         }
-//                     }
-
-//                     .baixo {
-//                         display: flex;
-//                         gap: 30px;
-//                         justify-content: space-between;
-//                         width: fit-content;
-
-//                         div {
-//                             height: 40px;
-//                             background-color: #B6B6F6;
-//                             border-radius: 10px;
-//                             display: flex;
-//                             align-items: center;
-//                             min-width: 50px;
-//                             padding: 0 5px;
-//                             justify-content: center;
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-
-//         .container_realizadas {
-//             height: 50%;
-//             padding: 10px;
-//             display: flex;
-//             flex-direction: column;
-
-//             .title {
-//                 font-size: 25px;
-//                 font-weight: 500
-//             }
-
-//             .box_realizadas {
-//                 justify-content: center;
-//                 display: flex;
-//                 flex-wrap: wrap;
-//                 padding-top: 30px;
-//                 width: 100%;
-//                 overflow: auto;
-//                 gap: 30px;
-
-//                 .medico {
-//                     background: #F9F6F4;
-//                     width: 360px;
-//                     height: 150px;
-//                     border-radius: 10px;
-//                     display: flex;
-//                     flex-direction: column;
-//                     justify-content: center;
-//                     align-items: center;
-//                     gap: 10px;
-
-//                     .cima {
-//                         display: flex;
-//                         justify-content: start;
-//                         width: 95%;
-//                         gap: 25px;
-
-//                         .foto_medico {
-//                             width: 80px;
-//                             height: 80px;
-//                             display: flex;
-//                             align-items: center;
-//                             justify-content: center;
-//                             border-radius: 50%;
-
-//                             img {
-//                                 width: 100%;
-//                                 height: 100%;
-//                                 object-fit: cover;
-//                                 border-radius: 50%;
-//                             }
-//                         }
-
-//                         .nome_medico {
-//                             display: flex;
-//                             flex-direction: column;
-//                             justify-content: center;
-//                         }
-//                     }
-
-//                     .baixo {
-//                         display: flex;
-//                         gap: 30px;
-//                         justify-content: space-between;
-//                         width: fit-content;
-
-//                         div {
-//                             height: 40px;
-//                             background-color: #B6B6F6;
-//                             border-radius: 10px;
-//                             display: flex;
-//                             align-items: center;
-//                             min-width: 50px;
-//                             padding: 0 5px;
-//                             justify-content: center;
-//                         }
-//                     }
-//                 }
-//             }
-
-//         }
-
-//     }
-// }
-
-// @media(max-width: 768px) {
-//     .container_dados {
-//         border: none !important;
-//         box-shadow: none !important;
-//         margin-left: 0px !important;
-//         margin-top: 100px !important;
-//         width: 90% !important;
-//     }
-// }

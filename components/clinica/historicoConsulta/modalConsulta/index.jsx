@@ -1,15 +1,13 @@
 import styles from "./style.module.css";
-import { AiFillCloseCircle, AiOutlineArrowRight } from "react-icons/ai";
+import { AiFillCloseCircle } from "react-icons/ai";
 import { useState } from "react";
-import axios from "axios";
 import { ModalConfirmation } from "./modalConfirmacao";
-import { on } from "events";
+
 
 export function ModalHistorico({ pacienteInfo, closeModal, onClick }) {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hora, min] = pacienteInfo.hora.split(":");
-  const [prontuario, selectedPronturario] = useState();
-  const [valor, setValor] = useState("");
 
   const handleConfirmacaoClick = function () {
     setIsModalOpen(true)
