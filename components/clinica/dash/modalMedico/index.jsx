@@ -34,7 +34,7 @@ export default function ModalMedicoDash({ medicoInfo, closeModal }) {
 
                            <img className={styles['fotoPerfilMedico']} src={medicoInfo.foto} alt="imagem do Medico" /> 
                             Nome: 
-                           <h2 style={{ fontSize: '2rem', color: '#B6B6F6' }}>{medicoInfo.nome}</h2>
+                           <h2>{medicoInfo.nome}</h2>
 
                         </div>
                         <div className={styles['InfoMedicos']}>
@@ -51,7 +51,7 @@ export default function ModalMedicoDash({ medicoInfo, closeModal }) {
                                  <span> Telefone: {medicoInfo.telefone}</span>
                             </div>
                         </div>
-                        <div className={styles['InfoMedicos']}>
+                        <div className={styles['InfoMedicos2']}>
                             <div className={styles['crmMedicoHoras']}>
                                  <span>Inicio atendimento: {horaInicio}:{minInicio}h</span> 
                                  <span>Fim atendimento: {horaFim}:{minFim}h</span>

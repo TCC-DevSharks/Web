@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "../../../styles/SidebarClinic.module.scss";
 import { BsCalendarCheck } from "react-icons/bs";
-import { FaHospitalUser } from "react-icons/fa";
+import { FaHospitalUser,FaBars } from "react-icons/fa";
 import { MdOutlineDashboard, MdExitToApp } from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -39,6 +39,7 @@ const Sidebar = () => {
 
   return (
     <aside className={styles["sidebar"]}>
+      <FaBars/>
       <div className={styles["content"]}>
         <div className={styles["image-box"]}>
           <li>

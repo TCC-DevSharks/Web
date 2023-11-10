@@ -12,7 +12,7 @@
     justify-content: flex-end;
     align-items: flex-end;
     padding-right: 05%;
-    
+
     gap: 20px;
 
     .container_cima {
@@ -84,13 +84,6 @@
           }
         }
 
-        .box-identi {
-          padding-left: 2%;
-          display: grid;
-          grid-template-columns: 10% 10% 10% 10% 10%;
-          width: 100%;
-          gap: 10%;
-        }
 
         .box-medicos {
           display: flex;
@@ -116,22 +109,22 @@
               display: inline-block;
               box-sizing: border-box;
               height: 200px;
-            
+
               table {
                 width: 100%;
                 border-collapse: collapse;
 
-               
+
                 tr:hover {
                   background-color: #b6b6f648;
                   transition: 0.2s;
                   cursor: pointer;
-                  
+
                 }
 
                 th,
                 td {
-                  
+
                   text-align: left;
                   padding: 10px;
                   text-align: left;
@@ -155,20 +148,21 @@
                       object-fit: cover;
                     }
                   }
-                  .item-edit{
+
+                  .item-edit {
                     display: flex;
                     align-items: center;
                     padding-left: 5%;
                     text-align: center;
                     font-size: 1rem;
                   }
+
                   .item-edit:hover {
                     color: #000000;
                     font-weight: 700;
                     cursor: pointer;
                     transition: 0.3s;
                   }
-
                 }
 
                 th {
@@ -179,11 +173,196 @@
                 }
 
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
-              /* Estilos para o contêiner principal do card */
+@media(max-width:768px) {
+  .container_geral {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-right: 0%;
+      gap: 20px;
 
+      .container_cima {
+        height: 50px;
+        width: 90%;
+        align-items: center;
+        justify-content: center;
+        background-color: #b6b6f6;
+        border-radius: 5px;
+        margin-top: 05%;
 
+        .container_title {
+          font-size: 1.5rem;
+          color: #fff;
+        }
+      }
+
+      .container-medicos {
+        width: 80%;
+        height: 90vh;
+
+        .container-box {
+          padding: 0;
+          gap: 20px;
+
+          .filter-consultas {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 10px;
+            width: 100%;
+            height: auto;
+            padding: 0;
+
+            .button-filter {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              height: 40px;
+              padding: 2%;
+              background-color: #b6b6f6;
+              border: none;
+              border-radius: 5px;
+              color: #fff;
+              font-weight: 600;
+              font-size: 0.8rem;
+              cursor: pointer;
+              gap: 10px;
+            }
+
+            .pesquisarMedico {
+              padding: 3%;
+              width: 100%;
+              border-radius: 10px;
+              resize: none;
+              border: 1.5px solid #b6b6f6;
+              padding-left: 2%;
+              font-size: 0.8rem;
+            }
+          }
+
+          .box-medicos {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            height: 100%;
+
+            h2 {
+              font-size: 1.8rem;
+            }
+
+            .medicos {
+              display: flex;
+              flex-wrap: wrap;
+              width: 100%;
+              height: 100%;
+              gap: 4%;
+              overflow-x: auto;
+
+              .item-consulta {
+                width: 100%;
+                display: inline-block;
+                box-sizing: border-box;
+                height: 200px;
+
+                table {
+                  display: flex;
+                  flex-direction: column;
+                  width: 100%;
+                  border-collapse: collapse;
+
+                  thead {
+                    width: 100%;
+
+                    tr {
+                      display: flex;
+                      width: 800PX;
+
+                      th {
+                        font-size: 0.9rem;
+                        text-align: center;
+                        width: 100%;
+                      }
+                    }
+                  }
+
+                  tr:hover {
+                    background-color: #b6b6f648;
+                    transition: 0.2s;
+                    cursor: pointer;
+
+                  }
+
+                  tbody {
+                    width: 100%;
+
+                    tr {
+                      display: flex;
+                      width: 830PX;
+
+                      td {
+                        text-align: center;
+                        font-size: 1rem;
+                        padding: 10px;
+                        width: 800px;
+
+                        div {
+                          display: flex;
+                          align-items: center;
+                          gap: 5px;
+                          font-size: 0.9rem;
+
+                          .round_image {
+                            border-radius: 100%;
+                            width: 45px;
+                            height: 45px;
+                            object-fit: cover;
+                          }
+                        }
+                      }
+
+                      .item-edit {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 1%;
+                        text-align: center;
+                        font-size: 1rem;
+                      }
+
+                      .item-edit:hover {
+                        color: #000000;
+                        font-weight: 700;
+                        cursor: pointer;
+                        transition: 0.3s;
+                      }
+                    }
+                  }
+
+                  th {
+                    color: grey;
+                    padding-bottom: 3px;
+                    font-weight: 400;
+                    border-bottom: 1px solid #dddddd;
+                  }
+
+                }
+              }
             }
           }
         }

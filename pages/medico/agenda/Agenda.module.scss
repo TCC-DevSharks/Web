@@ -1,7 +1,7 @@
 .agenda-container {
     margin-left: 120px;
     width: auto;
-    height: 100vh;
+    max-height: 100vh;
 
     .agenda-header {
         font-size: 24px;
@@ -14,8 +14,7 @@
     align-items: center;
     justify-content: center;
     gap: 10vw;
-    padding-bottom: 120px;
-    padding-right: 120px;
+    padding-top: 180px;
     height: 100%;
     .calendario {
         width: 35vw;

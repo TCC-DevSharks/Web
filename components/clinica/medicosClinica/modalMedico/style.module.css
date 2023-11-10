@@ -40,6 +40,10 @@
   align-items: center;
   gap: 20px;
 }
+.nameImage > h2 {
+  color: #464444;
+  font-size: 2.2rem;
+}
 
 .medicoImage {
   border-radius: 100%;
@@ -139,4 +143,76 @@
     background-color: #f90100;
     border: 1px solid #FFF;
     transition: 0.3s;
+}
+
+@media(max-width:768px){
+  .modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c1c1c7c;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    
+  }
+  
+  .modalBox {
+    background-color: #fff;
+    border-radius: 0px;
+    height: 100%;
+    width: 100%;
+    
+  }
+  
+  .modalContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
+    height: 100%;
+    width: 100%;
+  }
+  .nameImage > h2 {
+    font-size: 1.1rem;
+  }
+  
+  .medicoImage {
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+  }
+  .item {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    height: auto;
+    padding-top: 20px;
+    padding-bottom: 10%;
+  }
+
+  .informartion{
+    font-size: 0.8rem;
+  }
+
+  .columnOne > h2{
+    font-size: 1.2rem;
+   
+  }
+  .columnTwo > h2{
+    font-size: 1.2rem;
+    
+  }
+  .medicoInfoPessoal > h3{
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .button{
+    font-size: 0.8rem;
+  }
+  
 }

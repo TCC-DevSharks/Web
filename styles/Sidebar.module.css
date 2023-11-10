@@ -1,5 +1,5 @@
 .sidebar {
-    background-color: #F6F3F1;
+    background-color: #ffffff;
     width: 6%;
     position: fixed;
     top: 0;
@@ -21,8 +21,9 @@
     height: 100%;
 }
 
-.ul li a {
+.ul > li > a {
     color: #4c4c4c;
+    font: caption;
     text-decoration: none;
 }
 

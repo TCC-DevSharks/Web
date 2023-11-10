@@ -1,4 +1,4 @@
-.modalContainer{
+.modalContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,14 +9,14 @@
     z-index: 1000;
 }
 
-.modalBox{
+.modalBox {
     background-color: #FFF;
     border-radius: 20px;
     height: 70%;
     width: 50%;
 }
 
-.modalContent{
+.modalContent {
     display: flex;
     flex-direction: column;
     gap: 4%;
@@ -25,7 +25,7 @@
     width: 100%;
 }
 
-.closeButtonModal{
+.closeButtonModal {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -35,26 +35,39 @@
     cursor: pointer;
 }
 
-.nameMedico{
+.nameMedico {
     display: flex;
     align-items: center;
     font-weight: 700;
     font-size: 2rem;
     gap: 1%;
 }
-.fotoPerfilMedico{
-    margin-right: 10px;
-    width: 10%;
+
+.nameMedico>h2 {
+    color: #b6b6f6;
+}
+
+.fotoPerfilMedico {
+    
+    width:70px;
+    height:70px;
     border-radius: 100px;
 }
 
-.InfoMedicos{
+.InfoMedicos {
     display: flex;
     align-items: center;
     gap: 1%;
     width: 100%;
 }
-.crmMedico{
+.InfoMedicos2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.crmMedico {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -68,7 +81,8 @@
     color: #FFF;
     font-weight: 700;
 }
-.crmMedicoHoras{
+
+.crmMedicoHoras {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +98,7 @@
     gap: 2%;
 }
 
-.descricaoBox{
+.descricaoBox {
     width: 100%;
     height: 40%;
     border: 1px solid #b6b6f6;
@@ -97,3 +111,57 @@
     cursor: not-allowed;
 }
 
+
+@media(max-width:768px) {
+    .modalContainer {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .modalBox {
+        border-radius: 0%;
+        height: 100%;
+        width: 100%;
+    }
+
+    .nameMedico {
+        font-size: 1rem;
+        gap: 1%;
+    }
+
+    .nameMedico>h2 {
+        font-size: 1rem;
+    }
+
+    .fotoPerfilMedico {
+        margin-right: 0px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+    .InfoMedicos {
+        display: flex;
+        align-items: center;
+       flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .InfoMedicos2 {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .crmMedico {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+    .crmMedicoHoras {
+        width: 100%;
+        gap: 19px;
+        font-size: 0.9rem;
+    }
+
+}

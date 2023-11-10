@@ -13,7 +13,8 @@ const Dieta = () => {
     const [listUnicPacientes, setUnicPaciente] = useState();
 
     useEffect(() => {
-        const url = 'http://localhost:3000/profissional/gestante/2';
+        const IdMedico = localStorage.getItem("id");
+        const url = `http://localhost:3000/profissional/gestante/${IdMedico}`;
 
         function getPacientes() {
             axios.get(url)

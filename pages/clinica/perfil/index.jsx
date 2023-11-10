@@ -46,12 +46,12 @@ export default function Perfil() {
       complemento: listClinicas?.clinica[0].complemento,
       cep: editCep ? editCep : listClinicas?.clinica[0].cep,
     };
-
+    console.log(jsonData);
     axios
       .patch(url, jsonData)
       .then((response) => {
         const data = response.data;
-        console.log(data);
+        console.log("aqu " +data);
         if (response.status == 200) {
           const notify = () =>
             toast.success(data.message, {
@@ -66,6 +66,7 @@ export default function Perfil() {
             });
           notify();
         } else {
+          console.log("aqu " +data);
           toast.error(data.message, {
             position: "top-center",
             autoClose: 5000,

@@ -29,7 +29,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
               src={medicoInfo.foto}
               alt="foto do médico"
             />
-            <h2 style={{ color: "#464444", fontSize: "2.4rem" }}>
+            <h2 >
               Médico: {medicoInfo.nome}
               <span style={{ color: "#b6b6f6" }}></span>
             </h2>
