@@ -12,18 +12,26 @@ import { format, parse } from 'date-fns';
 export default function Agenda() {
     const [checkboxStates, setCheckboxStates] = useState([false, false]);
 
-    const handleCheckboxChange = (index) => {
+    const handleCheckboxChange = (eventId) => {
         const newCheckboxStates = [...checkboxStates];
-        newCheckboxStates[index] = !newCheckboxStates[index];
+        newCheckboxStates[eventId] = !newCheckboxStates[eventId];
         setCheckboxStates(newCheckboxStates);
     };
+
+    function convertToDate(value) {
+        if (value instanceof Date) {
+            return value;
+        } else {
+            return new Date(value);
+        }
+    }
 
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
         axios.get('http://localhost:3000/profissional/gestante/1')
             .then(response => {
-                console.log('Resposta da API:', response.data); // Verifique se os dados da API estão corretos
+                console.log('Resposta da API:', response.data);
 
                 const eventos = response.data.pacientes.map(paciente => {
                     const diaDesformatado = paciente.diaDesformatado;
@@ -34,10 +42,10 @@ export default function Agenda() {
                         start: paciente.diaDesformatado,
                         end: paciente.diaDesformatado,
                     };
-                });  
-              
+                });
+
                 setEvents(eventos);
-               
+
             })
             .catch(error => {
                 console.error('Erro ao obter os eventos: ', error);
@@ -49,63 +57,44 @@ export default function Agenda() {
             <div className={styles['agenda-container']}>
                 <TituloSecao title="Agenda" />
                 <div className={styles["calendario-container"]}>
-                <div className={styles["calendario"]}>
-                <Fullcalendar
-                    locale={'pt-br'}
-                    plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                    initialView={"dayGridMonth"}
-                    headerToolbar={{
-                        start: "today prev,next",
-                        center: "title",
-                        end: "dayGridMonth,timeGridWeek,timeGridDay",
-                    }}
-                    height={"50vh"}
-                    events={[
-                        {
-                            id: 'teste',
-                            title: 'Evento de Teste',
-                            start: '2023-11-08T08:30:00',
-                            end: '2023-11-08T09:00:00',
-                        },
-                        ...events
-                    ]} // Use o array de eventos obtido da API
-                />
-            </div>
-
-                  <div className={styles['compromissos']}>
-                    <div className={styles['compromisso']}>
-                        <div className={styles['dia']}>
-                        </div>
-                        <div className={styles['consulta']}>
-                          <div className={styles['hora-paciente']}>
-                            <p className={styles['hora']}>08h30 - </p>
-                            <p className={styles['paciente']}>Maria</p>
-                          </div>
-                            <input
-                                className={styles['checkbox']}
-                                type="checkbox"
-                                checked={checkboxStates[0]}
-                                onChange={() => handleCheckboxChange(0)}
-                            />
-                        </div>
+                    <div className={styles["calendario"]}>
+                        <Fullcalendar
+                            locale={'pt-br'}
+                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                            initialView={"dayGridMonth"}
+                            headerToolbar={{
+                                start: "today prev,next",
+                                center: "title",
+                                end: "dayGridMonth,timeGridWeek,timeGridDay",
+                            }}
+                            height={"50vh"}
+                            timeZone="America/Sao_Paulo"
+                            events={events}
+                        />
                     </div>
-                    <div className={styles['compromisso']}>
-                        <div className={styles['dia']}>
-                        </div>
-                        <div className={styles['consulta']}>
-                          <div className={styles['hora-paciente']}>
-                            <p className={styles['hora']}>17h30 - </p>
-                            <p className={styles['paciente']}>Claudia</p>
-                          </div>
-                            <input
-                                className={styles['checkbox']}
-                                type="checkbox"
-                                checked={checkboxStates[1]}
-                                onChange={() => handleCheckboxChange(1)}
-                            />
-                        </div>
+                    <div className={styles['compromissos']}>
+                        {events.map(evento => (
+                            <div className={styles['compromisso']} key={evento.id}>
+                                <div className={styles['dia']}>
+                                    <p>{convertToDate(evento.start).getDate() + 1}</p>
+                                </div>
+                                <div className={styles['consulta']}>
+                                    <div className={styles['hora-paciente']}>
+                                        <p className={styles['hora']}>
+                                            {format(convertToDate(evento.start), 'HH:mm', { timeZone: 'America/Sao_Paulo' })} -
+                                        </p>
+                                        <p className={styles['paciente']}>{evento.title}</p>
+                                    </div>
+                                    <input
+                                        className={styles['checkbox']}
+                                        type="checkbox"
+                                        checked={checkboxStates[evento.id]}
+                                        onChange={() => handleCheckboxChange(evento.id)}
+                                    />
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                  </div>
                 </div>
             </div>
         </div>
