@@ -55,7 +55,6 @@ const Prontuario = () => {
                         <input type="text" placeholder='Pesquise um paciente' />
                     </div>
                     <div className={styles['pacientes']}>
-                        <span className={styles['title-pacientes']}>Todos os pacientes:</span>
                         <div className={styles['container']}>
                             {listpacientes?.pacientes &&
                                 listpacientes.pacientes.map(paciente => (
