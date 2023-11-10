@@ -10,7 +10,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
   const [hora, min] = medicoInfo.inicio_atendimento.split(":");
   
   const handleConfirmacaoClick = function () {
-    setIsModalOpen(false);
+    setIsModalOpen(true);
   };
 
   

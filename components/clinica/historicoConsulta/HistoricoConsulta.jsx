@@ -115,20 +115,21 @@ const Historico = () => {
     }
   }, [IdClinica, url]);
 
+  // <ToastContainer
+  //         position="top-center"
+  //         autoClose={6000}
+  //         hideProgressBar={false}
+  //         newestOnTop={false}
+  //         closeOnClick
+  //         rtl={false}
+  //         pauseOnFocusLoss
+  //         draggable
+  //         pauseOnHover
+  //         theme="black" />
+
   return (
     <>
-      <div className={styles.container_geral}>
-        <ToastContainer
-          position="top-center"
-          autoClose={6000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="black" />
+      <div className={styles.container_geral}>      
         <div className={styles.container}>
           <div className={styles.container_cima}>
             <h1 className={styles.container_title}>
