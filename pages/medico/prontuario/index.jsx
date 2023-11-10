@@ -9,7 +9,7 @@ import { AiFillCloseCircle } from 'react-icons/ai';
 import { Modal } from './modal';
 
 const Prontuario = () => {
-    const [listpacientes, setPacientes] = useState();
+    const [listpacientes, setPacientes] = useState({ pacientes: [] });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedPaciente, setSelectedPaciente] = useState(null);
 
@@ -20,21 +20,29 @@ const Prontuario = () => {
     };
 
     useEffect(() => {
-        const url = 'http://localhost:3000/profissional/gestante/1';
+        const IdMedico = localStorage.getItem("id");
+        const url = `http://localhost:3000/profissional/gestante/${IdMedico}`;
 
         function getPacientes() {
-            axios.get(url)
-                .then(response => {
-                    const data = response.data;
-                    setPacientes(data);
+            axios
+                .get(url)
+                .then((response) => {
+                    // Filtrar pacientes únicos
+                    const pacientesUnicos = response.data.pacientes
+                        ? Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)))
+                            .map(id => response.data.pacientes.find(paciente => paciente.idGestante === id))
+                        : [];
+
+                    setPacientes({ pacientes: pacientesUnicos });
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error(error);
                 });
         }
 
         getPacientes();
     }, []);
+
 
     return (
         <>
@@ -49,20 +57,21 @@ const Prontuario = () => {
                     <div className={styles['pacientes']}>
                         <span className={styles['title-pacientes']}>Todos os pacientes:</span>
                         <div className={styles['container']}>
-                            {listpacientes?.pacientes.map(paciente => (
-                                <div key={paciente.id}>
-                                    <PacienteProntuario
-                                        idConsulta={paciente.idConsulta}
-                                        foto={paciente.foto}
-                                        nome={paciente.nome}
-                                        semanas={paciente.semana_gestacao}
-                                        dataConsulta={paciente.dia}
-                                        horaConsulta={paciente.hora}
-                                        especialidade={paciente.especialidade}
-                                        onPacienteClick={handlePacienteClick}
-                                    />
-                                </div>
-                            ))}
+                            {listpacientes?.pacientes &&
+                                listpacientes.pacientes.map(paciente => (
+                                    <div key={paciente.idGestante}>
+                                        <PacienteProntuario
+                                            idConsulta={paciente.idConsulta}
+                                            foto={paciente.foto}
+                                            nome={paciente.nome}
+                                            semanas={paciente.semana_gestacao}
+                                            dataConsulta={paciente.dia}
+                                            horaConsulta={paciente.hora}
+                                            especialidade={paciente.especialidade}
+                                            onPacienteClick={handlePacienteClick}
+                                        />
+                                    </div>
+                                ))}
                         </div>
                     </div>
                 </div>
@@ -70,7 +79,8 @@ const Prontuario = () => {
                     <Modal
                         pacienteInfo={selectedPaciente}
                         closeModal={() => {
-                            setIsModalOpen(false)}
+                            setIsModalOpen(false)
+                        }
                         }
                     />
                 )}

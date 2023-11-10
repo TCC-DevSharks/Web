@@ -83,6 +83,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
             </div>
           </div>
         </div>
+        
         <div className={styles["chat-messages"]}  >
           {messages.map((message) => {
             return (

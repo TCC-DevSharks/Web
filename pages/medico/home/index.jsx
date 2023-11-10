@@ -7,35 +7,39 @@ export default function Home({ Component, pageProps }) {
   const [pacientesAtendidos, setPacientesAtendidos] = useState(0);
   const [consultasDoDia, setConsultasDoDia] = useState(0);
   const [consultasDoMes, setConsultasDoMes] = useState(0);
+  const [pacientes, setPacientes] = useState([]);
 
   useEffect(() => {
-    // Recupere o ID do médico do Local Storage
     const IdMedico = localStorage.getItem("id");
 
-    // Certifique-se de que o ID foi recuperado corretamente
     if (IdMedico) {
-      // Faça a solicitação para o endpoint de pacientes atendidos com o ID do médico
       axios.get(`http://localhost:3000/profissional/gestante/${IdMedico}`)
         .then(response => {
-          // Extraia o valor do número de pacientes do resultado
-          const numPacientes = response.data.pacientes.length;
-          setPacientesAtendidos(numPacientes);
+          // Contagem de pacientes únicos
+          const pacientesUnicos = Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)));
+          const numPacientesUnicos = pacientesUnicos.length;
+          setPacientesAtendidos(numPacientesUnicos);
 
-          // Faça a contagem das consultas do dia com base na data "dia"
-          const dataAtual = new Date().toLocaleDateString(); // Obtém a data atual no formato "MM/DD/YYYY"
+          // Contagem das consultas do dia com base na data "dia"
+          const dataAtual = new Date().toLocaleDateString();
           const consultasDia = response.data.pacientes.filter(paciente => paciente.dia === dataAtual);
           const numConsultasDia = consultasDia.length;
           setConsultasDoDia(numConsultasDia);
 
-          // Faça a contagem das consultas do mês com base no mês atual
-          const mesAtual = new Date().getMonth() + 1; // Obtém o número do mês atual (1 a 12)
+          // Contagem das consultas do mês com base no mês atual
+          const mesAtual = new Date().getMonth() + 1;
           const consultasMes = response.data.pacientes.filter(paciente => {
             const dataConsulta = new Date(paciente.diaDesformatado);
-            const mesConsulta = dataConsulta.getMonth() + 1; // Obtém o mês da consulta
+            const mesConsulta = dataConsulta.getMonth() + 1;
             return mesConsulta === mesAtual;
           });
+
           const numConsultasMes = consultasMes.length;
           setConsultasDoMes(numConsultasMes);
+
+          // Filtrar pacientes únicos
+          const pacientesUnicosData = pacientesUnicos.map(id => response.data.pacientes.find(paciente => paciente.idGestante === id));
+          setPacientes(pacientesUnicosData);
         })
         .catch(error => {
           console.error('Erro ao buscar dados do endpoint:', error);
@@ -90,33 +94,17 @@ export default function Home({ Component, pageProps }) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div>
-                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
-                          Nome do Paciente 1
-                        </div>
-                      </td>
-                      <td>30 semanas</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div>
-                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
-                          Nome do Paciente 2
-                        </div>
-                      </td>
-                      <td>28 semanas</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div>
-                          <img className={styles.round_image} src="https://i0.wp.com/bibliaseensina.com.br/wp-content/uploads/2020/07/e-blasfemia-usar-a-letra-j-nos-nomes-biblicos.jpg?fit=1280%2C720&ssl=1" />
-                          Nome do Paciente 3
-                        </div>
-                      </td>
-                      <td>32 semanas</td>
-                    </tr>
+                    {pacientes.map(paciente => (
+                      <tr key={paciente.id}>
+                        <td>
+                          <div>
+                            <img className={styles.round_image} src={paciente.foto} />
+                            {paciente.nome}
+                          </div>
+                        </td>
+                        <td>{paciente.semana_gestacao}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

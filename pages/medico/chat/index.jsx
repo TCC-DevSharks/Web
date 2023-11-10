@@ -18,14 +18,18 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    const url = "http://localhost:3000/profissional/gestante/35";
+    const IdMedico = localStorage.getItem("id");
+    const url = `http://localhost:3000/profissional/gestante/${IdMedico}`;
 
     function getPacientes() {
       axios
         .get(url)
         .then((response) => {
-          const data = response.data;
-          setPacientes(data);
+          // Filtrar pacientes únicos
+          const pacientesUnicos = Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)));
+          const pacientesUnicosData = pacientesUnicos.map(id => response.data.pacientes.find(paciente => paciente.idGestante === id));
+
+          setPacientes(pacientesUnicosData);
         })
         .catch((error) => {
           console.error(error);
@@ -36,7 +40,8 @@ const Chat = () => {
   }, []);
 
   useEffect(() => {
-    const url = `http://localhost:3000/profissional/35`;
+    const IdMedico = localStorage.getItem("id");
+    const url = `http://localhost:3000/profissional/gestante/${IdMedico}`;
 
     function getProfessional() {
       axios
@@ -92,8 +97,9 @@ const Chat = () => {
           <div className={styles["pacientes-container"]}>
             <h1>Pacientes</h1>
             <input type="text" placeholder="Pesquisar um paciente" />
+
             <div className={styles["pacientes"]}>
-              {listpacientes?.pacientes.map((paciente) => (
+              {listpacientes?.map((paciente) => (
                 <div key={paciente.id}>
                   <ConversaPaciente
                     nome={paciente.nome}
