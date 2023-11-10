@@ -29,7 +29,8 @@ export default function Agenda() {
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/profissional/gestante/1')
+        const IdMedico = localStorage.getItem("id");
+        axios.get(`http://localhost:3000/profissional/gestante/${IdMedico}`)
             .then(response => {
                 console.log('Resposta da API:', response.data);
 
