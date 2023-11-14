@@ -48,7 +48,7 @@ const Sidebar = () => {
                   <img
                     className={styles["image-clinica"]}
                     src={profissionais.foto}
-                    alt="foto de perfil da clinica"
+                    alt="foto de perfil do médico"
                   />
 
                   <h1>{profissionais.nome}</h1>
@@ -112,7 +112,7 @@ const Sidebar = () => {
         <ul>
           <li>
             <a href="/">
-              Sair <MdExitToApp />
+            <MdExitToApp />Sair 
             </a>
           </li>
         </ul>

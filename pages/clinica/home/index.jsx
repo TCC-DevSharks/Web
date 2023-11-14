@@ -54,8 +54,7 @@ export default function Home() {
 
   return (
     <>
-      <Sidebar />
-      <div className={styles.container_geral}>
+<div className={styles.container_geral}>
         <div className={styles.container}>
           <div className={styles.container_cima}>
             <h1 className={styles.container_title}>Painel de Controle</h1>
