@@ -6,111 +6,109 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 export default function Perfil() {
-    const [listMedicos, setMedicos] = useState();
-    console.log(listMedicos);
-    const [listEnderecoMedico, setEnderecoMedico] = useState();
-    const IdMedico =
-      typeof window !== "undefined" ? localStorage.getItem("id") : null;
-    const [cep, setCep] = useState();
-    const [editMode, setEditMode] = useState(false);
-    
-    const [editTelefone, setEditedTelefone] = useState(
-        listMedicos?.profissionais && listMedicos.profissionais[0]
-          ? listMedicos.profissionais[0].telefone
-          : ""
-      );
-      
-    const [editEmail, setEditEmail] = useState(
-        listMedicos?.profissionais && listMedicos?.profissionais[0] 
-        ? listMedicos.profissionais[0].email : "");
+  const [listMedicos, setMedicos] = useState();
+  console.log(listMedicos);
+  const [listEnderecoMedico, setEnderecoMedico] = useState();
+  const IdMedico = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const [cep, setCep] = useState();
+  const [editMode, setEditMode] = useState(false);
 
-    const [editRazaoSocial, setEditRazaoSocial] = useState(
-        listMedicos?.profissionais && listMedicos.profissionais[0]
-          ? listMedicos.profissionais[0].nome
-          : ""
-    );
-    // const [editDescricao, setEditDescricao] = useState(
+  const [editTelefone, setEditedTelefone] = useState(
+    listMedicos?.profissionais && listMedicos.profissionais[0]
+      ? listMedicos.profissionais[0].telefone
+      : ""
+  );
 
-    //     listMedicos?.profissionais && listMedicos.profissionais[0]
-    //       ? listMedicos.profissionais[0].descricao
-    //       : ""
-    // );
-    const [editCep, setEditCep] = useState(
-        listMedicos?.profissionais && listMedicos.profissionais[0]
-          ? listMedicos.profissionais[0].cep
-          : "");
-    const [editNumero, setEditNumero] = useState(
-        listMedicos?.profissionais && listMedicos.profissionais[0]
-          ? listMedicos.profissionais[0].numero
-          : "");
-    
+  const [editEmail, setEditEmail] = useState(
+    listMedicos?.profissionais && listMedicos?.profissionais[0]
+      ? listMedicos.profissionais[0].email : "");
 
-          function PutPerfilMedico() {
-            // Check if listMedicos and listMedicos.profissionais are defined
-            if (!listMedicos || !listMedicos.profissionais || listMedicos.profissionais.length === 0) {
-              console.error("Error: No data available for profissionais.");
-              return;
-            }
-          
-            const url = `http://localhost:3000/profissional/${IdMedico}`;
-            const jsonData = {
-              nome: listMedicos.profissionais[0].nome || "", // Use empty string if nome is undefined
-              crm: listMedicos.profissionais[0].crm || "", // Use empty string if cnpj is undefined
-              email: listMedicos.profissionais[0].email || "", // Use empty string if email is undefined
-              foto: listMedicos.profissionais[0].foto || "", // Use empty string if foto is undefined
-              id_telefone: listMedicos.profissionais[0].idTelefone || "", // Use empty string if idTelefone is undefined
-              telefone: editTelefone ? editTelefone : listMedicos.profissionais[0].telefone || "", // Use empty string if telefone is undefined
-              tipo_telefone: 2,
-              id_endereco: listMedicos.profissionais[0].idEndereco || "", // Use empty string if idEndereco is undefined
-              numero: editNumero ? editNumero : listMedicos.profissionais[0].numero || "", // Use empty string if numero is undefined
-              complemento: listMedicos.profissionais[0].complemento || "", // Use empty string if complemento is undefined
-              cep: editCep ? editCep : listMedicos.profissionais[0].cep || "", // Use empty string if cep is undefined
-            };
-          
-            console.log(jsonData);
-          
-            axios
-              .patch(url, jsonData)
-              .then((response) => {
-                const data = response.data;
-                console.log("aqui " + data);
-                if (response.status === 200) {
-                  const notify = () =>
-                    toast.success(data.message, {
-                      position: "top-center",
-                      autoClose: 5000,
-                      hideProgressBar: false,
-                      closeOnClick: true,
-                      pauseOnHover: true,
-                      draggable: true,
-                      progress: undefined,
-                      theme: "light",
-                    });
-                  notify();
-                } else {
-                  console.log("aqu " + data);
-                  toast.error(data.message, {
-                    position: "top-center",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                  });
-          
-                  notify();
-                }
-              })
-              .catch((error) => {
-                console.error(error);
-              });
-          }
+  const [editRazaoSocial, setEditRazaoSocial] = useState(
+    listMedicos?.profissionais && listMedicos.profissionais[0]
+      ? listMedicos.profissionais[0].nome
+      : ""
+  );
+  // const [editDescricao, setEditDescricao] = useState(
+
+  //     listMedicos?.profissionais && listMedicos.profissionais[0]
+  //       ? listMedicos.profissionais[0].descricao
+  //       : ""
+  // );
+  const [editCep, setEditCep] = useState(
+    listMedicos?.profissionais && listMedicos.profissionais[0]
+      ? listMedicos.profissionais[0].cep
+      : "");
+
+  const [editNumero, setEditNumero] = useState(
+    listMedicos?.profissionais && listMedicos.profissionais[0]
+      ? listMedicos.profissionais[0].numero
+      : "");
+
+  function PutPerfilMedico() {
+    if (!listMedicos || !listMedicos.profissionais || listMedicos.profissionais.length === 0) {
+      console.error("Error: No data available for profissionais.");
+      return;
+    }
+
+    const url = `http://localhost:3000/profissional/${IdMedico}`;
+    const jsonData = {
+      nome: listMedicos.profissionais[0].nome || "",
+      crm: listMedicos.profissionais[0].crm || "",
+      email: listMedicos.profissionais[0].email || "",
+      foto: listMedicos.profissionais[0].foto || "",
+      id_telefone: listMedicos.profissionais[0].idTelefone || "",
+      telefone: editTelefone ? editTelefone : listMedicos.profissionais[0].telefone || "",
+      tipo_telefone: 2,
+      id_endereco: listMedicos.profissionais[0].idEndereco || "",
+      numero: editNumero ? editNumero : listMedicos.profissionais[0].numero || "",
+      complemento: listMedicos.profissionais[0].complemento || "",
+      cep: editCep ? editCep : listMedicos.profissionais[0].cep || "",
+    };
+
+    console.log(jsonData);
+
+    axios
+      .patch(url, jsonData)
+      .then((response) => {
+        const data = response.data;
+        console.log("aqui " + data);
+        if (response.status === 200) {
+          const notify = () =>
+            toast.success(data.message, {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          notify();
+        } else {
+          console.log("aqu " + data);
+          toast.error(data.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+
+          notify();
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
   useEffect(() => {
     function getMedico() {
-      const url = `http://localhost:3000/profissional/${IdMedico}`;
+      const url = `http://10.107.144.6:3000/profissional/${IdMedico}`;
       axios
         .get(url)
         .then((response) => {
@@ -145,10 +143,8 @@ export default function Perfil() {
   }, [cep]);
 
   if (!listMedicos) {
-    // You might want to render a loading indicator here
     return <p>Loading...</p>;
   }
-  
 
   return (
     <>
@@ -171,6 +167,7 @@ export default function Perfil() {
           <div className={styles.container_cima}>
             <h1 className={styles.container_title}>Vizualização do perfil</h1>
           </div>
+
           <div className={styles.container_perfil}>
             <div className={styles.container_dados}>
               {listMedicos?.profissionais.map((profissional) => (
@@ -180,9 +177,9 @@ export default function Perfil() {
                       <div className={styles.img_img}>
                         <img
                           src={profissional.foto}
-                          alt="Foto de perfil do profissional"
                         />
                       </div>
+
                       <div className={styles.inputs}>
                         {editMode ? (
                           <>
@@ -194,6 +191,7 @@ export default function Perfil() {
                                 onChange={(e) => setEditRazaoSocial(e.target.value)}
                               />
                             </label>
+
                             <label htmlFor="">
                               Telefone:
                               <input
@@ -204,6 +202,7 @@ export default function Perfil() {
                                 }
                               />
                             </label>
+
                             <label htmlFor="">
                               E-mail:
                               <input
@@ -213,6 +212,7 @@ export default function Perfil() {
                             </label>
                           </>
                         ) : (
+
                           <>
                             <label htmlFor="">
                               Nome:
@@ -221,6 +221,7 @@ export default function Perfil() {
                                 value={profissional.nome}
                               />
                             </label>
+
                             <label htmlFor="">
                               {" "}
                               Telefone:
@@ -259,6 +260,7 @@ export default function Perfil() {
                         />
                       )} */}
                     </div>
+
                     <div className={styles.inputs_row2}>
                       {editMode ? (
                         <>
@@ -270,6 +272,7 @@ export default function Perfil() {
                               className={styles.input_cep}
                             />
                           </label>
+
                           <label htmlFor="">
                             Logradouro:{" "}
                             <input
@@ -288,6 +291,7 @@ export default function Perfil() {
                               className={styles.input_n}
                             />
                           </label>
+
                           <label htmlFor="">
                             Bairro:
                             <input
@@ -318,6 +322,7 @@ export default function Perfil() {
                               className={styles.input_cep}
                             />
                           </label>
+
                           <label htmlFor="">
                             {" "}
                             Logradouro:
@@ -327,6 +332,7 @@ export default function Perfil() {
                               className={styles.input_rua}
                             />
                           </label>
+
                           <label htmlFor="">
                             Número:
                             <input
@@ -345,6 +351,7 @@ export default function Perfil() {
                               className={styles.input_bairro}
                             />
                           </label>
+
                           <label htmlFor="">
                             Cidade:
                             <input
@@ -356,6 +363,7 @@ export default function Perfil() {
                         </>
                       )}
                     </div>
+                    
                     <div style={{ display: "flex", gap: "30px" }}>
                       {editMode ? (
                         <button

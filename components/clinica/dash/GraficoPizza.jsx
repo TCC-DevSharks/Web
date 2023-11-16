@@ -11,7 +11,7 @@ export default function GraficoPizza() {
 
     useEffect(() => {
         function getClinica() {
-          const url = `http://localhost:3000/clinica/data/${IdClinica}`;
+          const url = `http://10.107.144.6:3000/clinica/data/${IdClinica}`;
           axios.get(url)
             .then(response => {
               const data = response.data;

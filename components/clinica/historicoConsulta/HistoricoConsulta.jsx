@@ -79,7 +79,7 @@ const Historico = () => {
     return status;
   };
 
-  const url = `http://localhost:3000/clinica/consulta/${IdClinica}`;
+  const url = `http://10.107.144.6:3000/clinica/consulta/${IdClinica}`;
 
   const getConsultas = () => {
     axios

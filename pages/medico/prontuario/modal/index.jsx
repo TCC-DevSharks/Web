@@ -17,7 +17,7 @@ export function Modal({ pacienteInfo, closeModal }) {
     setValor(event.target.value);
   };
 
-  const url = 'http://localhost:3000/prontuario';
+  const url = 'http://10.107.144.6:3000/prontuario';
 
   function postProntuario() {
 

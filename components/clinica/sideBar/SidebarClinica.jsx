@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (IdClinica) {
-      const url = `http://localhost:3000/clinica/${IdClinica}`;
+      const url = `http://10.107.144.6:3000/clinica/${IdClinica}`;
 
       function getClinica() {
         axios

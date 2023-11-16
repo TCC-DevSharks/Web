@@ -17,8 +17,8 @@ const Sidebar = () => {
     }
 
     if (IdMedico) {
-      const url = `http://localhost:3000/profissional/${IdMedico}`;
-
+      const url = `http://10.107.144.6:3000/profissional/${IdMedico}`;
+      
       function getMedico() {
         axios
           .get(url)
