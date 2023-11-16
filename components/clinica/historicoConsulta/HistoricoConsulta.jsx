@@ -231,7 +231,7 @@ const Historico = () => {
             closeModal={closeModal}
             onClick={(idConsulta) => {
               closeModalConfirmacao()
-              let url = `http://localhost:3000/consulta/${idConsulta}`;
+              let url = `http://10.107.144.6:3000/consulta/${idConsulta}`;
               axios
                 .delete(url)
                 .then((response) => {

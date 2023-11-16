@@ -209,7 +209,7 @@ export default function Medicos() {
             closeModal={ closeModal }
             onClick={(IdMedico) => {
               closeModalConfirmacao()
-              let url = `http://localhost:3000/profissional/${IdMedico}`
+              let url = `http://10.107.144.6:3000/profissional/${IdMedico}`
               axios
                 .delete(url)
                 .then((response) => {
