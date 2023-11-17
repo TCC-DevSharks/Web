@@ -104,7 +104,7 @@ export function Modal({ pacienteInfo, closeModal }) {
               type="text" />
           </div>
           <button onClick={postProntuario} className={styles['buttonEnvModal']}>
-            atualizar prontuário <AiOutlineArrowRight style={{ fontSize: '1.4rem', fontWeight: '800' }} />
+            Atualizar prontuário <AiOutlineArrowRight style={{ fontSize: '1.4rem', fontWeight: '800' }} />
 
           </button>
         </div>
