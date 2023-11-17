@@ -6,6 +6,7 @@ import axios from "axios";
 import ModalMedicoDash from "../../../components/clinica/dash/modalMedico";
 
 export default function Home() {
+  <Sidebar/>
   const IdClinica =
     typeof window !== "undefined" ? localStorage.getItem("id") : null;
   const [dataClinica, setDataClinica] = useState();
