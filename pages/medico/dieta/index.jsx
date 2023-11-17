@@ -14,7 +14,7 @@ const Dieta = () => {
 
     useEffect(() => {
         const IdMedico = localStorage.getItem("id");
-        const url = `http://localhost:3000/profissional/gestante/${IdMedico}`;
+        const url = `http://10.107.144.6:3000/profissional/gestante/${IdMedico}`;
 
         function getPacientes() {
             axios.get(url)

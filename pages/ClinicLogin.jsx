@@ -42,7 +42,7 @@ function ClinicLogin() {
             };
 
             try {
-                const response = await fetch('http://localhost:3000/login/clinica', {
+                const response = await fetch('http://10.107.144.6:3000/login/clinica', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

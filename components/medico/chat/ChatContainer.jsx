@@ -11,7 +11,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
 
   useEffect(() => {
     function getMensagem(from, to) {
-      axios.get(`http://localhost:3000/chat/mensagem?from=${from}&to=${to}`)
+      axios.get(`http://10.107.144.6:3000/chat/mensagem?from=${from}&to=${to}`)
         .then((response) => {
           const data = response.data;
           setMessages(data.conversa);
@@ -31,7 +31,7 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       msg,
     });
 
-    await axios.post("http://localhost:3000/chat", {
+    await axios.post("http://10.107.144.6:3000/chat", {
       text: msg,
       users: [currentUser._id, currentChat._id],
       sender: currentUser._id,

@@ -10,7 +10,7 @@ function SectionArticles() {
 
     useEffect(() => {
         // Aqui você deve fazer a requisição à sua API e obter os artigos desejados
-        fetch('http://localhost:3000/artigos')
+        fetch('http://10.107.144.6:3000/artigos')
             .then((response) => response.json())
             .then((data) => {
                 console.log('Dados da API:', data); // Adicione esta linha

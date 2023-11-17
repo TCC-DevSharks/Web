@@ -28,7 +28,7 @@ export default function Perfil() {
   const [editNumero, setEditNumero] = useState(listClinicas?.clinica[0].numero);
 
   function PutPerfilClinica() {
-    const url = `http://localhost:3000/clinica/${IdClinica}`;
+    const url = `http://10.107.144.6:3000/clinica/${IdClinica}`;
     const jsonData = {
       razao_social: listClinicas?.clinica[0].razao_social,
       cnpj: listClinicas?.clinica[0].cnpj,
@@ -51,7 +51,7 @@ export default function Perfil() {
       .patch(url, jsonData)
       .then((response) => {
         const data = response.data;
-        console.log("aqu " +data);
+        console.log("aqu " + data);
         if (response.status == 200) {
           const notify = () =>
             toast.success(data.message, {
@@ -66,7 +66,7 @@ export default function Perfil() {
             });
           notify();
         } else {
-          console.log("aqu " +data);
+          console.log("aqu " + data);
           toast.error(data.message, {
             position: "top-center",
             autoClose: 5000,
@@ -88,7 +88,7 @@ export default function Perfil() {
 
   useEffect(() => {
     function getClinica() {
-      const url = `http://localhost:3000/clinica/${IdClinica}`;
+      const url = `http://10.107.144.6:3000/clinica/${IdClinica}`;
       axios
         .get(url)
         .then((response) => {

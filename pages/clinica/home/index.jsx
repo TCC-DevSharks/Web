@@ -21,7 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     function getClinica() {
-      const url = `http://localhost:3000/clinica/data/${IdClinica}`;
+      const url = `http://10.107.144.6:3000/clinica/data/${IdClinica}`;
       axios
         .get(url)
         .then((response) => {
@@ -38,7 +38,7 @@ export default function Home() {
 
   useEffect(() => {
     function getMedicosClinica() {
-      const url = `http://localhost:3000/clinica/profissional/${IdClinica}`;
+      const url = `http://10.107.144.6:3000/clinica/profissional/${IdClinica}`;
       axios
         .get(url)
         .then((response) => {
@@ -55,7 +55,8 @@ export default function Home() {
 
   return (
     <>
-<div className={styles.container_geral}>
+    <Sidebar/>
+      <div className={styles.container_geral}>
         <div className={styles.container}>
           <div className={styles.container_cima}>
             <h1 className={styles.container_title}>Painel de Controle</h1>
