@@ -79,7 +79,7 @@ const Historico = () => {
     return status;
   };
 
-  const url = `http://10.107.144.6:3000/clinica/consulta/${IdClinica}`;
+  const url = `https://api-bebevindo.azurewebsites.net/clinica/consulta/${IdClinica}`;
 
   const getConsultas = () => {
     axios
@@ -231,7 +231,7 @@ const Historico = () => {
             closeModal={closeModal}
             onClick={(idConsulta) => {
               closeModalConfirmacao()
-              let url = `http://10.107.144.6:3000/consulta/${idConsulta}`;
+              let url = `hhttps://api-bebevindo.azurewebsites.net/consulta/${idConsulta}`;
               axios
                 .delete(url)
                 .then((response) => {

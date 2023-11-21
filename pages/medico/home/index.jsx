@@ -13,7 +13,7 @@ export default function Home({ Component, pageProps }) {
     const IdMedico = localStorage.getItem("id");
 
     if (IdMedico) {
-      axios.get(`http://10.107.144.6:3000/profissional/gestante/${IdMedico}`)
+      axios.get(`https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`)
         .then(response => {
           // Contagem de pacientes únicos
           const pacientesUnicos = Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)));
@@ -44,6 +44,22 @@ export default function Home({ Component, pageProps }) {
         .catch(error => {
           console.error('Erro ao buscar dados do endpoint:', error);
         });
+    }
+  }, []);
+
+  useEffect(() => {
+    const IdMedico = localStorage.getItem("id");
+
+    if(IdMedico){
+      axios.get(`https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`)
+      .then((response) => {
+        const data = response.data;
+        localStorage.setItem("emailProfissional", data.profissionais[0].email)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     }
   }, []);
 
@@ -115,4 +131,5 @@ export default function Home({ Component, pageProps }) {
       </div>
     </div>
   );
+  
 }

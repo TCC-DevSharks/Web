@@ -23,7 +23,7 @@ export default function Agenda() {
 
     useEffect(() => {
         const IdMedico = localStorage.getItem("id");
-        axios.get(`http://10.107.144.6:3000/profissional/gestante/${IdMedico}`)
+        axios.get(`https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`)
             .then(response => {
                 console.log('Resposta da API:', response.data);
 

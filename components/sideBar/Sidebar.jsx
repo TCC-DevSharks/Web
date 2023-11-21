@@ -17,7 +17,7 @@ const Sidebar = () => {
     }
 
     if (IdMedico) {
-      const url = `http://10.107.144.6:3000/profissional/${IdMedico}`;
+      const url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`;
       
       function getMedico() {
         axios

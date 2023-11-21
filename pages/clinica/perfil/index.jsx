@@ -28,7 +28,7 @@ export default function Perfil() {
   const [editNumero, setEditNumero] = useState(listClinicas?.clinica[0].numero);
 
   function PutPerfilClinica() {
-    const url = `http://10.107.144.6:3000/clinica/${IdClinica}`;
+    const url = `https://api-bebevindo.azurewebsites.net/clinica/${IdClinica}`;
     const jsonData = {
       razao_social: listClinicas?.clinica[0].razao_social,
       cnpj: listClinicas?.clinica[0].cnpj,
@@ -88,7 +88,7 @@ export default function Perfil() {
 
   useEffect(() => {
     function getClinica() {
-      const url = `http://10.107.144.6:3000/clinica/${IdClinica}`;
+      const url = `https://api-bebevindo.azurewebsites.net/clinica/${IdClinica}`;
       axios
         .get(url)
         .then((response) => {

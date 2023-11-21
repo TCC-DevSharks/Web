@@ -50,7 +50,7 @@ export default function Perfil() {
       return;
     }
 
-    const url = `http://10.107.144.6:3000/profissional/${IdMedico}`;
+    const url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`;
     const jsonData = {
       nome: listMedicos.profissionais[0].nome || "",
       crm: listMedicos.profissionais[0].crm || "",
@@ -108,7 +108,7 @@ export default function Perfil() {
 
   useEffect(() => {
     function getMedico() {
-      const url = `http://10.107.144.6:3000/profissional/${IdMedico}`;
+      const url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`;
       axios
         .get(url)
         .then((response) => {
@@ -116,6 +116,8 @@ export default function Perfil() {
           setMedicos(data);
           const cepFromResponse = data.profissional[0].cep;
           setCep(cepFromResponse);
+
+
         })
         .catch((error) => {
           console.error(error);

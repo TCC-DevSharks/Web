@@ -105,7 +105,7 @@ function RegisterClinic() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://10.107.144.6:3000/clinica', {
+      const response = await fetch('https://api-bebevindo.azurewebsites.net/clinica', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
