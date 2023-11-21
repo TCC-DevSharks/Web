@@ -111,7 +111,7 @@ const Sidebar = () => {
       <div className={styles["footer"]}>
         <ul>
           <li>
-            <a href="/">
+            <a href="/" onClick={() => {localStorage.removeItem('id')}}>
             <MdExitToApp />Sair 
             </a>
           </li>

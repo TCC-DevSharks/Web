@@ -1,13 +1,20 @@
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getStorage, ref, uploadString, getDownloadURL } from 'firebase/storage';
+import { initializeApp } from "firebase/app";
+import {
+  getStorage,
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "firebase/storage";
 
-
-import React, { useState } from 'react';
-import axios from 'axios';
-import styles from './CadastroMedico.module.scss';
-import Sidebar from '../../../components/clinica/sideBar/SidebarClinica';
-const IdClinica = typeof window !== 'undefined' ? localStorage.getItem('id') : null;
-
+import React, { useState } from "react";
+import axios from "axios";
+import styles from "./CadastroMedico.module.scss";
+import Sidebar from "../../../components/clinica/sideBar/SidebarClinica";
+const IdClinica =
+  typeof window !== "undefined" ? localStorage.getItem("id") : null;
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ReactInputMask from "react-input-mask";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBW9WRNtFRcQ5twb_K18Fe0tGpxEZTsbsM",
@@ -15,7 +22,7 @@ const firebaseConfig = {
   projectId: "bebe-vindo",
   storageBucket: "bebe-vindo.appspot.com",
   messagingSenderId: "474360940540",
-  appId: "1:474360940540:web:9f2e8703dcda35aa061479"
+  appId: "1:474360940540:web:9f2e8703dcda35aa061479",
 };
 
 const initFirebase = () => {
@@ -23,32 +30,31 @@ const initFirebase = () => {
   return app;
 };
 
-
 function Medicos() {
   const app = initFirebase();
 
   const [formData, setFormData] = useState({
-    nome: '',
-    crm: '',
-    email: '',
-    senha: '',
+    nome: "",
+    crm: "",
+    email: "",
+    senha: "",
 
-    cpf: '',
-    data_nascimento: '',
-    foto: '',
-    descricao: '',
+    cpf: "",
+    data_nascimento: "",
+    foto: "",
+    descricao: "",
 
-    inicio_atendimento: '',
-    fim_atendimento: '',
-    id_sexo: '',
+    inicio_atendimento: "",
+    fim_atendimento: "",
+    id_sexo: "",
     id_clinica: `${IdClinica}`,
-    telefone: '',
-    tipo_telefone: '1',
+    telefone: "",
+    tipo_telefone: "1",
 
-    cep: '',
-    numero: '',
-    complemento: '',
-    id_especialidade: '',
+    cep: "",
+    numero: "",
+    complemento: "",
+    id_especialidade: "",
   });
 
   const handleChange = (e) => {
@@ -68,11 +74,11 @@ function Medicos() {
             estado: data.uf,
             cidade: data.localidade,
             rua: data.logradouro,
-            bairro: data.bairro
+            bairro: data.bairro,
           });
         })
         .catch((error) => {
-          console.error('Erro ao buscar CEP:', error);
+          console.error("Erro ao buscar CEP:", error);
         });
     }
   };
@@ -85,7 +91,7 @@ function Medicos() {
     const filename = `${Date.now()}_${imageFile.name}`;
 
     // Crie uma referência para o arquivo
-    const storageRef = ref(storage, 'cadastro-medico-imagens/' + filename);
+    const storageRef = ref(storage, "cadastro-medico-imagens/" + filename);
 
     // Use FileReader para ler o arquivo como uma string de dados
     const reader = new FileReader();
@@ -94,7 +100,7 @@ function Medicos() {
 
       // Realize o upload da imagem
       try {
-        await uploadString(storageRef, dataURL, 'data_url');
+        await uploadString(storageRef, dataURL, "data_url");
         const downloadURL = await getDownloadURL(storageRef);
 
         setFormData({
@@ -102,17 +108,75 @@ function Medicos() {
           foto: downloadURL, // armazene a URL da imagem no estado
         });
       } catch (error) {
-        console.error('Erro no upload da imagem:', error);
+        console.error("Erro no upload da imagem:", error);
       }
     };
 
     reader.readAsDataURL(imageFile);
   };
 
+  const validarCPF = (cpf) => {
+    cpf = cpf.replace(/\D/g, "");
+
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+      return false;
+    }
+
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+      soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = 11 - (soma % 11);
+    let digitoVerificador1 = resto === 10 || resto === 11 ? 0 : resto;
+
+    if (digitoVerificador1 !== parseInt(cpf.charAt(9))) {
+      return false;
+    }
+
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+      soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = 11 - (soma % 11);
+    let digitoVerificador2 = resto === 10 || resto === 11 ? 0 : resto;
+
+    if (digitoVerificador2 !== parseInt(cpf.charAt(10))) {
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // dados do formulário
+    if (!validarCPF(formData.cpf)) {
+      toast.error("CPF inválido. Por favor, verifique e tente novamente.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return; // Adiciona esse retorno para interromper a execução da função
+    }
+    if (formData.senha !== formData.confirmarSenha) {
+      toast.error("As senhas não coincidem. Por favor, tente novamente.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      return;
+    }
+
     const data = {
       nome: formData.nome,
       crm: formData.crm,
@@ -136,30 +200,59 @@ function Medicos() {
 
     // fazer o POST para o servidor
     axios
-      .post('https://api-bebevindo.azurewebsites.net/profissional', data)
+      .post("https://api-bebevindo.azurewebsites.net/profissional", data)
       .then((response) => {
         // Lidar com a resposta do servidor
-        alert('Sucesso:', response.data);
-        console.log('Sucesso:', response.data);
+        toast.success("Profissional criado com sucesso!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        console.log("Sucesso:", response.data);
       })
       .catch((error) => {
         // Lidar com erros
-        console.error('Erro ao enviar o cadastro:', error);
-        alert('Erro ao enviar o cadastro: veja no console');
-        console.error('Response do servidor:', error.response);
-        alert('Erro ao enviar o cadastro: veja no console a resposta do servidor');
+        toast.error(
+          "Não foi possível criar o usuário, porfavor verifique se os campos estão preenchidos corretamente.",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
       });
   };
 
   return (
     <div>
-      < Sidebar />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Sidebar />
       <div className={styles.container_geral}>
         <div className={styles.formWrapper}>
           <h1>Formulário de Cadastro</h1>
 
           <form onSubmit={handleSubmit}>
-
             <div className={styles.campos}>
               <div className={styles.campo}>
                 {/* foto */}
@@ -190,7 +283,11 @@ function Medicos() {
                 {/* sexo */}
                 <div>
                   <label>Sexo:</label>
-                  <select name="id_sexo" value={formData.id_sexo} onChange={handleChange}>
+                  <select
+                    name="id_sexo"
+                    value={formData.id_sexo}
+                    onChange={handleChange}
+                  >
                     <option value="">Selecione</option>
                     <option value="1">Masculino</option>
                     <option value="2">Feminino</option>
@@ -211,7 +308,8 @@ function Medicos() {
                 {/* telefone */}
                 <div>
                   <label>Telefone:</label>
-                  <input
+                  <ReactInputMask
+                    mask="(99) 99999-9999"
                     type="tel"
                     name="telefone"
                     value={formData.telefone}
@@ -222,7 +320,9 @@ function Medicos() {
                 {/* crm */}
                 <div>
                   <label>CRM:</label>
-                  <input
+                  <ReactInputMask
+                    mask="SP-999999"
+                    maskChar=""
                     type="text"
                     name="crm"
                     value={formData.crm}
@@ -233,7 +333,8 @@ function Medicos() {
                 {/* cpf */}
                 <div>
                   <label>CPF:</label>
-                  <input
+                  <ReactInputMask
+                    mask="999.999.999-99"
                     type="text"
                     name="cpf"
                     value={formData.cpf}
@@ -266,12 +367,17 @@ function Medicos() {
                 {/* especialidade */}
                 <div>
                   <label>Especialidade:</label>
-                  <input
-                    type="text"
-                    name="id_especialidade"
-                    value={formData.id_especialidade}
+                  <select
+                    name="id_sexo"
+                    value={formData.id_sexo}
                     onChange={handleChange}
-                  />
+                  >
+                    <option value="">Selecione</option>
+                    <option value="1">Nutricionista</option>
+                    <option value="2">Obstetra</option>
+                    <option value="3">Psicólogo</option>
+                    <option value="4">Fisioterapeuta</option>
+                  </select>
                 </div>
 
                 {/* descricao */}
@@ -284,15 +390,14 @@ function Medicos() {
                     onChange={handleChange}
                   />
                 </div>
-
               </div>
 
               <div className={styles.campo}>
-
                 {/* cep */}
                 <div>
                   <label>CEP:</label>
-                  <input
+                  <ReactInputMask
+                    mask="99999-999"
                     type="text"
                     name="cep"
                     value={formData.cep}
@@ -365,7 +470,6 @@ function Medicos() {
                     onChange={handleChange}
                   />
                 </div>
-
               </div>
 
               <div className={styles.campo}>
@@ -404,16 +508,16 @@ function Medicos() {
               </div>
             </div>
 
-
             {/* BOTAO */}
             <div>
-              <button type="submit" className={styles.btn}>Enviar</button>
+              <button type="submit" className={styles.btn}>
+                Enviar
+              </button>
             </div>
           </form>
         </div>
       </div>
     </div>
-
   );
 }
 
