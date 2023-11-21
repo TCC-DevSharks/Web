@@ -10,13 +10,6 @@ import {format} from 'date-fns';
 
 
 export default function Agenda() {
-    const [checkboxStates, setCheckboxStates] = useState([false, false]);
-
-    const handleCheckboxChange = (eventId) => {
-        const newCheckboxStates = [...checkboxStates];
-        newCheckboxStates[eventId] = !newCheckboxStates[eventId];
-        setCheckboxStates(newCheckboxStates);
-    };
 
     function convertToDate(value) {
         if (value instanceof Date) {
@@ -86,12 +79,7 @@ export default function Agenda() {
                                         </p>
                                         <p className={styles['paciente']}>{evento.title}</p>
                                     </div>
-                                    <input
-                                        className={styles['checkbox']}
-                                        type="checkbox"
-                                        checked={checkboxStates[evento.id]}
-                                        onChange={() => handleCheckboxChange(evento.id)}
-                                    />
+                                    
                                 </div>
                             </div>
                         ))}

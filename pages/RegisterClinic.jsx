@@ -281,7 +281,7 @@ function RegisterClinic() {
               <div>
                 <p>Telefone: *</p>
                 <InputMask
-                  mask="(99) 99999-9999"
+                  mask="(99) 9999-9999"
                   type="text"
                   name="telefone"
                   placeholder="Digite seu telefone"

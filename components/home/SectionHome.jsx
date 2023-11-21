@@ -6,15 +6,15 @@ function SectionHome() {
         <section className={styles.home}>
             <div className={styles.container__text_home}>
                 <div>
-                    <h1>Acompanhe e cuide da sua <br/>
+                    <h1>Acompanhe e cuide da sua <br />
                         <span>gravidez.</span>
                     </h1>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Quas fuga nam deleniti,
-                    nisi nulla rem nemo libero blanditiis, molestias
-                    ipsa ipsam. Dolores fugiat reiciendis debitis distinctio
-                    laboriosam ipsam nihil aliquid.</p>
+                <p>Bebê-Vindo é uma comunidade de apoio e conhecimento que conecta
+                    futuras mamães aos seus médicos, proporcionando uma jornada 
+                    mais tranquila e informada. Baixe agora e descubra como 
+                    podemos tornar este momento ainda mais especial!
+                    </p>
 
                 <button className={styles.button_home}>Baixe o App!</button>
             </div>
