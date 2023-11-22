@@ -6,7 +6,7 @@ import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { AiFillCloseCircle } from 'react-icons/ai';
-import { Modal } from './modal';
+import Modal from '../modal';
 
 const Prontuario = () => {
     const [listpacientes, setPacientes] = useState({ pacientes: [] });
@@ -74,15 +74,14 @@ const Prontuario = () => {
                         </div>
                     </div>
                 </div>
-                {isModalOpen && (
+
+                {isModalOpen && selectedPaciente && (
                     <Modal
                         pacienteInfo={selectedPaciente}
-                        closeModal={() => {
-                            setIsModalOpen(false)
-                        }
-                        }
+                        closeModal={() => setIsModalOpen(false)}
                     />
                 )}
+
             </div>
         </>
     );

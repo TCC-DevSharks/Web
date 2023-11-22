@@ -3,7 +3,7 @@ import { AiFillCloseCircle, AiOutlineArrowRight } from 'react-icons/ai';
 import { useState } from 'react';
 import axios from 'axios';
 
-export function Modal({ pacienteInfo, closeModal }) {
+export default function Modal({ pacienteInfo, closeModal }) {
   const [dia, mes] = pacienteInfo.dataConsulta.split('/')
   const [prontuario, selectedPronturario] = useState()
   const [valor, setValor] = useState('')

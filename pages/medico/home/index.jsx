@@ -47,6 +47,22 @@ export default function Home({ Component, pageProps }) {
     }
   }, []);
 
+  useEffect(() => {
+    const IdMedico = localStorage.getItem("id");
+
+    if(IdMedico){
+      axios.get(`https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`)
+      .then((response) => {
+        const data = response.data;
+        localStorage.setItem("emailProfissional", data.profissionais[0].email)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+  }, []);
+
   return (
     <div>
       <Sidebar />
@@ -115,4 +131,5 @@ export default function Home({ Component, pageProps }) {
       </div>
     </div>
   );
+  
 }

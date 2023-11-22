@@ -11,7 +11,7 @@ const Chat = () => {
   const socket = useRef();
   const [listpacientes, setPacientes] = useState();
   const [currentChat, setCurrentChat] = useState(null);
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(null);
   const handlePacienteClick = (pacienteInfo) => {
     setCurrentChat(pacienteInfo);
     console.log(pacienteInfo);
@@ -48,7 +48,7 @@ const Chat = () => {
         .get(url)
         .then((response) => {
           const data = response.data.profissionais;
-          localStorage.setItem("emailProfissional", data[0].email);
+
         })
         .catch((error) => {
           console.error(error);
@@ -58,20 +58,17 @@ const Chat = () => {
     getProfessional();
   }, []);
 
-  console.log(currentChat);
-
   useEffect(() => {
     const url = `https://api-bebevindo.azurewebsites.net/user/one?email=${localStorage.getItem(
       "emailProfissional"
     )}&usuario=${"Profissional"}`;
-
+    console.log(url)
     function getMongoProfessional() {
       axios
         .get(url)
         .then((response) => {
           const data = response.data;
           setCurrentUser(data);
-          console.log(data);
         })
         .catch((error) => {
           console.error(error);
@@ -81,9 +78,12 @@ const Chat = () => {
     getMongoProfessional();
   }, []);
 
+
+
   useEffect(() => {
     if (currentUser) {
-      socket.current = io("ws://10.107.144.6:3000");
+
+      socket.current = io("ws://api-bebevindo.azurewebsites.net");
       socket.current.emit("add-user", currentUser._id);
       console.log(currentUser._id);
     }

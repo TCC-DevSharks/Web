@@ -16,7 +16,7 @@ export default function Home() {
                     <a href="/ProfessionalLogin">
                         <button className={styles.choice_login}>Profissionais</button>
                     </a>
-                    <a href="/PregnantLogin">
+                    <a href="/pregnant/PregnantLogin">
                         <button className={styles.choice_login}>Gestantes</button>
                     </a>
                 </div>

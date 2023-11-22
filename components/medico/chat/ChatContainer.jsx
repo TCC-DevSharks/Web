@@ -15,12 +15,13 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
         .then((response) => {
           const data = response.data;
           setMessages(data.conversa);
-          
+          console.log(response)
         })
         .catch((error) => {
           console.error(error);
         });
     }
+    console.log(currentUser)
     getMensagem(currentUser?._id, currentChat?._id);
     scrollToBottom();
   }, [currentChat]);

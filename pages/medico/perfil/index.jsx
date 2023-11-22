@@ -116,6 +116,8 @@ export default function Perfil() {
           setMedicos(data);
           const cepFromResponse = data.profissional[0].cep;
           setCep(cepFromResponse);
+
+
         })
         .catch((error) => {
           console.error(error);
