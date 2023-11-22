@@ -6,7 +6,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from 'axios';
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 import Sidebar from '../../../components/sideBar/Sidebar';
 
 
@@ -20,7 +20,9 @@ export default function Agenda() {
         }
     }
 
+    const [currentDate, setCurrentDate] = useState(new Date());
     const [events, setEvents] = useState([]);
+
 
     useEffect(() => {
         const IdMedico = localStorage.getItem("id");
@@ -29,14 +31,14 @@ export default function Agenda() {
                 console.log('Resposta da API:', response.data);
                 console.log(response.data.pacientes);
                 const eventos = response.data.pacientes.map(paciente => {
-                    const [ano,mes,dia] = paciente.diaDesformatado.split("-")
+                    const [ano, mes, dia] = paciente.diaDesformatado.split("-")
                     const [diaFormatado, resto] = dia.split('T')
-                    const [hora,min] = paciente.hora.split(":")
+                    const [hora, min] = paciente.hora.split(":")
 
-                    const dataFormatada =  `${ano}-${mes}-${diaFormatado} ${hora}:${min}`
+                    const dataFormatada = `${ano}-${mes}-${diaFormatado} ${hora}:${min}`
                     console.log(dataFormatada);
                     const diaDesformatado = paciente.diaDesformatado;
-                    
+
                     return {
                         id: paciente.idConsulta,
                         title: paciente.nome,
@@ -45,8 +47,9 @@ export default function Agenda() {
                     };
                 });
 
+
                 setEvents(eventos);
-                
+
 
             })
             .catch(error => {
@@ -72,28 +75,37 @@ export default function Agenda() {
                             height={"70vh"}
                             timeZone="America/Sao_Paulo"
                             events={events}
+                            //datesSet={(arg) => setCurrentDate(arg.start)}
                         />
                     </div>
                     <div className={styles['compromissos']}>
                         <h2>
                             Compromissos:
                         </h2>
-                        {events.map(evento => (
-                            <div className={styles['compromisso']} key={evento.id}>
-                                <div className={styles['dia']}>
-                                    <p>{convertToDate(evento.start).getDate() + 1}</p>
-                                </div>
-                                <div className={styles['consulta']}>
-                                    <div className={styles['hora-paciente']}>
-                                        <p className={styles['hora']}>
-                                            {format(convertToDate(evento.start), 'HH:mm', { timeZone: 'America/Sao_Paulo' })} -
-                                        </p>
-                                        <p className={styles['paciente']}>{evento.title}</p>
-                                    </div>
-                                    
+                        {events
+                    .filter(evento => {
+                        const eventoDate = convertToDate(evento.start);
+                        return (
+                            eventoDate.getDate() === currentDate.getDate() &&
+                            eventoDate.getMonth() === currentDate.getMonth() &&
+                            eventoDate.getFullYear() === currentDate.getFullYear()
+                        );
+                    })
+                    .map(evento => (
+                        <div className={styles['compromisso']} key={evento.id}>
+                            <div className={styles['dia']}>
+                                <p>{convertToDate(evento.start).getDate()}</p>
+                            </div>
+                            <div className={styles['consulta']}>
+                                <div className={styles['hora-paciente']}>
+                                    <p className={styles['hora']}>
+                                        {format(convertToDate(evento.start), 'HH:mm', { timeZone: 'America/Sao_Paulo' })} -
+                                    </p>
+                                    <p className={styles['paciente']}>{evento.title}</p>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                    ))}
                     </div>
                 </div>
             </div>
