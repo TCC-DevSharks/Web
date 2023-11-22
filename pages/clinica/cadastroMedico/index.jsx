@@ -202,6 +202,7 @@ function Medicos() {
     axios
       .post('https://api-bebevindo.azurewebsites.net/profissional', data)
       .then((response) => {
+        console.log(response);
         // Lidar com a resposta do servidor
         toast.success("Profissional criado com sucesso!", {
           position: "top-center",

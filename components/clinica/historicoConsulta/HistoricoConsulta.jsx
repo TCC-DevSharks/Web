@@ -155,7 +155,6 @@ const Historico = () => {
                 </button>
               </div>
               <div className={styles["box-consultas"]}>
-
                 <div className={styles["consultas"]}>
                   <div className={styles["item-consulta"]}>
                     <table>
