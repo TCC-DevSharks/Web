@@ -13,8 +13,6 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
     setIsModalOpen(true);
   };
 
-  
-
   return (
     <div className={styles["modalContainer"]}>
       <div className={styles["modalBox"]}>
@@ -44,7 +42,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 <div className={styles["informartion"]}>{medicoInfo.nome}</div>
               </div>
               <div className={styles["medicoInfoPessoal"]}>
-                <h3>Data de nascinto:</h3>
+                <h3>Data de nascimento:</h3>
                 <div className={styles["informartion"]}>
                   {medicoInfo.data_nascimento}
                 </div>
@@ -126,7 +124,10 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
             </div>
             <div className={styles['buttonExcluir']}>
               <div onClick={handleConfirmacaoClick} className={styles['button']}>
-                excluir médico
+                Excluir médico
+              </div>
+              <div className={styles['button']} id={styles['button_editar']}>
+                Editar médico
               </div>
             </div>
           </div>
