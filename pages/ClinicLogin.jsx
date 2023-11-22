@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import stylesClinic from "../styles/ClinicLogin.module.css";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import axios from "axios";
 
 function ClinicLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -43,24 +44,14 @@ function ClinicLogin() {
       senha: password,
     };
 
-    try {
-      const response = await fetch(
-        "https://api-bebevindo.azurewebsites.net/login/clinica",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(loginData),
-        }
-      );
-
-      const status = response.status;
-
-      if (status === 201) {
-        const data = await response.json();
-        const id = data.id[0].id;
-        toast.success("Bem Vindo!", {
+    const url = 'http://localhost:3000/login/clinica'
+    await axios.post(url, {
+      email: loginData.email,
+      senha: loginData.senha
+    }).then(response => {
+      console.log(response);
+      if (response.data.doctorkcgajh.status == 401) {
+        toast.error(response.data.doctorkcgajh.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -71,9 +62,9 @@ function ClinicLogin() {
           theme: "light",
         });
 
-        entrarPerfilClinica(id);
       } else {
-        toast.error("Usuário ou Senha inválidos", {
+        const id = response.data.doctorkcgajh.id
+        toast.success(response.data.doctor.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -83,26 +74,26 @@ function ClinicLogin() {
           progress: undefined,
           theme: "light",
         });
+        entrarPerfilClinica(id);
       }
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-    }
-  };
+    }).catch(console.log("erro"))
+
+  }
 
   return (
     <>
-        <ToastContainer
-            position="top-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss={false}
-            draggable
-            pauseOnHover
-            theme="light"
-          />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div>
         <Header />
         <div className={stylesClinic.login_clinic}>

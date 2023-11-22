@@ -7,6 +7,7 @@ import stylesLogin from "../styles/Login.module.css";
 import styles from "./ProfessionalLogin.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios, { Axios } from "axios";
 
 function ClinicLogin() {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,22 +48,26 @@ function ClinicLogin() {
       email: email,
       senha: password,
     };
+    const url = 'http://localhost:3000/login/profissional'
+    axios.post(url, {
+      email: loginData.email,
+      senha: loginData.senha
+    }).then(response => {
+      if (response.data.doctor.status == 401) {
+        toast.error(response.data.doctor.message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
 
-    try {
-      const response = await fetch('https://api-bebevindo.azurewebsites.net/login/profissional', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      const status = response.status;
-
-      if (status === 201) {
-        const data = await response.json();
-        const id = data.doctor[0].id;
-        toast.success("Bem Vindo!", {
+      } else {
+        const id = response.data.doctor.id
+        toast.success(response.data.doctor.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -73,22 +78,9 @@ function ClinicLogin() {
           theme: "light",
         });
         entrarPerfilProfissional(id);
-      } else {
-        toast.error("Usuário ou Senha inválidos", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
       }
-    } catch (error) {
-      console.error("Erro ao fazer login:", error);
-    }
-  };
+    }).catch(console.log("erro"))
+  }
 
   return (
     <div>
@@ -144,7 +136,8 @@ function ClinicLogin() {
         </div>
       </div>
     </div>
-  );
-}
+  )
+};
+
 
 export default ClinicLogin;
