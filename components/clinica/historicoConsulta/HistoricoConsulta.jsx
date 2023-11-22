@@ -79,7 +79,7 @@ const Historico = () => {
     return status;
   };
 
-  const url = `http://10.107.144.6:3000/clinica/consulta/${IdClinica}`;
+  const url = `https://api-bebevindo.azurewebsites.net/clinica/consulta/${IdClinica}`;
 
   const getConsultas = () => {
     axios
@@ -114,18 +114,6 @@ const Historico = () => {
       getConsultas();
     }
   }, [IdClinica, url]);
-
-  // <ToastContainer
-  //         position="top-center"
-  //         autoClose={6000}
-  //         hideProgressBar={false}
-  //         newestOnTop={false}
-  //         closeOnClick
-  //         rtl={false}
-  //         pauseOnFocusLoss
-  //         draggable
-  //         pauseOnHover
-  //         theme="black" />
 
   return (
     <>
@@ -231,13 +219,14 @@ const Historico = () => {
             closeModal={closeModal}
             onClick={(idConsulta) => {
               closeModalConfirmacao()
-              let url = `http://10.107.144.6:3000/consulta/${idConsulta}`;
+              let url = `https://api-bebevindo.azurewebsites.net/consulta/${idConsulta}`;
               axios
                 .delete(url)
                 .then((response) => {
                   const data = response.data;
 
                   if (data.status === 404) {
+                    console.log(data);
                     toast.error(data.message, {
                       position: "top-center",
                       autoClose: 6000,

@@ -18,7 +18,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     if (IdClinica) {
-      const url = `http://10.107.144.6:3000/clinica/${IdClinica}`;
+      const url = `https://api-bebevindo.azurewebsites.net/clinica/${IdClinica}`;
 
       function getClinica() {
         axios

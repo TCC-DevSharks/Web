@@ -13,7 +13,7 @@ export default function Home({ Component, pageProps }) {
     const IdMedico = localStorage.getItem("id");
 
     if (IdMedico) {
-      axios.get(`http://10.107.144.6:3000/profissional/gestante/${IdMedico}`)
+      axios.get(`https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`)
         .then(response => {
           // Contagem de pacientes únicos
           const pacientesUnicos = Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)));

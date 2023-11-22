@@ -136,7 +136,7 @@ function Medicos() {
 
     // fazer o POST para o servidor
     axios
-      .post('http://10.107.144.6:3000/profissional', data)
+      .post('https://api-bebevindo.azurewebsites.net/profissional', data)
       .then((response) => {
         // Lidar com a resposta do servidor
         alert('Sucesso:', response.data);

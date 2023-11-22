@@ -18,7 +18,7 @@ const ConversaPaciente = (
     
     function getPaciente() {
 
-        axios.get(`http://10.107.144.6:3000/user/one?email=${email}&usuario=${usuario}`)
+        axios.get(`https://api-bebevindo.azurewebsites.net/user/one?email=${email}&usuario=${usuario}`)
             .then(response => {
                 const data = response.data;
                     setId(data._id);

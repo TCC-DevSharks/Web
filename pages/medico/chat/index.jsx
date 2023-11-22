@@ -19,7 +19,7 @@ const Chat = () => {
 
   useEffect(() => {
     const IdMedico = localStorage.getItem("id");
-    const url = `http://10.107.144.6:3000/profissional/gestante/${IdMedico}`;
+    const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
 
     function getPacientes() {
       axios
@@ -41,7 +41,7 @@ const Chat = () => {
 
   useEffect(() => {
     const IdMedico = localStorage.getItem("id");
-    const url = `http://10.107.144.6:3000/profissional/gestante/${IdMedico}`;
+    const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
 
     function getProfessional() {
       axios
@@ -61,7 +61,7 @@ const Chat = () => {
   console.log(currentChat);
 
   useEffect(() => {
-    const url = `http://10.107.144.6:3000/user/one?email=${localStorage.getItem(
+    const url = `https://api-bebevindo.azurewebsites.net/user/one?email=${localStorage.getItem(
       "emailProfissional"
     )}&usuario=${"Profissional"}`;
 

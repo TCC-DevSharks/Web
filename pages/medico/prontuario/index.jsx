@@ -21,7 +21,7 @@ const Prontuario = () => {
 
     useEffect(() => {
         const IdMedico = localStorage.getItem("id");
-        const url = `http://10.107.144.6:3000/profissional/gestante/${IdMedico}`;
+        const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
 
         function getPacientes() {
             axios

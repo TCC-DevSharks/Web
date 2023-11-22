@@ -21,7 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     function getClinica() {
-      const url = `http://10.107.144.6:3000/clinica/data/${IdClinica}`;
+      const url = `https://api-bebevindo.azurewebsites.net/clinica/data/${IdClinica}`;
       axios
         .get(url)
         .then((response) => {
@@ -38,7 +38,7 @@ export default function Home() {
 
   useEffect(() => {
     function getMedicosClinica() {
-      const url = `http://10.107.144.6:3000/clinica/profissional/${IdClinica}`;
+      const url = `https://api-bebevindo.azurewebsites.net/clinica/profissional/${IdClinica}`;
       axios
         .get(url)
         .then((response) => {
