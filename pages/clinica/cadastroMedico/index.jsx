@@ -368,8 +368,8 @@ function Medicos() {
                 <div>
                   <label>Especialidade:</label>
                   <select
-                    name="id_sexo"
-                    value={formData.id_sexo}
+                    name="id_especialidade"
+                    value={formData.id_especialidade}
                     onChange={handleChange}
                   >
                     <option value="">Selecione</option>
