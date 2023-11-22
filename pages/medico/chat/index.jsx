@@ -16,7 +16,24 @@ const Chat = () => {
     setCurrentChat(pacienteInfo);
     console.log(pacienteInfo);
   };
-  console.log(currentUser);
+
+  useEffect(() => {
+    const IdMedico = localStorage.getItem("id");
+
+    if(IdMedico){
+      axios.get(`https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`)
+      .then((response) => {
+        const data = response.data;
+        localStorage.setItem("emailProfissional", data.profissionais[0].email)
+        console.log(data)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+  }, []);
+
+
   useEffect(() => {
     const IdMedico = localStorage.getItem("id");
     const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
@@ -58,10 +75,6 @@ const Chat = () => {
     getProfessional();
   }, []);
 
-  console.log(localStorage.getItem(
-    "emailProfissional"
-  ));
-
   useEffect(() => {
     const url = `https://api-bebevindo.azurewebsites.net/user/one?email=${localStorage.getItem(
       "emailProfissional"
@@ -81,6 +94,8 @@ const Chat = () => {
 
     getMongoProfessional();
   }, []);
+
+
 
   useEffect(() => {
     if (currentUser) {
