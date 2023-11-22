@@ -200,7 +200,7 @@ function Medicos() {
 
     // fazer o POST para o servidor
     axios
-      .post("https://api-bebevindo.azurewebsites.net/profissional", data)
+      .post('https://api-bebevindo.azurewebsites.net/profissional', data)
       .then((response) => {
         console.log(response);
         // Lidar com a resposta do servidor
@@ -369,8 +369,8 @@ function Medicos() {
                 <div>
                   <label>Especialidade:</label>
                   <select
-                    name="id_sexo"
-                    value={formData.id_sexo}
+                    name="id_especialidade"
+                    value={formData.id_especialidade}
                     onChange={handleChange}
                   >
                     <option value="">Selecione</option>

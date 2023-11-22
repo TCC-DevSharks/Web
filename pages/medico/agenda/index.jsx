@@ -7,6 +7,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from 'axios';
 import {format} from 'date-fns';
+import Sidebar from '../../../components/sideBar/Sidebar';
 
 
 export default function Agenda() {
@@ -26,19 +27,26 @@ export default function Agenda() {
         axios.get(`https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`)
             .then(response => {
                 console.log('Resposta da API:', response.data);
-
+                console.log(response.data.pacientes);
                 const eventos = response.data.pacientes.map(paciente => {
+                    const [ano,mes,dia] = paciente.diaDesformatado.split("-")
+                    const [diaFormatado, resto] = dia.split('T')
+                    const [hora,min] = paciente.hora.split(":")
+
+                    const dataFormatada =  `${ano}-${mes}-${diaFormatado} ${hora}:${min}`
+                    console.log(dataFormatada);
                     const diaDesformatado = paciente.diaDesformatado;
-                    console.log('dia desformatado:', diaDesformatado);
+                    
                     return {
                         id: paciente.idConsulta,
                         title: paciente.nome,
-                        start: paciente.diaDesformatado,
-                        end: paciente.diaDesformatado,
+                        start: dataFormatada,
+                        end: dataFormatada,
                     };
                 });
 
                 setEvents(eventos);
+                
 
             })
             .catch(error => {
@@ -49,7 +57,7 @@ export default function Agenda() {
         <div>
             <span>teste</span>
             <div className={styles['agenda-container']}>
-                <TituloSecao title="Agenda" />
+                <Sidebar />
                 <div className={styles["calendario-container"]}>
                     <div className={styles["calendario"]}>
                         <Fullcalendar
@@ -61,12 +69,15 @@ export default function Agenda() {
                                 center: "title",
                                 end: "dayGridMonth,timeGridWeek,timeGridDay",
                             }}
-                            height={"50vh"}
+                            height={"70vh"}
                             timeZone="America/Sao_Paulo"
                             events={events}
                         />
                     </div>
                     <div className={styles['compromissos']}>
+                        <h2>
+                            Compromissos:
+                        </h2>
                         {events.map(evento => (
                             <div className={styles['compromisso']} key={evento.id}>
                                 <div className={styles['dia']}>

@@ -115,18 +115,6 @@ const Historico = () => {
     }
   }, [IdClinica, url]);
 
-  // <ToastContainer
-  //         position="top-center"
-  //         autoClose={6000}
-  //         hideProgressBar={false}
-  //         newestOnTop={false}
-  //         closeOnClick
-  //         rtl={false}
-  //         pauseOnFocusLoss
-  //         draggable
-  //         pauseOnHover
-  //         theme="black" />
-
   return (
     <>
       <div className={styles.container_geral}>      
@@ -167,7 +155,6 @@ const Historico = () => {
                 </button>
               </div>
               <div className={styles["box-consultas"]}>
-
                 <div className={styles["consultas"]}>
                   <div className={styles["item-consulta"]}>
                     <table>
@@ -231,13 +218,14 @@ const Historico = () => {
             closeModal={closeModal}
             onClick={(idConsulta) => {
               closeModalConfirmacao()
-              let url = `hhttps://api-bebevindo.azurewebsites.net/consulta/${idConsulta}`;
+              let url = `https://api-bebevindo.azurewebsites.net/consulta/${idConsulta}`;
               axios
                 .delete(url)
                 .then((response) => {
                   const data = response.data;
 
                   if (data.status === 404) {
+                    console.log(data);
                     toast.error(data.message, {
                       position: "top-center",
                       autoClose: 6000,
