@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SectionArticles.module.scss';
 import Articles from './Article';
-import ArticleModal from './modalArticle';
+import ArticleModal from './ModalArticles';
 
 function SectionArticles() {
     const [articles, setArticles] = useState([]);
