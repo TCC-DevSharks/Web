@@ -6,6 +6,7 @@ import styles from './RegisterClinic.module.scss';
 import stylesLogin from '../styles/ClinicLogin.module.css';
 import InputMask from 'react-input-mask';
 import Header from '../components/home/header/Header'
+import PreviewImage from "../components/previewImage/previewImage";
 
 
 const firebaseConfig = {
@@ -152,18 +153,18 @@ function RegisterClinic() {
               </span>
 
               <div className='div_img'>
+              <p>Foto:</p>
+                  <input
+                    type="file"
+                    name="foto"
+                    onChange={(e) => {
+                      const imageFile = e.target.files[0];
+                      handleChange(e);
+                      handleImageUpload(e);
+                    }}
+                  />
+                  {formData.foto && <PreviewImage imageUrl={formData.foto} />}
                 
-                <input
-                  type="file"
-                  name="foto"
-                  id="fileInput"
-                  required
-                  onChange={(e) => {
-                    const imageFile = e.target.files[0];
-                    handleChange(e); // Chama a função handleChange para atualizar o estado
-                    handleImageUpload(e); // Chama a função handleImageUpload para fazer o upload da imagem
-                  }}
-                ></input>
               </div>
 
               <div>
