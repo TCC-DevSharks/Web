@@ -21,7 +21,7 @@ export default function Home() {
                     </a>
                 </div>
                 <div className={styles.login_img}>
-                    <img src="./images/login_img.png" alt="" />
+                    <img src="./images/login_img.png" alt="Image Login" />
                 </div>
             </div>
         </div>

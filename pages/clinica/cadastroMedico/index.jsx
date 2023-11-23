@@ -70,8 +70,10 @@ function Medicos() {
       fetch(`https://viacep.com.br/ws/${value}/json/`)
         .then((response) => response.json())
         .then((data) => {
+          console.log(data);
           setFormData({
             ...formData,
+            cep: data.cep,
             estado: data.uf,
             cidade: data.localidade,
             rua: data.logradouro,
@@ -198,7 +200,7 @@ function Medicos() {
       cep: formData.cep,
       id_especialidade: formData.id_especialidade,
     };
-
+    console.log(data.cep);
     // fazer o POST para o servidor
     axios
       .post('https://api-bebevindo.azurewebsites.net/profissional', data)

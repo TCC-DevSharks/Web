@@ -8,6 +8,7 @@ import styles from "./ProfessionalLogin.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios, { Axios } from "axios";
+import { useEffect } from "react";
 
 
 function RecuperarSenha() {
@@ -20,9 +21,45 @@ function RecuperarSenha() {
     setEmail(e.target.value);
   };
 
+
+
+
+  const SolicitarCodigo = (e) => {
+    e.preventDefault();
+    let url = `https://api-bebevindo.azurewebsites.net/redefinir-senha/clinica/solicitar`
+
+    axios.post(url, {
+      email: email
+    }).then((response) => {
+      console.log(response.data);
+      toast.success(response.data.message.message, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    })
+  }
+
+
   return (
     <div>
-     
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Header />
       <div className={styles.login_pro}>
         <div className={stylesClinic.login_form}>
@@ -38,9 +75,9 @@ function RecuperarSenha() {
                 onChange={handleEmailChange}
               />
             </div>
-            <a href="/recover" className={stylesClinic.forgot_a}>
-                    Continuar
-                  </a>
+            <a href="/recover" onClick={SolicitarCodigo} className={stylesClinic.forgot_a}>
+              Continuar
+            </a>
           </form>
         </div>
       </div>
