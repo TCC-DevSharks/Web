@@ -8,7 +8,7 @@ export default function Home({ Component, pageProps }) {
   const [consultasDoDia, setConsultasDoDia] = useState(0);
   const [consultasDoMes, setConsultasDoMes] = useState(0);
   const [pacientes, setPacientes] = useState([]);
-
+  console.log(pacientes);
   useEffect(() => {
     const IdMedico = localStorage.getItem("id");
 
@@ -105,12 +105,16 @@ export default function Home({ Component, pageProps }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Nome da Paciente</th>
+                      <th>Nome da Paciente </th>
                       <th>Semana Gestacional</th>
+                      <th>Especialidade da consulta</th>
+                      <th>Dia consulta</th>
+                      <th>Hora consulta</th>
                     </tr>
                   </thead>
                   <tbody>
                     {pacientes.map(paciente => (
+                       
                       <tr key={paciente.id}>
                         <td>
                           <div>
@@ -118,7 +122,10 @@ export default function Home({ Component, pageProps }) {
                             {paciente.nome}
                           </div>
                         </td>
-                        <td>{paciente.semana_gestacao}</td>
+                        <td>{paciente.semana_gestacao} semanas</td>
+                        <td>{paciente.especialidade}</td>
+                        <td>{paciente.dia}</td>
+                        <td>{paciente.hora.split("0:00")}</td>
                       </tr>
                     ))}
                   </tbody>
