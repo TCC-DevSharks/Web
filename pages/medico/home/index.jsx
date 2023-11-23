@@ -105,7 +105,7 @@ export default function Home({ Component, pageProps }) {
                 <table>
                   <thead>
                     <tr>
-                      <th>Nome da Paciente</th>
+                      <th>Nome da Paciente </th>
                       <th>Semana Gestacional</th>
                       <th>Especialidade da consulta</th>
                       <th>Dia consulta</th>
