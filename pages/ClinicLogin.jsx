@@ -44,7 +44,7 @@ function ClinicLogin() {
       senha: password,
     };
 
-    const url = 'http://localhost:3000/login/clinica'
+    const url = 'https://api-bebevindo.azurewebsites.net/login/clinica'
     await axios.post(url, {
       email: loginData.email,
       senha: loginData.senha
