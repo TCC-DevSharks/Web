@@ -80,7 +80,7 @@ export default function Agenda() {
                     </div>
                     <div className={styles['compromissos']}>
                         <h2>
-                            Compromissos:
+                            Compromissos do dia:
                         </h2>
                         {events
                     .filter(evento => {
