@@ -48,7 +48,7 @@ function ClinicLogin() {
       email: email,
       senha: password,
     };
-    const url = 'http://localhost:3000/login/profissional'
+    const url = 'https://api-bebevindo.azurewebsites.net/login/profissional'
     axios.post(url, {
       email: loginData.email,
       senha: loginData.senha

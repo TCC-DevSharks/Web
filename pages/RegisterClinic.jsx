@@ -7,6 +7,7 @@ import stylesLogin from '../styles/ClinicLogin.module.css';
 import InputMask from 'react-input-mask';
 import Header from '../components/home/header/Header'
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBW9WRNtFRcQ5twb_K18Fe0tGpxEZTsbsM",
   authDomain: "bebe-vindo.firebaseapp.com",
