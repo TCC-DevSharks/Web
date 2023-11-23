@@ -28,12 +28,12 @@ export default function Perfil() {
       ? listMedicos.profissionais[0].nome
       : ""
   );
-  // const [editDescricao, setEditDescricao] = useState(
+  const [editDescricao, setEditDescricao] = useState(
 
-  //     listMedicos?.profissionais && listMedicos.profissionais[0]
-  //       ? listMedicos.profissionais[0].descricao
-  //       : ""
-  // );
+      listMedicos?.profissionais && listMedicos.profissionais[0]
+        ? listMedicos.profissionais[0].descricao
+        : ""
+  );
   const [editCep, setEditCep] = useState(
     listMedicos?.profissionais && listMedicos.profissionais[0]
       ? listMedicos.profissionais[0].cep
@@ -46,8 +46,10 @@ export default function Perfil() {
 
   function PutPerfilMedico() {
     if (!listMedicos || !listMedicos.profissionais || listMedicos.profissionais.length === 0) {
-      console.error("Error: No data available for profissionais.");
+      console.error("Erro: deu tudo errado ");
       return;
+    }else{
+      console.log("deu certo")
     }
 
     const url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`;
@@ -55,7 +57,10 @@ export default function Perfil() {
       nome: listMedicos.profissionais[0].nome || "",
       crm: listMedicos.profissionais[0].crm || "",
       email: listMedicos.profissionais[0].email || "",
+      cpf: listMedicos.profissionais[0].cpf || "",
+      data_nascimento: listMedicos.profissionais[0].data_nascimento || "",
       foto: listMedicos.profissionais[0].foto || "",
+      descricao: listMedicos.profissionais[0].descricao || "",
       id_telefone: listMedicos.profissionais[0].idTelefone || "",
       telefone: editTelefone ? editTelefone : listMedicos.profissionais[0].telefone || "",
       tipo_telefone: 2,
@@ -86,7 +91,7 @@ export default function Perfil() {
             });
           notify();
         } else {
-          console.log("aqu " + data);
+          console.log("aqui " + data);
           toast.error(data.message, {
             position: "top-center",
             autoClose: 5000,
@@ -189,7 +194,7 @@ export default function Perfil() {
                               Nome:
                               <input
                                 placeholder={editRazaoSocial}
-                                value={editRazaoSocial}
+                                // value={editRazaoSocial}
                                 onChange={(e) => setEditRazaoSocial(e.target.value)}
                               />
                             </label>
@@ -198,7 +203,7 @@ export default function Perfil() {
                               Telefone:
                               <input
                                 placeholder={editTelefone}
-                                value={editTelefone}
+                                // value={editTelefone}
                                 onChange={(e) =>
                                   setEditedTelefone(e.target.value)
                                 }
@@ -248,7 +253,7 @@ export default function Perfil() {
 
                   <div className={styles.dados_finais}>
                     <div className={styles.inputs_row1}>
-                      {/* {editMode ? (
+                      {editMode ? (
                         <textarea
                           placeholder={editDescricao}
                           onChange={(e) => setEditDescricao(e.target.value)}
@@ -260,7 +265,7 @@ export default function Perfil() {
                           value={profissional.descricao}
                           className="input_descricao"
                         />
-                      )} */}
+                      )}
                     </div>
 
                     <div className={styles.inputs_row2}>
@@ -393,5 +398,3 @@ export default function Perfil() {
     </>
   );
 }
-
-

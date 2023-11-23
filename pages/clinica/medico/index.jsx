@@ -203,6 +203,7 @@ export default function Medicos() {
             </div>
           </div>
         </div>
+        
         {isModalOpen && (
           <ModalMedico
             medicoInfo={medicoSelected}

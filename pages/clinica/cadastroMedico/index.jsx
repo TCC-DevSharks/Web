@@ -15,6 +15,7 @@ const IdClinica =
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactInputMask from "react-input-mask";
+import PreviewImage from "../../../components/previewImage/previewImage";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBW9WRNtFRcQ5twb_K18Fe0tGpxEZTsbsM",
@@ -264,10 +265,11 @@ function Medicos() {
                     name="foto"
                     onChange={(e) => {
                       const imageFile = e.target.files[0];
-                      handleChange(e); // Chama a função handleChange para atualizar o estado
-                      handleImageUpload(e); // Chama a função handleImageUpload para fazer o upload da imagem
+                      handleChange(e);
+                      handleImageUpload(e);
                     }}
                   />
+                  {formData.foto && <PreviewImage imageUrl={formData.foto} />}
                 </div>
 
                 {/* nome */}

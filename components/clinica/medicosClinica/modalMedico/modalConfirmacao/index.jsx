@@ -22,7 +22,7 @@ export const ModalConfirmation = ({ medicoInfo, closeModal, onClick }) => {
             </h1>
             <div className={styles["boxButtons"]}>
               <button onClick={closeModal} className={styles["buttonEnvModal"]}>
-                voltar
+                Voltar
               </button>
               <button
                 onClick={()=>{
@@ -31,7 +31,7 @@ export const ModalConfirmation = ({ medicoInfo, closeModal, onClick }) => {
                 }}
                 className={styles["buttonCancelarConsulta"]}
               >
-                excluir médico
+                Excluir médico
               </button>
             </div>
           </div>

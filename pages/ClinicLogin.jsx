@@ -50,8 +50,8 @@ function ClinicLogin() {
       senha: loginData.senha
     }).then(response => {
       console.log(response);
-      if (response.data.doctorkcgajh.status == 401) {
-        toast.error(response.data.doctorkcgajh.message, {
+      if (response.data.doctor.status == 401) {
+        toast.error(response.data.doctor.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -63,7 +63,7 @@ function ClinicLogin() {
         });
 
       } else {
-        const id = response.data.doctorkcgajh.id
+        const id = response.data.doctor.id
         toast.success(response.data.doctor.message, {
           position: "top-center",
           autoClose: 5000,
