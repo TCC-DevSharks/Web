@@ -142,7 +142,7 @@ function ClinicLogin() {
                 <span>
                   Ainda não tem uma conta?{" "}
                   <a href="/RegisterClinic" className={stylesClinic.cad}>
-                    Cadastre-se
+                    Cadastre-se!
                   </a>
                 </span>
               </div>

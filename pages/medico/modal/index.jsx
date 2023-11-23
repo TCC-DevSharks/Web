@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 
 export default function Modal({ pacienteInfo, closeModal }) {
-  const [dia, mes] = pacienteInfo.dataConsulta.split('/')
+  const [dia, mes] = pacienteInfo && pacienteInfo.dataConsulta ? pacienteInfo.dataConsulta.split('/') : ['', ''];
   const [prontuario, selectedPronturario] = useState()
   const [valor, setValor] = useState('')
 
@@ -41,12 +41,13 @@ export default function Modal({ pacienteInfo, closeModal }) {
             <AiFillCloseCircle style={{ fill: '#fa0000' }} />
           </div>
           <h2 style={{ color: '#464444', fontSize: '2.4rem' }}>
-            Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo.nome}</span>
+          <p>Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo && pacienteInfo.nome ? pacienteInfo.nome : ''}</span></p>
           </h2>
           <div className={styles['especialidadesBox']}>
             <h4>Especialidade:</h4>
             <div className={styles['boxButtonEspecialidade']}>
-              <button className={styles['buttonEspecialidade']}>{pacienteInfo.especialidade}</button>
+            <p>Especialidade: <span style={{ color: '#b6b6f6' }}>{pacienteInfo && pacienteInfo.especialidade ? pacienteInfo.especialidade : ''}</span></p>
+
             </div>
           </div>
           <div className={styles['datasBox']}>
