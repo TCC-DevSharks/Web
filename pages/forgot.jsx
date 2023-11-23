@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios, { Axios } from "axios";
 
+
 function RecuperarSenha() {
 
   const router = useRouter();
@@ -37,9 +38,9 @@ function RecuperarSenha() {
                 onChange={handleEmailChange}
               />
             </div>
-            
-
-            <button className={styles.button_login_pro}>Continuar</button>
+            <a href="/recover" className={stylesClinic.forgot_a}>
+                    Continuar
+                  </a>
           </form>
         </div>
       </div>

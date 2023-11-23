@@ -1,6 +1,6 @@
-import styles from "./Perfil.module.scss";
+import styles from  "./Perfil.module.scss";
 import Sidebar from "../../../components/sideBar/Sidebar";
-import React, { useEffect, useState } from "react";
+ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
