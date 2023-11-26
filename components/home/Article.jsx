@@ -1,4 +1,5 @@
 import { React } from 'react'
+import { MdOutlineArticle } from "react-icons/md";
 import styles from '../home/Article.module.scss'
 
 
@@ -15,7 +16,7 @@ function Articles({ title, imageUrl, onReadMore }) {
             </div>
 
             <button className={styles.more} onClick={onReadMore}>
-                Leia mais <i className="fa-solid fa-square-caret-right"></i>
+                Leia mais <MdOutlineArticle style={{fontSize:'1.1rem'}}/>
             </button>
         </div>
     );

@@ -11,7 +11,6 @@ import Footer from '../components/home/footer/Footer';
 function Main() {
   return (
     <div>
-
         <Header />
         <Home />
         <SectionDiv />

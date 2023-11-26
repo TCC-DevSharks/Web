@@ -1,19 +1,24 @@
-import React from 'react';
-import styles from './Article.module.scss';
+import React from "react";
+import styles from "./Article.module.scss";
 
 function ArticleModal({ article, onClose }) {
-  console.log('Artigo recebido no modal:', article);
-    return (
-        <div className={styles.modalBackground}>
-            <div className={styles.modalContent}>
-                <h2>{article.titulo}</h2>
-                <img src={article.imagem} alt='img-article' />
-                <p>{article.descricao}</p>
-
-                <button onClick={onClose}>Fechar</button>
-            </div>
+  console.log("Artigo recebido no modal:", article);
+  return (
+    <div className={styles.modalBackground}>
+      <div className={styles.container}>
+        <div className={styles.imageContainer}>
+          <img src={article.imagem} alt="img-article" />
         </div>
-    );
+        <div className={styles.modalContent}>
+          <h2>{article.titulo}</h2>
+
+          <p>{article.descricao}</p>
+
+          <button onClick={onClose}>Fechar</button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default ArticleModal;
