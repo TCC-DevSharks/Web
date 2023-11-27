@@ -16,7 +16,7 @@ function Articles({ title, imageUrl, onReadMore }) {
             </div>
 
             <button className={styles.more} onClick={onReadMore}>
-                Leia mais <MdOutlineArticle style={{fontSize:'1.1rem'}}/>
+                Leia mais <MdOutlineArticle/>
             </button>
         </div>
     );

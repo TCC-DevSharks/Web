@@ -33,8 +33,14 @@ function SectionArticles() {
 
   return (
     <section className={styles.articles}>
-      <div className={styles.description__ex}>Nossos artigos <p>Use o scroll para ver os outros artigos a direita.</p></div>
-      
+      <div className={styles.description__ex}>
+        Nossos artigos
+        <p>Explore nossa coleção de artigos cuidadosamente elaborados para oferecer orientação,
+          esclarecer dúvidas comuns e proporcionar apoio durante essa jornada especial da maternidade.
+          Descubra informações valiosas sobre a gestação, parto, cuidados pré-natais e muito mais. 
+        </p>
+      </div>
+
       <div className={styles.container}>
         <div className={styles.articleScroll}>
           <div className={styles.news}>
@@ -55,7 +61,7 @@ function SectionArticles() {
           />
         )}
       </div>
-    </section>
+    </section >
   );
 }
 
