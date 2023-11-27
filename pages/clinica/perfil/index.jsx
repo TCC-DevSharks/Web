@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import ReactInputMask from "react-input-mask";
 
 export default function Perfil() {
   const [listClinicas, setClinicas] = useState();
@@ -168,9 +169,10 @@ export default function Perfil() {
                             </label>
                             <label htmlFor="">
                               Telefone:
-                              <input
+                              <ReactInputMask
                                 placeholder={editTelefone}
                                 value={editTelefone}
+                                mask={"(99)99999-9999"}
                                 onChange={(e) =>
                                   setEditedTelefone(e.target.value)
                                 }
@@ -236,10 +238,11 @@ export default function Perfil() {
                         <>
                           <label htmlFor="">
                             Cep:{" "}
-                            <input
+                            <ReactInputMask
                               placeholder={clinica.cep}
                               onChange={(e) => setEditCep(e.target.value)}
                               className={styles.input_cep}
+                              mask={'99999-999'}
                             />
                           </label>
                           <label htmlFor="">
