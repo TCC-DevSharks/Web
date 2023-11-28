@@ -1,0 +1,74 @@
+.containerModal{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #b6b6f66e;
+    z-index: 10000000;
+}
+
+.containerController{
+    border-radius: 10px;
+    width: 50%;
+    height: 80%;
+    background-color: #fff;
+}
+
+.contentModal{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 3%;
+}
+
+.headerModal{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+.foods{
+    display: flex;
+    flex-direction: column;
+    padding-top: 3%;
+    width: 100%;
+    height: 100%;
+}
+.foods h2{
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.boxFood{
+    display: flex;
+    width: 100%;
+    padding-top: 2%;
+}
+
+.foodItem{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+    height: 150px;
+    background-color: aqua;
+}
+
+.imageFood{
+    width: 100%;
+    height: 40%;
+    background-color: bisque;
+}
+
+.foodInformations{
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
