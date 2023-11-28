@@ -7,6 +7,8 @@ import axios from "axios";
 import ReactInputMask from "react-input-mask";
 
 export default function Perfil() {
+
+  //razao_social: editRazaoSocial ? editRazaoSocial : listClinicas?.clinica[0].razao_social,
   const [listClinicas, setClinicas] = useState();
   console.log(listClinicas);
   const [listEnderecoClinica, setEnderecoClinica] = useState();

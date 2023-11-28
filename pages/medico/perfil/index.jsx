@@ -19,6 +19,12 @@ export default function Perfil() {
       : ""
   );
 
+  const [editNome, setEditNome] = useState(
+    listMedicos?.profissionais && listMedicos.profissionais[0]
+      ? listMedicos.profissionais[0].nome
+      : ""
+  );
+
   const [editEmail, setEditEmail] = useState(
     listMedicos?.profissionais && listMedicos?.profissionais[0]
       ? listMedicos.profissionais[0].email : "");
@@ -34,10 +40,6 @@ export default function Perfil() {
         ? listMedicos.profissionais[0].descricao
         : ""
   );
-  const [editCep, setEditCep] = useState(
-    listMedicos?.profissionais && listMedicos.profissionais[0]
-      ? listMedicos.profissionais[0].cep
-      : "");
 
   const [editNumero, setEditNumero] = useState(
     listMedicos?.profissionais && listMedicos.profissionais[0]
@@ -52,22 +54,33 @@ export default function Perfil() {
       console.log("deu certo")
     }
 
+    const [editCep, setEditCep] = useState(
+      listMedicos?.profissionais && listMedicos.profissionais[0]
+        ? listMedicos.profissionais[0].telefone
+        : ""
+    );
+    //const [editCep, setEditCep] = useState(listMedicos?.profissionais[0].cep);
+    const [editNumero, setEditNumero] = useState(listMedicos?.profissionais[0].numero);
     const url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`;
     const jsonData = {
-      nome: listMedicos.profissionais[0].nome || "",
-      crm: listMedicos.profissionais[0].crm || "",
-      email: listMedicos.profissionais[0].email || "",
-      cpf: listMedicos.profissionais[0].cpf || "",
-      data_nascimento: listMedicos.profissionais[0].data_nascimento || "",
-      foto: listMedicos.profissionais[0].foto || "",
-      descricao: listMedicos.profissionais[0].descricao || "",
-      id_telefone: listMedicos.profissionais[0].idTelefone || "",
+      nome: editNome ? editNome : listMedicos?.profissionais[0].nome,
+      crm: listMedicos?.profissionais[0].crm || "",
+      email: listMedicos?.profissionais[0].email || "",
+      cpf: listMedicos?.profissionais[0].cpf || "",
+      data_nascimento: listMedicos?.profissionais[0].data_nascimento || "",
+      foto: listMedicos?.profissionais[0].foto || "",
+      descricao: listMedicos?.profissionais[0].descricao || "",
+      inicio_atendimento: listMedicos?.profissionais[0].inicio_atendimento || "",
+      fim_atendimento: listMedicos?.profissionais[0].fim_atendimento || "",
+      id_sexo: listMedicos?.profissionais[0].id_sexo || "", 
+      id_clinica: listMedicos?.profissionais[0].id_clinica || "",
+      id_telefone: listMedicos?.profissionais[0].idTelefone || "",
       telefone: editTelefone ? editTelefone : listMedicos.profissionais[0].telefone || "",
       tipo_telefone: 2,
-      id_endereco: listMedicos.profissionais[0].idEndereco || "",
-      numero: editNumero ? editNumero : listMedicos.profissionais[0].numero || "",
-      complemento: listMedicos.profissionais[0].complemento || "",
-      cep: editCep ? editCep : listMedicos.profissionais[0].cep || "",
+      id_endereco: listMedicos?.profissionais[0].idEndereco || "",
+      numero: editNumero ? editNumero : listMedicos?.profissionais[0].numero || "",
+      complemento: listMedicos?.profissionais[0].complemento || "",
+      cep: editCep ? editCep : listMedicos?.profissionais[0].cep || "",
     };
 
     console.log(jsonData);
