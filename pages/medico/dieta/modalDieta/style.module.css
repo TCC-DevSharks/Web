@@ -14,6 +14,7 @@
     width: 50%;
     height: 80%;
     background-color: #fff;
+    overflow: auto;
 }
 
 .contentModal{
@@ -23,6 +24,7 @@
     flex-direction: column;
     align-items: center;
     padding: 3%;
+    overflow: hidden;
 }
 
 .headerModal{
@@ -37,9 +39,11 @@
     flex-direction: column;
     padding-top: 3%;
     width: 100%;
-    height: 100%;
+    height: 65vh;
+    padding-top: 3%;
+    overflow: auto;
 }
-.foods h2{
+.contentModal h2{
     width: 100%;
     text-align: center;
     font-size: 1rem;
@@ -48,27 +52,52 @@
 
 .boxFood{
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
     width: 100%;
+    height: 100%;
     padding-top: 2%;
+    gap: 30px;
 }
 
 .foodItem{
-    display: flex;
+    display: grid;
+    align-items: center;
+    grid-template-rows: 50% 50%;
     flex-direction: column;
-    width: 150px;
-    height: 150px;
-    background-color: aqua;
+    border-radius: 10px;
+    width: 180px;
+    height: 180px;
+    background-color: #b6b6f61e;
 }
 
 .imageFood{
+    border-radius: 10px 10px 0 0 ;
     width: 100%;
-    height: 40%;
+    height: 100%;
     background-color: bisque;
+}
+.imageFood img{
+    object-fit: cover;
+    border-radius: 10px 10px 0 0 ;
 }
 
 .foodInformations{
-    padding: 5%;
+    padding-top:1%;
+    height: 100%;width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 5%;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
+    color: black;
+}
+
+.foodInformations span{font-weight: 500;
+    font-size: 0.9rem;
+    width: 80%;
+    text-align: center;
+    text-transform: capitalize;
 }
