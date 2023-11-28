@@ -119,13 +119,10 @@
   color: #000000;
   font-weight: 300;
   font-size: 1.2rem;
-  cursor: not-allowed;
 }
 
 .buttonExcluir {
   display: flex;
-  align-items: center;
-  justify-content: center;
   width: 80%;
   height: 50%;
 }
@@ -163,15 +160,6 @@
   transition: 0.3s;
 }
 
-.input_editing{
-  border: 2px dotted #464444;
-  width: 100%;
-  padding: 2%;
-  border-radius: 5px;
-  color: #b6b6f6;
-  font-weight: 300;
-  font-size: 1.2rem;
-}
 @media(max-width:768px) {
   .modalContainer {
     display: flex;

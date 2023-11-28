@@ -1,28 +1,32 @@
-// Componente reutilizável para campos editáveis
-import styles from "./style.module.css";
+import React, { useState } from 'react';
 
-const EditableField = ({ label, value, isEditing, onChange, onEditClick }) => {
-    return (
-        <div className={styles["medicoInfoPessoal"]}>
-            <h3>{label}:</h3>
-            {isEditing ? (
-                <input
-                    className={styles["input_editing"]}
-                    type="text"
-                    value={value}
-                    onChange={(e) => onChange(e.target.value)}
-                />
-            ) : (
-                <div className={styles["informartion"]}>{value}</div>
-            )}
-            <div
-                onClick={onEditClick}
-                className={styles['editButton']}
-            >
-                Editar
-            </div>
+const EditableField = ({ value, onChange }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [editedValue, setEditedValue] = useState(value);
+
+  const handleInputChange = (event) => {
+    setEditedValue(event.target.value);
+  };
+
+  const handleSave = () => {
+    onChange(editedValue);
+    setEditMode(false);
+  };
+
+  return (
+    <div>
+      {editMode ? (
+        <>
+          <input type="text" value={editedValue} onChange={handleInputChange} />
+          <button onClick={handleSave}>Salvar</button>
+        </>
+      ) : (
+        <div onClick={() => setEditMode(true)}>
+          {value}
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 export default EditableField;
