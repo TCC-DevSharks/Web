@@ -1,9 +1,11 @@
-import styles from  "./Perfil.module.scss";
+import styles from "./Perfil.module.scss";
 import Sidebar from "../../../components/sideBar/Sidebar";
- import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import ReactInputMask from "react-input-mask";
+import Router from "next/router";
 
 export default function Perfil() {
   const [listMedicos, setMedicos] = useState();
@@ -14,6 +16,7 @@ export default function Perfil() {
   const [editMode, setEditMode] = useState(false);
 
   const [editTelefone, setEditedTelefone] = useState(
+    
     listMedicos?.profissionais && listMedicos.profissionais[0]
       ? listMedicos.profissionais[0].telefone
       : ""
@@ -24,21 +27,18 @@ export default function Perfil() {
       ? listMedicos.profissionais[0].nome
       : ""
   );
+  
 
   const [editEmail, setEditEmail] = useState(
     listMedicos?.profissionais && listMedicos?.profissionais[0]
       ? listMedicos.profissionais[0].email : "");
 
-  const [editRazaoSocial, setEditRazaoSocial] = useState(
-    listMedicos?.profissionais && listMedicos.profissionais[0]
-      ? listMedicos.profissionais[0].nome
-      : ""
-  );
+      
   const [editDescricao, setEditDescricao] = useState(
 
-      listMedicos?.profissionais && listMedicos.profissionais[0]
-        ? listMedicos.profissionais[0].descricao
-        : ""
+    listMedicos?.profissionais && listMedicos.profissionais[0]
+      ? listMedicos.profissionais[0].descricao
+      : ""
   );
 
   const [editNumero, setEditNumero] = useState(
@@ -48,45 +48,38 @@ export default function Perfil() {
 
   function PutPerfilMedico() {
     if (!listMedicos || !listMedicos.profissionais || listMedicos.profissionais.length === 0) {
-      console.error("Erro: deu tudo errado ");
+      console.error("Erro: dados do médico não encontrados");
       return;
-    }else{
-      console.log("deu certo")
     }
 
-    const [editCep, setEditCep] = useState(
-      listMedicos?.profissionais && listMedicos.profissionais[0]
-        ? listMedicos.profissionais[0].telefone
-        : ""
-    );
-    //const [editCep, setEditCep] = useState(listMedicos?.profissionais[0].cep);
-    const [editNumero, setEditNumero] = useState(listMedicos?.profissionais[0].numero);
+    const profissional = listMedicos.profissionais[0];
+    const editCep = profissional.cep;
+    const [day, month, year] = listMedicos.profissionais[0].data_nascimento.split("/")
     const url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`;
     const jsonData = {
-      nome: editNome ? editNome : listMedicos?.profissionais[0].nome,
-      crm: listMedicos?.profissionais[0].crm || "",
-      email: listMedicos?.profissionais[0].email || "",
-      cpf: listMedicos?.profissionais[0].cpf || "",
-      data_nascimento: listMedicos?.profissionais[0].data_nascimento || "",
-      foto: listMedicos?.profissionais[0].foto || "",
-      descricao: listMedicos?.profissionais[0].descricao || "",
-      inicio_atendimento: listMedicos?.profissionais[0].inicio_atendimento || "",
-      fim_atendimento: listMedicos?.profissionais[0].fim_atendimento || "",
-      id_sexo: listMedicos?.profissionais[0].id_sexo || "", 
-      id_clinica: listMedicos?.profissionais[0].id_clinica || "",
-      id_telefone: listMedicos?.profissionais[0].idTelefone || "",
-      telefone: editTelefone ? editTelefone : listMedicos.profissionais[0].telefone || "",
+      nome: editNome ? editNome : profissional.nome,
+      crm: profissional.crm || "",
+      email: editEmail ? editEmail : profissional.email,
+      cpf: profissional.cpf || "",
+      data_nascimento: `${year}-${month}-${day}`,
+      foto: profissional.foto || "",
+      descricao: editDescricao ? editDescricao : profissional.descricao,
+      inicio_atendimento: profissional.inicio_atendimento || "",
+      fim_atendimento: profissional.fim_atendimento || "",
+      id_sexo: listMedicos.profissionais[0].idSexo,
+      id_clinica: listMedicos.profissionais[0].idClinica,
+      id_telefone: profissional.idTelefone || "",
+      telefone: editTelefone ? editTelefone : profissional.telefone || "",
       tipo_telefone: 2,
-      id_endereco: listMedicos?.profissionais[0].idEndereco || "",
-      numero: editNumero ? editNumero : listMedicos?.profissionais[0].numero || "",
-      complemento: listMedicos?.profissionais[0].complemento || "",
-      cep: editCep ? editCep : listMedicos?.profissionais[0].cep || "",
+      id_endereco: profissional.idEndereco || "",
+      numero: editNumero ? editNumero : profissional.numero || "",
+      complemento: profissional.complemento || "",
+      cep: editCep ? editCep : profissional.cep || "",
     };
-
     console.log(jsonData);
 
     axios
-      .patch(url, jsonData)
+      .put(url, jsonData)
       .then((response) => {
         const data = response.data;
         console.log("aqui " + data);
@@ -103,8 +96,9 @@ export default function Perfil() {
               theme: "light",
             });
           notify();
+          Router.reload()
+          // Router.push('/medico/home')
         } else {
-          console.log("aqui " + data);
           toast.error(data.message, {
             position: "top-center",
             autoClose: 5000,
@@ -192,6 +186,7 @@ export default function Perfil() {
             <div className={styles.container_dados}>
               {listMedicos?.profissionais.map((profissional) => (
                 <>
+
                   <div className={styles.dados_iniciais}>
                     <div className={styles.dados_foto}>
                       <div className={styles.img_img}>
@@ -206,15 +201,16 @@ export default function Perfil() {
                             <label htmlFor="">
                               Nome:
                               <input
-                                placeholder={editRazaoSocial}
+                                placeholder={editNome}
                                 // value={editRazaoSocial}
-                                onChange={(e) => setEditRazaoSocial(e.target.value)}
+                                onChange={(e) => setEditNome(e.target.value)}
                               />
                             </label>
 
                             <label htmlFor="">
                               Telefone:
-                              <input
+                              <ReactInputMask
+                                mask={"(99)99999-9999"}
                                 placeholder={editTelefone}
                                 // value={editTelefone}
                                 onChange={(e) =>
@@ -243,13 +239,14 @@ export default function Perfil() {
                             </label>
 
                             <label htmlFor="">
-                              {" "}
                               Telefone:
-                              <input
+                              <ReactInputMask
+                                mask={"(99)99999-9999"}
                                 style={{ color: "#aaa3aa" }}
                                 value={profissional.telefone}
                               />
                             </label>
+                           
 
                             <label htmlFor="">
                               E-mail:
@@ -383,7 +380,7 @@ export default function Perfil() {
                         </>
                       )}
                     </div>
-                    
+
                     <div style={{ display: "flex", gap: "30px" }}>
                       {editMode ? (
                         <button
@@ -395,7 +392,7 @@ export default function Perfil() {
                       ) : (
                         <button
                           className={styles.btn}
-                          onClick={() => setEditMode(true)}
+                          onClick={() =>  setEditMode(true)}
                         >
                           Editar
                         </button>

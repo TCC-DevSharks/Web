@@ -87,9 +87,9 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
           body: JSON.stringify(editedMedicoInfo),
         }
       );
-
+        console.log(response);
       if (response.ok) {
-        toast.success("socorro", {
+        toast.success("Médico editado com sucesso", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -102,7 +102,16 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
 
         setIsEditModalOpen(false);
       } else {
-        // Atribuir o texto do erro à variável errorText
+        toast.error("", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         errorText = await response.text();
         toast.error('Erro ao editar médico', errorText);
       }
@@ -318,11 +327,11 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                   Excluir médico
                 </div>
 
-                <div className={styles['button']} onClick={() => setIsEditModalOpen(true)}>
+                <div className={styles['buttonEdit']} onClick={() => setIsEditModalOpen(true)}>
                   Editar médico
                 </div>
 
-                <div className={styles['button']} onClick={handleSave}>
+                <div className={styles['buttonSave']} onClick={handleSave}>
                   Salvar alterações
                 </div>
               </div>
