@@ -9,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 export function ModalMedico({ medicoInfo, closeModal, onClick }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hora, min] = medicoInfo.inicio_atendimento.split(":");
-  console.log(medicoInfo)
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedMedicoInfo, setEditedMedicoInfo] = useState({
     ...medicoInfo,
@@ -17,31 +16,39 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
     id_telefone: medicoInfo.idTelefone,
     id_endereco: medicoInfo.idEndereco,
   });
+  const [isEditModeActive, setIsEditModeActive] = useState(false);
 
-  const [enderecoByCep, setEnderecoByCep] = useState({
-    rua: '',
-    bairro: '',
-    cidade: '',
+
+  const [cepInfo, setCepInfo] = useState({
+    rua: "",
+    cidade: "",
+    bairro: "",
   });
 
-  // Função para buscar o endereço com base no CEP
-  const fetchEnderecoByCep = async (cep) => {
-    try {
-      const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
-      if (response.ok) {
-        const data = await response.json();
-        setEnderecoByCep({
-          rua: data.logradouro || '',
-          bairro: data.bairro || '',
-          cidade: data.localidade || '',
-        });
-      } else {
-        console.error('Erro ao buscar endereço pelo CEP');
+  useEffect(() => {
+    const fetchAddressInfo = async () => {
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${editedMedicoInfo.cep}/json/`);
+        if (response.ok) {
+          const data = await response.json();
+          setCepInfo({
+            rua: data.logradouro,
+            cidade: data.localidade,
+            bairro: data.bairro,
+          });
+        } else {
+          console.error("Erro ao obter informações do CEP");
+        }
+      } catch (error) {
+        console.error("Erro ao obter informações do CEP", error);
       }
-    } catch (error) {
-      console.error('Erro ao buscar endereço pelo CEP', error);
+    };
+
+    // Fetch address information only if a valid CEP is provided
+    if (/^\d{8}$/.test(editedMedicoInfo.cep)) {
+      fetchAddressInfo();
     }
-  };
+  }, [editedMedicoInfo.cep]);
 
   const handleSave = async () => {
     const especialidades = {
@@ -87,7 +94,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
           body: JSON.stringify(editedMedicoInfo),
         }
       );
-        console.log(response);
+      console.log(response);
       if (response.ok) {
         toast.success("Médico editado com sucesso", {
           position: "top-center",
@@ -116,7 +123,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
         toast.error('Erro ao editar médico', errorText);
       }
     }
-    
+
     catch (error) {
       toast.error('Erro ao editar médico', error);
     }
@@ -183,11 +190,10 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                   <h3>E-mail:</h3>
                   {isEditModalOpen ? (
                     <EditableField
-                      value={editedMedicoInfo.email}
-                      onChange={(value) =>
-                        setEditedMedicoInfo((prev) => ({ ...prev, email: value }))
-                      }
-                    />
+                    value={editedMedicoInfo.email}
+                    onChange={(value) => setEditedMedicoInfo((prev) => ({ ...prev, email: value }))}
+                    isEditModeActive={isEditModeActive}
+                  />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.email}</div>
                   )}
@@ -198,9 +204,8 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                   {isEditModalOpen ? (
                     <EditableField
                       value={editedMedicoInfo.telefone}
-                      onChange={(value) =>
-                        setEditedMedicoInfo((prev) => ({ ...prev, telefone: value }))
-                      }
+                      onChange={(value) => setEditedMedicoInfo((prev) => ({ ...prev, telefone: value }))}
+                      isEditModeActive={isEditModeActive}
                     />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.telefone}</div>
@@ -208,29 +213,52 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
               </div>
 
-
               <div className={styles["columnTwo"]}>
                 <h2>Endereço do profissional:</h2>
 
                 <div className={styles["medicoInfoPessoal"]}>
                   <h3>Rua:</h3>
-                  <div className={styles["informartion"]}>
-                    {medicoInfo.rua}
-                  </div>
+                  {isEditModalOpen ? (
+                    <EditableField
+                      value={editedMedicoInfo.rua || cepInfo.rua}
+                      onChange={(value) =>
+                        setEditedMedicoInfo((prev) => ({ ...prev, rua: value }))
+                      }
+                      isEditModeActive={isEditModeActive}
+                    />
+                  ) : (
+                    <div className={styles["informartion"]}>{medicoInfo.rua || cepInfo.rua}</div>
+                  )}
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
                   <h3>Bairro:</h3>
-                  <div className={styles["informartion"]}>
-                    {medicoInfo.bairro}
-                  </div>
+                  {isEditModalOpen ? (
+                    <EditableField
+                      value={editedMedicoInfo.bairro || cepInfo.bairro}
+                      onChange={(value) =>
+                        setEditedMedicoInfo((prev) => ({ ...prev, bairro: value }))
+                      }
+                      isEditModeActive={isEditModeActive}
+                    />
+                  ) : (
+                    <div className={styles["informartion"]}>{medicoInfo.bairro || cepInfo.bairro}</div>
+                  )}
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
                   <h3>Cidade:</h3>
-                  <div className={styles["informartion"]}>
-                    {medicoInfo.cidade}
-                  </div>
+                  {isEditModalOpen ? (
+                    <EditableField
+                      value={editedMedicoInfo.cidade || cepInfo.cidade}
+                      onChange={(value) =>
+                        setEditedMedicoInfo((prev) => ({ ...prev, cidade: value }))
+                      }
+                      isEditModeActive={isEditModeActive}
+                    />
+                  ) : (
+                    <div className={styles["informartion"]}>{medicoInfo.cidade || cepInfo.cidade}</div>
+                  )}
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
@@ -241,6 +269,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                       onChange={(value) =>
                         setEditedMedicoInfo((prev) => ({ ...prev, numero: value }))
                       }
+                      isEditModeActive={isEditModeActive}
                     />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.numero}</div>
@@ -255,13 +284,13 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                       onChange={(value) =>
                         setEditedMedicoInfo((prev) => ({ ...prev, cep: value }))
                       }
+                      isEditModeActive={isEditModeActive}
                     />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.cep}</div>
                   )}
                 </div>
               </div>
-
 
               <div className={styles["columnTwo"]}>
                 <h2>Informações técnicas:</h2>
@@ -279,6 +308,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                       onChange={(value) =>
                         setEditedMedicoInfo((prev) => ({ ...prev, especialidade: value }))
                       }
+                      isEditModeActive={isEditModeActive}
                     />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.especialidade}</div>
@@ -293,6 +323,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                       onChange={(value) =>
                         setEditedMedicoInfo((prev) => ({ ...prev, inicio_atendimento: value }))
                       }
+                      isEditModeActive={isEditModeActive}
                     />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.inicio_atendimento}</div>
@@ -307,6 +338,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                       onChange={(value) =>
                         setEditedMedicoInfo((prev) => ({ ...prev, fim_atendimento: value }))
                       }
+                      isEditModeActive={isEditModeActive}
                     />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.fim_atendimento}</div>
@@ -321,13 +353,12 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
               </div>
 
-
               <div className={styles['buttonExcluir']}>
                 <div className={styles['button']}>
                   Excluir médico
                 </div>
 
-                <div className={styles['buttonEdit']} onClick={() => setIsEditModalOpen(true)}>
+                <div className={styles['buttonEdit']} onClick={() => { setIsEditModalOpen(true); setIsEditModeActive(true); }}>
                   Editar médico
                 </div>
 
