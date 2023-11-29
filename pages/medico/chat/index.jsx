@@ -69,6 +69,7 @@ const Chat = () => {
         .then((response) => {
           const data = response.data;
           setCurrentUser(data);
+          console.log(response);
         })
         .catch((error) => {
           console.error(error);
@@ -82,12 +83,12 @@ const Chat = () => {
 
   useEffect(() => {
     if (currentUser) {
-
-      socket.current = io("ws://api-bebevindo.azurewebsites.net");
+      socket.current = io("https://api-bebevindo.azurewebsites.net");
       socket.current.emit("add-user", currentUser._id);
       console.log(currentUser._id);
     }
-  }, [currentUser]);
+  }, [currentUser]); // Passando um array vazio como segundo argumento
+  
 
   return (
     <>
