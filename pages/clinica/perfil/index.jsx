@@ -17,8 +17,12 @@ export default function Perfil() {
   const [cep, setCep] = useState();
   const [editMode, setEditMode] = useState(false);
 
+  console.log(listClinicas?.clinica[0].telefone);
   const [editTelefone, setEditedTelefone] = useState(
-    listClinicas?.clinica[0].telefone
+    
+    listClinicas?.clinica &&  listClinicas?.clinica[0]
+      ?  listClinicas?.clinica[0].telefone
+      : ""
   );
   const [editEmail, setEditEmail] = useState(listClinicas?.clinica[0].email);
   const [editRazaoSocial, setEditRazaoSocial] = useState(
@@ -33,13 +37,12 @@ export default function Perfil() {
   function PutPerfilClinica() {
     const url = `https://api-bebevindo.azurewebsites.net/clinica/${IdClinica}`;
     const jsonData = {
-      razao_social: listClinicas?.clinica[0].razao_social,
+      razao_social: editRazaoSocial ? editRazaoSocial : listClinicas?.clinica[0].razao_social,
       cnpj: listClinicas?.clinica[0].cnpj,
-      razao_social: listClinicas?.clinica[0].razao_social,
       descricao: editDescricao
         ? editDescricao
         : listClinicas?.clinica[0].descricao,
-      email: listClinicas?.clinica[0].email,
+      email: editEmail ? editEmail : listClinicas?.clinica[0].email,
       foto: listClinicas?.clinica[0].foto,
       id_telefone: listClinicas?.clinica[0].idTelefone,
       telefone: editTelefone ? editTelefone : listClinicas?.clinica[0].telefone,
@@ -172,14 +175,15 @@ export default function Perfil() {
                             <label htmlFor="">
                               Telefone:
                               <ReactInputMask
-                                placeholder={editTelefone}
-                                value={editTelefone}
                                 mask={"(99)99999-9999"}
+                                placeholder={editTelefone}
+                                // value={editTelefone}
                                 onChange={(e) =>
                                   setEditedTelefone(e.target.value)
                                 }
                               />
                             </label>
+
                             <label htmlFor="">
                               E-mail:
                               <input
