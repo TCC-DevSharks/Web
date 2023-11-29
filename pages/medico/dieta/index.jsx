@@ -5,15 +5,17 @@ import PacienteDieta from '../../../components/medico/dieta/pacienteDieta/Pacien
 import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import { ModalDieta } from './modalDieta';
+import  ModalDieta  from './modalDieta';
 
 const Dieta = () => {
     const [listpacientes, setPacientes] = useState();
     const [listUnicPacientes, setUnicPaciente] = useState();
     const [modalOpen, setModalIsOpen] = useState(false);
+    const [categoriaRefeicao, setCategoriaRefeicao] = useState("")
 
-    const OpenModal = () => {
+    const OpenModal = (refeicao) => {
         setModalIsOpen(true)
+        setCategoriaRefeicao(refeicao)
     }
 
     useEffect(() => {
@@ -79,7 +81,7 @@ const Dieta = () => {
                                     <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
                                         Café da manhã {/* <MdFreeBreakfast/> */}
                                     </span>
-                                    <span onClick={OpenModal} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                    <span onClick={() => OpenModal("Café")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
                                         adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
@@ -89,7 +91,7 @@ const Dieta = () => {
                                     <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
                                         Almoço {/* <PiBowlFoodFill/> */}
                                     </span>
-                                    <span style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                    <span onClick={() => OpenModal("Almoço")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
                                         adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
@@ -99,7 +101,7 @@ const Dieta = () => {
                                     <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
                                         Lanche da Tarde {/* <MdFreeBreakfast/> */}
                                     </span>
-                                    <span style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                    <span onClick={() => OpenModal("Lanche da tarde")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
                                         adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
@@ -109,7 +111,7 @@ const Dieta = () => {
                                     <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
                                         Janta {/* <MdFreeBreakfast/> */}
                                     </span>
-                                    <span style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                    <span onClick={() => OpenModal("Janta")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
                                         adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
@@ -118,7 +120,7 @@ const Dieta = () => {
                     </div>
                 </div>
                 {modalOpen && (
-                    <ModalDieta title="Titulo" categoria="nsbb" />
+                    <ModalDieta title={categoriaRefeicao} closeModal={() => setModalIsOpen(false)} categoria="nsbb" />
                 )}
             </div>
         </>

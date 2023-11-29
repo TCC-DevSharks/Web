@@ -1,16 +1,13 @@
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { IoAddCircleSharp } from "react-icons/io5";
 import style from "./style.module.css";
 
-export function ModalDieta({ title, categoria }) {
+const ModalDieta = ({ title, categoria, closeModal }) => {
   const [comidas, setComidas] = useState();
   const [modal, setModalIsOpen] = useState(true);
-
-  const closeModal = () => {
-    setModalIsOpen(false);
-  };
 
   useEffect(() => {
     const GetComidas = () => {
@@ -68,3 +65,5 @@ export function ModalDieta({ title, categoria }) {
     </>
   );
 }
+
+export default ModalDieta
