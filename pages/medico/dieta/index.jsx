@@ -5,7 +5,7 @@ import PacienteDieta from '../../../components/medico/dieta/pacienteDieta/Pacien
 import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import  ModalDieta  from './modalDieta';
+import ModalDieta from './modalDieta';
 
 const Dieta = () => {
     const [listpacientes, setPacientes] = useState();
@@ -48,14 +48,12 @@ const Dieta = () => {
 
     return (
         <>
-
             <Sidebar />
-            <div className={styles['dieta-container']}>
 
+            <div className={styles['dieta-container']}>
                 <TituloSecao title="Gerenciar Dietas" />
                 <div className={styles['container-geral']}>
                     <div className={styles['container-pacientes']}>
-
                         <div >
                             <input type="text" placeholder='Pesquisar paciente:' />
                         </div>
@@ -78,41 +76,44 @@ const Dieta = () => {
                         <div className={styles['box-dieta']}>
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
-                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
+                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.3rem', fontWeight: '600' }}>
                                         Café da manhã {/* <MdFreeBreakfast/> */}
                                     </span>
-                                    <span onClick={() => OpenModal("Café")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
-                                        adicionar meta calorica <AiOutlineArrowRight />
+                                    <span onClick={() => OpenModal("Café da manhã")} style={{ display: 'flex', alignItems: 'end', justifyContent: 'end', gap: '5px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                        Adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
                             </div>
+
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
-                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
+                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.3rem', fontWeight: '600' }}>
                                         Almoço {/* <PiBowlFoodFill/> */}
                                     </span>
-                                    <span onClick={() => OpenModal("Almoço")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
-                                        adicionar meta calorica <AiOutlineArrowRight />
+                                    <span onClick={() => OpenModal("Almoço")} style={{ display: 'flex', alignItems: 'end', justifyContent: 'end', gap: '5px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                        Adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
                             </div>
+
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
-                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
-                                        Lanche da Tarde {/* <MdFreeBreakfast/> */}
+                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.3rem', fontWeight: '600' }}>
+                                        Lanche da tarde {/* <MdFreeBreakfast/> */}
                                     </span>
-                                    <span onClick={() => OpenModal("Lanche da tarde")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
-                                        adicionar meta calorica <AiOutlineArrowRight />
+                                    <span onClick={() => OpenModal("Lanche da Tarde")} style={{ display: 'flex', alignItems: 'end', justifyContent: 'end', gap: '5px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                        Adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
                             </div>
+
                             <div className={styles['box-controler-breakfast']}>
                                 <div className={styles['boxContent']}>
-                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.4rem' }}>
+                                    <span style={{ display: 'flex', alignItems: 'center', fontSize: '1.3rem', fontWeight: '600' }}>
                                         Janta {/* <MdFreeBreakfast/> */}
                                     </span>
-                                    <span onClick={() => OpenModal("Janta")} style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#b6b6f6', cursor: 'pointer' }}>
-                                        adicionar meta calorica <AiOutlineArrowRight />
+                                    <span onClick={() => OpenModal("Janta")} style={{ display: 'flex', alignItems: 'end', justifyContent: 'end', gap: '5px', color: '#b6b6f6', cursor: 'pointer' }}>
+                                        Adicionar meta calorica <AiOutlineArrowRight />
                                     </span>
                                 </div>
                             </div>

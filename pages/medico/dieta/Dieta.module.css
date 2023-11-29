@@ -1,35 +1,37 @@
 .dieta-container {
-    width: 100%;
     height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 50px;
+    justify-content: center;
+    gap: 30px;
+    padding-left: 250px;
 }
 
 .container-geral {
     display: flex;
-    margin-left: 120px;
     height: 75%;
     display: flex;
-    width: 90%;
+    width: 95%;
     justify-content: center;
-    gap: 50px;
-    align-items: center;
+    gap: 5%;
+    align-items: center;    
+    padding: 1%;
 }
 
 .container-pacientes {
-    width: 600px;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .container-pacientes div input {
     border-radius: 10px;
     border: none;
-    padding: 20px;
+    padding: 3%;
     width: 100%;
     margin-bottom: 10px;
     background-color: #ffffff;
@@ -37,11 +39,11 @@
 
 .container-pacientes div input::placeholder {
     color: #999;
-    font-size: 17px;
+    font-size: 1rem;
 }
 
 .container-pacientes div {
-    font-size: 20px;
+    font-size: 1rem;
 }
 
 .container-pacientes .box-pacientes {
@@ -54,10 +56,9 @@
 }
 
 .paciente {
-    width: 100%;
-    height: 20%;
+    width: 90%;
+    height: 5rem;
     background-color: rgb(255, 255, 255);
-    margin-bottom: 10px;
     border-radius: 10px;
     background: #ffffff;
     display: flex;
@@ -107,48 +108,56 @@
     justify-content: center;
     height: 100%;
     flex-direction: column;
-    padding-left: 5%;
     gap: 5px;
-    padding: 50px;
+    padding-left: 5%;
+    width: 80%;
 }
 
 
 .semanasGestante{
     font-weight: 400;
-    font-size: 1rem;
+    font-size: .9rem;
 }
 
 .container-dieta {
     background-color: #ffffff;
-    width: 55%;
-    border-radius: 10px;
+    width: 60%;
     height: 100%;
     display: flex;
+    border-radius: 10px;
 }
 
 .box-dieta{
     height: 100%;
-    padding-left: 5%;
+    padding: 5%;
+    border-radius: 10px;
     width: 100%;
-    padding-top: 5%;
+    gap: 5px;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .box-controler-breakfast{
     display: flex;
+    align-items: center;
     width: 100%;
-    height:25%;
+    min-height: 115px;
+    height: auto;
+    overflow: auto;
 }
 
 .boxContent{
     display: flex;
     width: 100%;
-    gap: 60%;
-    align-items:flex-start;
+    gap: 30%;
+    align-items:center;
+    justify-content:center;
 }
 
 .boxContent span{
     width: 50%;
+    display: flex;
+    align-items: center;
 }
 

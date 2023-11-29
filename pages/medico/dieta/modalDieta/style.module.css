@@ -3,18 +3,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: auto;
     height: 100%;
     background-color: #b6b6f66e;
     z-index: 10000000;
 }
 
 .containerController{
-    border-radius: 10px;
-    width: 50%;
+    width: 60%;
     height: 80%;
-    background-color: #fff;
-    overflow: auto;
+    display: flex;
 }
 
 .contentModal{
@@ -23,8 +21,11 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    color: #b6b6f6;
     padding: 3%;
     overflow: hidden;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 .headerModal{
@@ -43,6 +44,7 @@
     padding-top: 3%;
     overflow: auto;
 }
+
 .contentModal h2{
     width: 100%;
     text-align: center;

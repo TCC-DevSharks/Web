@@ -79,8 +79,6 @@ const Chat = () => {
     getMongoProfessional();
   }, []);
 
-
-
   useEffect(() => {
     if (currentUser) {
       socket.current = io("https://api-bebevindo.azurewebsites.net");
@@ -93,6 +91,7 @@ const Chat = () => {
   return (
     <>
       <Sidebar />
+      
       <div className={styles["chat-container"]}>
         <div className={styles["container-pacientes"]}>
           <div className={styles["pacientes-container"]}>

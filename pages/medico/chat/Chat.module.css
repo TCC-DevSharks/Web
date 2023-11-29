@@ -4,43 +4,48 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #000;
+  gap: 2%;
 }
 
 .container-pacientes {
-  margin-left: 250px;
-  width: 700px;
+  width: 35%;
   display: flex;
-  height: 700px;
-  justify-content: center;
+  margin-left: 250px;
+  height: 100%;
+  align-items: center;
 }
 
 .pacientes-container {
   width: 100%;
-  height: 100%;
-  gap: 10px;
+  height: 70%;
+  gap: 1px;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  padding: 2%;
+  border-radius: 10px;
 }
 
 .pacientes-container h1 {
-  font-size: 60px;
+  font-size: 3.5rem;
   color: #464444;
-  margin-bottom: 20px;
 }
 
 .container-pacientes input {
   width: 100%;
   height: 45px;
-  margin-top: 10px;
+  margin-top: 1.5rem;
   border-radius: 10px;
   background: #fff;
   border: none;
-  padding: 12px;
+  padding: 1rem;
+  border: 1px solid #B6B6F6;
 }
 
 .pacientes {
   width: 100%;
-  height: auto;
+  height: 70%;
   display: grid;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -50,12 +55,12 @@
 
 .paciente {
   width: 100%;
-  height: 70px;
-  background-color: #fff;
+  height: 65px;
+  background-color: #b6b6f64d;
   border-radius: 12px;
   align-items: center;
   display: flex;
-  padding: 10px;
+  padding: 1rem;
   gap: 10px;
   color: #464444;
   transition: all 0.5s;
@@ -99,9 +104,7 @@
   width: 40%;
   background-color: #fff;
   border-radius: 20px;
-  max-height: 90%;
-  height: 80%;
-  margin-left: 30px;
+  height: 70%;
 }
 
 .brand {
@@ -115,7 +118,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: .5rem;
   background-color: #B6B6F6;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -138,13 +141,9 @@
 }
 
 .chat-messages {
-  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  overflow: auto;
-  height: 90%;
-  max-height: 90%;
+  height: 77%;
 }
 
 .chat-messages::-webkit-scrollbar {
@@ -199,7 +198,7 @@
 .container_input {
   display: grid;
   align-items: center;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 10% 70%;
   background-color: #D5D5FF;
   padding: 0 1rem;
 }
@@ -208,7 +207,7 @@
   display: flex;
   align-items: center;
   color: white;
-  gap: 1rem;
+  gap: .5rem;
 }
 
 .emoji-picker-react {
@@ -253,7 +252,7 @@
 
 .input-container {
   width: 100%;
-  border-radius: 2rem;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 2rem;
@@ -261,8 +260,9 @@
 }
 
 .input-container button {
-  padding: 0.3rem 2rem;
-  border-radius: 2rem;
+  padding: 0.2rem 1rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -282,7 +282,7 @@
   color: black;
   border: none;
   padding-left: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .input-container input::selection {
@@ -298,7 +298,8 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-  height: 80px;
+  padding: .5rem;
+  height: auto;
   background-color: #D5D5FF;
   border-end-end-radius: 10px;
   border-end-start-radius: 10px;
