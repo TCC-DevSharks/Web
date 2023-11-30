@@ -26,7 +26,6 @@ const Dieta = () => {
             axios.get(url)
                 .then(response => {
                     const data = response.data;
-                    console.log(data);
 
                     // Cria um objeto onde as chaves são os IDs dos pacientes
                     const pacientesPorId = data.pacientes.reduce((obj, paciente) => {

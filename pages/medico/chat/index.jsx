@@ -14,7 +14,6 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const handlePacienteClick = (pacienteInfo) => {
     setCurrentChat(pacienteInfo);
-    console.log(pacienteInfo);
   };
 
   useEffect(() => {
@@ -62,14 +61,12 @@ const Chat = () => {
     const url = `https://api-bebevindo.azurewebsites.net/user/one?email=${localStorage.getItem(
       "emailProfissional"
     )}&usuario=${"Profissional"}`;
-    console.log(url)
     function getMongoProfessional() {
       axios
         .get(url)
         .then((response) => {
           const data = response.data;
           setCurrentUser(data);
-          console.log(response);
         })
         .catch((error) => {
           console.error(error);
@@ -83,7 +80,6 @@ const Chat = () => {
     if (currentUser) {
       socket.current = io("https://api-bebevindo.azurewebsites.net");
       socket.current.emit("add-user", currentUser._id);
-      console.log(currentUser._id);
     }
   }, [currentUser]); // Passando um array vazio como segundo argumento
   

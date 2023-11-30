@@ -74,7 +74,6 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
       console.error('Por favor, preencha todos os campos obrigatórios.');
       return;
     }
-    console.log('Valores antes da solicitação:', editedMedicoInfo);
 
     if (!editedMedicoInfo.id_especialidade || !editedMedicoInfo.id_telefone || !editedMedicoInfo.id_endereco) {
       console.error('Por favor, preencha todos os campos obrigatórios.');
@@ -94,7 +93,6 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
           body: JSON.stringify(editedMedicoInfo),
         }
       );
-      console.log(response);
       if (response.ok) {
         toast.success("Médico editado com sucesso", {
           position: "top-center",

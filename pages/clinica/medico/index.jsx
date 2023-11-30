@@ -230,7 +230,6 @@ export default function Medicos() {
                     setTimeout(closeModal, 5000);
                   } else {
                     getMedicos()
-                    console.log(data.message);
                     toast.success(data.message, {
                       position: "top-center",
                       autoClose: 6000, 

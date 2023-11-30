@@ -39,7 +39,6 @@ const ConversaPaciente = (
     return (
   <div onClick={() => (getPaciente(),
     _id = id,
-    console.log(id),
     onPacienteClick(
         {_id, nome, foto, email, usuario}
     )

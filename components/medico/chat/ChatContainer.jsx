@@ -13,16 +13,13 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     function getMensagem(from, to) {
       axios.get(`https://api-bebevindo.azurewebsites.net/chat/mensagem?from=${from}&to=${to}`)
         .then((response) => {
-          console.log(`https://api-bebevindo.azurewebsites.net/chat/mensagem?from=${from}&to=${to}`);
           const data = response.data;
           setMessages(data.conversa);
-          console.log(response)
         })
         .catch((error) => {
           console.error(error);
         });
     }
-    console.log(currentUser)
     getMensagem(currentUser?._id, currentChat?._id);
     scrollToBottom();
   }, [currentChat]);
@@ -43,14 +40,11 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     // Atualize o estado das mensagens após o envio da mensagem
     setMessages([...messages, { _id: currentUser._id, text: msg }]);
     scrollToBottom();
-    console.log(currentChat);
   };
 
   useEffect(() => {
 
     if (socket.current) {
-      console.log(currentChat);
-      console.log(currentUser);
       socket.current.on("msg-receive", (msg) => {
         setMessages((messages) => [...messages, {sender: currentChat._id,_id: currentChat._id, text: msg }]);
       });

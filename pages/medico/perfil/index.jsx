@@ -9,7 +9,6 @@ import Router from "next/router";
 
 export default function Perfil() {
   const [listMedicos, setMedicos] = useState();
-  console.log(listMedicos);
   const [listEnderecoMedico, setEnderecoMedico] = useState();
   const IdMedico = typeof window !== "undefined" ? localStorage.getItem("id") : null;
   const [cep, setCep] = useState();
@@ -76,13 +75,11 @@ export default function Perfil() {
       complemento: profissional.complemento || "",
       cep: editCep ? editCep : profissional.cep || "",
     };
-    console.log(jsonData);
-
+s
     axios
       .put(url, jsonData)
       .then((response) => {
         const data = response.data;
-        console.log("aqui " + data);
         if (response.status === 200) {
           const notify = () =>
             toast.success(data.message, {

@@ -46,7 +46,6 @@ function SenhaRecuperar() {
       token: token,
       novaSenha: password
     }).then((response) => {
-      console.log(response);
       if (response.data.message.status == 200) {
         toast.success(response.data.message.result.message, {
           position: "top-center",

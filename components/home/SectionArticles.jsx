@@ -13,7 +13,6 @@ function SectionArticles() {
     fetch("https://api-bebevindo.azurewebsites.net/artigos")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Dados da API:", data); // Adicione esta linha
 
         // Defina o número máximo de artigos que deseja exibir (neste caso, 4)
 

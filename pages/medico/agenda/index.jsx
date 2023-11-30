@@ -28,15 +28,12 @@ export default function Agenda() {
         const IdMedico = localStorage.getItem("id");
         axios.get(`https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`)
             .then(response => {
-                console.log('Resposta da API:', response.data);
-                console.log(response.data.pacientes);
                 const eventos = response.data.pacientes.map(paciente => {
                     const [ano, mes, dia] = paciente.diaDesformatado.split("-")
                     const [diaFormatado, resto] = dia.split('T')
                     const [hora, min] = paciente.hora.split(":")
 
                     const dataFormatada = `${ano}-${mes}-${diaFormatado} ${hora}:${min}`
-                    console.log(dataFormatada);
                     const diaDesformatado = paciente.diaDesformatado;
 
                     return {

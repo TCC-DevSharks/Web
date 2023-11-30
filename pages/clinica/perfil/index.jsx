@@ -10,14 +10,12 @@ export default function Perfil() {
 
   //razao_social: editRazaoSocial ? editRazaoSocial : listClinicas?.clinica[0].razao_social,
   const [listClinicas, setClinicas] = useState();
-  console.log(listClinicas);
   const [listEnderecoClinica, setEnderecoClinica] = useState();
   const IdClinica =
     typeof window !== "undefined" ? localStorage.getItem("id") : null;
   const [cep, setCep] = useState();
   const [editMode, setEditMode] = useState(false);
 
-  console.log(listClinicas?.clinica[0].telefone);
   const [editTelefone, setEditedTelefone] = useState(
     
     listClinicas?.clinica &&  listClinicas?.clinica[0]
@@ -52,12 +50,10 @@ export default function Perfil() {
       complemento: listClinicas?.clinica[0].complemento,
       cep: editCep ? editCep : listClinicas?.clinica[0].cep,
     };
-    console.log(jsonData);
     axios
       .patch(url, jsonData)
       .then((response) => {
         const data = response.data;
-        console.log("aqu " + data);
         if (response.status == 200) {
           const notify = () =>
             toast.success(data.message, {
@@ -72,7 +68,6 @@ export default function Perfil() {
             });
           notify();
         } else {
-          console.log("aqu " + data);
           toast.error(data.message, {
             position: "top-center",
             autoClose: 5000,
