@@ -75,7 +75,7 @@ export default function Perfil() {
       complemento: profissional.complemento || "",
       cep: editCep ? editCep : profissional.cep || "",
     };
-s
+
     axios
       .put(url, jsonData)
       .then((response) => {
