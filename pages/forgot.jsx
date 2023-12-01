@@ -27,7 +27,6 @@ function RecuperarSenha() {
   const SolicitarCodigo = (e) => {
     e.preventDefault();
     let url = `https://api-bebevindo.azurewebsites.net/redefinir-senha/clinica/solicitar`
-    console.log(email);
     axios.post(url, {
       email: email
     }).then((response) => {

@@ -79,14 +79,18 @@ const Sidebar = () => {
             </i>
           </li>
 
-          <li>
-            <i>
-              <Link href="/medico/dieta">
-                <FaUtensils />
-                Dieta
-              </Link>
-            </i>
-          </li>
+           {/* Verifica se a especialidade é "Nutricionista" antes de exibir o link */}
+      {listMedicos?.profissionais?.[0]?.especialidade === "Nutricionista" && (
+        <li>
+          <i>
+            <Link href="/medico/dieta">
+              <FaUtensils />
+              Dieta
+            </Link>
+          </i>
+        </li>
+      )}
+
 
           <li>
             <i>

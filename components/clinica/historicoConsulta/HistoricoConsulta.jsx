@@ -170,7 +170,6 @@ const Historico = () => {
                       </thead>
 
                       {listConsultas?.map((data) => {
-                        console.log(data);
                         const [hora, min] = data.hora.split(":");
                         const nomePaciente = data.gestante;
                         const nomeCapitalizado = nomePaciente.charAt(0).toUpperCase() + nomePaciente.slice(1);
@@ -225,7 +224,6 @@ const Historico = () => {
                   const data = response.data;
 
                   if (data.status === 404) {
-                    console.log(data);
                     toast.error(data.message, {
                       position: "top-center",
                       autoClose: 6000,
@@ -239,8 +237,7 @@ const Historico = () => {
                     setTimeout(closeModal, 5000);
                   } else {
                     getConsultas()
-                    console.log(data.message);
-                    toast.success(data.message, {
+s                    toast.success(data.message, {
                       position: "top-center",
                       autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
                       hideProgressBar: false,

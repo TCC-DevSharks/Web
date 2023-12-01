@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+// ... outros imports
+import styles from "./style.module.css";
+import React, { useState, useEffect } from 'react';
 
-const EditableField = ({ value, onChange }) => {
+
+const EditableField = ({ value, onChange, isEditModeActive }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedValue, setEditedValue] = useState(value);
 
@@ -13,17 +16,29 @@ const EditableField = ({ value, onChange }) => {
     setEditMode(false);
   };
 
+  useEffect(() => {
+    // Se o modo de edição estiver ativado, então ativamos imediatamente
+    if (isEditModeActive) {
+      setEditMode(true);
+    }
+  }, [isEditModeActive]);
+
   return (
-    <div>
+    <div
+      onClick={() => setEditMode(true)}
+      className={`${styles["informartion"]} ${editMode ? styles["editMode"] : ''} ${isEditModeActive ? styles["editable"] : ''}`}
+    >
       {editMode ? (
         <>
-          <input type="text" value={editedValue} onChange={handleInputChange} />
+          <input
+            type="text"
+            value={editedValue}
+            onChange={handleInputChange}
+          />
           <button onClick={handleSave}>Salvar</button>
         </>
       ) : (
-        <div onClick={() => setEditMode(true)}>
-          {value}
-        </div>
+        value
       )}
     </div>
   );

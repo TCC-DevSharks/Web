@@ -8,7 +8,6 @@ export default function Home({ Component, pageProps }) {
   const [consultasDoDia, setConsultasDoDia] = useState(0);
   const [consultasDoMes, setConsultasDoMes] = useState(0);
   const [pacientes, setPacientes] = useState([]);
-  console.log(pacientes);
   useEffect(() => {
     const IdMedico = localStorage.getItem("id");
 
@@ -55,7 +54,6 @@ export default function Home({ Component, pageProps }) {
       .then((response) => {
         const data = response.data;
         localStorage.setItem("emailProfissional", data.profissionais[0].email)
-        console.log(data)
       })
       .catch((error) => {
         console.error(error);

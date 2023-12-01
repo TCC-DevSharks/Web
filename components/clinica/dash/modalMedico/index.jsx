@@ -6,7 +6,6 @@ import styles from "./style.module.css"
 export default function ModalMedicoDash({ medicoInfo, closeModal }) {
     const [horaInicio,minInicio] = medicoInfo.inicio_atendimento.split(':');
     const [horaFim,minFim] = medicoInfo.fim_atendimento.split(':')
-    console.log(medicoInfo);
     const handleChange = (event) => {
         setValor(event.target.value);
     };

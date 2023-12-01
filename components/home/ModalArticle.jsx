@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Article.module.scss";
 
 function ArticleModal({ article, onClose }) {
-  console.log("Artigo recebido no modal:", article);
   return (
     <div className={styles.modalBackground}>
       <div className={styles.container}>

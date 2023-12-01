@@ -70,7 +70,6 @@ function Medicos() {
       fetch(`https://viacep.com.br/ws/${value}/json/`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           setFormData({
             ...formData,
             cep: data.cep,
@@ -200,12 +199,10 @@ function Medicos() {
       cep: formData.cep,
       id_especialidade: formData.id_especialidade,
     };
-    console.log(data.cep);
     // fazer o POST para o servidor
     axios
       .post('https://api-bebevindo.azurewebsites.net/profissional', data)
       .then((response) => {
-        console.log(response);
         // Lidar com a resposta do servidor
         toast.success("Profissional criado com sucesso!", {
           position: "top-center",
@@ -217,7 +214,6 @@ function Medicos() {
           progress: undefined,
           theme: "light",
         });
-        console.log("Sucesso:", response.data);
       })
       .catch((error) => {
         // Lidar com erros

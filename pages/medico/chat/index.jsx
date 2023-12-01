@@ -14,7 +14,6 @@ const Chat = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const handlePacienteClick = (pacienteInfo) => {
     setCurrentChat(pacienteInfo);
-    console.log(pacienteInfo);
   };
 
   useEffect(() => {
@@ -62,7 +61,6 @@ const Chat = () => {
     const url = `https://api-bebevindo.azurewebsites.net/user/one?email=${localStorage.getItem(
       "emailProfissional"
     )}&usuario=${"Profissional"}`;
-    console.log(url)
     function getMongoProfessional() {
       axios
         .get(url)
@@ -78,20 +76,18 @@ const Chat = () => {
     getMongoProfessional();
   }, []);
 
-
-
   useEffect(() => {
     if (currentUser) {
-
-      socket.current = io("ws://api-bebevindo.azurewebsites.net");
+      socket.current = io("https://api-bebevindo.azurewebsites.net");
       socket.current.emit("add-user", currentUser._id);
-      console.log(currentUser._id);
     }
-  }, [currentUser]);
+  }, [currentUser]); // Passando um array vazio como segundo argumento
+  
 
   return (
     <>
       <Sidebar />
+      
       <div className={styles["chat-container"]}>
         <div className={styles["container-pacientes"]}>
           <div className={styles["pacientes-container"]}>

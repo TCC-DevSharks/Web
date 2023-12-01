@@ -49,7 +49,6 @@ function ClinicLogin() {
       email: loginData.email,
       senha: loginData.senha
     }).then(response => {
-      console.log(response);
       if (response.data.doctor.status == 401) {
         toast.error(response.data.doctor.message, {
           position: "top-center",
