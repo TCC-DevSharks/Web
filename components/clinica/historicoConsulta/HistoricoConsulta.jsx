@@ -237,7 +237,7 @@ const Historico = () => {
                     setTimeout(closeModal, 5000);
                   } else {
                     getConsultas()
-s                    toast.success(data.message, {
+                   toast.success(data.message, {
                       position: "top-center",
                       autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
                       hideProgressBar: false,
