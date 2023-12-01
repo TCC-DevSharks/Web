@@ -39,7 +39,6 @@ const Sidebar = () => {
 
   return (
     <aside className={styles["sidebar"]}>
-      <FaBars/>
       <div className={styles["content"]}>
         <div className={styles["image-box"]}>
           <li>

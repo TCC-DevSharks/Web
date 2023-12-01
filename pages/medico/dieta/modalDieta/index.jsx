@@ -1,7 +1,7 @@
-import React from "react";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { AiFillCloseCircle } from "react-icons/ai";
+import axios from "axios"
+import { useEffect } from "react"
+import { useState } from "react"
+import { AiFillCloseCircle } from "react-icons/ai"
 import { IoAddCircleSharp } from "react-icons/io5";
 import style from "./style.module.css";
 

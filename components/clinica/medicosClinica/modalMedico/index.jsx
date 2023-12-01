@@ -140,25 +140,18 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
         draggable
         pauseOnHover
         theme="black" />
+
       <div className={styles["modalContainer"]}>
+
         <div className={styles["modalBox"]}>
+
           <div className={styles["modalContent"]}>
-            <div className={styles["closeButtonModal"]} onClick={closeModal}>
-              <AiFillCloseCircle style={{ fill: "#fa0000" }} />
-            </div>
+            <div className={styles["closeButtonModal"]} onClick={closeModal}> <AiFillCloseCircle style={{ fill: "#fa0000" }} /> </div>
 
             <div className={styles["nameImage"]}>
-              <img
-                className={styles["medicoImage"]}
-                width={50}
-                src={medicoInfo.foto}
-                alt="foto do médico"
-              />
+              <img className={styles["medicoImage"]} width={50} src={medicoInfo.foto} alt="foto do médico" />
 
-              <h2>
-                Médico: {medicoInfo.nome}
-                <span style={{ color: "#b6b6f6" }}></span>
-              </h2>
+              <h2> Médico: {medicoInfo.nome} <span style={{ color: "#b6b6f6" }}> </span> </h2>
             </div>
 
             <div className={styles["item"]}>
@@ -188,10 +181,10 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                   <h3>E-mail:</h3>
                   {isEditModalOpen ? (
                     <EditableField
-                    value={editedMedicoInfo.email}
-                    onChange={(value) => setEditedMedicoInfo((prev) => ({ ...prev, email: value }))}
-                    isEditModeActive={isEditModeActive}
-                  />
+                      value={editedMedicoInfo.email}
+                      onChange={(value) => setEditedMedicoInfo((prev) => ({ ...prev, email: value }))}
+                      isEditModeActive={isEditModeActive}
+                    />
                   ) : (
                     <div className={styles["informartion"]}>{medicoInfo.email}</div>
                   )}
@@ -314,7 +307,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
-                  <h3>Inicio do Atemdimento:</h3>
+                  <h3>Inicio do Atendimento:</h3>
                   {isEditModalOpen ? (
                     <EditableField
                       value={editedMedicoInfo.inicio_atendimento}
@@ -329,7 +322,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
-                  <h3>Fim do Atemdimento:</h3>
+                  <h3>Fim do Atendimento:</h3>
                   {isEditModalOpen ? (
                     <EditableField
                       value={editedMedicoInfo.fim_atendimento}
@@ -343,12 +336,12 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                   )}
                 </div>
 
-                <div className={styles["medicoInfoPessoal"]}>
+                {/* <div className={styles["medicoInfoPessoal"]}>
                   <h3>Clínica de Atuação:</h3>
                   <div className={styles["informartion"]}>
                     {medicoInfo.clinica}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className={styles['buttonExcluir']}>
@@ -361,11 +354,12 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
 
                 <div className={styles['buttonSave']} onClick={handleSave}>
-                  Salvar alterações
+                  Salvar
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
         {isModalOpen && (

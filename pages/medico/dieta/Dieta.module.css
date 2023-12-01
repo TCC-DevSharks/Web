@@ -13,19 +13,20 @@
     display: flex;
     height: 75%;
     display: flex;
-    width: 95%;
+    width: 100%;
     justify-content: center;
-    gap: 5%;
-    align-items: center;    
-    padding: 1%;
+    gap: 10%;
+    align-items: top;
 }
 
 .container-pacientes {
-    width: 40%;
+    width: 25%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    margin-left: 250px;
+    color: rgba(0, 0, 0, 0.59);
 }
 
 .container-pacientes div input {
@@ -56,8 +57,8 @@
 }
 
 .paciente {
-    width: 90%;
-    height: 5rem;
+    width: 100%;
+    height: 100px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     background: #ffffff;
@@ -113,7 +114,6 @@
     width: 80%;
 }
 
-
 .semanasGestante{
     font-weight: 400;
     font-size: .9rem;
@@ -121,43 +121,111 @@
 
 .container-dieta {
     background-color: #ffffff;
-    width: 60%;
-    height: 100%;
+    width: 30%;
+    height: 70%;
+    gap: 20px;
     display: flex;
+    flex-direction: column;
     border-radius: 10px;
+    border: 2px solid #07070911;
 }
 
 .box-dieta{
-    height: 100%;
-    padding: 5%;
-    border-radius: 10px;
+    height: fit-content;
+    padding: 3%;
     width: 100%;
+    display: flex;
     gap: 5px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-refeicoes-padrao {
+    width: 100%;
+    height: 100%;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     overflow: auto;
+    margin-bottom: 30px;
 }
 
-.box-controler-breakfast{
+.refeicao-padrao {
+    background-color: #b6b6f681;
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    padding: 3%;
+    border-radius: 20px;
+    margin-left: 5%;
+}
+
+.refeicao-padrao span {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1c1c1c7c;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.modalBox {
+    background-color: #FFF;
+    border-radius: 20px;
+    height: 70%;
     display: flex;
     align-items: center;
-    width: 100%;
-    min-height: 115px;
-    height: auto;
-    overflow: auto;
-}
-
-.boxContent{
-    display: flex;
-    width: 100%;
-    gap: 30%;
-    align-items:center;
-    justify-content:center;
-}
-
-.boxContent span{
+    justify-content: center;
     width: 50%;
-    display: flex;
-    align-items: center;
 }
 
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 90%;
+}
+
+.closeButtonModal {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.nome-paciente-modal{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nome-paciente-modal div{
+    background-color: #b6b6f6;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    padding: .3%;
+    border-radius: 50%;
+}
+.nome-paciente-modal div img{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
