@@ -314,7 +314,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
-                  <h3>Inicio do Atemdimento:</h3>
+                  <h3>Inicio do Atendimento:</h3>
                   {isEditModalOpen ? (
                     <EditableField
                       value={editedMedicoInfo.inicio_atendimento}
@@ -329,7 +329,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
 
                 <div className={styles["medicoInfoPessoal"]}>
-                  <h3>Fim do Atemdimento:</h3>
+                  <h3>Fim do Atendimento:</h3>
                   {isEditModalOpen ? (
                     <EditableField
                       value={editedMedicoInfo.fim_atendimento}
@@ -343,12 +343,12 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                   )}
                 </div>
 
-                <div className={styles["medicoInfoPessoal"]}>
+                {/* <div className={styles["medicoInfoPessoal"]}>
                   <h3>Clínica de Atuação:</h3>
                   <div className={styles["informartion"]}>
                     {medicoInfo.clinica}
                   </div>
-                </div>
+                </div> */}
               </div>
 
               <div className={styles['buttonExcluir']}>
@@ -361,7 +361,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
                 </div>
 
                 <div className={styles['buttonSave']} onClick={handleSave}>
-                  Salvar alterações
+                  Salvar 
                 </div>
               </div>
             </div>
