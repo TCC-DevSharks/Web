@@ -13,6 +13,7 @@ function SectionArticles() {
     fetch("https://api-bebevindo.azurewebsites.net/artigos")
       .then((response) => response.json())
       .then((data) => {
+        console.log("Dados da API:", data); // Adicione esta linha
 
         // Defina o número máximo de artigos que deseja exibir (neste caso, 4)
 
@@ -33,11 +34,7 @@ function SectionArticles() {
   return (
     <section className={styles.articles}>
       <div className={styles.description__ex}>
-        Nossos artigos
-        <p>Explore nossa coleção de artigos cuidadosamente elaborados para oferecer orientação,
-          esclarecer dúvidas comuns e proporcionar apoio durante essa jornada especial da maternidade.
-          Descubra informações valiosas sobre a gestação, parto, cuidados pré-natais e muito mais. 
-        </p>
+        Nossos artigos <p>Use o scroll para ver os outros artigos a direita.</p>
       </div>
 
       <div className={styles.container}>
@@ -60,7 +57,7 @@ function SectionArticles() {
           />
         )}
       </div>
-    </section >
+    </section>
   );
 }
 
