@@ -9,21 +9,23 @@
 
 .container-geral {
     display: flex;
-    margin-left: 120px;
     height: 75%;
     display: flex;
-    width: 90%;
+    width: 100%;
     justify-content: center;
     gap: 50px;
+    background-color: plum;
     align-items: center;
 }
 
 .container-pacientes {
-    width: 600px;
+    width: 500px;
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-left: 250px;
+    color: rgba(0, 0, 0, 0.59);
 }
 
 .container-pacientes div input {
@@ -55,7 +57,7 @@
 
 .paciente {
     width: 100%;
-    height: 20%;
+    height: 100px;
     background-color: rgb(255, 255, 255);
     margin-bottom: 10px;
     border-radius: 10px;

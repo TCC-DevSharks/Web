@@ -41,20 +41,18 @@ const Dieta = () => {
 
     return (
         <>
-
             <Sidebar />
             <div className={styles['dieta-container']}>
 
                 <TituloSecao title="Gerenciar Dietas" />
-                <div className={styles['container-geral']}>
-                    <div className={styles['container-pacientes']}>
 
-                        <div >
-                            <input type="text" placeholder='Pesquisar paciente:' />
-                        </div>
-                        <div>
-                            <span>Todos:</span>
-                        </div>
+                <div className={styles['container-geral']}>
+
+                    <div className={styles['container-pacientes']}>
+                        <div > <input type="text" placeholder='Pesquisar paciente:' /> </div>
+
+                        <div> <span> Selecione um paciente para gerenciar a dieta: </span> </div>
+                        
                         <div className={styles['box-pacientes']}>
                             {listpacientes && listpacientes.map(paciente => (
                                 <PacienteDieta
@@ -111,8 +109,9 @@ const Dieta = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
-                <ModalDieta title="Titulo" categoria="nsbb" />
+                {/* <ModalDieta title="Titulo" categoria="nsbb" /> */}
             </div>
         </>
     );

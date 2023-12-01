@@ -1,5 +1,4 @@
 import axios from "axios"
-import Image from "next/image"
 import { useEffect } from "react"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
