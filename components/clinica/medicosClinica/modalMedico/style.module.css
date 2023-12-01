@@ -11,7 +11,7 @@
 .modalBox {
   background-color: #fff;
   border-radius: 10px;
-  height: 60%;
+  height: 70%;
   width: 60%;
   display: flex;
   overflow: auto;
@@ -79,6 +79,7 @@
   border-radius: 10px;
   border: 2px solid #b6b6f6;
   grid-area: "um";
+  overflow: auto;
 }
 .columnTwo {
   display: flex;
@@ -107,7 +108,7 @@
   width: 100%;
   color: #464444;
   font-size: 1rem;
-  gap: 5px;
+  gap: 3px;
   padding-top: 2%;
 }
 
@@ -217,12 +218,14 @@
 
 .editMode {
   border: 1.7px dashed #b6b6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .informartion input {
   width: 100%;
   padding: 5px;
-  margin-bottom: 5px;
   border: none;
 }
 
