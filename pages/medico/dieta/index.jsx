@@ -30,11 +30,9 @@ const Dieta = () => {
     };
 
     const [isRefeicoesModalDietaOpen, setRefeicoesModalDietaOpen] = useState(false);
-
     const openRefeicoesModalDieta = () => {
         setRefeicoesModalDietaOpen(true);
     };
-
     const closeRefeicoesModalDieta = () => {
         setRefeicoesModalDietaOpen(false);
     };
@@ -116,6 +114,7 @@ const Dieta = () => {
                                 <span>Nome refeição-padrao 4</span>
                             </div>
                         </div>
+                        
                     </div>
 
                     {isModalOpen && (
@@ -156,7 +155,7 @@ const Dieta = () => {
                                         <div className={styles['modalContentRefeicoes']}>
                                             <span onClick={closeRefeicoesModal} className={styles['closeButtonModal']}>&times;</span>
                                             <h2>Nome da refeição</h2>
-                                            <h4>Aqui vão aparecer os alimentos que estão inclusos refeição clicada:</h4>
+                                            <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição clicada. aí vai dar pra add mais alimentos e remover os ja existentes tbm:</h4>
                                         </div>
                                     </div>
                                 </div>
