@@ -5,6 +5,7 @@ import { AiFillCloseCircle } from "react-icons/ai"
 import { IoAddCircleSharp } from "react-icons/io5";
 import style from "./style.module.css";
 
+
 const ModalDieta = ({ title, categoria, closeModal }) => {
   const [comidas, setComidas] = useState();
   const [modal, setModalIsOpen] = useState(true);
@@ -34,7 +35,7 @@ const ModalDieta = ({ title, categoria, closeModal }) => {
           <div className={style.containerController}>
             <div className={style.contentModal}>
               <div className={style.headerModal}>
-                <AiFillCloseCircle onClick={closeModal} fill="#FF0000" />
+                <AiFillCloseCircle onClick={closeModal} fill="#FF0000" style={{ cursor: 'pointer' }}/>
               </div>
               <h1>{title}</h1>
               <h2>Aqui você pode selecionar os alimentos que irão entrar na dieta:</h2>

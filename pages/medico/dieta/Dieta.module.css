@@ -8,7 +8,6 @@
     gap: 30px;
     padding-left: 250px;
 }
-
 .container-geral {
     display: flex;
     height: 75%;
@@ -19,6 +18,7 @@
     align-items: top;
 }
 
+
 .container-pacientes {
     width: 25%;
     height: 100%;
@@ -28,7 +28,6 @@
     margin-left: 250px;
     color: rgba(0, 0, 0, 0.59);
 }
-
 .container-pacientes div input {
     border-radius: 10px;
     border: none;
@@ -37,16 +36,13 @@
     margin-bottom: 10px;
     background-color: #ffffff;
 }
-
 .container-pacientes div input::placeholder {
     color: #999;
     font-size: 1rem;
 }
-
 .container-pacientes div {
     font-size: 1rem;
 }
-
 .container-pacientes .box-pacientes {
     width: 100%;
     height: 900px;
@@ -55,7 +51,6 @@
     gap: 20px;
     overflow: auto;
 }
-
 .paciente {
     width: 100%;
     height: 100px;
@@ -66,36 +61,32 @@
     align-items: center;
 }
 
-.pacientesControllerBox:hover{
+
+.pacientesControllerBox:hover {
     background-color: #b6b6f6;
     background-color: #b6b6f6;
     color: #FFF;
     transition: 0.3s;
     border-radius: 10px;
 }
-.pacientesControllerBox:hover .nomePacientePrincipal{
+.pacientesControllerBox:hover .nomePacientePrincipal {
     color: #FFF;
     transition: 0.3s;
-    
 }
-
-.nomePacientePrincipal{
+.nomePacientePrincipal {
     font-size: 2rem;
-    color:#000;
+    color: #000;
 }
-
-.pacientesControllerBox{
+.pacientesControllerBox {
     display: flex;
     width: 100%;
     height: 100%;
 }
-
 .imagem {
     width: 20%;
     height: 100%;
     display: flex;
 }
-
 .imagem img {
     width: 100%;
     border-radius: 10px 0px 0px 10px;
@@ -103,8 +94,7 @@
     height: 100%;
     object-fit: cover;
 }
-
-.nomeBox{
+.nomeBox {
     display: flex;
     justify-content: center;
     height: 100%;
@@ -113,11 +103,11 @@
     padding-left: 5%;
     width: 80%;
 }
-
-.semanasGestante{
+.semanasGestante {
     font-weight: 400;
     font-size: .9rem;
 }
+
 
 .container-dieta {
     background-color: #ffffff;
@@ -129,8 +119,7 @@
     border-radius: 10px;
     border: 2px solid #07070911;
 }
-
-.box-dieta{
+.box-dieta {
     height: fit-content;
     padding: 3%;
     width: 100%;
@@ -139,7 +128,6 @@
     flex-direction: column;
     align-items: center;
 }
-
 .container-refeicoes-padrao {
     width: 100%;
     height: 100%;
@@ -149,21 +137,26 @@
     overflow: auto;
     margin-bottom: 30px;
 }
-
 .refeicao-padrao {
-    background-color: #b6b6f681;
+    background-color: #b6b6f6;
     width: 60%;
     display: flex;
-    justify-content: space-around;
-    padding: 3%;
+    justify-content: flex-start;
+    padding: 2%;
     border-radius: 20px;
+    color: white;
+    border: 3px solid #b6b6f6;
     margin-left: 5%;
 }
-
+.refeicao-padrao:hover {
+    background-color: #b6b6f667;
+    color: #b6b6f6;
+}
 .refeicao-padrao span {
     font-size: 1.1rem;
     font-weight: 700;
 }
+
 
 .modalContainer {
     display: flex;
@@ -177,7 +170,6 @@
     height: 100vh;
     z-index: 1000;
 }
-
 .modalBox {
     background-color: #FFF;
     border-radius: 20px;
@@ -187,14 +179,26 @@
     justify-content: center;
     width: 50%;
 }
-
 .modalContent {
     display: flex;
     flex-direction: column;
     height: 90%;
     width: 90%;
 }
-
+.modalContent button {
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    background-color: #b6b6f6;
+    color: #fff;
+    padding: 1%;
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.modalContent button:hover{
+    background-color: #9f9ffb;
+}
 .closeButtonModal {
     display: flex;
     flex-direction: row-reverse;
@@ -205,27 +209,92 @@
     cursor: pointer;
 }
 
-.nome-paciente-modal{
+
+.modalContainerRefeicoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+}
+.modalContentRefeicoes {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 90%;
+    color: #b6b6f6;
+    align-items: center;
+}
+.modalContentRefeicoes h4 {
+    color: #00000097;
+    font-weight: 500;
+}
+
+
+.nome-paciente-modal {
     display: flex;
     align-items: center;
     gap: 20px;
     font-size: 1.5rem;
     font-weight: 700;
+    height: auto;
+    margin-bottom: 2rem;
+    justify-content: flex-start;
 }
-
-.nome-paciente-modal div{
+.nome-paciente-modal div {
     background-color: #b6b6f6;
     display: flex;
-    width: 100px;
-    height: 100px;
+    width: 4rem;
+    height: 4rem;
     align-items: center;
     justify-content: center;
     padding: .3%;
     border-radius: 50%;
 }
-.nome-paciente-modal div img{
+.nome-paciente-modal div img {
     display: flex;
     width: 100%;
     height: 100%;
     border-radius: 50%;
+}
+
+
+.refeicoes-pacientes-modal {
+    width: 100%;
+    height: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+.refeicoes-pacientes {
+    background-color: #b6b6f62c;
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    padding: 2.2%;
+    border-radius: 10px;
+    margin-left: 5%;
+    cursor: pointer;
+    border: 3px solid #b6b6f66d;
+    color: #b6b6f6;
+    align-items: center;
+    font-weight: 500;
+}
+.refeicoes-pacientes:hover {
+    background-color: #b6b6f6;
+    padding: 2.2%;
+    margin-left: 5%;
+    color: #fff;
+    border: 3px solid #66666820;
+}
+.refeicoes-pacientes span {
+    font-size: 1.1rem;
+    font-weight: 700;
 }

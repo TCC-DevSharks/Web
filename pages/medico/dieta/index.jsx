@@ -7,6 +7,7 @@ import axios from 'axios';
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import ModalDieta from './modalDieta';
 
+
 const Dieta = () => {
     const [listpacientes, setPacientes] = useState();
     const [listUnicPacientes, setUnicPaciente] = useState();
@@ -15,10 +16,29 @@ const Dieta = () => {
     const [selectedPaciente, setSelectedPaciente] = useState(null);
     const [isModalOpen, setModalIsOpen] = useState(false);
 
+    const [isRefeicoesModalOpen, setRefeicoesModalOpen] = useState(false);
+    const openRefeicoesModal = () => {
+        setRefeicoesModalOpen(true);
+    };
+    const closeRefeicoesModal = () => {
+        setRefeicoesModalOpen(false);
+    };
+
     const openModalForPaciente = (paciente) => {
         setSelectedPaciente(paciente);
         setModalIsOpen(true);
     };
+
+    const [isRefeicoesModalDietaOpen, setRefeicoesModalDietaOpen] = useState(false);
+
+    const openRefeicoesModalDieta = () => {
+        setRefeicoesModalDietaOpen(true);
+    };
+
+    const closeRefeicoesModalDieta = () => {
+        setRefeicoesModalDietaOpen(false);
+    };
+
 
     useEffect(() => {
         const IdMedico = localStorage.getItem("id");
@@ -55,7 +75,6 @@ const Dieta = () => {
                 <TituloSecao title="Gerenciar Dietas" />
 
                 <div className={styles['container-geral']}>
-
                     <div className={styles['container-pacientes']}>
                         <div > <input type="text" placeholder='Pesquisar paciente:' /> </div>
 
@@ -75,7 +94,6 @@ const Dieta = () => {
                     </div>
 
                     <div className={styles['container-dieta']}>
-
                         <div className={styles['box-dieta']}>
                             <h2>Refeições Padrão</h2>
                             <span>Crie padrões de refeição para agilizar a consulta! </span>
@@ -83,33 +101,27 @@ const Dieta = () => {
 
                         <div className={styles['container-refeicoes-padrao']}>
                             <div className={styles['refeicao-padrao']}>
-                                <span>Nome da refeição</span>
-                                <p>19:00</p>
+                                <span>Nome refeição-padrao 1</span>
                             </div>
 
                             <div className={styles['refeicao-padrao']}>
-                                <span>Nome da refeição</span>
-                                <p>19:00</p>
+                                <span>Nome refeição-padrao 2</span>
                             </div>
 
                             <div className={styles['refeicao-padrao']}>
-                                <span>Nome da refeição</span>
-                                <p>19:00</p>
+                                <span>Nome refeição-padrao 3</span>
                             </div>
 
                             <div className={styles['refeicao-padrao']}>
-                                <span>Nome da refeição</span>
-                                <p>19:00</p>
+                                <span>Nome refeição-padrao 4</span>
                             </div>
                         </div>
-
                     </div>
 
                     {isModalOpen && (
                         <div className={styles['modalContainer']}>
                             <div className={styles['modalBox']}>
                                 <div className={styles['modalContent']}>
-
                                     <span onClick={() => setModalIsOpen(false)} className={styles['closeButtonModal']}>&times;</span>
                                     <div className={styles['nome-paciente-modal']}>
                                         <div>
@@ -117,11 +129,48 @@ const Dieta = () => {
                                         </div>
                                         <p> {selectedPaciente && selectedPaciente.nome}</p>
                                     </div>
+                                    <div className={styles['refeicoes-pacientes-modal']}>
+                                        <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
+                                            <span>Nome refeição 1</span>
+                                            <p>19:00</p>
+                                        </div>
+
+                                        <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
+                                            <span>Nome refeição 2</span>
+                                            <p>19:00</p>
+                                        </div>
+
+                                        <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
+                                            <span>Nome refeição 3</span>
+                                            <p>19:00</p>
+                                        </div>
+                                    </div>
+                                    <button onClick={openRefeicoesModalDieta}>Adicionar refeição</button>
                                 </div>
                             </div>
+
+
+                            {isRefeicoesModalOpen && (
+                                <div className={styles['modalContainerRefeicoes']}>
+                                    <div className={styles['modalBox']}>
+                                        <div className={styles['modalContentRefeicoes']}>
+                                            <span onClick={closeRefeicoesModal} className={styles['closeButtonModal']}>&times;</span>
+                                            <h2>Nome da refeição</h2>
+                                            <h4>Aqui vão aparecer os alimentos que estão inclusos refeição clicada:</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {isRefeicoesModalDietaOpen && (
+                                <ModalDieta
+                                    title="Título do Modal"
+                                    categoria="Categoria do Modal"
+                                    closeModal={closeRefeicoesModalDieta}
+                                />
+                            )}
                         </div>
                     )}
-
                 </div>
             </div>
         </>
