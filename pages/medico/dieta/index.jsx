@@ -6,6 +6,7 @@ import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import ModalDieta from './modalDieta';
+import { IoAddCircleSharp } from 'react-icons/io5';
 
 
 const Dieta = () => {
@@ -17,11 +18,43 @@ const Dieta = () => {
     const [isModalOpen, setModalIsOpen] = useState(false);
 
     const [isRefeicoesModalOpen, setRefeicoesModalOpen] = useState(false);
+    const [isRefeicaoPadraoModalOpen, setRefeicaoPadraoModalOpen] = useState(false);
+
+    const [isAdicionarRefeicaoPadraoModalOpen, setAdicionarRefeicaoPadraoModalOpen] = useState(false);
+    const [refeicoesPadrao, setRefeicoesPadrao] = useState([]);
+    const [selectedRefeicao, setSelectedRefeicao] = useState(null);
+    const [alimentosRefeicaoPadrao, setAlimentosRefeicaoPadrao] = useState([]);
+
+
+
     const openRefeicoesModal = () => {
         setRefeicoesModalOpen(true);
     };
     const closeRefeicoesModal = () => {
         setRefeicoesModalOpen(false);
+    };
+
+    const openRefeicaoPadraoModal = async (idRefeicao) => {
+        try {
+            const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/alimento/${idRefeicao}`);
+            const data = response.data;
+            setAlimentosRefeicaoPadrao(Array.isArray(data.alimentos) ? data.alimentos : []); // Ajuste aqui
+            setRefeicaoPadraoModalOpen(true);
+            console.log(data);
+        } catch (error) {
+            console.error('Erro ao buscar alimentos da refeição padrão:', error);
+            // Adicione lógica para lidar com o erro, como exibir uma mensagem para o usuário
+        }
+    };
+    const closeRefeicaoPadraoModal = () => {
+        setRefeicaoPadraoModalOpen(false);
+    };
+
+    const openAdicionarRefeicaoPadraoModal = () => {
+        setAdicionarRefeicaoPadraoModalOpen(true);
+    };
+    const closeAdicionarRefeicaoPadraoModal = () => {
+        setAdicionarRefeicaoPadraoModalOpen(false);
     };
 
     const openModalForPaciente = (paciente) => {
@@ -37,9 +70,9 @@ const Dieta = () => {
         setRefeicoesModalDietaOpen(false);
     };
 
+    const IdMedico = localStorage.getItem("id");
 
     useEffect(() => {
-        const IdMedico = localStorage.getItem("id");
         const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
 
         function getPacientes() {
@@ -63,6 +96,23 @@ const Dieta = () => {
                 });
         }
         getPacientes();
+    }, []);
+
+
+    useEffect(() => {
+        // Obtenha as refeições padrão da API
+        const fetchRefeicoesPadrao = async () => {
+            try {
+                const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/profissional/${IdMedico}`);
+                const data = response.data;
+                setRefeicoesPadrao(data);
+                console.log(data) // Assumindo que a resposta da API é um array de refeições
+            } catch (error) {
+                console.error('Erro ao buscar refeições padrão:', error);
+            }
+        };
+
+        fetchRefeicoesPadrao();
     }, []);
 
     return (
@@ -98,24 +148,70 @@ const Dieta = () => {
                         </div>
 
                         <div className={styles['container-refeicoes-padrao']}>
-                            <div className={styles['refeicao-padrao']}>
-                                <span>Nome refeição-padrao 1</span>
-                            </div>
+                            <div className={styles['todas-refeicoes-padrao']}>
+                                {Array.isArray(refeicoesPadrao.refeicao) && refeicoesPadrao.refeicao.map((refeicao, index) => (
+                                    <div
+                                        key={index}
+                                        className={styles['refeicao-padrao']}
+                                        onClick={() => {
+                                            setSelectedRefeicao(refeicao);
+                                            openRefeicaoPadraoModal(refeicao.id);
 
-                            <div className={styles['refeicao-padrao']}>
-                                <span>Nome refeição-padrao 2</span>
+                                        }}
+                                    >
+                                        <span>{refeicao.nome}</span>
+                                    </div>
+                                ))}
                             </div>
-
-                            <div className={styles['refeicao-padrao']}>
-                                <span>Nome refeição-padrao 3</span>
-                            </div>
-
-                            <div className={styles['refeicao-padrao']}>
-                                <span>Nome refeição-padrao 4</span>
-                            </div>
+                            <button onClick={openAdicionarRefeicaoPadraoModal}>+</button>
                         </div>
-                        
+
+                        {isRefeicaoPadraoModalOpen && (
+                            <div className={styles['modalContainerRefeicoesPadrao']}>
+                                <div className={styles['modalBox']}>
+                                    <div className={styles['modalContentRefeicoes']}>
+                                        <span onClick={closeRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
+                                        <h2>{selectedRefeicao?.nome}</h2>
+                                        <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição padrão clicada. Aí vai dar pra adicionar mais alimentos e remover os já existentes também:</h4>
+                                        <div className={styles["foods"]}>
+                                            {alimentosRefeicaoPadrao.map((alimento, index) => (
+                                                <div className={styles["boxFood"]} key={index}>
+                                                    <div className={styles["foodItem"]}>
+                                                        <div className={styles["imageFood"]}>
+                                                            <img
+                                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                                                src={alimento.imagem}  
+                                                                alt={alimento.nome} 
+                                                            />
+                                                        </div>
+                                                        <div className={styles["foodInformations"]}>
+                                                            <span>{alimento.nome}</span>
+                                                            <IoAddCircleSharp fill="#b6b6f6" fontSize={"1.5rem"} />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+
+                        {isAdicionarRefeicaoPadraoModalOpen && (
+                            <div className={styles['modalContainerRefeicoesPadrao']}>
+                                <div className={styles['modalBox']}>
+                                    <div className={styles['modalContentRefeicoes']}>
+                                        <span onClick={closeAdicionarRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
+                                        <h2>ADICIONAR refeição padrão</h2>
+                                        <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição padrão clicada. aí vai dar pra add mais alimentos e remover os ja existentes tbm:</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
+
+
 
                     {isModalOpen && (
                         <div className={styles['modalContainer']}>

@@ -41,14 +41,11 @@ export default function Modal({ pacienteInfo, closeModal }) {
             <AiFillCloseCircle style={{ fill: '#fa0000' }} />
           </div>
           <h2 style={{ color: '#464444', fontSize: '2.4rem' }}>
-          <p>Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo && pacienteInfo.nome ? pacienteInfo.nome : ''}</span></p>
+            <p>Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo && pacienteInfo.nome ? pacienteInfo.nome : ''}</span></p>
           </h2>
           <div className={styles['especialidadesBox']}>
             <h4>Especialidade:</h4>
-            <div className={styles['boxButtonEspecialidade']}>
             <p>Especialidade: <span style={{ color: '#b6b6f6' }}>{pacienteInfo && pacienteInfo.especialidade ? pacienteInfo.especialidade : ''}</span></p>
-
-            </div>
           </div>
           <div className={styles['datasBox']}>
             <h4>Data:</h4>
