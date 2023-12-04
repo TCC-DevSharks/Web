@@ -237,11 +237,7 @@ const Historico = () => {
                     setTimeout(closeModal, 5000);
                   } else {
                     getConsultas()
-<<<<<<< HEAD
                     toast.success(data.message, {
-=======
-                   toast.success(data.message, {
->>>>>>> a729baf7d96c5cf709abf2155f9083b12f045a3c
                       position: "top-center",
                       autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
                       hideProgressBar: false,

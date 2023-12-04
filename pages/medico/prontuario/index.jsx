@@ -48,7 +48,6 @@ const Prontuario = () => {
             <Sidebar />
             <div className={styles['prontuario-container']}>
                 <TituloSecao title="Gerenciar Prontuários" />
-
                 <div className={styles['prontuarios']}>
                     <div className={styles['input-area']}>
                         <input type="text" placeholder='Pesquise um paciente' />
@@ -68,6 +67,8 @@ const Prontuario = () => {
                                             especialidade={paciente.especialidade}
                                             onPacienteClick={handlePacienteClick}
                                         />
+
+                                       
                                     </div>
                                 ))}
                         </div>
@@ -80,7 +81,6 @@ const Prontuario = () => {
                         closeModal={() => setIsModalOpen(false)}
                     />
                 )}
-
             </div>
         </>
     );

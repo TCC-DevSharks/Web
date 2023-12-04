@@ -345,7 +345,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
               </div>
 
               <div className={styles['buttonExcluir']}>
-                <div className={styles['button']}>
+                <div onClick={() => setIsModalOpen(true)} className={styles['button']}>
                   Excluir médico
                 </div>
 
