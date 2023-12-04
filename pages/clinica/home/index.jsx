@@ -106,7 +106,7 @@ export default function Home() {
                     <tr>
                       <th>Nome do funcionário</th>
                       <th>Especialidade</th>
-                      <th>Idade</th>
+                      <th>CRM</th>
                     </tr>
                   </thead>
 
@@ -125,7 +125,7 @@ export default function Home() {
                               </div>
                             </td>
                             <td>{medico.especialidade}</td>
-                            <td>{medico.idade}</td>
+                            <td>{medico.crm}</td>
                           </tr>
                         </>
                       );
