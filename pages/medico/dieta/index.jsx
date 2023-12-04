@@ -21,10 +21,11 @@ const Dieta = () => {
     const [isRefeicaoPadraoModalOpen, setRefeicaoPadraoModalOpen] = useState(false);
 
     const [isAdicionarRefeicaoPadraoModalOpen, setAdicionarRefeicaoPadraoModalOpen] = useState(false);
+    const [isAdicionarAlimentoRefeicaoPadraoModalOpen, setAdicionarAlimentoRefeicaoPadraoModalOpen] = useState(false);
     const [refeicoesPadrao, setRefeicoesPadrao] = useState([]);
     const [selectedRefeicao, setSelectedRefeicao] = useState(null);
     const [alimentosRefeicaoPadrao, setAlimentosRefeicaoPadrao] = useState([]);
-
+    const [listaAlimentos, setListaAlimentos] = useState([]);
 
 
     const openRefeicoesModal = () => {
@@ -57,6 +58,25 @@ const Dieta = () => {
         setAdicionarRefeicaoPadraoModalOpen(false);
     };
 
+    const openAdicionarAlimentoRefeicaoPadraoModal = async () => {
+        setAdicionarAlimentoRefeicaoPadraoModalOpen(true);
+        try {
+            // Faça a solicitação para obter a lista de alimentos
+            const response = await axios.get('https://api-bebevindo.azurewebsites.net/refeicao/lista/alimento');
+            const data = response.data;
+
+            console.log('Data recebida:', data);
+
+            setListaAlimentos(Array.isArray(data.alimentos) ? data.alimentos : []);
+        } catch (error) {
+            console.error('Erro ao buscar a lista de alimentos:', error);
+            // Adicione lógica para lidar com o erro, como exibir uma mensagem para o usuário
+        }
+    };
+    const closeAdicionarAlimentoRefeicaoPadraoModal = () => {
+        setAdicionarAlimentoRefeicaoPadraoModalOpen(false);
+    };
+
     const openModalForPaciente = (paciente) => {
         setSelectedPaciente(paciente);
         setModalIsOpen(true);
@@ -80,13 +100,11 @@ const Dieta = () => {
                 .then(response => {
                     const data = response.data;
 
-                    // Cria um objeto onde as chaves são os IDs dos pacientes
                     const pacientesPorId = data.pacientes.reduce((obj, paciente) => {
                         obj[paciente.idGestante] = paciente;
                         return obj;
                     }, {});
 
-                    // Converte o objeto de volta para um array
                     const pacientesUnicos = Object.values(pacientesPorId);
 
                     setPacientes(pacientesUnicos);
@@ -156,7 +174,6 @@ const Dieta = () => {
                                         onClick={() => {
                                             setSelectedRefeicao(refeicao);
                                             openRefeicaoPadraoModal(refeicao.id);
-
                                         }}
                                     >
                                         <span>{refeicao.nome}</span>
@@ -180,17 +197,18 @@ const Dieta = () => {
                                                         <div className={styles["imageFood"]}>
                                                             <img
                                                                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                                                src={alimento.imagem}  
-                                                                alt={alimento.nome} 
+                                                                src={alimento.imagem}
+                                                                alt={alimento.nome}
                                                             />
                                                         </div>
                                                         <div className={styles["foodInformations"]}>
                                                             <span>{alimento.nome}</span>
-                                                            <IoAddCircleSharp fill="#b6b6f6" fontSize={"1.5rem"} />
                                                         </div>
                                                     </div>
                                                 </div>
                                             ))}
+                                            
+                                            <button onClick={openAdicionarAlimentoRefeicaoPadraoModal}>Adicionar alimentos</button>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +222,41 @@ const Dieta = () => {
                                     <div className={styles['modalContentRefeicoes']}>
                                         <span onClick={closeAdicionarRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
                                         <h2>ADICIONAR refeição padrão</h2>
-                                        <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição padrão clicada. aí vai dar pra add mais alimentos e remover os ja existentes tbm:</h4>
+                                        <h4>Aqui vc vai poder criar uma nova refeicao</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {isAdicionarAlimentoRefeicaoPadraoModalOpen && (
+                            <div className={styles['modalContainerRefeicoes']}>
+                                <div className={styles['modalBox']}>
+                                    <div className={styles['modalContentRefeicoes']}>
+                                        <span onClick={closeAdicionarAlimentoRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
+                                        <h2>Gerenciar alimentos em: {selectedRefeicao.nome}</h2>
+                                        <h4>Clique para adicionar ou remover um alimento da sua Refeição Padrão.</h4>
+
+                                        <div className={styles["foods"]}>
+
+                                            <div className={styles["boxFood"]}>
+                                                {listaAlimentos.map((alimento, index) => (
+                                                    <div key={index} className={styles["foodItem"]}>
+                                                        <div className={styles["imageFood"]}>
+                                                            <img
+                                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                                                src={alimento.imagem}
+                                                                alt={alimento.nome}
+                                                            />
+                                                        </div>
+                                                        <div className={styles["foodInformations"]}>
+                                                            <span>{alimento.nome}</span>
+                                                            <IoAddCircleSharp style={{fontSize: "1.5rem", color: "#b6b6f6"}}/>
+                                                        </div>
+                                                    </div>))}
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>

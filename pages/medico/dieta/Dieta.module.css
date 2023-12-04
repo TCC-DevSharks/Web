@@ -184,7 +184,6 @@
     font-weight: 700;
 }
 .alimentos-refeicao-padrao{
-    background-color: plum;
     width: 100%;
     height: 80%;
     align-self: center;
@@ -195,14 +194,24 @@
     flex-direction: column;
     padding-top: 3%;
     width: 100%;
-    height: 65vh;
+    height: 50vh;
     padding-top: 3%;
     overflow: auto;
+}
+.foods button {
+    background-color: #b6b6f6;
+    border: none;
+    padding: 1%;
+    font-size: .9rem;
+    align-self: flex-end;
+    border-radius: 20px;
+    font-weight: 600;
+    color: white;
 }
 .boxFood{
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     overflow: auto;
     width: 100%;
@@ -261,7 +270,7 @@
     z-index: 1000;
 }
 .modalBox {
-    background-color: #FFF;
+    background-color: white;
     border-radius: 20px;
     height: 70%;
     display: flex;
