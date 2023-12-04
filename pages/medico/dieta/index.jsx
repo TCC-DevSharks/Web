@@ -6,7 +6,7 @@ import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import ModalDieta from './modalDieta';
-import { IoAddCircleSharp } from 'react-icons/io5';
+import { IoAddCircleSharp, IoRemoveCircleSharp } from 'react-icons/io5';
 
 
 const Dieta = () => {
@@ -133,6 +133,34 @@ const Dieta = () => {
         fetchRefeicoesPadrao();
     }, []);
 
+    const adicionarAlimentoRefeicaoPadrao = async (idAlimento) => {
+        try {
+            const response = await axios.post('https://api-bebevindo.azurewebsites.net/refeicao/padrao/alimento/', {
+                id_alimento: idAlimento,
+                id_refeicao: selectedRefeicao.id, 
+            });
+    
+            openRefeicaoPadraoModal(selectedRefeicao.id);
+        } catch (error) {
+            console.error('Erro ao adicionar alimento à refeição padrão:', error);
+        }
+    };
+    
+    const removerAlimentoRefeicaoPadrao = async (idAlimento) => {
+        try {
+            console.log('ID do alimento a ser removido:', idAlimento);
+            console.log('ID da refeição a ser removida:', selectedRefeicao.id);
+            await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${selectedRefeicao.id}/alimento/${idAlimento}`);
+            console.log("ID da refeição a ser removida:", selectedRefeicao.id);
+    
+            // Atualize a lista de alimentos da refeição padrão
+            openRefeicaoPadraoModal(selectedRefeicao.id);
+        } catch (error) {
+            console.error('Erro ao remover alimento da refeição padrão:', error);
+            // Adicione lógica para lidar com o erro, como exibir uma mensagem para o usuário
+        }
+    };
+
     return (
         <>
             <Sidebar />
@@ -191,9 +219,9 @@ const Dieta = () => {
                                         <h2>{selectedRefeicao?.nome}</h2>
                                         <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição padrão clicada. Aí vai dar pra adicionar mais alimentos e remover os já existentes também:</h4>
                                         <div className={styles["foods"]}>
-                                            {alimentosRefeicaoPadrao.map((alimento, index) => (
-                                                <div className={styles["boxFood"]} key={index}>
-                                                    <div className={styles["foodItem"]}>
+                                            <div className={styles["boxFood"]} >
+                                                {alimentosRefeicaoPadrao.map((alimento, index) => (
+                                                    <div key={index} className={styles["foodItem"]}>
                                                         <div className={styles["imageFood"]}>
                                                             <img
                                                                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -203,18 +231,21 @@ const Dieta = () => {
                                                         </div>
                                                         <div className={styles["foodInformations"]}>
                                                             <span>{alimento.nome}</span>
+                                                            <IoRemoveCircleSharp
+                                                                style={{ fontSize: "1.5rem", color: "red", cursor: "pointer" }}
+                                                                onClick={() => removerAlimentoRefeicaoPadrao(alimento.idAlimento)}
+                                                            />
                                                         </div>
                                                     </div>
-                                                </div>
-                                            ))}
-                                            
+                                                ))}
+                                            </div>
+
                                             <button onClick={openAdicionarAlimentoRefeicaoPadraoModal}>Adicionar alimentos</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         )}
-
 
                         {isAdicionarRefeicaoPadraoModalOpen && (
                             <div className={styles['modalContainerRefeicoesPadrao']}>
@@ -250,7 +281,10 @@ const Dieta = () => {
                                                         </div>
                                                         <div className={styles["foodInformations"]}>
                                                             <span>{alimento.nome}</span>
-                                                            <IoAddCircleSharp style={{fontSize: "1.5rem", color: "#b6b6f6"}}/>
+                                                            <IoAddCircleSharp
+                                                                style={{ fontSize: "1.5rem", color: "#b6b6f6", cursor: "pointer" }}
+                                                                onClick={() => adicionarAlimentoRefeicaoPadrao(alimento.id)}
+                                                            />
                                                         </div>
                                                     </div>))}
                                             </div>
