@@ -4,12 +4,14 @@ import TituloSecao from '../../../components/tituloSection/TituloSecao';
 import PacienteDieta from '../../../components/medico/dieta/pacienteDieta/PacienteDieta';
 import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
-import { AiOutlineArrowRight } from 'react-icons/ai'
 import ModalDieta from './modalDieta';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { IoAddCircleSharp, IoRemoveCircleSharp } from 'react-icons/io5';
 
-
 const Dieta = () => {
+    const IdMedico = localStorage.getItem("id");
+
     const [listpacientes, setPacientes] = useState();
     const [listUnicPacientes, setUnicPaciente] = useState();
     const [categoriaRefeicao, setCategoriaRefeicao] = useState("")
@@ -26,6 +28,9 @@ const Dieta = () => {
     const [selectedRefeicao, setSelectedRefeicao] = useState(null);
     const [alimentosRefeicaoPadrao, setAlimentosRefeicaoPadrao] = useState([]);
     const [listaAlimentos, setListaAlimentos] = useState([]);
+    const [isRefeicoesModalDietaOpen, setRefeicoesModalDietaOpen] = useState(false);
+    const [novaRefeicaoNome, setNovaRefeicaoNome] = useState('');
+    const [toastMessage, setToastMessage] = useState(null);
 
 
     const openRefeicoesModal = () => {
@@ -34,6 +39,7 @@ const Dieta = () => {
     const closeRefeicoesModal = () => {
         setRefeicoesModalOpen(false);
     };
+
 
     const openRefeicaoPadraoModal = async (idRefeicao) => {
         try {
@@ -51,12 +57,14 @@ const Dieta = () => {
         setRefeicaoPadraoModalOpen(false);
     };
 
+
     const openAdicionarRefeicaoPadraoModal = () => {
         setAdicionarRefeicaoPadraoModalOpen(true);
     };
     const closeAdicionarRefeicaoPadraoModal = () => {
         setAdicionarRefeicaoPadraoModalOpen(false);
     };
+
 
     const openAdicionarAlimentoRefeicaoPadraoModal = async () => {
         setAdicionarAlimentoRefeicaoPadraoModalOpen(true);
@@ -77,12 +85,13 @@ const Dieta = () => {
         setAdicionarAlimentoRefeicaoPadraoModalOpen(false);
     };
 
+
     const openModalForPaciente = (paciente) => {
         setSelectedPaciente(paciente);
         setModalIsOpen(true);
     };
 
-    const [isRefeicoesModalDietaOpen, setRefeicoesModalDietaOpen] = useState(false);
+
     const openRefeicoesModalDieta = () => {
         setRefeicoesModalDietaOpen(true);
     };
@@ -90,8 +99,64 @@ const Dieta = () => {
         setRefeicoesModalDietaOpen(false);
     };
 
-    const IdMedico = localStorage.getItem("id");
+    const criarNovaRefeicaoPadrao = async () => {
+        try {
+            // Faça a chamada API para criar a nova refeição padrão
+            const response = await fetch('https://api-bebevindo.azurewebsites.net/refeicao/padrao', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nome: novaRefeicaoNome,
+                    id_profissional: IdMedico, // Substitua pelo valor correto
+                }),
+            });
 
+            // Verifique se a requisição foi bem-sucedida
+            if (response.ok) {
+                // Defina a mensagem de toast de sucesso
+                setToastMessage('Refeição padrão criada com sucesso! Atualize a página para vizualizar.');
+
+                // Feche o modal depois de criar a refeição padrão
+                setAdicionarRefeicaoPadraoModalOpen(false);
+
+                // Limpe o campo do nome da nova refeição
+                setNovaRefeicaoNome('');
+            } else {
+                // Lide com erros, se necessário
+                console.error('Erro ao criar refeição padrão');
+
+                // Defina a mensagem de toast de erro
+                setToastMessage('Erro ao criar refeição padrão. Tente novamente.');
+            }
+        } catch (error) {
+            console.error('Erro ao criar refeição padrão', error);
+
+            // Defina a mensagem de toast de erro
+            setToastMessage('Erro ao criar refeição padrão. Tente novamente.');
+        }
+    };
+
+    useEffect(() => {
+        if (toastMessage) {
+            toast.success(toastMessage, {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+
+            setToastMessage(null);
+        }
+    }, [toastMessage]);
+
+
+
+    // Obter os pacientes
     useEffect(() => {
         const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
 
@@ -116,15 +181,14 @@ const Dieta = () => {
         getPacientes();
     }, []);
 
-
+    // Obter as refeições padrão
     useEffect(() => {
-        // Obtenha as refeições padrão da API
         const fetchRefeicoesPadrao = async () => {
             try {
                 const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/profissional/${IdMedico}`);
                 const data = response.data;
                 setRefeicoesPadrao(data);
-                console.log(data) // Assumindo que a resposta da API é um array de refeições
+                console.log(data)
             } catch (error) {
                 console.error('Erro ao buscar refeições padrão:', error);
             }
@@ -137,22 +201,22 @@ const Dieta = () => {
         try {
             const response = await axios.post('https://api-bebevindo.azurewebsites.net/refeicao/padrao/alimento/', {
                 id_alimento: idAlimento,
-                id_refeicao: selectedRefeicao.id, 
+                id_refeicao: selectedRefeicao.id,
             });
-    
+
             openRefeicaoPadraoModal(selectedRefeicao.id);
         } catch (error) {
             console.error('Erro ao adicionar alimento à refeição padrão:', error);
         }
     };
-    
+
     const removerAlimentoRefeicaoPadrao = async (idAlimento) => {
         try {
             console.log('ID do alimento a ser removido:', idAlimento);
             console.log('ID da refeição a ser removida:', selectedRefeicao.id);
             await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${selectedRefeicao.id}/alimento/${idAlimento}`);
             console.log("ID da refeição a ser removida:", selectedRefeicao.id);
-    
+
             // Atualize a lista de alimentos da refeição padrão
             openRefeicaoPadraoModal(selectedRefeicao.id);
         } catch (error) {
@@ -161,13 +225,28 @@ const Dieta = () => {
         }
     };
 
+    const excluirRefeicaoPadrao = async (id_refeicao) => {
+        try {
+            await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${id_refeicao}`);
+
+            // Atualize a lista de refeições padrão após excluir
+            const updatedRefeicoes = refeicoesPadrao.refeicao.filter(refeicao => refeicao.id !== id_refeicao);
+            setRefeicoesPadrao({ ...refeicoesPadrao, refeicao: updatedRefeicoes });
+            toast.success('Refeição padrão excluída com sucesso!');
+
+        } catch (error) {
+            console.error('Erro ao remover refeição padrão:', error);
+            toast.error('Erro ao excluir refeição padrão. Tente novamente.');
+        }
+    };
+
+
     return (
         <>
             <Sidebar />
 
             <div className={styles['dieta-container']}>
                 <TituloSecao title="Gerenciar Dietas" />
-
                 <div className={styles['container-geral']}>
                     <div className={styles['container-pacientes']}>
                         <div > <input type="text" placeholder='Pesquisar paciente:' /> </div>
@@ -190,7 +269,7 @@ const Dieta = () => {
                     <div className={styles['container-dieta']}>
                         <div className={styles['box-dieta']}>
                             <h2>Refeições Padrão</h2>
-                            <span>Crie padrões de refeição para agilizar a consulta! </span>
+                            <span>Crie padrões de refeição para agilizar a consulta!</span>
                         </div>
 
                         <div className={styles['container-refeicoes-padrao']}>
@@ -205,10 +284,15 @@ const Dieta = () => {
                                         }}
                                     >
                                         <span>{refeicao.nome}</span>
+                                        <IoRemoveCircleSharp
+                                            style={{ fontSize: "1.3rem", color: "white", cursor: "pointer", alignSelf: "center" }}
+                                            onClick={() => excluirRefeicaoPadrao(refeicao.id)}
+                                        />
                                     </div>
                                 ))}
                             </div>
-                            <button onClick={openAdicionarRefeicaoPadraoModal}>+</button>
+                            <button onClick={() => openAdicionarRefeicaoPadraoModal()}>+</button>
+
                         </div>
 
                         {isRefeicaoPadraoModalOpen && (
@@ -217,7 +301,7 @@ const Dieta = () => {
                                     <div className={styles['modalContentRefeicoes']}>
                                         <span onClick={closeRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
                                         <h2>{selectedRefeicao?.nome}</h2>
-                                        <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição padrão clicada. Aí vai dar pra adicionar mais alimentos e remover os já existentes também:</h4>
+                                        <h4>Alimentos que estão inclusos em "{selectedRefeicao?.nome}":</h4>
                                         <div className={styles["foods"]}>
                                             <div className={styles["boxFood"]} >
                                                 {alimentosRefeicaoPadrao.map((alimento, index) => (
@@ -252,12 +336,21 @@ const Dieta = () => {
                                 <div className={styles['modalBox']}>
                                     <div className={styles['modalContentRefeicoes']}>
                                         <span onClick={closeAdicionarRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
-                                        <h2>ADICIONAR refeição padrão</h2>
+                                        <h2>Criar refeição padrão</h2>
                                         <h4>Aqui vc vai poder criar uma nova refeicao</h4>
+                                        <input
+                                            type="text"
+                                            placeholder="Nome da Nova Refeição"
+                                            value={novaRefeicaoNome}
+                                            onChange={(e) => setNovaRefeicaoNome(e.target.value)}
+                                        />
+                                        <button onClick={() => criarNovaRefeicaoPadrao()}>Salvar</button>
                                     </div>
                                 </div>
                             </div>
                         )}
+
+                        <ToastContainer />
 
                         {isAdicionarAlimentoRefeicaoPadraoModalOpen && (
                             <div className={styles['modalContainerRefeicoes']}>
@@ -265,10 +358,9 @@ const Dieta = () => {
                                     <div className={styles['modalContentRefeicoes']}>
                                         <span onClick={closeAdicionarAlimentoRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
                                         <h2>Gerenciar alimentos em: {selectedRefeicao.nome}</h2>
-                                        <h4>Clique para adicionar ou remover um alimento da sua Refeição Padrão.</h4>
+                                        <h4>Clique para adicionar um alimento em "{selectedRefeicao.nome}":</h4>
 
                                         <div className={styles["foods"]}>
-
                                             <div className={styles["boxFood"]}>
                                                 {listaAlimentos.map((alimento, index) => (
                                                     <div key={index} className={styles["foodItem"]}>
@@ -288,16 +380,12 @@ const Dieta = () => {
                                                         </div>
                                                     </div>))}
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                         )}
                     </div>
-
-
 
                     {isModalOpen && (
                         <div className={styles['modalContainer']}>
