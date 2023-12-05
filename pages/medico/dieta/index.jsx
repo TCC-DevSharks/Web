@@ -45,12 +45,11 @@ const Dieta = () => {
         try {
             const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/alimento/${idRefeicao}`);
             const data = response.data;
-            setAlimentosRefeicaoPadrao(Array.isArray(data.alimentos) ? data.alimentos : []); // Ajuste aqui
+            setAlimentosRefeicaoPadrao(Array.isArray(data.alimentos) ? data.alimentos : []);
             setRefeicaoPadraoModalOpen(true);
             console.log(data);
         } catch (error) {
             console.error('Erro ao buscar alimentos da refeição padrão:', error);
-            // Adicione lógica para lidar com o erro, como exibir uma mensagem para o usuário
         }
     };
     const closeRefeicaoPadraoModal = () => {
@@ -69,7 +68,6 @@ const Dieta = () => {
     const openAdicionarAlimentoRefeicaoPadraoModal = async () => {
         setAdicionarAlimentoRefeicaoPadraoModalOpen(true);
         try {
-            // Faça a solicitação para obter a lista de alimentos
             const response = await axios.get('https://api-bebevindo.azurewebsites.net/refeicao/lista/alimento');
             const data = response.data;
 
@@ -78,7 +76,6 @@ const Dieta = () => {
             setListaAlimentos(Array.isArray(data.alimentos) ? data.alimentos : []);
         } catch (error) {
             console.error('Erro ao buscar a lista de alimentos:', error);
-            // Adicione lógica para lidar com o erro, como exibir uma mensagem para o usuário
         }
     };
     const closeAdicionarAlimentoRefeicaoPadraoModal = () => {
@@ -99,9 +96,9 @@ const Dieta = () => {
         setRefeicoesModalDietaOpen(false);
     };
 
+
     const criarNovaRefeicaoPadrao = async () => {
         try {
-            // Faça a chamada API para criar a nova refeição padrão
             const response = await fetch('https://api-bebevindo.azurewebsites.net/refeicao/padrao', {
                 method: 'POST',
                 headers: {
@@ -109,34 +106,64 @@ const Dieta = () => {
                 },
                 body: JSON.stringify({
                     nome: novaRefeicaoNome,
-                    id_profissional: IdMedico, // Substitua pelo valor correto
+                    id_profissional: IdMedico,
                 }),
             });
 
-            // Verifique se a requisição foi bem-sucedida
             if (response.ok) {
-                // Defina a mensagem de toast de sucesso
-                setToastMessage('Refeição padrão criada com sucesso! Atualize a página para vizualizar.');
-
-                // Feche o modal depois de criar a refeição padrão
+                setToastMessage('Refeição padrão criada com sucesso!');
+                fetchRefeicoesPadrao()
                 setAdicionarRefeicaoPadraoModalOpen(false);
-
-                // Limpe o campo do nome da nova refeição
                 setNovaRefeicaoNome('');
             } else {
-                // Lide com erros, se necessário
                 console.error('Erro ao criar refeição padrão');
-
-                // Defina a mensagem de toast de erro
                 setToastMessage('Erro ao criar refeição padrão. Tente novamente.');
             }
         } catch (error) {
             console.error('Erro ao criar refeição padrão', error);
-
-            // Defina a mensagem de toast de erro
             setToastMessage('Erro ao criar refeição padrão. Tente novamente.');
         }
     };
+    const excluirRefeicaoPadrao = async (id_refeicao) => {
+        try {
+            await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${id_refeicao}`);
+
+            const updatedRefeicoes = refeicoesPadrao.refeicao.filter(refeicao => refeicao.id !== id_refeicao);
+            setRefeicoesPadrao({ ...refeicoesPadrao, refeicao: updatedRefeicoes });
+            toast.success('Refeição padrão excluída com sucesso!');
+
+        } catch (error) {
+            console.error('Erro ao remover refeição padrão:', error);
+            toast.error('Erro ao excluir refeição padrão. Tente novamente.');
+        }
+    };
+
+
+    const adicionarAlimentoRefeicaoPadrao = async (idAlimento) => {
+        try {
+            const response = await axios.post('https://api-bebevindo.azurewebsites.net/refeicao/padrao/alimento/', {
+                id_alimento: idAlimento,
+                id_refeicao: selectedRefeicao.id,
+            });
+
+            openRefeicaoPadraoModal(selectedRefeicao.id);
+        } catch (error) {
+            console.error('Erro ao adicionar alimento à refeição padrão:', error);
+        }
+    };
+    const removerAlimentoRefeicaoPadrao = async (idAlimento) => {
+        try {
+            console.log('ID do alimento a ser removido:', idAlimento);
+            console.log('ID da refeição a ser removida:', selectedRefeicao.id);
+            await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${selectedRefeicao.id}/alimento/${idAlimento}`);
+            console.log("ID da refeição a ser removida:", selectedRefeicao.id);
+
+            openRefeicaoPadraoModal(selectedRefeicao.id);
+        } catch (error) {
+            console.error('Erro ao remover alimento da refeição padrão:', error);
+        }
+    };
+
 
     useEffect(() => {
         if (toastMessage) {
@@ -153,7 +180,6 @@ const Dieta = () => {
             setToastMessage(null);
         }
     }, [toastMessage]);
-
 
 
     // Obter os pacientes
@@ -182,63 +208,20 @@ const Dieta = () => {
     }, []);
 
     // Obter as refeições padrão
+    const fetchRefeicoesPadrao = async () => {
+        try {
+            const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/profissional/${IdMedico}`);
+            const data = response.data;
+            setRefeicoesPadrao(data);
+            console.log(data)
+        } catch (error) {
+            console.error('Erro ao buscar refeições padrão:', error);
+        }
+    };
     useEffect(() => {
-        const fetchRefeicoesPadrao = async () => {
-            try {
-                const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/profissional/${IdMedico}`);
-                const data = response.data;
-                setRefeicoesPadrao(data);
-                console.log(data)
-            } catch (error) {
-                console.error('Erro ao buscar refeições padrão:', error);
-            }
-        };
-
         fetchRefeicoesPadrao();
     }, []);
 
-    const adicionarAlimentoRefeicaoPadrao = async (idAlimento) => {
-        try {
-            const response = await axios.post('https://api-bebevindo.azurewebsites.net/refeicao/padrao/alimento/', {
-                id_alimento: idAlimento,
-                id_refeicao: selectedRefeicao.id,
-            });
-
-            openRefeicaoPadraoModal(selectedRefeicao.id);
-        } catch (error) {
-            console.error('Erro ao adicionar alimento à refeição padrão:', error);
-        }
-    };
-
-    const removerAlimentoRefeicaoPadrao = async (idAlimento) => {
-        try {
-            console.log('ID do alimento a ser removido:', idAlimento);
-            console.log('ID da refeição a ser removida:', selectedRefeicao.id);
-            await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${selectedRefeicao.id}/alimento/${idAlimento}`);
-            console.log("ID da refeição a ser removida:", selectedRefeicao.id);
-
-            // Atualize a lista de alimentos da refeição padrão
-            openRefeicaoPadraoModal(selectedRefeicao.id);
-        } catch (error) {
-            console.error('Erro ao remover alimento da refeição padrão:', error);
-            // Adicione lógica para lidar com o erro, como exibir uma mensagem para o usuário
-        }
-    };
-
-    const excluirRefeicaoPadrao = async (id_refeicao) => {
-        try {
-            await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${id_refeicao}`);
-
-            // Atualize a lista de refeições padrão após excluir
-            const updatedRefeicoes = refeicoesPadrao.refeicao.filter(refeicao => refeicao.id !== id_refeicao);
-            setRefeicoesPadrao({ ...refeicoesPadrao, refeicao: updatedRefeicoes });
-            toast.success('Refeição padrão excluída com sucesso!');
-
-        } catch (error) {
-            console.error('Erro ao remover refeição padrão:', error);
-            toast.error('Erro ao excluir refeição padrão. Tente novamente.');
-        }
-    };
 
 
     return (
@@ -292,7 +275,6 @@ const Dieta = () => {
                                 ))}
                             </div>
                             <button onClick={() => openAdicionarRefeicaoPadraoModal()}>+</button>
-
                         </div>
 
                         {isRefeicaoPadraoModalOpen && (
@@ -302,30 +284,35 @@ const Dieta = () => {
                                         <span onClick={closeRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
                                         <h2>{selectedRefeicao?.nome}</h2>
                                         <h4>Alimentos que estão inclusos em "{selectedRefeicao?.nome}":</h4>
-                                        <div className={styles["foods"]}>
-                                            <div className={styles["boxFood"]} >
-                                                {alimentosRefeicaoPadrao.map((alimento, index) => (
-                                                    <div key={index} className={styles["foodItem"]}>
-                                                        <div className={styles["imageFood"]}>
-                                                            <img
-                                                                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                                                src={alimento.imagem}
-                                                                alt={alimento.nome}
-                                                            />
-                                                        </div>
-                                                        <div className={styles["foodInformations"]}>
-                                                            <span>{alimento.nome}</span>
-                                                            <IoRemoveCircleSharp
-                                                                style={{ fontSize: "1.5rem", color: "red", cursor: "pointer" }}
-                                                                onClick={() => removerAlimentoRefeicaoPadrao(alimento.idAlimento)}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                ))}
-                                            </div>
 
-                                            <button onClick={openAdicionarAlimentoRefeicaoPadraoModal}>Adicionar alimentos</button>
-                                        </div>
+                                        {alimentosRefeicaoPadrao.length === 0 ? (
+                                            <p style={{ marginTop: "18rem" }}> Nenhum alimento adicionado ainda.</p>
+                                        ) : (
+                                            <div className={styles["foods"]}>
+                                                <div className={styles["boxFood"]}>
+                                                    {alimentosRefeicaoPadrao.map((alimento, index) => (
+                                                        <div key={index} className={styles["foodItem"]}>
+                                                            <div className={styles["imageFood"]}>
+                                                                <img
+                                                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                                                    src={alimento.imagem}
+                                                                    alt={alimento.nome}
+                                                                />
+                                                            </div>
+                                                            <div className={styles["foodInformations"]}>
+                                                                <span>{alimento.nome}</span>
+                                                                <IoRemoveCircleSharp
+                                                                    style={{ fontSize: "1.5rem", color: "red", cursor: "pointer" }}
+                                                                    onClick={() => removerAlimentoRefeicaoPadrao(alimento.idAlimento)}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <button onClick={openAdicionarAlimentoRefeicaoPadraoModal}>Adicionar alimentos</button>
                                     </div>
                                 </div>
                             </div>
@@ -333,11 +320,10 @@ const Dieta = () => {
 
                         {isAdicionarRefeicaoPadraoModalOpen && (
                             <div className={styles['modalContainerRefeicoesPadrao']}>
-                                <div className={styles['modalBox']}>
-                                    <div className={styles['modalContentRefeicoes']}>
+                                <div className={styles['modalBoxMenor']}>
+                                    <div className={styles['modalContentRefeicoesMenor']}>
                                         <span onClick={closeAdicionarRefeicaoPadraoModal} className={styles['closeButtonModal']}>&times;</span>
                                         <h2>Criar refeição padrão</h2>
-                                        <h4>Aqui vc vai poder criar uma nova refeicao</h4>
                                         <input
                                             type="text"
                                             placeholder="Nome da Nova Refeição"
