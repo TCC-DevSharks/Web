@@ -11,7 +11,7 @@ export default function Modal({ pacienteInfo, closeModal }) {
 
   const [dia, mes] = pacienteInfo && pacienteInfo.dataConsulta ? pacienteInfo.dataConsulta.split('/') : ['', ''];
   const [prontuario, selectedPronturario] = useState()
-  const [valor, setValor] = useState('')
+  const [valor, setValor] = useState(' ')
 
 
   const handleChange = (event) => {

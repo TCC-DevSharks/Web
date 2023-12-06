@@ -7,7 +7,7 @@ import axios from 'axios';
 
 const Modal = ({ pacienteInfo, closeModal }) => {
   const [dia, mes] = pacienteInfo && pacienteInfo.dataConsulta ? pacienteInfo.dataConsulta.split('/') : ['', ''];
-  const [valor, setValor] = useState('');
+  const [valor, setValor] = useState(' ');
 
   const handleChange = (event) => {
     setValor(event.target.value);
