@@ -10,16 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { IoAddCircleSharp, IoRemoveCircleSharp } from 'react-icons/io5';
 
 const Dieta = () => {
-    let IdMedico 
-    if (typeof window !== "undefined") {
-
-        IdMedico = localStorage.getItem("id");
-
-    }
+    let IdMedico
+    if (typeof window !== "undefined") { IdMedico = localStorage.getItem("id"); }
 
     const [listpacientes, setPacientes] = useState();
-    const [listUnicPacientes, setUnicPaciente] = useState();
-    const [categoriaRefeicao, setCategoriaRefeicao] = useState("")
+
+    const [listRefeicaoGestante, setRefeicaoGestante] = useState()
+    const [listaAlimentosRefeicao, setAlimentosRefeicaoGestante] = useState();
 
     const [selectedPaciente, setSelectedPaciente] = useState(null);
     const [isModalOpen, setModalIsOpen] = useState(false);
@@ -36,7 +33,6 @@ const Dieta = () => {
     const [isRefeicoesModalDietaOpen, setRefeicoesModalDietaOpen] = useState(false);
     const [novaRefeicaoNome, setNovaRefeicaoNome] = useState('');
     const [toastMessage, setToastMessage] = useState(null);
-
 
     const openRefeicoesModal = () => {
         setRefeicoesModalOpen(true);
@@ -164,6 +160,59 @@ const Dieta = () => {
     };
 
 
+    const getRefeicaoGestante = (idGestante, idConsulta) => {
+        console.log(idGestante)
+        if (idGestante == null || idGestante == undefined) {
+            console.log("erro");
+            
+        } else {
+
+            const url = `https://api-bebevindo.azurewebsites.net/dieta/refeicao/${idGestante}`;
+            axios.get(url)
+                .then((response) => {
+                    const data = response.data; 
+                    
+                    setRefeicaoGestante(data)
+
+                    if (data.dieta.length === 0) {
+                        const urlPost = `https://api-bebevindo.azurewebsites.net/dieta/`;
+
+                        axios.post(urlPost, {
+                            id_consulta: idConsulta
+                        })
+                            .then((response) => {
+                                console.log(response.data);
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    };
+
+    const getAlimentoRefeicao = (idRefeicao) => {
+        const url = `https://api-bebevindo.azurewebsites.net/refeicao/alimento/${idRefeicao}`
+        axios.get(url).then((response) => {
+            console.log(response.data);
+        }).catch((error)=> {
+            console.log(error);
+        })
+    }
+    console.log(listRefeicaoGestante.dieta.idRefeicao);
+     getAlimentoRefeicao(13)
+
+    useEffect(() => {
+        if (selectedPaciente?.idGestante === null || selectedPaciente?.idGestante === undefined) {
+            console.log("bhajfvf");
+        } else {
+            getRefeicaoGestante(selectedPaciente?.idGestante, selectedPaciente?.idConsulta)
+        }
+    }, [selectedPaciente]);
+
     useEffect(() => {
         if (toastMessage) {
             toast.success(toastMessage, {
@@ -285,7 +334,7 @@ const Dieta = () => {
                                             <p style={{ marginTop: "18rem" }}> Nenhum alimento adicionado ainda.</p>
                                         ) : (
                                             <div className={styles["foods"]}>
-                                               <div className={styles["boxFood"]}>
+                                                <div className={styles["boxFood"]}>
                                                     {alimentosRefeicaoPadrao.map((alimento, index) => (
                                                         <div key={index} className={styles["foodItem"]}>
                                                             <div className={styles["imageFood"]}>
@@ -381,20 +430,19 @@ const Dieta = () => {
                                         <p> {selectedPaciente && selectedPaciente.nome}</p>
                                     </div>
                                     <div className={styles['refeicoes-pacientes-modal']}>
-                                        <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
-                                            <span>Nome refeição 1</span>
-                                            <p>19:00</p>
-                                        </div>
+                                        {listRefeicaoGestante?.dieta?.map((data) => {
 
-                                        <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
-                                            <span>Nome refeição 2</span>
-                                            <p>19:00</p>
-                                        </div>
+                                            return (
+                                                <>
+                                                    <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
+                                                        <span>{data.refeicao}</span>
+                                                        <p>{data.horario}</p>
+                                                    </div>
+                                                </>
+                                            )
+                                        })}
 
-                                        <div className={styles['refeicoes-pacientes']} onClick={openRefeicoesModal}>
-                                            <span>Nome refeição 3</span>
-                                            <p>19:00</p>
-                                        </div>
+
                                     </div>
                                     <button onClick={openRefeicoesModalDieta}>Adicionar refeição</button>
                                 </div>
@@ -406,9 +454,14 @@ const Dieta = () => {
                                     <div className={styles['modalBox']}>
                                         <div className={styles['modalContentRefeicoes']}>
                                             <span onClick={closeRefeicoesModal} className={styles['closeButtonModal']}>&times;</span>
+                                           
                                             <h2>Nome da refeição</h2>
                                             <h4>Aqui vão aparecer os alimentos que estão inclusos na refeição clicada. aí vai dar pra add mais alimentos e remover os ja existentes tbm:</h4>
+
+
                                         </div>
+                                        <button>Adicionar alimentos</button>
+                                        <button>Copiar refeiçao</button>
                                     </div>
                                 </div>
                             )}
