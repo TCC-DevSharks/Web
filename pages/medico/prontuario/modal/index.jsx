@@ -63,55 +63,58 @@ const Modal = ({ pacienteInfo, closeModal }) => {
     }
   };
 
-  return (
-    <div className={styles['modalContainer']}>
-      <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="black" />
-
-      <div className={styles['modalBox']}>
-        <div className={styles['modalContent']}>
-          <div className={styles['closeButtonModal']} onClick={closeModal}>
-            <AiFillCloseCircle style={{ fill: '#fa0000' }} />
-          </div>
-          <h2 style={{ color: '#464444', fontSize: '2.4rem' }}>
-            Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo.nome}</span>
-          </h2>
-          <div className={styles['especialidadesBox']}>
-            <h4>Especialidade:</h4>
-            <div className={styles['boxButtonEspecialidade']}>
-              <button className={styles['buttonEspecialidade']}>{pacienteInfo.especialidade}</button>
+  if (pacienteInfo) {
+    return (  
+      <div className={styles['modalContainer']}>
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="black" />
+  
+        <div className={styles['modalBox']}>
+          <div className={styles['modalContent']}>
+            <div className={styles['closeButtonModal']} onClick={closeModal}>
+              <AiFillCloseCircle style={{ fill: '#fa0000' }} />
             </div>
-          </div>
-          <div className={styles['datasBox']}>
-            <h4>Data:</h4>
-            <div className={styles['boxButtonEspecialidade']}>
-              <button className={styles['buttonData']}>{dia + '/' + mes} </button>
+            <h2 style={{ color: '#464444', fontSize: '2.4rem' }}>
+              Paciente: <span style={{ color: '#b6b6f6' }}>{pacienteInfo.nome}</span>
+            </h2>
+            <div className={styles['especialidadesBox']}>
+              <h4>Especialidade:</h4>
+              <div className={styles['boxButtonEspecialidade']}>
+                <button className={styles['buttonEspecialidade']}>{pacienteInfo.especialidade}</button>
+              </div>
             </div>
+            <div className={styles['datasBox']}>
+              <h4>Data:</h4>
+              <div className={styles['boxButtonEspecialidade']}>
+                <button className={styles['buttonData']}>{dia + '/' + mes} </button>
+              </div>
+            </div>
+            <div className={styles['descricaoBox']}>
+              <h4>Descrição:</h4>
+              <textarea
+                value={valor}
+                onChange={handleChange}
+                className={styles['inputDescricao']}
+                type="text" />
+            </div>
+            <button onClick={postProntuario} className={styles['buttonEnvModal']}>
+              Atualizar Prontuário <AiOutlineArrowRight style={{ fontSize: '1.4rem', fontWeight: '800' }} />
+            </button>
           </div>
-          <div className={styles['descricaoBox']}>
-            <h4>Descrição:</h4>
-            <textarea
-              value={valor}
-              onChange={handleChange}
-              className={styles['inputDescricao']}
-              type="text" />
-          </div>
-          <button onClick={postProntuario} className={styles['buttonEnvModal']}>
-            Atualizar Prontuário <AiOutlineArrowRight style={{ fontSize: '1.4rem', fontWeight: '800' }} />
-          </button>
         </div>
       </div>
-    </div>
-  );
+    )
+  }
+
 };
 
 export default Modal;
