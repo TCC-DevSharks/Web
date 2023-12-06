@@ -60,6 +60,7 @@
             justify-content: center;
             align-items: center;
             color: #4c4c4c;
+            text-align: center;
             font-size: 1.6rem;
             font-weight: 600;
             width: 100%;
@@ -112,10 +113,10 @@
 
   .footer {
     border-top: 1px dashed #4c4c4c;
-    width: 80%;
+    width: 60%;
     display: flex;
     align-items: center;
-    justify-content: centerˇ;
+    justify-content: center;
     padding: 5%;
 
     ul {
@@ -126,7 +127,7 @@
 
         a {
           display: flex;
-          gap: 10px;
+          gap: 5px;
           align-items: center;
           text-decoration: none;
           color: #4c4c4c;

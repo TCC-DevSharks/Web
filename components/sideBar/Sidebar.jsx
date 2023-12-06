@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "../../styles/SidebarClinic.module.scss";
 import { BsCalendarCheck, BsFillChatDotsFill } from "react-icons/bs";
-import { FaClipboardList, FaHospitalUser, FaUtensils } from "react-icons/fa";
+import { FaClipboardList, FaUtensils } from "react-icons/fa";
 import { MdOutlineDashboard, MdExitToApp } from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -78,7 +78,6 @@ const Sidebar = () => {
             </i>
           </li>
 
-           {/* Verifica se a especialidade é "Nutricionista" antes de exibir o link */}
       {listMedicos?.profissionais?.[0]?.especialidade === "Nutricionista" && (
         <li>
           <i>

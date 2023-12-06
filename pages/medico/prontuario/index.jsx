@@ -5,7 +5,6 @@ import PacienteProntuario from '../../../components/medico/prontuario/PacientePr
 import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import Modal from '../modal';
 
 const Prontuario = () => {
@@ -46,7 +45,8 @@ const Prontuario = () => {
         <>
             <Sidebar />
             <div className={styles['prontuario-container']}>
-                <TituloSecao title="Gerenciar Prontuários" />
+                <h1>Gerenciar Prontuários</h1>
+
                 <div className={styles['prontuarios']}>
                     <div className={styles['input-area']}>
                         <input type="text" placeholder='Pesquise um paciente' />
@@ -67,7 +67,7 @@ const Prontuario = () => {
                                             onPacienteClick={handlePacienteClick}
                                         />
 
-                                       
+
                                     </div>
                                 ))}
                         </div>

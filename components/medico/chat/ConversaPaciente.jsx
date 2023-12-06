@@ -50,7 +50,6 @@ const ConversaPaciente = (
                     <div className={styles['descricao-paciente-chat']}>
                         <div className={styles['nome-paciente']}> {nome}</div>
 
-                        <div className={styles['previa-mensagem']}>Prévia da mensagem</div>
                     </div>
                 </div>
         </div>
