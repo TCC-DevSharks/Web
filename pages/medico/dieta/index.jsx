@@ -11,7 +11,7 @@ import { IoAddCircleSharp, IoRemoveCircleSharp } from 'react-icons/io5';
 
 const Dieta = () => {
     const IdMedico = localStorage.getItem("id");
-ç
+
     const [listpacientes, setPacientes] = useState();
     const [listUnicPacientes, setUnicPaciente] = useState();
     const [categoriaRefeicao, setCategoriaRefeicao] = useState("")

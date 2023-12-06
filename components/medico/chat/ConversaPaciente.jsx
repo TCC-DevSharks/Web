@@ -1,5 +1,5 @@
 import axios from 'axios';
-import styles from '../../../pages/medico/chat/Chat.module.css'; // Importe os estilos do arquivo CSS da página
+import styles from '../../../pages/medico/chat/Chat.module.css';
 import { useEffect } from 'react';
 import React, { useState } from 'react';
 
