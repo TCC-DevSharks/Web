@@ -44,7 +44,6 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
       }
     };
 
-    // Fetch address information only if a valid CEP is provided
     if (/^\d{8}$/.test(editedMedicoInfo.cep)) {
       fetchAddressInfo();
     }

@@ -73,7 +73,7 @@ function SenhaRecuperar() {
           theme: "light",
         });
       }
-    }).catch(console.log("erro"))
+    }).catch(console.error)
   }
 
 

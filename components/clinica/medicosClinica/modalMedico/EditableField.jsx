@@ -1,4 +1,3 @@
-// ... outros imports
 import styles from "./style.module.css";
 import React, { useState, useEffect } from 'react';
 
@@ -17,7 +16,6 @@ const EditableField = ({ value, onChange, isEditModeActive }) => {
   };
 
   useEffect(() => {
-    // Se o modo de edição estiver ativado, então ativamos imediatamente
     if (isEditModeActive) {
       setEditMode(true);
     }

@@ -22,7 +22,7 @@ const Modal = ({ pacienteInfo, closeModal }) => {
       })
       .then((response) => {
         const data = response.data;
-        console.log(data);
+
         if (response.data.result.status == 404) {
           toast.error(data.result.message, {
             position: "top-center",

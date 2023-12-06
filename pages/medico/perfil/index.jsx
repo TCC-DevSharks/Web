@@ -94,7 +94,6 @@ export default function Perfil() {
             });
           notify();
           Router.reload()
-          // Router.push('/medico/home')
         } else {
           toast.error(data.message, {
             position: "top-center",
@@ -146,7 +145,7 @@ export default function Perfil() {
             const data = response.data;
             setEnderecoMedico(data);
           })
-          .catch((error) => console.log(error));
+          .catch((error) => console.error);
       }
 
       enderecoMedico(cep);
@@ -199,7 +198,6 @@ export default function Perfil() {
                               Nome:
                               <input
                                 placeholder={editNome}
-                                // value={editRazaoSocial}
                                 onChange={(e) => setEditNome(e.target.value)}
                               />
                             </label>
@@ -209,7 +207,6 @@ export default function Perfil() {
                               <ReactInputMask
                                 mask={"(99)99999-9999"}
                                 placeholder={editTelefone}
-                                // value={editTelefone}
                                 onChange={(e) =>
                                   setEditedTelefone(e.target.value)
                                 }

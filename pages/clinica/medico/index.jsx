@@ -210,13 +210,11 @@ export default function Medicos() {
             closeModal={ closeModal }
             onClick={(IdMedico) => {
               closeModalConfirmacao()
-              console.log(IdMedico);
               let url = `https://api-bebevindo.azurewebsites.net/profissional/${IdMedico}`
               axios
                 .delete(url)
                 .then((response) => {
                   const data = response.data;
-                  console.log("aqui" + data);
 
                   if (data.status === 404) {
                     toast.error(data.message, {
@@ -247,7 +245,7 @@ export default function Medicos() {
                   }
 
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.error);
             }}
           />
         )}

@@ -1,4 +1,3 @@
-// Chat.js
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./Chat.module.css"
 import ConversaPaciente from "../../../components/medico/chat/ConversaPaciente";
@@ -24,7 +23,6 @@ const Chat = () => {
       axios
         .get(url)
         .then((response) => {
-          // Filtrar pacientes únicos
           const pacientesUnicos = Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)));
           const pacientesUnicosData = pacientesUnicos.map(id => response.data.pacientes.find(paciente => paciente.idGestante === id));
 
@@ -81,7 +79,7 @@ const Chat = () => {
       socket.current = io("https://api-bebevindo.azurewebsites.net");
       socket.current.emit("add-user", currentUser._id);
     }
-  }, [currentUser]); // Passando um array vazio como segundo argumento
+  }, [currentUser]); 
   
 
   return (

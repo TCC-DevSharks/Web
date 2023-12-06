@@ -1,6 +1,5 @@
-// Sidebar
 .sidebar {
-  background-color: #fff; // Cor de fundo
+  background-color: #fff;
   width: 250px;
   height: 100vh;
   position: fixed;
@@ -13,7 +12,6 @@
   font-family: 'Outfit', sans-serif;
   gap: 20%;
 
-  // Estilos para o conteúdo do sidebar
   .content {
     height: 70%;
     width: 80%;
@@ -112,7 +110,6 @@
     }
   }
 
-  // Estilos para o rodapé do sidebar
   .footer {
     border-top: 1px dashed #4c4c4c;
     width: 80%;
@@ -156,7 +153,6 @@
     padding: 5px;
     gap: 20px;
 
-    // Estilos para o conteúdo do sidebar
     .content {
       padding: 0rem;
       height: auto;
@@ -265,7 +261,6 @@
       }
     }
 
-    // Estilos para o rodapé do sidebar
     .footer {
       padding-bottom: 0.5rem;
       border-top: 0.5px solid #4c4c4c;

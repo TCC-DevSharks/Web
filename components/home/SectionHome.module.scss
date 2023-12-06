@@ -11,7 +11,7 @@
     display: flex;
     max-width: 1200px;
     width: 80%;
-    margin: auto; // Centraliza o conteúdo
+    margin: auto;
     align-items: center;
 
     .container__text_home {
@@ -62,47 +62,47 @@
 
       img {
         width: 100%;
-        max-width: 100%; // Adiciona uma largura máxima para a imagem
-        height: auto; // Garante que a altura seja ajustada proporcionalmente
+        max-width: 100%;
+        height: auto;
       }
     }
   }
-}
 
-@media (max-width: 768px) {
-  .home {
-    height: auto;
-    padding-top: 20%;
-    padding-bottom: 10%;
+  @media (max-width: 768px) {
+    .home {
+      height: auto;
+      padding-top: 20%;
+      padding-bottom: 10%;
 
-    .container {
-      padding-top: 05%;
-      padding-bottom: 1%;
-      width: 80%;
-      flex-direction: column; // Altera a direção da flex para empilhar verticalmente
+      .container {
+        padding-top: 05%;
+        padding-bottom: 1%;
+        width: 80%;
+        flex-direction: column;
 
-      .container__text_home {
-        width: 100%;
-
-        h1 {
-          text-align: left;
-          font-size: 1.7rem;
+        .container__text_home {
           width: 100%;
+
+          h1 {
+            text-align: left;
+            font-size: 1.7rem;
+            width: 100%;
+          }
+
+          p {
+            font-size: 0.8rem;
+          }
+
+          button {
+            width: 120px;
+            font-size: 0.8rem;
+          }
         }
 
-        p {
-          font-size: 0.8rem;
+        .container__img_home {
+          width: 100%;
+          margin-top: 50px;
         }
-
-        button {
-          width: 120px;
-          font-size: 0.8rem;
-        }
-      }
-
-      .container__img_home {
-        width: 100%;
-        margin-top: 50px; // Adiciona um espaçamento entre a imagem e o texto
       }
     }
   }

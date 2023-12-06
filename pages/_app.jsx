@@ -1,4 +1,3 @@
-// import Sidebar from "@/components/Sidebar";
 import Head from 'next/head';
 import '../styles/globals.css';
 import 'chart.js/auto';
@@ -20,7 +19,3 @@ export default function App({ Component, pageProps }) {
     </div>
   );
 }
-
-
-// export default App;
-// 

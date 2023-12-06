@@ -26,7 +26,6 @@ const Prontuario = () => {
             axios
                 .get(url)
                 .then((response) => {
-                    // Filtrar pacientes únicos
                     const pacientesUnicos = response.data.pacientes
                         ? Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)))
                             .map(id => response.data.pacientes.find(paciente => paciente.idGestante === id))

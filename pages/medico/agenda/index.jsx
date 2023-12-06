@@ -72,7 +72,6 @@ export default function Agenda() {
                             height={"70vh"}
                             timeZone="America/Sao_Paulo"
                             events={events}
-                            //datesSet={(arg) => setCurrentDate(arg.start)}
                         />
                     </div>
                     <div className={styles['compromissos']}>

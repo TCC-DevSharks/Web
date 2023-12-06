@@ -7,8 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 
 export default function Modal({ pacienteInfo, closeModal }) {
-  console.log(pacienteInfo);
-
   const [dia, mes] = pacienteInfo && pacienteInfo.dataConsulta ? pacienteInfo.dataConsulta.split('/') : ['', ''];
   const [prontuario, selectedPronturario] = useState()
   const [valor, setValor] = useState('')
@@ -32,7 +30,6 @@ export default function Modal({ pacienteInfo, closeModal }) {
 
       .then(response => {
         const data = response.data;
-        console.log(data.result.message);
         toast.success(data.result.message, {
           position: "top-center",
           autoClose: 6000, 

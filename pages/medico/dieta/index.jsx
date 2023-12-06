@@ -47,7 +47,6 @@ const Dieta = () => {
             const data = response.data;
             setAlimentosRefeicaoPadrao(Array.isArray(data.alimentos) ? data.alimentos : []);
             setRefeicaoPadraoModalOpen(true);
-            console.log(data);
         } catch (error) {
             console.error('Erro ao buscar alimentos da refeição padrão:', error);
         }
@@ -70,8 +69,6 @@ const Dieta = () => {
         try {
             const response = await axios.get('https://api-bebevindo.azurewebsites.net/refeicao/lista/alimento');
             const data = response.data;
-
-            console.log('Data recebida:', data);
 
             setListaAlimentos(Array.isArray(data.alimentos) ? data.alimentos : []);
         } catch (error) {
@@ -153,10 +150,7 @@ const Dieta = () => {
     };
     const removerAlimentoRefeicaoPadrao = async (idAlimento) => {
         try {
-            console.log('ID do alimento a ser removido:', idAlimento);
-            console.log('ID da refeição a ser removida:', selectedRefeicao.id);
             await axios.delete(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/${selectedRefeicao.id}/alimento/${idAlimento}`);
-            console.log("ID da refeição a ser removida:", selectedRefeicao.id);
 
             openRefeicaoPadraoModal(selectedRefeicao.id);
         } catch (error) {
@@ -182,7 +176,6 @@ const Dieta = () => {
     }, [toastMessage]);
 
 
-    // Obter os pacientes
     useEffect(() => {
         const url = `https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`;
 
@@ -207,13 +200,11 @@ const Dieta = () => {
         getPacientes();
     }, []);
 
-    // Obter as refeições padrão
     const fetchRefeicoesPadrao = async () => {
         try {
             const response = await axios.get(`https://api-bebevindo.azurewebsites.net/refeicao/padrao/profissional/${IdMedico}`);
             const data = response.data;
             setRefeicoesPadrao(data);
-            console.log(data)
         } catch (error) {
             console.error('Erro ao buscar refeições padrão:', error);
         }
@@ -289,7 +280,7 @@ const Dieta = () => {
                                             <p style={{ marginTop: "18rem" }}> Nenhum alimento adicionado ainda.</p>
                                         ) : (
                                             <div className={styles["foods"]}>
-                                                <div className={styles["boxFood"]}>
+                                               <div className={styles["boxFood"]}>
                                                     {alimentosRefeicaoPadrao.map((alimento, index) => (
                                                         <div key={index} className={styles["foodItem"]}>
                                                             <div className={styles["imageFood"]}>

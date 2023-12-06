@@ -75,7 +75,7 @@ function ClinicLogin() {
         });
         entrarPerfilClinica(id);
       }
-    }).catch(console.log("erro"))
+    }).catch(console.error)
 
   }
 
