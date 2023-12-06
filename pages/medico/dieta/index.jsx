@@ -10,8 +10,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { IoAddCircleSharp, IoRemoveCircleSharp } from 'react-icons/io5';
 
 const Dieta = () => {
-    const IdMedico = localStorage.getItem("id");
-ç
+    let IdMedico 
+    if (typeof window !== "undefined") {
+
+        IdMedico = localStorage.getItem("id");
+
+    }
+
     const [listpacientes, setPacientes] = useState();
     const [listUnicPacientes, setUnicPaciente] = useState();
     const [categoriaRefeicao, setCategoriaRefeicao] = useState("")
