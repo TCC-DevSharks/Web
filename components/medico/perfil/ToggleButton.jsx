@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Toggle from 'react-toggle';
-import 'react-toggle/style.css'; // Importe o estilo CSS da biblioteca
+import 'react-toggle/style.css';
 
 function ToggleButton() {
   const [isOn, setIsOn] = useState(false);

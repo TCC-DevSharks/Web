@@ -14,18 +14,15 @@ export default function Home({ Component, pageProps }) {
     if (IdMedico) {
       axios.get(`https://api-bebevindo.azurewebsites.net/profissional/gestante/${IdMedico}`)
         .then(response => {
-          // Contagem de pacientes únicos
           const pacientesUnicos = Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)));
           const numPacientesUnicos = pacientesUnicos.length;
           setPacientesAtendidos(numPacientesUnicos);
 
-          // Contagem das consultas do dia com base na data "dia"
           const dataAtual = new Date().toLocaleDateString();
           const consultasDia = response.data.pacientes.filter(paciente => paciente.dia === dataAtual);
           const numConsultasDia = consultasDia.length;
           setConsultasDoDia(numConsultasDia);
 
-          // Contagem das consultas do mês com base no mês atual
           const mesAtual = new Date().getMonth() + 1;
           const consultasMes = response.data.pacientes.filter(paciente => {
             const dataConsulta = new Date(paciente.diaDesformatado);
@@ -36,7 +33,6 @@ export default function Home({ Component, pageProps }) {
           const numConsultasMes = consultasMes.length;
           setConsultasDoMes(numConsultasMes);
 
-          // Filtrar pacientes únicos
           const pacientesUnicosData = pacientesUnicos.map(id => response.data.pacientes.find(paciente => paciente.idGestante === id));
           setPacientes(pacientesUnicosData);
         })

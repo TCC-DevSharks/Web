@@ -66,7 +66,6 @@ function Medicos() {
     });
 
     if (name === "cep") {
-      // Fazer a solicitação para o Via CEP aqui
       fetch(`https://viacep.com.br/ws/${value}/json/`)
         .then((response) => response.json())
         .then((data) => {
@@ -89,25 +88,21 @@ function Medicos() {
     const imageFile = e.target.files[0];
     const storage = getStorage(app);
 
-    // Defina o nome do arquivo para upload (pode ser um nome único)
     const filename = `${Date.now()}_${imageFile.name}`;
 
-    // Crie uma referência para o arquivo
     const storageRef = ref(storage, "cadastro-medico-imagens/" + filename);
 
-    // Use FileReader para ler o arquivo como uma string de dados
     const reader = new FileReader();
     reader.onload = async (event) => {
       const dataURL = event.target.result;
 
-      // Realize o upload da imagem
       try {
         await uploadString(storageRef, dataURL, "data_url");
         const downloadURL = await getDownloadURL(storageRef);
 
         setFormData({
           ...formData,
-          foto: downloadURL, // armazene a URL da imagem no estado
+          foto: downloadURL,
         });
       } catch (error) {
         console.error("Erro no upload da imagem:", error);
@@ -163,7 +158,7 @@ function Medicos() {
         progress: undefined,
         theme: "light",
       });
-      return; // Adiciona esse retorno para interromper a execução da função
+      return;
     }
     if (formData.senha !== formData.confirmarSenha) {
       toast.error("As senhas não coincidem. Por favor, tente novamente.", {
@@ -199,11 +194,10 @@ function Medicos() {
       cep: formData.cep,
       id_especialidade: formData.id_especialidade,
     };
-    // fazer o POST para o servidor
+
     axios
       .post('https://api-bebevindo.azurewebsites.net/profissional', data)
       .then((response) => {
-        // Lidar com a resposta do servidor
         toast.success("Profissional criado com sucesso!", {
           position: "top-center",
           autoClose: 5000,
@@ -216,7 +210,6 @@ function Medicos() {
         });
       })
       .catch((error) => {
-        // Lidar com erros
         toast.error(
           "Não foi possível criar o usuário, porfavor verifique se os campos estão preenchidos corretamente.",
           {

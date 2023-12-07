@@ -44,7 +44,6 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
       }
     };
 
-    // Fetch address information only if a valid CEP is provided
     if (/^\d{8}$/.test(editedMedicoInfo.cep)) {
       fetchAddressInfo();
     }
@@ -345,7 +344,7 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
               </div>
 
               <div className={styles['buttonExcluir']}>
-                <div className={styles['button']}>
+                <div onClick={() => setIsModalOpen(true)} className={styles['button']}>
                   Excluir médico
                 </div>
 

@@ -8,7 +8,6 @@ import ReactInputMask from "react-input-mask";
 
 export default function Perfil() {
 
-  //razao_social: editRazaoSocial ? editRazaoSocial : listClinicas?.clinica[0].razao_social,
   const [listClinicas, setClinicas] = useState();
   const [listEnderecoClinica, setEnderecoClinica] = useState();
   const IdClinica =
@@ -116,7 +115,7 @@ export default function Perfil() {
             const data = response.data;
             setEnderecoClinica(data);
           })
-          .catch((error) => console.log(error));
+          .catch((error) => console.error);
       }
 
       enderecoClinica(cep);
@@ -172,7 +171,6 @@ export default function Perfil() {
                               <ReactInputMask
                                 mask={"(99)99999-9999"}
                                 placeholder={editTelefone}
-                                // value={editTelefone}
                                 onChange={(e) =>
                                   setEditedTelefone(e.target.value)
                                 }

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./PreviewImage.module.scss"; // Adapte o caminho conforme necessário
+import styles from "./PreviewImage.module.scss";
 
 const PreviewImage = ({ imageUrl }) => {
   return (

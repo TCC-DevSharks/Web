@@ -1,24 +1,26 @@
 .prontuario-container {
-    height: 100vh;
-    width: 100%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;    
     justify-content: center;
+    margin-left: 253px;
+    height: 100vh;
+}
 
+.prontuario-container h1 {
+    color: #464444;
+    font-size: 3rem;
+    margin-bottom: 30px;
 }
 
 .prontuarios {
     height: auto;
-    gap: 50px;
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-left: 20px;
-    margin-top: 50px;
-    padding-right: 20px;
 }
 
 .input-area input {
@@ -31,36 +33,36 @@
     font-size: 18px;
 }
 
+
 .pacientes {
-    width: 100%;
+    margin-top: 60px;
+    width: 85%;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    height: auto;
+    height: 800px;
+    background-color: aqua;
 }
 
 .container {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: min-content;
     justify-content: center;
     gap: 30px;
-    width: 100%;
     min-height: 800px;
     max-height: 850px;
     width: 100%;
-    overflow-y: auto; 
+    margin: 0 auto;
+    overflow: auto;
 }
 
 .box-paciente {
-    max-width: 800px;
-    height: 200px;
+    height: 150px;
     background-color: aliceblue;
-    margin-bottom: 10px;
     border-radius: 10px;
     background: #fff;
     display: flex;
     align-items: center;
+    justify-content: center; 
 }
 
 .box-paciente:hover {

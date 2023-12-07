@@ -1,5 +1,5 @@
 import axios from 'axios';
-import styles from '../../../pages/medico/chat/Chat.module.css'; // Importe os estilos do arquivo CSS da página
+import styles from '../../../pages/medico/chat/Chat.module.css';
 import { useEffect } from 'react';
 import React, { useState } from 'react';
 
@@ -50,7 +50,6 @@ const ConversaPaciente = (
                     <div className={styles['descricao-paciente-chat']}>
                         <div className={styles['nome-paciente']}> {nome}</div>
 
-                        <div className={styles['previa-mensagem']}>Prévia da mensagem</div>
                     </div>
                 </div>
         </div>

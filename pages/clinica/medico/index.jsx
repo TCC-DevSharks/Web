@@ -245,7 +245,7 @@ export default function Medicos() {
                   }
 
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.error);
             }}
           />
         )}

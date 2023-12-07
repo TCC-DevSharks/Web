@@ -5,18 +5,14 @@ import ArticleModal from "./ModalArticle";
 
 function SectionArticles() {
   const [articles, setArticles] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false); // Estado para controlar se o modal está aberto
-  const [selectedArticle, setSelectedArticle] = useState(null); // Estado para armazenar o artigo selecionado
+  const [modalOpen, setModalOpen] = useState(false); 
+  const [selectedArticle, setSelectedArticle] = useState(null); 
 
   useEffect(() => {
-    // Aqui você deve fazer a requisição à sua API e obter os artigos desejados
     fetch("https://api-bebevindo.azurewebsites.net/artigos")
       .then((response) => response.json())
       .then((data) => {
-        console.log("Dados da API:", data); // Adicione esta linha
-
-        // Defina o número máximo de artigos que deseja exibir (neste caso, 4)
-
+        
         setArticles(data.artigos);
       });
   }, []);
@@ -45,7 +41,7 @@ function SectionArticles() {
                 key={article.id}
                 title={article.titulo}
                 imageUrl={article.imagem}
-                onReadMore={() => openModal(article)} // Quando o botão é clicado, abre o modal
+                onReadMore={() => openModal(article)} 
               />
             ))}
           </div>
@@ -53,7 +49,7 @@ function SectionArticles() {
         {modalOpen && selectedArticle && (
           <ArticleModal
             article={selectedArticle}
-            onClose={closeModal} // Passa a função para fechar o modal
+            onClose={closeModal} 
           />
         )}
       </div>

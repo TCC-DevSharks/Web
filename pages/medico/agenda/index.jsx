@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Agenda.module.scss';
-import TituloSecao from '../../../components/tituloSection/TituloSecao';
 import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -55,55 +54,61 @@ export default function Agenda() {
     }, []);
     return (
         <div>
-            <span>teste</span>
+
+
             <div className={styles['agenda-container']}>
+
                 <Sidebar />
+
                 <div className={styles["calendario-container"]}>
-                    <div className={styles["calendario"]}>
-                        <Fullcalendar
-                            locale={'pt-br'}
-                            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-                            initialView={"dayGridMonth"}
-                            headerToolbar={{
-                                start: "today prev,next",
-                                center: "title",
-                                end: "dayGridMonth,timeGridWeek,timeGridDay",
-                            }}
-                            height={"70vh"}
-                            timeZone="America/Sao_Paulo"
-                            events={events}
-                            //datesSet={(arg) => setCurrentDate(arg.start)}
-                        />
-                    </div>
-                    <div className={styles['compromissos']}>
-                        <h2>
-                            Compromissos do dia:
-                        </h2>
-                        {events
-                    .filter(evento => {
-                        const eventoDate = convertToDate(evento.start);
-                        return (
-                            eventoDate.getDate() === currentDate.getDate() &&
-                            eventoDate.getMonth() === currentDate.getMonth() &&
-                            eventoDate.getFullYear() === currentDate.getFullYear()
-                        );
-                    })
-                    .map(evento => (
-                        <div className={styles['compromisso']} key={evento.id}>
-                            <div className={styles['dia']}>
-                                <p>{convertToDate(evento.start).getDate()}</p>
-                            </div>
-                            <div className={styles['consulta']}>
-                                <div className={styles['hora-paciente']}>
-                                    <p className={styles['hora']}>
-                                        {format(convertToDate(evento.start), 'HH:mm', { timeZone: 'America/Sao_Paulo' })} -
-                                    </p>
-                                    <p className={styles['paciente']}>{evento.title}</p>
-                                </div>
-                            </div>
+                    <h1>Agenda</h1>
+                    <div className={styles["container-calendario"]}>
+                        <div className={styles["calendario"]}>
+                            <Fullcalendar
+                                locale={'pt-br'}
+                                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                                initialView={"dayGridMonth"}
+                                headerToolbar={{
+                                    start: "today prev,next",
+                                    center: "title",
+                                    end: "dayGridMonth,timeGridWeek,timeGridDay",
+                                }}
+                                height={"70vh"}
+                                timeZone="America/Sao_Paulo"
+                                events={events}
+                            />
                         </div>
-                    ))}
+                        <div className={styles['compromissos']}>
+                            <h2>
+                                Compromissos do dia:
+                            </h2>
+                            {events
+                                .filter(evento => {
+                                    const eventoDate = convertToDate(evento.start);
+                                    return (
+                                        eventoDate.getDate() === currentDate.getDate() &&
+                                        eventoDate.getMonth() === currentDate.getMonth() &&
+                                        eventoDate.getFullYear() === currentDate.getFullYear()
+                                    );
+                                })
+                                .map(evento => (
+                                    <div className={styles['compromisso']} key={evento.id}>
+                                        <div className={styles['dia']}>
+                                            <p >{convertToDate(evento.start).getDate()}</p>
+                                        </div>
+                                        <div className={styles['consulta']}>
+                                            <div className={styles['hora-paciente']}>
+                                                <p className={styles['hora']}>
+                                                    {format(convertToDate(evento.start), 'HH:mm', { timeZone: 'America/Sao_Paulo' })} -
+                                                </p>
+                                                <p className={styles['paciente']}>{evento.title}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>

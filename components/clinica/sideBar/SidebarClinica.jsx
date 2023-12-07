@@ -12,7 +12,6 @@ const Sidebar = () => {
   
 
   if (typeof window !== "undefined") {
-    // Verificar se estamos no lado do cliente (navegador)
     IdClinica = localStorage.getItem("id");
   }
 
@@ -100,29 +99,3 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-// <nav className={styles.sidebar}>
-//     <ul className={styles.ul}>
-//         <li>
-//             <Link href="/clinica/perfil">
-//                 {listClinicas?.clinica.map(clinica =>
-//                 (
-//                     <img className={styles.img_img}
-//                         src={clinica.foto}
-//                         alt="foto de perfil da clinica" />
-//                 )
-//                 )}
-
-//             </Link>
-//         </li>
-//         <div>
-//             <div className={styles.lista}>
-//                 <li> <Link href="/clinica/historico"> <BsCalendarCheck /> </Link> </li>
-
-//                 <li> <Link href="/clinica/medico"> <FaHospitalUser /> </Link> </li>
-
-//                 <li> <Link href="/clinica/home"> <MdOutlineDashboard /> </Link> </li>
-//             </div>
-//         </div>
-//         <li> <Link style={{ fontSize: '1.2rem' }} href="/clinica/home">Home</Link> </li>
-//     </ul>
-// </nav>

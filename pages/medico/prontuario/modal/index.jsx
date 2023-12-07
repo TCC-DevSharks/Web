@@ -5,63 +5,66 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function Modal({ pacienteInfo, closeModal }) {
+const Modal = ({ pacienteInfo, closeModal }) => {
   const [dia, mes] = pacienteInfo && pacienteInfo.dataConsulta ? pacienteInfo.dataConsulta.split('/') : ['', ''];
-  const [prontuario, selectedPronturario] = useState()
-  const [valor, setValor] = useState('')
-
+  const [valor, setValor] = useState('');
 
   const handleChange = (event) => {
     setValor(event.target.value);
   };
 
-  const url = 'https://api-bebevindo.azurewebsites.net/prontuario';
-
-
-  function postProntuario() {
-
+  const postProntuario = () => {
+    const url = 'https://api-bebevindo.azurewebsites.net/prontuario';
     if (pacienteInfo && pacienteInfo.idConsulta) {
       axios.post(url, {
         descricao: `${valor}`,
         id_consulta: pacienteInfo.idConsulta
       })
-        .then(response => {
-          const data = response.data;
-          if (response.data.result.status == 404) {
-            toast.error(data.result.message, {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
+      .then((response) => {
+        const data = response.data;
 
-            notify()
-          } else {
-            const notify = () => toast.success(data.result.message, {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-            notify()
-          }
-        })
-        .catch(error => {
-          error
+        if (response.data.result.status == 404) {
+          toast.error(data.result.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          const notify = () => toast.success(data.result.message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+          notify();
+        }
+      })
+      .catch(error => {
+        toast.error("Verifique todos os campos", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
-
-
+      });
     }
+  };
 
-    return (
+  if (pacienteInfo) {
+    return (  
       <div className={styles['modalContainer']}>
         <ToastContainer
           position="top-center"
@@ -74,7 +77,7 @@ export default function Modal({ pacienteInfo, closeModal }) {
           draggable
           pauseOnHover
           theme="black" />
-
+  
         <div className={styles['modalBox']}>
           <div className={styles['modalContent']}>
             <div className={styles['closeButtonModal']} onClick={closeModal}>
@@ -92,7 +95,7 @@ export default function Modal({ pacienteInfo, closeModal }) {
             <div className={styles['datasBox']}>
               <h4>Data:</h4>
               <div className={styles['boxButtonEspecialidade']}>
-                <button className={styles['buttonData']}>{dia + '/' + mes}</button>
+                <button className={styles['buttonData']}>{dia + '/' + mes} </button>
               </div>
             </div>
             <div className={styles['descricaoBox']}>
@@ -105,11 +108,13 @@ export default function Modal({ pacienteInfo, closeModal }) {
             </div>
             <button onClick={postProntuario} className={styles['buttonEnvModal']}>
               Atualizar Prontuário <AiOutlineArrowRight style={{ fontSize: '1.4rem', fontWeight: '800' }} />
-
             </button>
           </div>
         </div>
       </div>
-    );
+    )
   }
-}
+
+};
+
+export default Modal;

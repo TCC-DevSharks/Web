@@ -1,6 +1,5 @@
-// Sidebar
 .sidebar {
-  background-color: #fff; // Cor de fundo
+  background-color: #fff;
   width: 250px;
   height: 100vh;
   position: fixed;
@@ -13,7 +12,6 @@
   font-family: 'Outfit', sans-serif;
   gap: 20%;
 
-  // Estilos para o conteúdo do sidebar
   .content {
     height: 70%;
     width: 80%;
@@ -62,6 +60,7 @@
             justify-content: center;
             align-items: center;
             color: #4c4c4c;
+            text-align: center;
             font-size: 1.6rem;
             font-weight: 600;
             width: 100%;
@@ -112,13 +111,12 @@
     }
   }
 
-  // Estilos para o rodapé do sidebar
   .footer {
     border-top: 1px dashed #4c4c4c;
-    width: 80%;
+    width: 60%;
     display: flex;
     align-items: center;
-    justify-content: centerˇ;
+    justify-content: center;
     padding: 5%;
 
     ul {
@@ -129,7 +127,7 @@
 
         a {
           display: flex;
-          gap: 10px;
+          gap: 5px;
           align-items: center;
           text-decoration: none;
           color: #4c4c4c;
@@ -156,7 +154,6 @@
     padding: 5px;
     gap: 20px;
 
-    // Estilos para o conteúdo do sidebar
     .content {
       padding: 0rem;
       height: auto;
@@ -265,7 +262,6 @@
       }
     }
 
-    // Estilos para o rodapé do sidebar
     .footer {
       padding-bottom: 0.5rem;
       border-top: 0.5px solid #4c4c4c;

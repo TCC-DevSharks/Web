@@ -54,7 +54,7 @@ const Historico = () => {
 
   const handleEditClick = (event, data) => {
     if (event) {
-      event.stopPropagation(); // Impede a propagação do evento para o elemento pai (item-consulta)
+      event.stopPropagation();
       setSelectedPaciente(data);
       setIsModalOpen(true);
     } else {
@@ -237,13 +237,9 @@ const Historico = () => {
                     setTimeout(closeModal, 5000);
                   } else {
                     getConsultas()
-<<<<<<< HEAD
                     toast.success(data.message, {
-=======
-                   toast.success(data.message, {
->>>>>>> a729baf7d96c5cf709abf2155f9083b12f045a3c
                       position: "top-center",
-                      autoClose: 6000, // Aumenta o tempo de exibição para 6 segundos
+                      autoClose: 6000,
                       hideProgressBar: false,
                       closeOnClick: true,
                       pauseOnHover: true,
@@ -252,11 +248,11 @@ const Historico = () => {
                       theme: "light",
                     });
 
-                    closeModalConfirmacao() // Fecha o modal após 5 segundos
+                    closeModalConfirmacao()
                   }
 
                 })
-                .catch((err) => console.log(err));
+                .catch((err) => console.error);
             }}
           />
         )}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoMdSend } from "react-icons/io";
-import styles from '../../../pages/medico/chat/Chat.module.css'// Importe os estilos do arquivo CSS da página
+import styles from '../../../pages/medico/chat/Chat.module.css'
 
 
 export default function ChatInput({ handleSendMsg }) {

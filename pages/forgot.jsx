@@ -60,7 +60,7 @@ function RecuperarSenha() {
         });
       }
 
-    }).catch(console.log("error"))
+    }).catch(console.error)
   }
 
 

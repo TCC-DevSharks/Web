@@ -37,7 +37,6 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
       sender: currentUser._id,
     });
 
-    // Atualize o estado das mensagens após o envio da mensagem
     setMessages([...messages, { _id: currentUser._id, text: msg }]);
     scrollToBottom();
   };
@@ -63,7 +62,6 @@ export default function ChatContainer({ currentChat, currentUser, socket }) {
     scrollToBottom();
   }, [messages]);
 
-  // Função para rolar para o fundo do elemento de mensagens
   const scrollToBottom = () => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: "smooth" }); 

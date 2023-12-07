@@ -43,7 +43,6 @@ function RegisterClinic() {
     cidade: '',
   });
 
-  // Função para buscar informações de endereço com base no CEP
   const fetchAddressInfo = async () => {
     const { cep } = formData;
     if (cep) {
@@ -66,7 +65,6 @@ function RegisterClinic() {
     }
   };
 
-  // Efeito para buscar informações de endereço quando o campo CEP muda
   useEffect(() => {
     fetchAddressInfo();
   }, [formData.cep]);
@@ -75,25 +73,21 @@ function RegisterClinic() {
     const imageFile = e.target.files[0];
     const storage = getStorage(app);
 
-    // Defina o nome do arquivo para upload (pode ser um nome único)
     const filename = `${Date.now()}_${imageFile.name}`;
 
-    // Crie uma referência para o arquivo
     const storageRef = ref(storage, 'cadastro-clinica-imagens/' + filename);
 
-    // Use FileReader para ler o arquivo como uma string de dados
     const reader = new FileReader();
     reader.onload = async (event) => {
       const dataURL = event.target.result;
 
-      // Realize o upload da imagem
       try {
         await uploadString(storageRef, dataURL, 'data_url');
         const downloadURL = await getDownloadURL(storageRef);
 
         setFormData({
           ...formData,
-          foto: downloadURL, // armazene a URL da imagem no estado
+          foto: downloadURL,
         });
       } catch (error) {
         console.error('Erro no upload da imagem:', error);

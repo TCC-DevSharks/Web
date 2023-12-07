@@ -1,7 +1,7 @@
 .agenda-container {
-    margin-left: 120px;
+    margin-left: 250px;
     width: auto;
-    max-height: 100vh;
+    height: 100vh;
 
     .agenda-header {
         font-size: 24px;
@@ -11,19 +11,40 @@
 
 .calendario-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1vw;
-    padding-top: 180px;
+    padding-top: 60px;
     height: 100%;
 
-   
+    h1 {
+        font-size: 3rem;
+        color: #464444;
+    }
+
+    .container-calendario {
+        display: flex;
+        justify-content: center;
+        gap: 4%;
+        width: 90%;
+    }
+
     .calendario {
         width: 50vw;
         padding: 1%;
         background-color: #fff;
         border-radius: 20px;
         border: 1px solid rgb(226, 226, 226);
+         
+        h2 {
+            color: #464444;
+        }
+
+        button {
+            background-color: #B6B6F6;
+            border-color: #B6B6F6;
+        }
     }
 }
 
@@ -54,7 +75,7 @@
             text-align: center;
             color: #fff;
             font-size: 1.2rem;
-           justify-content: center;
+            justify-content: center;
         }
 
         .consulta {
@@ -79,6 +100,7 @@
         }
     }
 }
+
 @media(max-width: 1600px) {
     .calendario-container {
         flex-direction: column;

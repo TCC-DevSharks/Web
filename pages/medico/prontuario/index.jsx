@@ -5,7 +5,6 @@ import PacienteProntuario from '../../../components/medico/prontuario/PacientePr
 import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';
 import { useEffect } from 'react';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import Modal from '../modal';
 
 const Prontuario = () => {
@@ -26,7 +25,6 @@ const Prontuario = () => {
             axios
                 .get(url)
                 .then((response) => {
-                    // Filtrar pacientes únicos
                     const pacientesUnicos = response.data.pacientes
                         ? Array.from(new Set(response.data.pacientes.map(paciente => paciente.idGestante)))
                             .map(id => response.data.pacientes.find(paciente => paciente.idGestante === id))
@@ -47,7 +45,7 @@ const Prontuario = () => {
         <>
             <Sidebar />
             <div className={styles['prontuario-container']}>
-                <TituloSecao title="Gerenciar Prontuários" />
+                <h1>Gerenciar Prontuários</h1>
 
                 <div className={styles['prontuarios']}>
                     <div className={styles['input-area']}>
@@ -68,6 +66,8 @@ const Prontuario = () => {
                                             especialidade={paciente.especialidade}
                                             onPacienteClick={handlePacienteClick}
                                         />
+
+
                                     </div>
                                 ))}
                         </div>
@@ -80,7 +80,6 @@ const Prontuario = () => {
                         closeModal={() => setIsModalOpen(false)}
                     />
                 )}
-
             </div>
         </>
     );

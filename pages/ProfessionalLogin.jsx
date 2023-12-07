@@ -32,12 +32,11 @@ function ClinicLogin() {
 
   const entrarPerfilProfissional = (id) => {
     if (id) {
-      localStorage.setItem("id", id); // Defina o ID no localStorage
+      localStorage.setItem("id", id);
       setLogin(!login);
-      router.push(`/medico/home/`); // Redirecione para a página de home
+      router.push(`/medico/home/`); 
     } else {
-      console.log("ID is undefined.");
-      // Adicione aqui o tratamento apropriado para lidar com o ID undefined, como uma mensagem de erro.
+      console.error;
     }
   };
 
@@ -79,7 +78,7 @@ function ClinicLogin() {
         });
         entrarPerfilProfissional(id);
       }
-    }).catch(console.log("erro"))
+    }).catch(console.error)
   }
 
   return (
