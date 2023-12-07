@@ -7,15 +7,26 @@ import axios from "axios";
 import ReactInputMask from "react-input-mask";
 import Router from "next/router";
 
+
 export default function Perfil() {
   const [listMedicos, setMedicos] = useState();
   const [listEnderecoMedico, setEnderecoMedico] = useState();
   const IdMedico = typeof window !== "undefined" ? localStorage.getItem("id") : null;
   const [cep, setCep] = useState();
+ const [editFoto, setEditFoto] = useState('');
   const [editMode, setEditMode] = useState(false);
 
+  const handleImageChange = (event) => {
+    const selectedFile = event.target.files[0];
+    const imageURL = URL.createObjectURL(selectedFile);
+    if (editMode) {
+      setEditFoto(imageURL);
+      localStorage.setItem("editedFoto", editFoto);
+    }
+};
+
   const [editTelefone, setEditedTelefone] = useState(
-    
+
     listMedicos?.profissionais && listMedicos.profissionais[0]
       ? listMedicos.profissionais[0].telefone
       : ""
@@ -26,13 +37,13 @@ export default function Perfil() {
       ? listMedicos.profissionais[0].nome
       : ""
   );
-  
+
 
   const [editEmail, setEditEmail] = useState(
     listMedicos?.profissionais && listMedicos?.profissionais[0]
       ? listMedicos.profissionais[0].email : "");
 
-      
+
   const [editDescricao, setEditDescricao] = useState(
 
     listMedicos?.profissionais && listMedicos.profissionais[0]
@@ -61,7 +72,7 @@ export default function Perfil() {
       email: editEmail ? editEmail : profissional.email,
       cpf: profissional.cpf || "",
       data_nascimento: `${year}-${month}-${day}`,
-      foto: profissional.foto || "",
+      foto: editFoto ? editFoto : profissional.foto || "",
       descricao: editDescricao ? editDescricao : profissional.descricao,
       inicio_atendimento: profissional.inicio_atendimento || "",
       fim_atendimento: profissional.fim_atendimento || "",
@@ -74,8 +85,11 @@ export default function Perfil() {
       numero: editNumero ? editNumero : profissional.numero || "",
       complemento: profissional.complemento || "",
       cep: editCep ? editCep : profissional.cep || "",
-    };
+      
+    }; 
 
+    localStorage.setItem("editedFoto", editFoto)
+  
     axios
       .put(url, jsonData)
       .then((response) => {
@@ -114,6 +128,7 @@ export default function Perfil() {
         console.error(error);
       });
   }
+  
 
   useEffect(() => {
     function getMedico() {
@@ -135,6 +150,8 @@ export default function Perfil() {
 
     getMedico();
   }, [IdMedico]);
+
+
 
   useEffect(() => {
     if (cep) {
@@ -186,12 +203,22 @@ export default function Perfil() {
 
                   <div className={styles.dados_iniciais}>
                     <div className={styles.dados_foto}>
-                      <div className={styles.img_img}>
-                        <img
-                          src={profissional.foto}
-                        />
-                      </div>
-
+                      {/* <div className={styles.img_img}>
+                        <img src={profissional.foto} />
+                      </div> */}
+  <div className={styles.img_img}>
+  <img src={editFoto} alt="Preview Image" />
+  <img src={profissional.foto} alt="Profile Picture" />
+  <div className={styles.dados_foto}>
+    {editMode ? (
+      <input type="file" onChange={handleImageChange} />
+    ) : (
+      <div style={{ visibility: 'hidden' }}>
+        <input type="file" onChange={handleImageChange} />
+      </div>
+    )}
+  </div>
+</div>
                       <div className={styles.inputs}>
                         {editMode ? (
                           <>
@@ -243,7 +270,7 @@ export default function Perfil() {
                                 value={profissional.telefone}
                               />
                             </label>
-                           
+
 
                             <label htmlFor="">
                               E-mail:
@@ -389,7 +416,7 @@ export default function Perfil() {
                       ) : (
                         <button
                           className={styles.btn}
-                          onClick={() =>  setEditMode(true)}
+                          onClick={() => setEditMode(true)}
                         >
                           Editar
                         </button>
