@@ -202,7 +202,6 @@ const Dieta = () => {
             console.log(error);
         })
     }
-    console.log(listRefeicaoGestante.dieta.idRefeicao);
      getAlimentoRefeicao(13)
 
     useEffect(() => {
