@@ -84,7 +84,7 @@
 }
 
 .nomePacientePrincipal {
-    font-size: 2rem;
+    font-size: 1.3rem;
     color: #000;
 }
 
@@ -260,6 +260,17 @@
     background-color: #b6b6f61e;
 }
 
+.mensagem-vazia{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    width: 100%;
+    height: 90%;
+    gap: 20px;
+    font-size: 2rem;
+}
+
 .imageFood {
     border-radius: 10px 10px 0 0;
     width: 100%;
@@ -335,7 +346,7 @@
     width: 100%;
     border-radius: 10px;
     cursor: pointer;
-    border: 3px solid #b6b6f6;
+    border: 1.5px solid #b6b6f6;
     transition: all 0.3s ease-in;
 }
 
@@ -500,7 +511,7 @@
     padding: 2.2%;
     border-radius: 20px;
     cursor: pointer;
-    border: 3px solid #b6b6f66d;
+    border: 1.5px solid #b6b6f66d;
     color: #FFF;
     align-items: center;
     font-weight: 500;
@@ -512,7 +523,7 @@
     padding: 2.2%;
     margin-left: 1%;
     color: #fff;
-    border: 3px solid #66666820;
+    border: 1.5px solid #66666820;
 }
 
 .refeicoes-pacientes span {
@@ -531,4 +542,15 @@
     left: 0;
     height: 100vh;
     z-index: 1000;
+}
+
+.buttonDelete{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 25%;
+}
+.buttonDelete > .buttonDeleteIcon:hover{
+    color: #f11717;
+    transition: 0.3s;
 }
