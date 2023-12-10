@@ -12,9 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ModalDieta = ({ title, id_dieta, id_profissional,id_gestante, closeModal }) => {
 
-
-
-  // console.log(id_profissional);
   console.log(id_dieta + "ID");
   
   const [comidas, setComidas] = useState();

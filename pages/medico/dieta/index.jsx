@@ -26,10 +26,8 @@ const Dieta = () => {
   const [listRefeicaoGestante, setRefeicaoGestante] = useState();
   const [listaAlimentosRefeicao, setAlimentosRefeicaoGestante] = useState();
   const [idDieta, setIdDieta] = useState();
-  console.log(idDieta + "snkjsnkjn");
 
   const [selectedPaciente, setSelectedPaciente] = useState(null);
-  console.log(selectedPaciente);
   const [isModalOpen, setModalIsOpen] = useState(false);
 
   const [isRefeicoesModalOpen, setRefeicoesModalOpen] = useState(false);
@@ -199,8 +197,7 @@ const Dieta = () => {
         .get(url)
         .then((response) => {
           const data = response.data;
-         console.log(data);
-          setRefeicaoGestante(data);
+      
   
           if (data.dieta.length === 0) {
             const urlPost = `https://api-bebevindo.azurewebsites.net/dieta/`;
@@ -216,6 +213,13 @@ const Dieta = () => {
               });
           } else {
             setIdDieta(data.dieta[0].idDieta);
+            const url = `https://api-bebevindo.azurewebsites.net/dieta/refeicao/${idGestante}`;
+            axios
+              .get(url)
+              .then((response) =>{
+                const data = response.data
+                setRefeicaoGestante(data);
+              })
           }
         })
         .catch((error) => {
@@ -223,7 +227,6 @@ const Dieta = () => {
         });
     }
   };
-  
 
   useEffect(() => {
     if (
