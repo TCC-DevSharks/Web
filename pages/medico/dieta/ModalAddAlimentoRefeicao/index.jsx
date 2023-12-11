@@ -5,7 +5,7 @@ import { IoAddCircleSharp, IoRemoveCircleSharp } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export function ModalAddFoodRefeicao({
+ function ModalAddFoodRefeicao({
   refeicao,
   idRefeicao,
   closeRefeicoesModal,
@@ -251,3 +251,5 @@ export function ModalAddFoodRefeicao({
     </>
   );
 }
+
+export default ModalAddFoodRefeicao

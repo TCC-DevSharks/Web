@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
-export function ModalConfirmation({ idRefeicao, closeModal, get }) {
+function ModalConfirmation({ idRefeicao, closeModal, get }) {
   const [isModalOpen, setModalOpen] = useState(true);
 
   const deleteRefeicao = () => {
@@ -56,3 +56,5 @@ export function ModalConfirmation({ idRefeicao, closeModal, get }) {
     </>
   );
 }
+
+export default ModalConfirmation
