@@ -15,7 +15,7 @@ import {
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
 import  ModalConfirmation  from "./modalConfirmation";
-import  {ModalAddFoodRefeicao}  from "./ModalAddAlimentoRefeicao";
+import  ModalAddFoodRefeicao  from "./ModalAddAlimentoRefeicao";
 
 const Dieta = () => {
   let IdMedico;

@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "../Dieta.module.css";
 import axios from "axios";
-import {
-  IoAddCircleSharp,
-  IoRemoveCircleSharp,
-} from "react-icons/io5";
+import { IoAddCircleSharp, IoRemoveCircleSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { AiFillCloseCircle } from "react-icons/ai";
 import "react-toastify/dist/ReactToastify.css";
 
-function RefeicaoCard({ imagem, nome, onClick, removerDaLista }) {
+ function RefeicaoCard({ imagem, nome, onClick, removerDaLista }) {
   return (
     <div
       style={{
@@ -38,7 +35,7 @@ function RefeicaoCard({ imagem, nome, onClick, removerDaLista }) {
   );
 }
 
-export function ModalAddFoodRefeicao({
+ function ModalAddFoodRefeicao({
   refeicao,
   idRefeicao,
   closeRefeicoesModal,
@@ -345,9 +342,7 @@ export function ModalAddFoodRefeicao({
               </>
             ) : (
               <>
-                <button onClick={getTodosAlimentos}>
-                  Adicionar alimentos
-                </button>
+                <button onClick={getTodosAlimentos}>Adicionar alimentos</button>
                 <button onClick={handleCopyRefeicao}>Copiar refeição</button>
               </>
             )}
@@ -357,3 +352,6 @@ export function ModalAddFoodRefeicao({
     </>
   );
 }
+
+
+export default (ModalAddFoodRefeicao) ;
