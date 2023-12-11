@@ -14,6 +14,8 @@ import {
 } from "react-icons/io5";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
+import { ModalConfirmation } from "./modalConfirmation";
+import { ModalAddFoodRefeicao } from "./ModalAddAlimentoRefeicao/index";
 
 const Dieta = () => {
   let IdMedico;
@@ -22,18 +24,13 @@ const Dieta = () => {
   }
 
   const [listpacientes, setPacientes] = useState();
-
   const [listRefeicaoGestante, setRefeicaoGestante] = useState();
-  const [listaAlimentosRefeicao, setAlimentosRefeicaoGestante] = useState();
   const [idDieta, setIdDieta] = useState();
-
   const [selectedPaciente, setSelectedPaciente] = useState(null);
   const [isModalOpen, setModalIsOpen] = useState(false);
-
   const [isRefeicoesModalOpen, setRefeicoesModalOpen] = useState(false);
   const [isRefeicaoPadraoModalOpen, setRefeicaoPadraoModalOpen] =
     useState(false);
-
   const [
     isAdicionarRefeicaoPadraoModalOpen,
     setAdicionarRefeicaoPadraoModalOpen,
@@ -50,6 +47,7 @@ const Dieta = () => {
     useState(false);
   const [novaRefeicaoNome, setNovaRefeicaoNome] = useState("");
   const [toastMessage, setToastMessage] = useState(null);
+  const [modalConfirmation, setModalConfirmation] = useState(false);
 
   const openRefeicoesModal = () => {
     setRefeicoesModalOpen(true);
@@ -101,20 +99,18 @@ const Dieta = () => {
   };
 
   const openModalForPaciente = (paciente) => {
-    
     setSelectedPaciente(paciente);
     setModalIsOpen(true);
-
   };
 
   const openRefeicoesModalDieta = () => {
     setRefeicoesModalDietaOpen(true);
   };
   const closeRefeicoesModalDieta = () => {
+    getRefeicaoGestante();
     setRefeicoesModalDietaOpen(false);
   };
 
-  
   const criarNovaRefeicaoPadrao = async () => {
     try {
       const response = await fetch(
@@ -189,19 +185,32 @@ const Dieta = () => {
     }
   };
 
+  const getRefeicao = (idGestante) => {
+    const url = `https://api-bebevindo.azurewebsites.net/dieta/${idGestante}`;
+
+    axios
+      .get(url)
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  getRefeicao(selectedPaciente?.idGestante);
+
   const getRefeicaoGestante = (idGestante, idConsulta) => {
-    
     if (idGestante == null || idGestante === undefined) {
       console.error("idGestante é nulo ou indefinido");
     } else {
-
       const url = `https://api-bebevindo.azurewebsites.net/dieta/${idGestante}`;
       axios
         .get(url)
         .then((response) => {
           const data = response.data;
-      
-  
+
           if (data.dieta.length === 0) {
             const urlPost = `https://api-bebevindo.azurewebsites.net/dieta/`;
             axios
@@ -217,12 +226,10 @@ const Dieta = () => {
           } else {
             setIdDieta(data.dieta[0].idDieta);
             const url = `https://api-bebevindo.azurewebsites.net/dieta/refeicao/${idGestante}`;
-            axios
-              .get(url)
-              .then((response) =>{
-                const data = response.data
-                setRefeicaoGestante(data);
-              })
+            axios.get(url).then((response) => {
+              const data = response.data;
+              setRefeicaoGestante(data);
+            });
           }
         })
         .catch((error) => {
@@ -232,13 +239,11 @@ const Dieta = () => {
   };
 
   useEffect(() => {
-    console.log("oiii");
     getRefeicaoGestante(
       selectedPaciente?.idGestante,
       selectedPaciente?.idConsulta
     );
   }, [isRefeicoesModalDietaOpen]);
-
 
   useEffect(() => {
     if (
@@ -308,12 +313,24 @@ const Dieta = () => {
   };
   useEffect(() => {
     fetchRefeicoesPadrao();
+    getRefeicaoGestante();
   }, []);
 
   return (
     <>
       <Sidebar />
-
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className={styles["dieta-container"]}>
         <TituloSecao title="Gerenciar Dietas" />
         <div className={styles["container-geral"]}>
@@ -548,13 +565,42 @@ const Dieta = () => {
                     {listRefeicaoGestante?.dieta &&
                     listRefeicaoGestante.dieta.length > 0 ? (
                       listRefeicaoGestante.dieta.map((data) => (
-                        <div
-                          className={styles["refeicoes-pacientes"]}
-                          onClick={openRefeicoesModal}
-                        >
-                          <span>{data.refeicao}</span>
-                          <p>{data.horario}</p>
-                          <MdDeleteOutline/>
+                        <div className={styles["refeicoes-pacientes"]}>
+                          <div
+                            style={{ display: "flex", gap: "20px" }}
+                            onClick={openRefeicoesModal}
+                          >
+                            <span>{data.refeicao}</span>
+                            <p>{data.horario}</p>
+                          </div>
+
+                          <div className={styles.buttonDelete}>
+                            <MdDeleteOutline
+                              onClick={() => {
+                                setModalConfirmation(true);
+                              }}
+                              className={styles.buttonDeleteIcon}
+                            />
+                          </div>
+                          {modalConfirmation && (
+                            <ModalConfirmation
+                              closeModal={() => setModalConfirmation(false)}
+                              idRefeicao={data.idRefeicao}
+                              get={getRefeicaoGestante(
+                                selectedPaciente.idGestante,
+                                selectedPaciente.idConsulta
+                              )}
+                            />
+                          )}
+                          {isRefeicoesModalOpen && (
+                            <>
+                              <ModalAddFoodRefeicao
+                                closeRefeicoesModal={closeRefeicoesModal}
+                                refeicao={data.refeicao}
+                                idRefeicao={data.idRefeicao}
+                              />
+                            </>
+                          )}
                         </div>
                       ))
                     ) : (
@@ -569,30 +615,6 @@ const Dieta = () => {
                   </button>
                 </div>
               </div>
-
-              {isRefeicoesModalOpen && (
-                <div className={styles["modalContainerRefeicoes"]}>
-                  <div className={styles["modalBox"]}>
-                    <div className={styles["modalContentRefeicoes"]}>
-                      <span
-                        onClick={closeRefeicoesModal}
-                        className={styles["closeButtonModal"]}
-                      >
-                        &times;
-                      </span>
-
-                      <h2>Nome da refeição</h2>
-                      <h4>
-                        Aqui vão aparecer os alimentos que estão inclusos na
-                        refeição clicada. aí vai dar pra add mais alimentos e
-                        remover os ja existentes tbm:
-                      </h4>
-                    </div>
-                    <button>Adicionar alimentos</button>
-                    <button>Copiar refeiçao</button>
-                  </div>
-                </div>
-              )}
 
               {isRefeicoesModalDietaOpen && (
                 <ModalDieta

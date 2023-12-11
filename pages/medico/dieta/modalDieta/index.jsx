@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const ModalDieta = ({ title, id_dieta, id_profissional,id_gestante, closeModal }) => {
 
-  console.log(id_dieta + "ID");
   
   const [comidas, setComidas] = useState();
   const [modal, setModalIsOpen] = useState(true);
@@ -39,6 +38,9 @@ const ModalDieta = ({ title, id_dieta, id_profissional,id_gestante, closeModal }
         progress: undefined,
         theme: "light",
       });
+      setTimeout(() =>{
+        closeModal()
+      },1500)
       
     }).catch(err => {
       console.log(err);

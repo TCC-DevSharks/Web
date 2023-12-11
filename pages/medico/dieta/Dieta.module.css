@@ -323,6 +323,8 @@
     border-radius: 20px;
     height: 70%;
     display: flex;
+    flex-direction: column;
+    padding: 2%;
     align-items: center;
     justify-content: center;
     width: 50%;
@@ -550,7 +552,19 @@
     justify-content: flex-end;
     width: 25%;
 }
+
+.buttonDeleteIcon{
+    font-size: 1.8rem;
+}
+
 .buttonDelete > .buttonDeleteIcon:hover{
     color: #f11717;
     transition: 0.3s;
+}
+
+.foodsAdd{
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    background-color: #000;
 }

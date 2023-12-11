@@ -21,7 +21,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/medico/dieta/ModalAddAlimentoRefeicao/index.jsx"  ],
   "exclude": [
     "node_modules"
   ]
