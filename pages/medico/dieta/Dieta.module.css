@@ -568,3 +568,24 @@
     overflow: auto;
     background-color: #000;
 }
+
+.ModalContainerCopia{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 100%;
+    z-index: 1000000;
+}
+
+.ModalCopiaBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #000;
+    width: 100vh;
+    height: 100vh;
+}

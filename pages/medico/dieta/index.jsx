@@ -14,8 +14,8 @@ import {
 } from "react-icons/io5";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { MdDeleteOutline } from "react-icons/md";
-import  ModalConfirmation  from "./modalConfirmation/";
-import  ModalAddFoodRefeicao  from "./ModalAddAlimentoRefeicao";
+import  ModalConfirmation  from "./modalConfirmation";
+import  {ModalAddFoodRefeicao}  from "./ModalAddAlimentoRefeicao";
 
 const Dieta = () => {
   let IdMedico;
@@ -40,6 +40,7 @@ const Dieta = () => {
     setAdicionarAlimentoRefeicaoPadraoModalOpen,
   ] = useState(false);
   const [refeicoesPadrao, setRefeicoesPadrao] = useState([]);
+  console.log(refeicoesPadrao);
   const [selectedRefeicao, setSelectedRefeicao] = useState(null);
   const [alimentosRefeicaoPadrao, setAlimentosRefeicaoPadrao] = useState([]);
   const [listaAlimentos, setListaAlimentos] = useState([]);
@@ -598,6 +599,7 @@ const Dieta = () => {
                                 closeRefeicoesModal={closeRefeicoesModal}
                                 refeicao={data.refeicao}
                                 idRefeicao={data.idRefeicao}
+                                refeicoesPadrao={refeicoesPadrao}
                               />
                             </>
                           )}
@@ -623,6 +625,7 @@ const Dieta = () => {
                   id_profissional={IdMedico}
                   id_dieta={idDieta}
                   closeModal={closeRefeicoesModalDieta}
+                  refeicaoPadrao={refeicoesPadrao}
                 />
               )}
             </div>

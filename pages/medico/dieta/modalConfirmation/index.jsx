@@ -8,11 +8,13 @@ function ModalConfirmation({ idRefeicao, closeModal, get }) {
   const [isModalOpen, setModalOpen] = useState(true);
 
   const deleteRefeicao = () => {
+
     const url = `https://api-bebevindo.azurewebsites.net/dieta/refeicao/${idRefeicao}`;
     axios
       .delete(url)
       .then((response) => {
         const data = response.data;
+        console.log(data);
         toast.success(data.message, {
           position: "top-center",
           autoClose: 5000,
