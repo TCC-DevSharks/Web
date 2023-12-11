@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../../../styles/Prontuario.module.css';
-import TituloSecao from '../../../components/tituloSection/TituloSecao';
 import PacienteProntuario from '../../../components/medico/prontuario/PacienteProntuario';
 import Sidebar from '../../../components/sideBar/Sidebar';
 import axios from 'axios';

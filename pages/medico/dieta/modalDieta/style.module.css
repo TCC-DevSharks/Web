@@ -31,7 +31,7 @@
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .foods{
@@ -52,7 +52,7 @@
     gap: 10px;
     width: 100%;
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 500;
     color: #b6b6f6;
 }
 
@@ -80,15 +80,22 @@
     color: #b6b6f6;
     font-weight: 700;
     font-size: 1rem;
-    margin-top: 10px;
+    margin-top: 1rem;
+    transition: all .2s ease-in-out;
 }
 
 .buttonCriar:hover{
     background-color: #b6b6f6;
     color: #fff;
-
 }
 
 .teste{
-    width: 40%;
+    width: 30%;
+}
+
+.contentModal h1 {
+    color: #b6b6f6;
+}
+.contentModal p {
+    font-size: 20px;
 }

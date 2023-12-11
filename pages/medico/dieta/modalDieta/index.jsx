@@ -1,8 +1,6 @@
 import axios from "axios"
-import { useEffect } from "react"
 import { useState } from "react"
 import { AiFillCloseCircle } from "react-icons/ai"
-import { IoAddCircleSharp } from "react-icons/io5";
 import style from "./style.module.css";
 import image from "../../../../assets/image.png"
 import { toast, ToastContainer } from "react-toastify";
@@ -79,7 +77,7 @@ const ModalDieta = ({ title, id_dieta, id_profissional,id_gestante, closeModal }
                 <AiFillCloseCircle onClick={closeModal} fill="#FF0000" style={{ cursor: 'pointer' }}/>
               </div>
               <h1>{title}</h1>
-              <p>Aqui você pode criar a refeição, digitando o nome e o horário da refeição</p>
+              <p>Crie a refeição digitando o nome e o horário</p>
 
               <div className={style.foods}>
                 <label  htmlFor="Nome refeição">

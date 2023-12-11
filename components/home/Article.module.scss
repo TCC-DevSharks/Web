@@ -41,7 +41,7 @@
     }
 
     .title {
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-weight: 500;
     }
 
@@ -59,7 +59,7 @@
         gap: 10px;
         align-items: center;
         color: var(--primary-color);
-        font-size: 0.8rem;
+        font-size: 1rem;
         cursor: pointer;
         text-transform: capitalize;
 
@@ -118,8 +118,8 @@
 }
 
 .modalContent h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
     color: #B6B6F6;
 }
 
@@ -130,7 +130,7 @@
 }
 
 .modalContent p {
-    font-size: 0.8rem;
+    font-size: 1.1rem;
     line-height: 1.4;
     margin-bottom: 20px;
     width: 100%;

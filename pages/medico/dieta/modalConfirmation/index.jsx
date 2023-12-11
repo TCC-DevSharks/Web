@@ -38,7 +38,7 @@ function ModalConfirmation({ idRefeicao, closeModal, get }) {
         <div className={style.ContainerModal}>
           <div className={style.BoxModal}>
             <h1 style={{ color: "#000" }}>
-              Você deseja excluir está refeição?
+              Você deseja excluir esta refeição?
             </h1>
             <div className={style.buttons}>
               <button onClick={() => closeModal()}>Cancelar</button>
