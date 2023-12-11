@@ -101,8 +101,10 @@ const Dieta = () => {
   };
 
   const openModalForPaciente = (paciente) => {
+    
     setSelectedPaciente(paciente);
     setModalIsOpen(true);
+
   };
 
   const openRefeicoesModalDieta = () => {
@@ -112,6 +114,7 @@ const Dieta = () => {
     setRefeicoesModalDietaOpen(false);
   };
 
+  
   const criarNovaRefeicaoPadrao = async () => {
     try {
       const response = await fetch(
@@ -227,6 +230,15 @@ const Dieta = () => {
         });
     }
   };
+
+  useEffect(() => {
+    console.log("oiii");
+    getRefeicaoGestante(
+      selectedPaciente?.idGestante,
+      selectedPaciente?.idConsulta
+    );
+  }, [isRefeicoesModalDietaOpen]);
+
 
   useEffect(() => {
     if (
