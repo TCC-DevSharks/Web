@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding-top: 80px;
+  padding-bottom: 80px;
 
   .description__ex {
     width: 80%;
@@ -15,12 +17,14 @@
     font-size: 35px;
     font-weight: 600;
     border-bottom: 4px dotted var(--primary-color);
+    color: var(--primary-color);
 
     p {
       text-align: center;
       font-size: 1.5rem;
       font-weight: 400;
       padding-top: 10px;
+      color: rgb(52, 52, 52);
     }
   }
 
