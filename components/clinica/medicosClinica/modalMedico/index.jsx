@@ -25,6 +25,33 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
     bairro: "",
   });
 
+if (medicoInfo) {
+  useEffect(() => {
+    const fetchAddressInfo = async () => {
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${medicoInfo.cep}/json/`);
+        if (response.ok) {
+          const data = await response.json();
+          setCepInfo({
+            rua: data.logradouro,
+            cidade: data.localidade,
+            bairro: data.bairro,
+          });
+        } else {
+          console.error("Erro ao obter informações do CEP");
+        }
+      } catch (error) {
+        console.error("Erro ao obter informações do CEP", error);
+      }
+    };
+
+
+      fetchAddressInfo();
+    
+  }, []);
+
+}
+
   useEffect(() => {
     const fetchAddressInfo = async () => {
       try {
@@ -44,9 +71,9 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
       }
     };
 
-    if (/^\d{8}$/.test(editedMedicoInfo.cep)) {
+  
       fetchAddressInfo();
-    }
+    
   }, [editedMedicoInfo.cep]);
 
   const handleSave = async () => {
@@ -124,6 +151,8 @@ export function ModalMedico({ medicoInfo, closeModal, onClick }) {
     catch (error) {
       toast.error('Erro ao editar médico', error);
     }
+
+    closeModal()
   };
 
   return (

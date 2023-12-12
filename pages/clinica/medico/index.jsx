@@ -86,9 +86,9 @@ export default function Medicos() {
   };
 
   useEffect(() => {
-    
+    console.log("sadasf");
     getMedicos()
-  }, []);
+  }, [isModalOpen]);
 
   return (
     <>
